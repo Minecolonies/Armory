@@ -25,6 +25,7 @@ local.properties
 #Forge
 build
 out
+run
 *.ipr
 *.iws
 *.iml
