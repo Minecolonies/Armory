@@ -288,7 +288,7 @@ public class TileEntityMoltenMetalMixer extends TileEntitySmithsCore<TileEntityM
     @Override
     public boolean isItemValidForSlot(int index, @Nonnull ItemStack stack) {
         IArmoryAPI.Holder.getInstance().getRegistryManager().getMoltenMetalMixingRecipeRegistry().forEach(recipe -> {
-            if (ItemStackU)
+            if (com.smithsmodding.smithscore.util.common.helper.ItemStackHelper.)
         });
 
         return false;
