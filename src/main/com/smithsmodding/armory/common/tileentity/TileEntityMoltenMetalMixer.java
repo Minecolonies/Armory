@@ -287,9 +287,15 @@ public class TileEntityMoltenMetalMixer extends TileEntitySmithsCore<TileEntityM
      */
     @Override
     public boolean isItemValidForSlot(int index, @Nonnull ItemStack stack) {
-        IArmoryAPI.Holder.getInstance().getRegistryManager().getMoltenMetalMixingRecipeRegistry().forEach(recipe -> {
-            if (com.smithsmodding.smithscore.util.common.helper.ItemStackHelper.)
-        });
+        for (IMoltenMetalMixingRecipe recipe : IArmoryAPI.Holder.getInstance().getRegistryManager().getMoltenMetalMixingRecipeRegistry())
+        {
+            if (com.smithsmodding.smithscore.util.common.helper.ItemStackHelper.equalsIgnoreStackSize(stack, recipe.getPrimarySolidInputStack())
+                  && com.smithsmodding.smithscore.util.common.helper.ItemStackHelper.equalsIgnoreStackSize(stack, recipe.getSecondarySolidInputStack())
+                    && com.smithsmodding.smithscore.util.common.helper.ItemStackHelper.equalsIgnoreStackSize(stack, recipe.getTertiarySolidInputStack()))
+            {
+                    return true;
+            }
+        }
 
         return false;
     }

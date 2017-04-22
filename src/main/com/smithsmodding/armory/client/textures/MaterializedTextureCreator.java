@@ -10,6 +10,8 @@ import com.smithsmodding.armory.api.common.material.client.MaterialRenderControl
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
 import com.smithsmodding.armory.common.material.MedievalCoreArmorMaterial;
+import com.smithsmodding.smithscore.SmithsCore;
+import com.smithsmodding.smithscore.client.events.texture.TextureStitchCollectedEvent;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IResourceManager;
@@ -126,7 +128,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      * @param event The events fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
      */
     @SubscribeEvent(priority = EventPriority.LOW)
-    public void createCustomTextures(@Nonnull TextureStitchEvent.Pre event) {
+    public void createCustomTextures(@Nonnull TextureStitchCollectedEvent event) {
         //Only run the creation once, after all mods have been loaded.
         if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
             return;
@@ -162,14 +164,17 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     @SubscribeEvent
     public void postTextureStitch(TextureStitchEvent.Post e) throws Exception
     {
-        TextureMap map = e.getMap();
-        String name = map.getBasePath().replace('/', '_');
-        int mip = map.getMipmapLevels();
+        if (SmithsCore.isInDevEnvironment())
+        {
+            TextureMap map = e.getMap();
+            String name = map.getBasePath().replace('/', '_');
+            int mip = map.getMipmapLevels();
 
-        if (mip != 0)
-            return;
+            if (mip != 0)
+                return;
 
-        saveGlTexture(name, map.getGlTextureId(), mip);
+            saveGlTexture(name, map.getGlTextureId(), mip);
+        }
     }
 
     public static void saveGlTexture(String name, int textureId, int mipmapLevels) {

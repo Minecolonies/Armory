@@ -275,7 +275,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
 
     @Override
     public void handleDebugInformation(@Nonnull RenderGameOverlayEvent.Text event, @Nonnull World worldIn, @Nonnull BlockPos pos) {
-        if (!SmithsCore.isInDevenvironment() && !Minecraft.getMinecraft().gameSettings.showDebugInfo)
+        if (!SmithsCore.isInDevEnvironment() && !Minecraft.getMinecraft().gameSettings.showDebugInfo)
             return;
 
         TileEntity tileEntity = worldIn.getTileEntity(pos);

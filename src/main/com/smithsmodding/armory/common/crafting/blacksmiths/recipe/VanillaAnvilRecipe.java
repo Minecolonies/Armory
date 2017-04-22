@@ -240,7 +240,9 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
                             }
 
                             for (Enchantment enchantment : tEnchantmentsMap.keySet()) {
-                                if (enchantment != enchantment1 && !(enchantment1.canApplyTogether(enchantment) && enchantment.canApplyTogether(enchantment1)))  //Forge BugFix: Let Both enchantments veto being together
+                                //TODO: Insert below: && !(enchantment1.canApplyTogether(enchantment) && enchantment.canApplyTogether(enchantment1))
+                                //TODO: Update AT
+                                if (enchantment != enchantment1 )  //Forge BugFix: Let Both enchantments veto being together
                                 {
                                     flag1 = false;
                                     ++i;

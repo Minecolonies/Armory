@@ -37,9 +37,10 @@ repositories {
         name 'DVS1 Maven FS'
         url 'http://dvs1.progwml6.com/files/maven'
     }
-    maven {
-        name = "SmithsCore"
-        url = "http://mavenrepo.smithscore.orionminecraft.com/"
+    ivy {
+        name 'Minecolonies TeamCity Repo'
+        ivyPattern 'http://teamcity.minecolonies.com/guestAuth/repository/download/[module]/[revision]/teamcity-ivy.xml'
+        artifactPattern 'http://teamcity.minecolonies.com/guestAuth/repository/download/[module]/[revision]/[artifact](.[ext])'
     }
 }
 
@@ -105,7 +106,14 @@ minecraft {
 
 dependencies {
     //Mod dependencies
-    deobfCompile group: 'com.smithsmodding.smithscore', name: 'smithscore', version: config.minecraft_version + "-" + config.smithscore_version
+    deobfCompile ( 'org:SmithsCore_BranchBuilds:7' ){
+        artifact {
+            name = 'smithscore-1.11.2-1.4.0-383-SNAPSHOT-dev'
+            type = 'jar'
+        }
+    }
+
+    //deobfCompile group: 'com.smithsmodding.smithscore', name: 'smithscore', version: config.minecraft_version + "-" + config.smithscore_version
     deobfCompile "mezz.jei:jei_" + config.minecraft_version + ":" + config.jei_version
 
     //Maven uploader

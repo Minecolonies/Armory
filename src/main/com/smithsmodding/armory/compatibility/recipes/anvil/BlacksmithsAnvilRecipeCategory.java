@@ -8,7 +8,9 @@ import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.compatibility.JEICompatMod;
 import com.smithsmodding.smithscore.util.client.CustomResource;
 import mezz.jei.api.gui.IDrawable;
+import mezz.jei.api.gui.IGuiIngredientGroup;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.ITooltipCallback;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -19,6 +21,8 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Author Orion (Created on: 21.06.2016)
@@ -110,5 +114,24 @@ public class BlacksmithsAnvilRecipeCategory implements IRecipeCategory {
                 recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_TONGSLOTS + i, wrapper.getAdditionalStacks().get(i));
             }
         }
+    }
+
+    /**
+     * Get the tooltip for whatever's under the mouse.
+     * ItemStack and fluid tooltips are already handled by JEI, this is for anything else.
+     * <p>
+     * To add to ingredient tooltips, see {@link IGuiIngredientGroup#addTooltipCallback(ITooltipCallback)}
+     * To add tooltips for a recipe wrapper, see {@link IRecipeWrapper#getTooltipStrings(int, int)}
+     *
+     * @param mouseX the X position of the mouse, relative to the recipe.
+     * @param mouseY the Y position of the mouse, relative to the recipe.
+     * @return tooltip strings. If there is no tooltip at this position, return an empty list.
+     *
+     * @since JEI 4.2.5
+     */
+    @Override
+    public List<String> getTooltipStrings(final int mouseX, final int mouseY)
+    {
+        return Collections.emptyList();
     }
 }

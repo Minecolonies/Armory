@@ -313,7 +313,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
 
         setCurrentRecipe(null);
 
-        if (SmithsCore.isInDevenvironment()) {
+        if (SmithsCore.isInDevEnvironment()) {
             ModLogger.getInstance().info("Checking Recipe for:");
             for (ItemStack tStack : craftingStacks) {
                 ModLogger.getInstance().info("   " + ItemStackHelper.toString(tStack));
