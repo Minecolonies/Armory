@@ -25,7 +25,7 @@ import javax.annotation.Nonnull;
 /**
  * Created by marcf on 1/25/2017.
  */
-@Mod.EventBusSubscriber()  //modid = (References.General.MOD_ID)
+@Mod.EventBusSubscriber(modid = References.General.MOD_ID) //modid = (References.General.MOD_ID)
 public class CommonSystemRegistrationInitializer {
 
     @SubscribeEvent

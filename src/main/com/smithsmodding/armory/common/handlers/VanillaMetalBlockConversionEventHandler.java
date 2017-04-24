@@ -4,16 +4,17 @@ package com.smithsmodding.armory.common.handlers;
  * Created by marcf on 2/1/2017.
  */
 
+import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import com.smithsmodding.armory.api.util.references.ModBlocks;
 import com.smithsmodding.armory.api.util.references.ModHeatedObjectTypes;
 import com.smithsmodding.armory.api.util.references.ModMaterials;
-import com.smithsmodding.armory.api.util.common.CapabilityHelper;
+import com.smithsmodding.armory.api.util.references.References;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = References.General.MOD_ID)
 public class VanillaMetalBlockConversionEventHandler {
 
     @SubscribeEvent

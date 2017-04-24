@@ -88,7 +88,7 @@ import static com.smithsmodding.armory.api.util.references.References.InternalNa
  * Created by marcf on 1/25/2017.
  */
 @AutomaticEventBusSubscriber(types = {AutomaticEventBusSubscriber.BusType.SERVER}, modid = References.General.MOD_ID)
-@Mod.EventBusSubscriber() //modid = (References.General.MOD_ID)
+@Mod.EventBusSubscriber(modid = (References.General.MOD_ID))
 public class CommonMedievalRegistrationInitializer {
 
     //Events
@@ -169,9 +169,9 @@ public class CommonMedievalRegistrationInitializer {
                 .setRegistryName(new ResourceLocation(References.General.MOD_ID.toLowerCase(), References.InternalNames.Armor.MEDIEVALSHOES));
 
         armorRegistry.register(ModArmor.Medieval.HELMET);
-        armorRegistry.register(ModArmor.Medieval.CHESTPLATE);
-        armorRegistry.register(ModArmor.Medieval.LEGGINGS);
-        armorRegistry.register(ModArmor.Medieval.SHOES);
+        //armorRegistry.register(ModArmor.Medieval.CHESTPLATE);
+        //armorRegistry.register(ModArmor.Medieval.LEGGINGS);
+        //armorRegistry.register(ModArmor.Medieval.SHOES);
     }
 
     @SubscribeEvent

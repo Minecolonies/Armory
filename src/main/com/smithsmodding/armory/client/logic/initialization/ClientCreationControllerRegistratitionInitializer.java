@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 /**
  * Created by marcf on 1/29/2017.
  */
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = References.General.MOD_ID)
 public class ClientCreationControllerRegistratitionInitializer {
 
     @SubscribeEvent

@@ -183,7 +183,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
      * @return The in world renderer.
      */
     @SideOnly(Side.CLIENT)
-    @Nonnull
+    @Nullable
     @Override
     public ModelRenderer getRendererForArmor() {
         return modelRenderer;

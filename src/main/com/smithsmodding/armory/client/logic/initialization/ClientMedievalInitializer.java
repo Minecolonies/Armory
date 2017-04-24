@@ -2,8 +2,11 @@ package com.smithsmodding.armory.client.logic.initialization;
 
 import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
 import com.smithsmodding.armory.api.common.material.client.MaterialRenderControllers;
+import com.smithsmodding.armory.api.util.client.ModelTransforms;
+import com.smithsmodding.armory.api.util.references.ModArmor;
 import com.smithsmodding.armory.api.util.references.ModMaterials;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import javax.annotation.Nonnull;
@@ -60,5 +63,44 @@ public class ClientMedievalInitializer extends IInitializationComponent.Impl {
         ModMaterials.Anvil.STONE.setRenderInfo(new MaterialRenderControllers.BlockTexture("minecraft:blocks/stone"));
         ModMaterials.Anvil.IRON.setRenderInfo(ModMaterials.Armor.Core.IRON.getRenderInfo());
         ModMaterials.Anvil.OBSIDIAN.setRenderInfo(ModMaterials.Armor.Core.OBSIDIAN.getRenderInfo());
+
+        ModelBiped componentModel = new ModelBiped(1);
+        ModArmor.Medieval.CHESTPLATE.setRendererForArmor(componentModel.bipedBody);
+        ModArmor.Medieval.HELMET.setRendererForArmor(componentModel.bipedHead);
+        ModArmor.Medieval.LEGGINGS.setRendererForArmor(componentModel.bipedBody);
+        ModArmor.Medieval.SHOES.setRendererForArmor(componentModel.bipedBody);
+
+        ModArmor.Medieval.CHESTPLATE.setRenderTransforms(getChestplateModelTransforms());
+        ModArmor.Medieval.HELMET.setRenderTransforms(getHelmetModelTransforms());
+        ModArmor.Medieval.LEGGINGS.setRenderTransforms(getLeggingsModelTransforms());
+        ModArmor.Medieval.SHOES.setRenderTransforms(getShoesModelTransforms());
+    }
+
+    private ModelTransforms getChestplateModelTransforms() {
+        ModelTransforms transforms = new ModelTransforms();
+
+        transforms.setOffsetY(transforms.getOffsetY() - 0.25f);
+
+        return transforms;
+    }
+
+    private ModelTransforms getLeggingsModelTransforms()
+    {
+        return new ModelTransforms();
+    }
+
+    private ModelTransforms getHelmetModelTransforms()
+    {
+        ModelTransforms transforms = new ModelTransforms();
+
+        transforms.setOffsetY(transforms.getOffsetY() - 0.25f);
+        transforms.setBaseScale(0.625f);
+
+        return transforms;
+    }
+
+    private ModelTransforms getShoesModelTransforms()
+    {
+        return new ModelTransforms();
     }
 }

@@ -1,15 +1,16 @@
 package com.smithsmodding.armory.api.client.render.armor;
 
 import com.smithsmodding.armory.api.client.armor.IInWorldRenderableArmorComponent;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.util.client.ModelTransforms;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nullable;
 
 /**
  * Created by Iddo on 8/6/2016.
@@ -26,12 +27,18 @@ public class BodyArmorPartRenderer {
             GlStateManager.translate(0.0F, 0.2F, 0.0F);
         }
 
-        armorPart.getRendererForArmor().postRender(0.0625f);
+        @Nullable ModelRenderer renderer = armorPart.getRendererForArmor();
+        if (renderer == null)
+        {
+            renderer = new ModelRenderer(modelBiped);
+        }
+
+        renderer.postRender(0.0625f);
 
         ModelTransforms transforms = armorPart.getRenderTransforms();
 
         //fitting block to the body
-        GlStateManager.translate(transforms.getRotationPointX(), transforms.getRotationPointY(), transforms.getRotationPointZ());
+        GlStateManager.translate(transforms.getRotationPointX() + 1, transforms.getRotationPointY(), transforms.getRotationPointZ());
         if (transforms.getRotateAngleZ() != 0.0F) {
             GlStateManager.rotate(transforms.getRotateAngleZ() * (180F / (float) Math.PI), 0.0F, 0.0F, 1.0F);
         }
@@ -49,9 +56,9 @@ public class BodyArmorPartRenderer {
         GlStateManager.scale(transforms.getBaseScale(), -transforms.getBaseScale(), -transforms.getBaseScale());
 
 
-        Minecraft.getMinecraft().getRenderItem().renderItem(new ItemStack(Items.APPLE),model);
+        //Minecraft.getMinecraft().getRenderItem().renderItem(new ItemStack(Items.APPLE),model);
         //minecraft.getRenderItem().renderItem(new ItemStack(Items.APPLE), ItemCameraTransforms.TransformType.NONE);
-        //Minecraft.getMinecraft().getRenderItem().renderItem(itemStack,model);
+        Minecraft.getMinecraft().getRenderItem().renderItem(itemStack,model);
 
         GlStateManager.popMatrix();
     }

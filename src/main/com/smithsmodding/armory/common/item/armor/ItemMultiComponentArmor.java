@@ -8,6 +8,8 @@ import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
+import com.smithsmodding.armory.client.model.item.baked.BakedBipedPerspectiveAwareModel;
+import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.client.Minecraft;
@@ -15,6 +17,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -35,7 +38,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 
 /**
- * Created by marcf on 1/25/2017.
+ * Class that represents MultiComponentArmor
  */
 public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
 
@@ -111,9 +114,9 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
     @Nullable
     @Override
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-        IBakedModel bakedModel= Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(itemStack,entityLiving.getEntityWorld(),entityLiving);
-        if(bakedModel instanceof ModelBiped) {
-            return (ModelBiped) bakedModel;
+        IBakedModel bakedModel= Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(itemStack);
+        if(bakedModel instanceof BakedMultiLayeredArmorItemModel) {
+            return new BakedBipedPerspectiveAwareModel((BakedMultiLayeredArmorItemModel) bakedModel, itemStack);
         }
         return _default;
     }
@@ -179,5 +182,31 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
         IMaterial material = capability.getMaterial();
 
         return material.getTextFormatting() + I18n.format(material.getTranslationKey()) + TextFormatting.RESET + " " + I18n.format(armorType.getTranslationKey());
+    }
+
+    /**
+     * Determines if the specific ItemStack can be placed in the specified armor slot.
+     *
+     * @param stack     The ItemStack
+     * @param armorType Armor slot ID: 0: Helmet, 1: Chest, 2: Legs, 3: Boots
+     * @param entity    The entity trying to equip the armor
+     * @return True if the given ItemStack can be inserted in the slot
+     */
+    @Override
+    public boolean isValidArmor(final ItemStack stack, final EntityEquipmentSlot armorType, final Entity entity)
+    {
+        if (stack.isEmpty())
+        {
+            return false;
+        }
+
+        @Nullable final IMultiComponentArmor armor  = ArmorHelper.getArmorForItemName(stack.getItem().getRegistryName());
+
+        if (armor == null)
+        {
+            return false;
+        }
+
+        return armor.getEquipmentSlotIndex() == armorType.getSlotIndex();
     }
 }

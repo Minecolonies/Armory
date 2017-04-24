@@ -3,6 +3,7 @@ package com.smithsmodding.armory.client.model.item.unbaked;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
@@ -35,8 +36,8 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
     private final HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> brokenParts;
     private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
 
-    public MultiLayeredArmorItemModel(IMultiComponentArmor armor, ImmutableList<ResourceLocation> defaultTextures, ArmorCoreComponentModel baseLayer, HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> parts, HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> brokenPartBlocks, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
-        super(defaultTextures);
+    public MultiLayeredArmorItemModel(IMultiComponentArmor armor, ImmutableSet<ResourceLocation> defaultTextures, ArmorCoreComponentModel baseLayer, HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> parts, HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> brokenPartBlocks, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+        super(ImmutableList.copyOf(defaultTextures));
         this.armor = armor;
         this.baseLayer = baseLayer;
         this.parts = parts;

@@ -5,6 +5,7 @@ import com.smithsmodding.armory.api.common.helpers.IArmoryHelpers;
 import com.smithsmodding.armory.api.common.registries.IRegistryManager;
 import com.smithsmodding.armory.common.helpers.ArmoryHelpers;
 import com.smithsmodding.armory.common.registries.RegistryManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 

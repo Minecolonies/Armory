@@ -6,21 +6,22 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
- * Created by marcf on 1/24/2017.
+ * Interface describing an armor component that can be rendered in the world.
  */
 public interface IInWorldRenderableArmorComponent<T> {
     /**
-     * Method to getCreationRecipe the renderer that is used to render the Armor on the entity.
+     * Method to get the renderer that is used to render the Armor on the entity.
      * @return The in world renderer.
      */
-    @Nonnull
+    @Nullable
     @SideOnly(Side.CLIENT)
     ModelRenderer getRendererForArmor();
 
     /**
-     * Method to getCreationRecipe the transforms for the in world rendering.
+     * Method to get the transforms for the in world rendering.
      * @return The transforms for the in world rendering.
      */
     @Nonnull

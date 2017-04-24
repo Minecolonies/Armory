@@ -12,8 +12,6 @@ import javax.annotation.Nullable;
 public interface IArmoryAPI
 {
 
-
-
     /**
      * Getter for the RegistryManager.
      * @return The RegistryManager that is currently active.

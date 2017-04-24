@@ -7,6 +7,7 @@ import com.smithsmodding.armory.api.util.references.ModBlocks;
 import com.smithsmodding.armory.api.util.references.ModItems;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.client.ArmoryClientProxy;
+import com.smithsmodding.armory.client.render.entity.LayerMultiComponentArmor;
 import com.smithsmodding.armory.client.render.tileentity.*;
 import com.smithsmodding.armory.common.block.BlockConduit;
 import com.smithsmodding.armory.common.block.BlockMoltenMetalTank;
@@ -21,18 +22,22 @@ import com.smithsmodding.smithscore.client.block.statemap.ExtendedStateMap;
 import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
 import com.smithsmodding.smithscore.client.model.loader.SmithsCoreOBJLoader;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.util.Map;
 
 /**
  * Created by marcf on 1/25/2017.
@@ -54,7 +59,24 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
         registerTESR();
     }
 
-    public static void registerIIR() {
+    @Override
+    public void onInit(@Nonnull final FMLInitializationEvent initializationEvent)
+    {
+        registerRenderLayers();
+    }
+
+    private void registerRenderLayers()
+    {
+        Map<String, RenderPlayer> skinMap = Minecraft.getMinecraft().getRenderManager().getSkinMap();
+
+        RenderPlayer render = skinMap.get("default");
+        render.addLayer(new LayerMultiComponentArmor(render));
+
+        render = skinMap.get("slim");
+        render.addLayer(new LayerMultiComponentArmor(render));
+    }
+
+    private void registerIIR() {
         ArmoryClientProxy proxy = (ArmoryClientProxy) Armory.proxy;
 
         IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorRegistry().forEach(iMultiComponentArmor -> {
@@ -142,7 +164,7 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
     }
 
 
-    public static void registerTESR() {
+    private void registerTESR() {
         ArmoryClientProxy.registerBlockModel(ModBlocks.BL_FORGE);
         ArmoryClientProxy.registerBlockModel(ModBlocks.BL_ANVIL);
         ArmoryClientProxy.registerBlockModel(ModBlocks.BL_FIREPLACE);

@@ -1,13 +1,15 @@
 package com.smithsmodding.armory.client.model.loaders;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.smithsmodding.armory.api.client.model.deserializers.MultiLayeredArmorModelDeserializer;
+import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelLayerDefinition;
 import com.smithsmodding.armory.api.client.model.deserializers.definition.MultiLayeredArmorModelDefinition;
 import com.smithsmodding.armory.api.common.armor.IMaterializableMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.events.client.model.item.MultiLayeredArmorModelTextureLoadEvent;
+import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.unbaked.MultiLayeredArmorItemModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorAddonComponentModel;
@@ -15,7 +17,6 @@ import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorCoreCo
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorSubComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
-import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.resources.IResourceManager;
@@ -68,37 +69,39 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
             textureLoadEvent.PostClient();
 
             //Combine the original with the added
-            ImmutableMap.Builder<ResourceLocation, ResourceLocation> combineLayeredBuilder = new ImmutableMap.Builder<>();
-            ImmutableMap.Builder<ResourceLocation, ResourceLocation> combineBrokenBuilder = new ImmutableMap.Builder<>();
+            ImmutableMap.Builder<ResourceLocation, ArmorModelLayerDefinition> combineLayeredBuilder = new ImmutableMap.Builder<>();
+            ImmutableMap.Builder<ResourceLocation, ArmorModelLayerDefinition> combineBrokenBuilder = new ImmutableMap.Builder<>();
             ImmutableMap.Builder<ItemCameraTransforms.TransformType, TRSRTransformation> transformBuilder = new ImmutableMap.Builder<>();
 
-            ResourceLocation baseLocation = definition.getBaseLocation();
-            combineLayeredBuilder.putAll(definition.getLayerLocations());
-            combineBrokenBuilder.putAll(definition.getBrokenLocations());
+            ArmorModelLayerDefinition baseLocation = definition.getBaseLayer();
+            combineLayeredBuilder.putAll(definition.getLayerDefinition());
+            combineBrokenBuilder.putAll(definition.getBrokenDefinition());
             transformBuilder.putAll(definition.getTransforms());
+
             for (MultiLayeredArmorModelDefinition subDef : textureLoadEvent.getAdditionalTextureLayers()) {
-                combineLayeredBuilder.putAll(subDef.getLayerLocations());
-                combineBrokenBuilder.putAll(subDef.getBrokenLocations());
+                combineLayeredBuilder.putAll(subDef.getLayerDefinition());
+                combineBrokenBuilder.putAll(subDef.getBrokenDefinition());
                 transformBuilder.putAll(subDef.getTransforms());
 
-                if (subDef.getBaseLocation() != null)
-                    baseLocation = subDef.getBaseLocation();
+                if (subDef.getBaseLayer() != null)
+                    baseLocation = subDef.getBaseLayer();
             }
+
             definition = new MultiLayeredArmorModelDefinition(baseLocation, combineLayeredBuilder.build(), combineBrokenBuilder.build(), transformBuilder.build());
 
-            if (definition.getBaseLocation() == null)
+            if (definition.getBaseLayer() == null)
                 throw new IllegalArgumentException("The given model does not have a Base assigned.");
 
             //Create the final list builder.
-            ImmutableList.Builder<ResourceLocation> builder = ImmutableList.builder();
+            ImmutableSet.Builder<ResourceLocation> builder = ImmutableSet.builder();
 
             //Define the model structure components.
             ArmorCoreComponentModel base = null;
             HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> parts = new HashMap<>();
             HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> brokenParts = new HashMap<>();
 
-            base = new ArmorCoreComponentModel(ImmutableList.of(definition.getBaseLocation()));
-            builder.add(definition.getBaseLocation());
+            base = new ArmorCoreComponentModel(baseLocation);
+            builder.addAll(baseLocation.getTextures());
 
             //Iterate over all entries to define what they are
             //At least required is a layer if type base for the model to load succesfully.
@@ -110,8 +113,8 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
             //Base layer
             try {
                 //Process each layer both as whole and as broken.
-                definition.getLayerLocations().forEach(new ModelMappingProcessingConsumer(modelLocation, parts, builder));
-                definition.getBrokenLocations().forEach(new ModelMappingProcessingConsumer(modelLocation, brokenParts, builder));
+                definition.getLayerDefinition().forEach(new ModelMappingProcessingConsumer(modelLocation, parts, builder));
+                definition.getBrokenDefinition().forEach(new ModelMappingProcessingConsumer(modelLocation, brokenParts, builder));
             } catch (Exception ex) {
                 ModLogger.getInstance().error(String.format("MLAModel {0} has invalid texture entry; Skipping layer.", modelLocation));
             }
@@ -142,7 +145,7 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
 
     }
 
-    private class ModelMappingProcessingConsumer implements BiConsumer<ResourceLocation, ResourceLocation> {
+    private class ModelMappingProcessingConsumer implements BiConsumer<ResourceLocation, ArmorModelLayerDefinition> {
 
         @Nonnull
         private final ResourceLocation modelLocation;
@@ -151,9 +154,9 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
         private final HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> modelMap;
 
         @Nonnull
-        private final ImmutableList.Builder<ResourceLocation> builder;
+        private final ImmutableSet.Builder<ResourceLocation> builder;
 
-        public ModelMappingProcessingConsumer(@Nonnull ResourceLocation modelLocation, @Nonnull HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> modeMap, @Nonnull ImmutableList.Builder<ResourceLocation> builder) {
+        public ModelMappingProcessingConsumer(@Nonnull ResourceLocation modelLocation, @Nonnull HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> modeMap, @Nonnull ImmutableSet.Builder<ResourceLocation> builder) {
             this.modelLocation = modelLocation;
             this.modelMap = modeMap;
             this.builder = builder;
@@ -163,10 +166,10 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
          * Performs this operation on the given arguments.
          *
          * @param extensionName  the first input argument
-         * @param texture the second input argument
+         * @param layerDefinition the second input argument
          */
         @Override
-        public void accept(ResourceLocation extensionName, ResourceLocation texture) {
+        public void accept(@Nonnull ResourceLocation extensionName, @Nonnull ArmorModelLayerDefinition layerDefinition) {
             IMultiComponentArmorExtension extension = ArmoryAPI.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(extensionName);
             if (extension == null) {
                 ModLogger.getInstance().warn(String.format("Attempted to load model: {0}, with a layer: {1}, that has no registered Extension!", modelLocation, extensionName));
@@ -175,13 +178,13 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
 
             ArmorSubComponentModel componentModel;
             if (extension instanceof IMaterializableMultiComponentArmorExtension) {
-                componentModel = new ArmorAddonComponentModel(ImmutableList.of(texture));
+                componentModel = new ArmorAddonComponentModel(layerDefinition);
             } else {
-                componentModel = new ArmorSubComponentModel(ImmutableList.of(texture));
+                componentModel = new ArmorSubComponentModel(layerDefinition);
             }
 
             modelMap.put(extension, componentModel);
-            builder.add(texture);
+            builder.addAll(layerDefinition.getTextures());
         }
     }
 
