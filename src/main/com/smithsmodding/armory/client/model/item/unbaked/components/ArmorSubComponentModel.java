@@ -5,7 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelLayerDefinition;
-import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelPartDefinition;
+import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelLayerPartDefinition;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
@@ -141,7 +141,7 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
 
         @Nonnull ImmutableSet.Builder<BakedSubComponentModel> builder = ImmutableSet.builder();
 
-        for(ArmorModelPartDefinition part : getLayerDefinition().getParts())
+        for(ArmorModelLayerPartDefinition part : getLayerDefinition().getParts())
         {
             builder.add(getBakingModelForTexture(part.getTextureLocation()).generateBackedComponentModel(TRSRTransformation.blockCenterToCorner(part.getTransformation()), format, bakedTextureGetter));
         }

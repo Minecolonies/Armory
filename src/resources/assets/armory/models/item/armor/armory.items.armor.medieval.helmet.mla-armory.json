@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "base": "armory:models/item/armor/layers/armory.helmet.base",
-  "layers": {},
-  "broken": {}
+  "parent": "armory:models/item/armor/mla",
+  "parts": {
+    "armory:helmet.main":"armory:models/item/armor/parts/armory.helmet.main"
+  }
 }

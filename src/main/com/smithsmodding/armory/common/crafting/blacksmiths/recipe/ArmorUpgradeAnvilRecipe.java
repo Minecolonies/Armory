@@ -79,7 +79,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
 
             ItemStack slotContent = craftingSlotContents[slot];
 
-            if (slotContent != null) {
+            if (slotContent != null && !slotContent.isEmpty()) {
                 if (getComponents()[slot] == null) {
                     return false;
                 } else if (!getComponent(slot).isValidComponentForSlot(slotContent)) {

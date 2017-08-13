@@ -15,13 +15,13 @@ import java.util.stream.Collectors;
 public class ArmorModelLayerDefinition
 {
 
-    @Nonnull private final ImmutableList<ArmorModelPartDefinition> parts;
+    @Nonnull private final ImmutableList<ArmorModelLayerPartDefinition> parts;
 
     /**
      * Constructor for a definition of a layer in the armor model.
-     * @param parts the {@link ArmorModelPartDefinition} that make up this layer.
+     * @param parts the {@link ArmorModelLayerPartDefinition} that make up this layer.
      */
-    public ArmorModelLayerDefinition(@Nonnull final List<ArmorModelPartDefinition> parts) {
+    public ArmorModelLayerDefinition(@Nonnull final List<ArmorModelLayerPartDefinition> parts) {
         this.parts = ImmutableList.copyOf(parts);
     }
 
@@ -31,7 +31,7 @@ public class ArmorModelLayerDefinition
      */
     @Nonnull
     public final ImmutableList<ResourceLocation> getTextures() {
-        return ImmutableList.copyOf(parts.stream().map(ArmorModelPartDefinition::getTextureLocation).collect(Collectors.toSet()));
+        return ImmutableList.copyOf(parts.stream().map(ArmorModelLayerPartDefinition::getTextureLocation).collect(Collectors.toSet()));
     }
 
     /**
@@ -39,7 +39,7 @@ public class ArmorModelLayerDefinition
      * @return An {@link ImmutableList} of parts that make up this layer.
      */
     @Nonnull
-    public ImmutableList<ArmorModelPartDefinition> getParts()
+    public ImmutableList<ArmorModelLayerPartDefinition> getParts()
     {
         return parts;
     }
@@ -50,7 +50,7 @@ public class ArmorModelLayerDefinition
             return this;
         }
 
-        ImmutableList.Builder<ArmorModelPartDefinition> builder = ImmutableList.builder();
+        ImmutableList.Builder<ArmorModelLayerPartDefinition> builder = ImmutableList.builder();
 
         parts.forEach(part -> {
             if (overrideMap.containsKey(part.getId()) && !overrideMap.get(part.getId()).equals(new ResourceLocation(References.General.MOD_ID, "delete")))

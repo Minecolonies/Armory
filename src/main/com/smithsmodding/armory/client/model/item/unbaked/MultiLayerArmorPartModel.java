@@ -4,11 +4,12 @@ import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import com.smithsmodding.armory.api.client.model.ModelPart;
 import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.util.references.ModLogger;
-import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
+import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorPartItemModel;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedCoreComponentModel;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorCoreComponentModel;
@@ -28,17 +29,26 @@ import java.util.HashMap;
 /**
  * Created by Marc on 06.12.2015.
  */
-public class MultiLayeredArmorItemModel extends ItemLayerModel {
+public class MultiLayerArmorPartModel extends ItemLayerModel {
 
     private final IMultiComponentArmor armor;
+    private final ModelPart part;
     private final ArmorCoreComponentModel baseLayer;
-    private final HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> parts;
-    private final HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> brokenParts;
+    private final ImmutableMap<IMultiComponentArmorExtension, ArmorSubComponentModel> parts;
+    private final ImmutableMap<IMultiComponentArmorExtension, ArmorSubComponentModel> brokenParts;
     private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
 
-    public MultiLayeredArmorItemModel(IMultiComponentArmor armor, ImmutableSet<ResourceLocation> defaultTextures, ArmorCoreComponentModel baseLayer, HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> parts, HashMap<IMultiComponentArmorExtension, ArmorSubComponentModel> brokenPartBlocks, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+    public MultiLayerArmorPartModel(
+                                     IMultiComponentArmor armor,
+                                     ImmutableSet<ResourceLocation> defaultTextures,
+                                     final ModelPart part,
+                                     ArmorCoreComponentModel baseLayer,
+                                     ImmutableMap<IMultiComponentArmorExtension, ArmorSubComponentModel> parts,
+                                     ImmutableMap<IMultiComponentArmorExtension, ArmorSubComponentModel> brokenPartBlocks,
+                                     ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
         super(ImmutableList.copyOf(defaultTextures));
         this.armor = armor;
+        this.part = part;
         this.baseLayer = baseLayer;
         this.parts = parts;
         this.brokenParts = brokenPartBlocks;
@@ -47,7 +57,7 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
 
     @Nonnull
     @Override
-    public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+    public BakedMultiLayeredArmorPartItemModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         //Get ourselfs the base model to use.
         IBakedModel base = super.bake(state, format, bakedTextureGetter);
 
@@ -78,6 +88,6 @@ public class MultiLayeredArmorItemModel extends ItemLayerModel {
         }
 
         //Bake the model.
-        return new BakedMultiLayeredArmorItemModel(base, mappedBaseLayer, mappedParts, mappedBrokenParts, transforms);
+        return new BakedMultiLayeredArmorPartItemModel(base, mappedBaseLayer, mappedParts, mappedBrokenParts, part, transforms);
     }
 }

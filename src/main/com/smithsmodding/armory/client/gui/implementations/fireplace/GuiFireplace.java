@@ -24,7 +24,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ import java.util.ArrayList;
 public class GuiFireplace extends GuiContainerSmithsCore {
 
     @Nonnull
-    public static Plane GUI = new Plane(0, 0, ComponentPlayerInventory.WIDTH, 245);
+    public static Plane GUI = new Plane(0, 0, ComponentPlayerInventory.DEFAULT_WIDTH, 245);
 
     public GuiFireplace(@Nonnull ContainerSmithsCore container) {
         super(container);

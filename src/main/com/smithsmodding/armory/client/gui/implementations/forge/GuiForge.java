@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class GuiForge extends GuiContainerSmithsCore {
 
     @Nonnull
-    public static Plane GUI = new Plane(0, 0, ComponentPlayerInventory.WIDTH, 200);
+    public static Plane GUI = new Plane(0, 0, ComponentPlayerInventory.DEFAULT_WIDTH, 200);
 
     public GuiForge(@Nonnull ContainerSmithsCore container) {
         super(container);
@@ -48,7 +48,7 @@ public class GuiForge extends GuiContainerSmithsCore {
      */
     @Override
     public void registerComponents(@Nonnull IGUIBasedComponentHost host) {
-        host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.Forge.BACKGROUND, host, new Coordinate2D(0, 0), GuiForge.GUI.getWidth(), GuiForge.GUI.getHeigth() - (ComponentPlayerInventory.HEIGHT - 3), com.smithsmodding.armory.api.util.client.Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
+        host.registerNewComponent(new ComponentBorder(References.InternalNames.GUIComponents.Forge.BACKGROUND, host, new Coordinate2D(0, 0), GuiForge.GUI.getWidth(), GuiForge.GUI.getHeigth() - (ComponentPlayerInventory.DEFAULT_HEIGHT - 3), com.smithsmodding.armory.api.util.client.Colors.DEFAULT, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards, ComponentBorder.CornerTypes.Inwards));
         host.registerNewComponent(new ComponentPlayerInventory(References.InternalNames.GUIComponents.Forge.INVENTORY, host, new Coordinate2D(0, 80), com.smithsmodding.armory.api.util.client.Colors.DEFAULT, ((ContainerSmithsCore) inventorySlots).getPlayerInventory(), ComponentConnectionType.BELOWDIRECTCONNECT));
 
 

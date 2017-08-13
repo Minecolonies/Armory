@@ -1,23 +1,21 @@
 package com.smithsmodding.armory.api.client.model.deserializers;
 
 import com.google.common.base.Charsets;
+import com.google.common.collect.ImmutableMap;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelLayerDefinition;
+import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelPartDefinition;
 import com.smithsmodding.armory.api.client.model.deserializers.definition.MultiLayeredArmorModelDefinition;
-import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -26,7 +24,7 @@ import java.util.Map;
 public class MultiLayeredArmorModelDeserializer implements JsonDeserializer<MultiLayeredArmorModelDefinition> {
     public static final MultiLayeredArmorModelDeserializer instance = new MultiLayeredArmorModelDeserializer();
 
-    private static final Type layerType = new TypeToken<ArmorModelLayerDefinition>() {
+    private static final Type partType = new TypeToken<ArmorModelPartDefinition>() {
     }.getType();
     private static final Type definitionType = new TypeToken<MultiLayeredArmorModelDefinition>() {
     }.getType();
@@ -54,58 +52,32 @@ public class MultiLayeredArmorModelDeserializer implements JsonDeserializer<Mult
     @Override
     public MultiLayeredArmorModelDefinition deserialize(@NotNull JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();
-        JsonElement base = jsonObject.get("base");
-        JsonObject layers = jsonObject.get("layers").getAsJsonObject();
-        JsonObject broken = jsonObject.get("broken").getAsJsonObject();
+        JsonObject partsData = jsonObject.get("parts").getAsJsonObject();
 
-        ArmorModelLayerDefinition baseLayer;
-        HashMap<ResourceLocation, ArmorModelLayerDefinition> layersLocations = new HashMap<>();
-        HashMap<ResourceLocation, ArmorModelLayerDefinition> brokenLocations = new HashMap<>();
+        ImmutableMap.Builder<ResourceLocation, ArmorModelPartDefinition> partsBuilder = ImmutableMap.builder();
 
-        baseLayer = parseLayerInternal(base, context);
-
-        layers.entrySet().forEach((Map.Entry<String, JsonElement> entry) -> {
-            parseJsonLayer(entry, layersLocations, context);
-        });
-
-        broken.entrySet().forEach((Map.Entry<String, JsonElement> entry) -> {
-            parseJsonLayer(entry, brokenLocations, context);
-        });
-
-        return new MultiLayeredArmorModelDefinition(baseLayer, layersLocations, brokenLocations, ModelHelper.TransformDeserializer.INSTANCE.deserialize(json, typeOfT, context));
-    }
-
-    private void parseJsonLayer(@Nonnull Map.Entry<String, JsonElement> keyElementPair, @Nonnull Map<ResourceLocation, ArmorModelLayerDefinition> target, @Nonnull JsonDeserializationContext context) {
-        target.put(new ResourceLocation(keyElementPair.getKey()), parseLayerInternal(keyElementPair.getValue(), context));
-    }
-
-    @Nonnull
-    private ArmorModelLayerDefinition parseLayerInternal(JsonElement layerElement, JsonDeserializationContext context) {
-        if (layerElement.isJsonPrimitive())
+        for(Map.Entry<String, JsonElement> partIdData : partsData.entrySet())
         {
-            try
+            if (partIdData.getValue().isJsonPrimitive())
             {
-                return ArmorModelLayerDeserializer.instance.deserialize(new ResourceLocation(layerElement.getAsString()));
+                try
+                {
+                    partsBuilder.put(new ResourceLocation(partIdData.getKey()), ArmorModelPartDeserializer.instance.deserialize(new ResourceLocation(partIdData.getValue().getAsString())));
+                }
+                catch (Exception e)
+                {
+                    throw new JsonParseException("Failed to deserialize Parts", e);
+                }
             }
-            catch (IOException e)
+            else
             {
-                ModLogger.getInstance().warn("Failed to deserialize the Layer.");
-                ModLogger.getInstance().warn(e);
-            }
-        }
-        else
-        {
-            try
-            {
-                return ArmorModelLayerDeserializer.instance.deserialize(layerElement, layerType, context);
-            }
-            catch (JsonParseException e)
-            {
-                ModLogger.getInstance().warn("Failed to deserialize the Layer.");
-                ModLogger.getInstance().warn(e);
+                partsBuilder.put(new ResourceLocation(partIdData.getKey()), ArmorModelPartDeserializer.instance.deserialize(partIdData.getValue(), partType, context));
             }
         }
 
-        throw new IllegalStateException("Deserialization of armor Failed.");
+
+        return new MultiLayeredArmorModelDefinition(partsBuilder.build(), ModelHelper.TransformDeserializer.INSTANCE.deserialize(json, typeOfT, context));
     }
+
+
 }

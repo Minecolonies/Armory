@@ -1,0 +1,58 @@
+{
+  "parts":[
+    {
+      "id":"armory:chestplate.back",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_back",
+      "transformation":{
+        "translation": [ 0, 0,0.46875 ],
+        "scale": [1, 1.125, 1 ],
+        "rotation":[{"x":0},{"y":0},{"z":0} ]
+      }
+    },
+    {
+      "id":"armory:chestplate.front",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_front",
+      "transformation":{
+        "translation": [ 0, 0,-0.46875 ],
+        "scale": [1, 1.125, 1 ],
+        "rotation":[{"x":0},{"y":0},{"z":0} ]
+      }
+    },
+    {
+      "id":"armory:chestplate.left",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_inside",
+      "transformation":{
+        "translation": [ -0.46875, 0,0 ],
+        "scale": [1, 1.125, 1 ],
+        "rotation":[{"x":0},{"y":90},{"z":0} ]
+      }
+    },
+    {
+      "id":"armory:chestplate.right",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_inside",
+      "transformation":{
+        "translation": [ 0.46875, 0,0 ],
+        "scale": [1, 1.125, 1 ],
+        "rotation":[{"x":0},{"y":90},{"z":0} ]
+      }
+    },
+    {
+      "id":"armory:chestplate.top.left",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_top",
+      "transformation":{
+        "translation": [ -0.46875, 0.46875,0 ],
+        "scale": [0.5, 1, 1 ],
+        "rotation":[{"x":90},{"y":0},{"z":0} ]
+      }
+    },
+    {
+      "id":"armory:chestplate.top.right",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_top",
+      "transformation":{
+        "translation": [ 0.46875, 0.46875,0 ],
+        "scale": [1, 1, 1 ],
+        "rotation":[{"x":90},{"y":0},{"z":0} ]
+      }
+    }
+  ]
+}

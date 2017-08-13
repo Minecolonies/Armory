@@ -8,7 +8,7 @@ import com.google.common.collect.Lists;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelLayerDefinition;
-import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelPartDefinition;
+import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelLayerPartDefinition;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
@@ -30,35 +30,29 @@ import java.util.concurrent.ExecutionException;
 public class ArmorModelLayerDeserializer implements JsonDeserializer<ArmorModelLayerDefinition>
 {
     @Nonnull public static final ArmorModelLayerDeserializer instance = new ArmorModelLayerDeserializer();
-    @Nonnull private static final Type partType = new TypeToken<ArmorModelPartDefinition>(){}.getType();
+    @Nonnull private static final Type partType = new TypeToken<ArmorModelLayerPartDefinition>(){}.getType();
     @Nonnull private static final Type definitionType = new TypeToken<ArmorModelLayerDefinition>(){}.getType();
     @Nonnull private static final Gson
       gson = new GsonBuilder().registerTypeAdapter(definitionType, instance).create();
 
-    @Nonnull private final Cache<ResourceLocation, ArmorModelLayerDefinition> cache = CacheBuilder.newBuilder()
+    @Nonnull public final Cache<ResourceLocation, ArmorModelLayerDefinition> cache = CacheBuilder.newBuilder()
                                                                                         .maximumSize(100)
                                                                                         .build();
 
     /**
-     * Method to deserialize a {@link ArmorModelPartDefinition} from a given resource location.
-     * @param modelLocation The {@link ResourceLocation} to load the {@link ArmorModelPartDefinition} from.
-     * @return The deserialized {@link ArmorModelPartDefinition} stored in the given {@link ResourceLocation}.
+     * Method to deserialize a {@link ArmorModelLayerPartDefinition} from a given resource location.
+     * @param modelLocation The {@link ResourceLocation} to load the {@link ArmorModelLayerPartDefinition} from.
+     * @return The deserialized {@link ArmorModelLayerPartDefinition} stored in the given {@link ResourceLocation}.
      * @throws IOException Thrown when {@link ResourceLocation} does not point to a proper definition.
      */
     @Nonnull
-    public ArmorModelLayerDefinition deserialize(ResourceLocation modelLocation) throws IOException
+    public ArmorModelLayerDefinition deserialize(ResourceLocation modelLocation) throws IOException, ExecutionException
     {
-
-
-        @Nonnull IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
-        @Nonnull Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
-
-        ArmorModelLayerDefinition result = gson.fromJson(reader, definitionType);
-
-        if (cache.getIfPresent(modelLocation) == null)
-        {
-            cache.put(modelLocation, result);
-        }
+        ArmorModelLayerDefinition result = cache.get(modelLocation, () -> {
+            @Nonnull IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
+            @Nonnull Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
+            return gson.fromJson(reader, definitionType);
+        });
 
         return result;
     }
@@ -82,7 +76,7 @@ public class ArmorModelLayerDeserializer implements JsonDeserializer<ArmorModelL
     @Override
     public ArmorModelLayerDefinition deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException
     {
-        @Nonnull final List<ArmorModelPartDefinition> parts = Lists.newArrayList();
+        @Nonnull final List<ArmorModelLayerPartDefinition> parts = Lists.newArrayList();
         @Nonnull final JsonObject data = json.getAsJsonObject();
         if (data.has("override"))
         {
@@ -102,7 +96,7 @@ public class ArmorModelLayerDeserializer implements JsonDeserializer<ArmorModelL
                     parentDef = deserialize(parentLocation);
                     cache.put(parentLocation, parentDef);
                 }
-                catch (IOException e1)
+                catch (Exception e1)
                 {
                     ModLogger.getInstance().error("Also failed to load: " + parentLocation + " as parent armor layer directly. Loading failed!.");
                     ModLogger.getInstance().error(e);
@@ -125,11 +119,13 @@ public class ArmorModelLayerDeserializer implements JsonDeserializer<ArmorModelL
 
         if (data.has("parts")) {
             @Nonnull final JsonArray jsonParts = data.getAsJsonArray("parts");
-            jsonParts.forEach((JsonElement element) -> {
-                if (element.isJsonPrimitive()) {
+            for (JsonElement element : jsonParts)
+            {
+                if (element.isJsonPrimitive())
+                {
                     try
                     {
-                        parts.add(ArmorModelPartDeserializer.instance.deserialize(new ResourceLocation(element.getAsString())));
+                        parts.add(ArmorModelLayerPartDeserializer.instance.deserialize(new ResourceLocation(element.getAsString())));
                     }
                     catch (IOException e)
                     {
@@ -139,8 +135,9 @@ public class ArmorModelLayerDeserializer implements JsonDeserializer<ArmorModelL
                 }
                 else if (element.isJsonObject())
                 {
-                    try {
-                        parts.add(ArmorModelPartDeserializer.instance.deserialize(element, partType, context));
+                    try
+                    {
+                        parts.add(ArmorModelLayerPartDeserializer.instance.deserialize(element, partType, context));
                     }
                     catch (JsonParseException e)
                     {
@@ -152,8 +149,7 @@ public class ArmorModelLayerDeserializer implements JsonDeserializer<ArmorModelL
                 {
                     ModLogger.getInstance().warn("Found JSON element: " + element.toString() + " that cannot be parsed into a model Part, cause it is of an unknown json type.");
                 }
-
-            });
+            }
         }
 
         return new ArmorModelLayerDefinition(parts);

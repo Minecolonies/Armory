@@ -1,10 +1,10 @@
-[10:03:44] [Client thread/INFO]: Setting user: Player526
-[10:03:49] [Client thread/WARN]: Skipping bad option: lastServer:
-[10:03:49] [Client thread/INFO]: LWJGL Version: 2.9.4
-[10:03:50] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
-// Don't do that.
+[17:47:50] [Client thread/INFO]: Setting user: Player376
+[17:47:56] [Client thread/WARN]: Skipping bad option: lastServer:
+[17:47:56] [Client thread/INFO]: LWJGL Version: 2.9.4
+[17:47:58] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
+// Oh - I know what I did wrong!
 
-Time: 4/22/17 10:03 AM
+Time: 8/13/17 5:47 PM
 Description: Loading screen debug info
 
 This is just a prompt for computer specs to be printed. THIS IS NOT A ERROR
@@ -19,26 +19,83 @@ Details:
 	Operating System: Windows 10 (amd64) version 10.0
 	Java Version: 1.8.0_111, Oracle Corporation
 	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
-	Memory: 605282424 bytes (577 MB) / 946339840 bytes (902 MB) up to 7621050368 bytes (7268 MB)
+	Memory: 769366744 bytes (733 MB) / 1037565952 bytes (989 MB) up to 7621050368 bytes (7268 MB)
 	JVM Flags: 0 total; 
 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
 	FML: 
 	Loaded coremods (and transformers): 
 SmithsCoreFMLPlugin (unknown)
   com.smithsmodding.smithscore.core.transformers.TextureHookTransformer
-	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.5.0 NVIDIA 376.53' Renderer: 'GeForce GTX 770/PCIe/SSE2'
-[10:03:54] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[10:04:00] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[10:04:00] [Thread-8/INFO]: Initializing LWJGL OpenAL
-[10:04:00] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[10:04:00] [Thread-8/INFO]: OpenAL initialized.
-[10:04:00] [Sound Library Loader/INFO]: Sound engine started
-[10:04:42] [Client thread/INFO]: Created: 16x16 textures-atlas
-[10:04:45] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[10:04:48] [Client thread/INFO]: SoundSystem shutting down...
-[10:04:48] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[10:04:48] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[10:04:49] [Thread-10/INFO]: Initializing LWJGL OpenAL
-[10:04:49] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[10:04:49] [Thread-10/INFO]: OpenAL initialized.
-[10:04:49] [Sound Library Loader/INFO]: Sound engine started
+	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.5.0 NVIDIA 382.05' Renderer: 'GeForce GTX 770/PCIe/SSE2'
+[17:48:03] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[17:48:11] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[17:48:11] [Thread-8/INFO]: Initializing LWJGL OpenAL
+[17:48:11] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[17:48:11] [Thread-8/INFO]: OpenAL initialized.
+[17:48:11] [Sound Library Loader/INFO]: Sound engine started
+[17:48:17] [Client thread/INFO]: Created: 16x16 textures-atlas
+[17:48:20] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[17:48:23] [Client thread/INFO]: SoundSystem shutting down...
+[17:48:24] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[17:48:24] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[17:48:24] [Thread-10/INFO]: Initializing LWJGL OpenAL
+[17:48:24] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[17:48:24] [Thread-10/INFO]: OpenAL initialized.
+[17:48:24] [Sound Library Loader/INFO]: Sound engine started
+[17:48:30] [Client thread/INFO]: Created: 1024x512 textures-atlas
+[17:48:32] [Client thread/WARN]: Skipping bad option: lastServer:
+[17:48:33] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[17:49:13] [Server thread/INFO]: Starting integrated minecraft server version 1.11.2
+[17:49:13] [Server thread/INFO]: Generating keypair
+[17:49:13] [Server thread/INFO]: Preparing start region for level 0
+[17:49:14] [Server thread/INFO]: Changing view distance to 12, from 10
+[17:49:15] [Server thread/INFO]: Player376[local:E:f68bbe39] logged in with entity id 1 at (1225.5209494005544, 56.0, -336.0716414714448)
+[17:49:15] [Server thread/INFO]: Player376 joined the game
+[17:49:17] [Server thread/INFO]: Saving and pausing game...
+[17:49:17] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[17:49:17] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[17:49:17] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[17:49:18] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@6a7bc06c[id=97ca14d5-9f19-3536-8732-0f9262f3eb17,name=Player376,properties={},legacy=false]
+com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:79) ~[YggdrasilAuthenticationService.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) [YggdrasilMinecraftSessionService.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:60) [YggdrasilMinecraftSessionService$1.class:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:57) [YggdrasilMinecraftSessionService$1.class:?]
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3524) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2317) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2280) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2195) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache.get(LocalCache.java:3934) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:3938) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:4821) [guava-17.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:4827) [guava-17.0.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:170) [YggdrasilMinecraftSessionService.class:?]
+	at net.minecraft.client.Minecraft.getProfileProperties(Minecraft.java:3056) [Minecraft.class:?]
+	at net.minecraft.client.resources.SkinManager$3.run(SkinManager.java:138) [SkinManager$3.class:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+[17:49:18] [Server thread/INFO]: Saving and pausing game...
+[17:49:18] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[17:49:18] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[17:49:18] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[17:49:58] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 15792ms behind, skipping 315 tick(s)
+[17:50:05] [Server thread/INFO]: Saving and pausing game...
+[17:50:05] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[17:50:05] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[17:50:05] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[17:50:05] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 7097ms behind, skipping 141 tick(s)
+[17:50:18] [Server thread/INFO]: Saving and pausing game...
+[17:50:18] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[17:50:18] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[17:50:18] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[18:00:40] [Server thread/INFO]: Saving and pausing game...
+[18:00:40] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[18:00:40] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[18:00:40] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End
+[18:07:00] [Server thread/INFO]: Saving and pausing game...
+[18:07:00] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Overworld
+[18:07:00] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/Nether
+[18:07:00] [Server thread/INFO]: Saving chunks for level 'Copy of New World'/The End

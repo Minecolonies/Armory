@@ -169,7 +169,7 @@ public class CommonMedievalRegistrationInitializer {
                 .setRegistryName(new ResourceLocation(References.General.MOD_ID.toLowerCase(), References.InternalNames.Armor.MEDIEVALSHOES));
 
         armorRegistry.register(ModArmor.Medieval.HELMET);
-        //armorRegistry.register(ModArmor.Medieval.CHESTPLATE);
+        armorRegistry.register(ModArmor.Medieval.CHESTPLATE);
         //armorRegistry.register(ModArmor.Medieval.LEGGINGS);
         //armorRegistry.register(ModArmor.Medieval.SHOES);
     }

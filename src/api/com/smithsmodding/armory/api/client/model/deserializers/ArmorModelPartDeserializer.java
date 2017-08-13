@@ -1,46 +1,56 @@
 package com.smithsmodding.armory.api.client.model.deserializers;
 
 import com.google.common.base.Charsets;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.collect.ImmutableMap;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import com.smithsmodding.armory.api.client.model.ModelPart;
+import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelLayerDefinition;
+import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelLayerPartDefinition;
 import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelPartDefinition;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ForgeBlockStateV1;
-import net.minecraftforge.common.model.TRSRTransformation;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.util.Map;
 
 /**
- * A JSON Deserializer for an part of the model of a Armor.
+ * Class used to deserialize a {@link ArmorModelPartDefinition}
  */
 public class ArmorModelPartDeserializer implements JsonDeserializer<ArmorModelPartDefinition>
 {
-    @Nonnull public static final ArmorModelPartDeserializer instance = new ArmorModelPartDeserializer();
+    @Nonnull
+    public static final           ArmorModelPartDeserializer  instance        = new ArmorModelPartDeserializer();
+    @Nonnull private static final Type                        partType       = new TypeToken<ArmorModelPartDefinition>(){}.getType();
+    @Nonnull private static final Type                        layerType = new TypeToken<ArmorModelLayerDefinition>() {}.getType();
+    @Nonnull private static final Gson                        gson           = new GsonBuilder().registerTypeAdapter(partType, instance).create();
 
-    @Nonnull private static final Type TRSTType = new TypeToken<TRSRTransformation>() {}.getType();
-    @Nonnull private static final Type definitionType = new TypeToken<ArmorModelPartDefinition>(){}.getType();
-
-    @Nonnull private static final Gson gson = new GsonBuilder().registerTypeAdapter(definitionType, instance).registerTypeAdapter(TRSTType,ForgeBlockStateV1.TRSRDeserializer.INSTANCE).create();
+    @Nonnull private final Cache<ResourceLocation, ArmorModelLayerDefinition> cache = CacheBuilder.newBuilder()
+                                                                                        .maximumSize(100)
+                                                                                        .build();
 
     /**
-     * Method to deserialize a {@link ArmorModelPartDefinition} from a given resource location.
-     * @param modelLocation The {@link ResourceLocation} to load the {@link ArmorModelPartDefinition} from.
-     * @return The deserialized {@link ArmorModelPartDefinition} stored in the given {@link ResourceLocation}.
+     * Method to deserialize a {@link ArmorModelLayerPartDefinition} from a given resource location.
+     * @param modelLocation The {@link ResourceLocation} to load the {@link ArmorModelLayerPartDefinition} from.
+     * @return The deserialized {@link ArmorModelLayerPartDefinition} stored in the given {@link ResourceLocation}.
      * @throws IOException Thrown when {@link ResourceLocation} does not point to a proper definition.
      */
     @Nonnull
     public ArmorModelPartDefinition deserialize(ResourceLocation modelLocation) throws IOException
     {
-        @Nonnull IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
+        @Nonnull IResource
+          iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
         @Nonnull Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
 
-        return gson.fromJson(reader, definitionType);
+        return gson.fromJson(reader, partType);
     }
 
     /**
@@ -58,15 +68,65 @@ public class ArmorModelPartDeserializer implements JsonDeserializer<ArmorModelPa
      *
      * @throws JsonParseException if json is not in the expected format of {@code typeofT}
      */
-    @Nonnull
     @Override
     public ArmorModelPartDefinition deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException
     {
-        @Nonnull final JsonObject jsonObject = json.getAsJsonObject();
-        @Nonnull final ResourceLocation id = new ResourceLocation(jsonObject.get("id").getAsString());
-        @Nonnull final ResourceLocation location = new ResourceLocation(jsonObject.get("texture").getAsString());
-        @Nonnull final TRSRTransformation transformation = ForgeBlockStateV1.TRSRDeserializer.INSTANCE.deserialize(jsonObject.get("transform"), TRSTType, context);
+        JsonObject jsonObject = json.getAsJsonObject();
+        JsonElement base = jsonObject.get("base");
+        JsonObject layers = jsonObject.get("layers").getAsJsonObject();
+        JsonObject broken = jsonObject.get("broken").getAsJsonObject();
+        ModelPart type = ModelPart.getById(jsonObject.get("type").getAsString());
 
-        return new ArmorModelPartDefinition(id, location, transformation);
+        ArmorModelLayerDefinition baseLayer;
+        ImmutableMap.Builder<ResourceLocation, ArmorModelLayerDefinition> layersLocations = ImmutableMap.builder();
+        ImmutableMap.Builder<ResourceLocation, ArmorModelLayerDefinition> brokenLocations = ImmutableMap.builder();
+
+        baseLayer = parseLayerInternal(base, context);
+
+        for (Map.Entry<String, JsonElement> stringJsonElementEntry : layers.entrySet())
+        {
+            parseJsonLayer(stringJsonElementEntry, layersLocations, context);
+        }
+
+        for (Map.Entry<String, JsonElement> entry : broken.entrySet())
+        {
+            parseJsonLayer(entry, brokenLocations, context);
+        }
+
+        return new ArmorModelPartDefinition(baseLayer, layersLocations.build(), brokenLocations.build(), type);
+    }
+
+    private void parseJsonLayer(@Nonnull Map.Entry<String, JsonElement> keyElementPair, @Nonnull ImmutableMap.Builder<ResourceLocation, ArmorModelLayerDefinition> target, @Nonnull JsonDeserializationContext context) {
+        target.put(new ResourceLocation(keyElementPair.getKey()), parseLayerInternal(keyElementPair.getValue(), context));
+    }
+
+    @Nonnull
+    private ArmorModelLayerDefinition parseLayerInternal(JsonElement layerElement, JsonDeserializationContext context) {
+        if (layerElement.isJsonPrimitive())
+        {
+            try
+            {
+                return ArmorModelLayerDeserializer.instance.deserialize(new ResourceLocation(layerElement.getAsString()));
+            }
+            catch (Exception e)
+            {
+                ModLogger.getInstance().warn("Failed to deserialize the Layer.");
+                ModLogger.getInstance().warn(e);
+            }
+        }
+        else
+        {
+            try
+            {
+                return ArmorModelLayerDeserializer.instance.deserialize(layerElement, layerType, context);
+            }
+            catch (JsonParseException e)
+            {
+                ModLogger.getInstance().warn("Failed to deserialize the Layer.");
+                ModLogger.getInstance().warn(e);
+            }
+        }
+
+        throw new IllegalStateException("Deserialization of armor Failed.");
     }
 }
