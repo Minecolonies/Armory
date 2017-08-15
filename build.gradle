@@ -106,9 +106,9 @@ minecraft {
 
 dependencies {
     //Mod dependencies
-    deobfCompile ( 'org:SmithsCore_BranchBuilds:11' ){
+    deobfCompile ( 'org:SmithsCore_' + config.sc_build_type + 'Builds:' + config.sc_build_number ){
         artifact {
-            name = 'smithscore-1.11.2-1.4.0-658-SNAPSHOT-dev'
+            name = 'smithscore-' + config.minecraft_version +'-' + config.sc_artifact_version +'-' + config.sc_artifact_id +'-' + config.sc_artifact_type
             type = 'jar'
         }
     }
