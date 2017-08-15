@@ -4,9 +4,9 @@ Cannot run the CurseUpload sequence. No API-Key was available.Cannot run the Cur
 
 The sync of the branches is not being executed, because we are not releasing a new version.The sync of the branches is not being executed, because we are not releasing a new version.
 
-Found AccessTransformer: jei_at.cfg_jei_1.11.2-4.3.6.282_at.cfg
+Found AccessTransformer: jei_at.cfg_jei_1.11.2-4.3.3.266_at.cfg
 Found AccessTransformer: Armory_at.cfg
 
 BUILD SUCCESSFUL
 
-Total time: 2.481 secs
+Total time: 1.29 secs

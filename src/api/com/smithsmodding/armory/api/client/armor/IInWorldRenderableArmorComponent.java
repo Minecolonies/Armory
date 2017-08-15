@@ -2,8 +2,6 @@ package com.smithsmodding.armory.api.client.armor;
 
 import com.smithsmodding.armory.api.util.client.ModelTransforms;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -47,21 +45,4 @@ public interface IInWorldRenderableArmorComponent<T> {
     @SideOnly(Side.CLIENT)
     @Nonnull
     T setRenderTransforms(@Nonnull ModelTransforms transforms);
-
-    /**
-     * Method returns the layer that this component is rendered in.
-     * @return The instance of the layer this component is rendered in.
-     */
-    @SideOnly(Side.CLIENT)
-    @Nonnull
-    LayerRenderer<EntityLivingBase> getRenderingLayer();
-
-    /**
-     * Method used to set the layer that this component is rendered in.
-     * @param layerRenderer The new layer instance that this component is rendered in.
-     * @return The instance this method was called on.
-     */
-    @SideOnly(Side.CLIENT)
-    @Nonnull
-    T setRenderingLayer(@Nonnull LayerRenderer<EntityLivingBase> layerRenderer);
 }

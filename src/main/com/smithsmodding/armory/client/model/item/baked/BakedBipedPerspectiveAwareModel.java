@@ -4,10 +4,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityZombieVillager;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by marcf1 on 8/16/2016.
@@ -26,46 +29,85 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
             switch(partItemModel.getModelPart())
             {
                 case BODY:
-                    this.bipedBody = new ItemStackModelRenderer(stack, entity);
+                    this.bipedBody = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
                     break;
                 case ARMLEFT:
-                    this.bipedLeftArm = new ItemStackModelRenderer(stack, entity);
+                    this.bipedLeftArm = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
                     break;
                 case ARMRIGHT:
-                    this.bipedRightArm = new ItemStackModelRenderer(stack, entity);
+                    this.bipedRightArm = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
                     break;
                 case HEAD:
-                    this.bipedHead = new ItemStackModelRenderer(stack, entity);
+                    this.bipedHead = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
                     break;
                 case HEADWEAR:
-                    this.bipedHeadwear = new ItemStackModelRenderer(stack, entity);
+                    this.bipedHeadwear = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
                     break;
                 case LEGLEFT:
-                    this.bipedLeftLeg = new ItemStackModelRenderer(stack, entity);
+                    this.bipedLeftLeg = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
                     break;
                 case LEGRIGHT:
-                    this.bipedRightLeg = new ItemStackModelRenderer(stack, entity);
+                    this.bipedRightLeg = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
                     break;
             }
         }
     }
 
+
+    private void preHeadRender(EntityLivingBase entityLivingBase, ItemStack stack) {
+        GlStateManager.pushMatrix();
+
+        boolean villager = entityLivingBase instanceof EntityVillager || entityLivingBase instanceof EntityZombieVillager;
+
+        GlStateManager.translate(0.0F, -0.25F, 0.0F);
+        GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+        GlStateManager.scale(0.625F, -0.625F, -0.625F);
+
+        if (villager)
+        {
+            GlStateManager.translate(0.0F, 0.1875F, 0.0F);
+        }
+
+        GlStateManager.pushMatrix();
+    }
+
+    private void postHeadRender(EntityLivingBase entityLivingBase, ItemStack stack) {
+        GlStateManager.popMatrix();
+        GlStateManager.popMatrix();
+    }
+
+    @FunctionalInterface
+    private interface IRenderCallback
+    {
+        void apply(@NotNull final EntityLivingBase entity, @NotNull final ItemStack stack);
+    }
+
     private static class ItemStackModelRenderer extends ModelRenderer
     {
 
-        private final ItemStack   stack;
         private final EntityLivingBase entity;
+        private final ItemStack       stack;
+        private final IBakedModel     model;
+        private final IRenderCallback preRenderCallback;
+        private final IRenderCallback postRenderCallback;
 
         public ItemStackModelRenderer(
-                                       final ItemStack stack, final EntityLivingBase entity)
+                                       final EntityLivingBase entity, final ItemStack stack,
+                                       final IBakedModel model,
+                                       final IRenderCallback preRenderCallback,
+                                       final IRenderCallback postRenderCallback)
         {
             super(new ModelBase() {});
-            this.stack = stack;
             this.entity = entity;
+            this.stack = stack;
+            this.model = model;
+            this.preRenderCallback = preRenderCallback;
+            this.postRenderCallback = postRenderCallback;
+
             this.rotateAngleZ = (float) Math.PI;
         }
 
-        /*@Override
+        @Override
         public void render(final float scale)
         {
             if (!this.isHidden)
@@ -118,17 +160,14 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
                     GlStateManager.translate(-this.offsetX, -this.offsetY, -this.offsetZ);
                 }
             }
-        }*/
-
-        @Override
-        public void render(final float scale)
-        {
-            renderItemStack();
         }
 
         public void renderItemStack()
         {
-            Minecraft.getMinecraft().getItemRenderer().renderItem(entity, stack, ItemCameraTransforms.TransformType.HEAD);
+            preRenderCallback.apply(entity, stack);
+            Minecraft.getMinecraft().getRenderItem().renderItem(stack,model);
+            postRenderCallback.apply(entity, stack);
         }
     }
+
 }
