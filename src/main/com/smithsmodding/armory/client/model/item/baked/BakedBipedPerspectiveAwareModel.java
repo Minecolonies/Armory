@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.client.model.item.baked;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
@@ -107,7 +106,7 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
             this.rotateAngleZ = (float) Math.PI;
         }
 
-        @Override
+        /*@Override
         public void render(final float scale)
         {
             if (!this.isHidden)
@@ -160,12 +159,18 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
                     GlStateManager.translate(-this.offsetX, -this.offsetY, -this.offsetZ);
                 }
             }
+        }*/
+
+        @Override
+        public void render(final float scale)
+        {
+            renderItemStack();
         }
 
         public void renderItemStack()
         {
             preRenderCallback.apply(entity, stack);
-            Minecraft.getMinecraft().getRenderItem().renderItem(stack,model);
+            //Minecraft.getMinecraft().getRenderItem().renderItem(stack,model);
             postRenderCallback.apply(entity, stack);
         }
     }

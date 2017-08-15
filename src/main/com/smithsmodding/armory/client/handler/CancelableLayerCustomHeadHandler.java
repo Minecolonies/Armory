@@ -5,6 +5,7 @@ import com.smithsmodding.smithscore.client.events.render.LayerCustomHeadRenderEv
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -17,6 +18,8 @@ public class CancelableLayerCustomHeadHandler
      *
      * @param event The event to handle.
      */
+
+    @SubscribeEvent
     public void handle(@NotNull final LayerCustomHeadRenderEvent event)
     {
         final EntityLivingBase base = event.getEntityLivingBase();
