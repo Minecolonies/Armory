@@ -81,7 +81,7 @@ public class LayerMultiComponentArmor implements LayerRenderer<EntityLivingBase>
         {
             case HEAD:
                 p_188359_1_.bipedHead.showModel = true;
-                p_188359_1_.bipedHeadwear.showModel = true;
+                //p_188359_1_.bipedHeadwear.showModel = true;
                 break;
             case CHEST:
                 p_188359_1_.bipedBody.showModel = true;

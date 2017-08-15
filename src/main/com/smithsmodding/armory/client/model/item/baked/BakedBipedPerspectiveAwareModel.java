@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.client.model.item.baked;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
@@ -170,7 +171,7 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
         public void renderItemStack()
         {
             preRenderCallback.apply(entity, stack);
-            //Minecraft.getMinecraft().getRenderItem().renderItem(stack,model);
+            Minecraft.getMinecraft().getRenderItem().renderItem(stack,model);
             postRenderCallback.apply(entity, stack);
         }
     }
