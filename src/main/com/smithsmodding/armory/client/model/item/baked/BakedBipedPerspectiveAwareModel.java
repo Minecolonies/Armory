@@ -7,8 +7,6 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityZombieVillager;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,7 +27,7 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
             switch(partItemModel.getModelPart())
             {
                 case BODY:
-                    this.bipedBody = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
+                    this.bipedBody = new ItemStackModelRenderer(entity, stack, bakedModel, this::preBodyMainRender, this::postBodyMainRender);
                     break;
                 case ARMLEFT:
                     this.bipedLeftArm = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
@@ -54,32 +52,39 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
     }
 
 
-    private void preHeadRender(EntityLivingBase entityLivingBase, ItemStack stack) {
+    private void preHeadRender(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
         GlStateManager.pushMatrix();
 
-        boolean villager = entityLivingBase instanceof EntityVillager || entityLivingBase instanceof EntityZombieVillager;
-
-        GlStateManager.translate(0.0F, -0.25F, 0.0F);
-        GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+        GlStateManager.translate(0, -4f * scale, 0);
         GlStateManager.scale(0.625F, -0.625F, -0.625F);
 
-        if (villager)
-        {
-            GlStateManager.translate(0.0F, 0.1875F, 0.0F);
-        }
+        GlStateManager.pushMatrix();
+    }
+
+    private void postHeadRender(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
+        GlStateManager.popMatrix();
+        GlStateManager.popMatrix();
+    }
+
+    private void preBodyMainRender(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
+        GlStateManager.pushMatrix();
+
+        GlStateManager.scale(2.625F, 2.625F, 2.625f);
+        GlStateManager.translate(1, -8f * scale, 0);
 
         GlStateManager.pushMatrix();
     }
 
-    private void postHeadRender(EntityLivingBase entityLivingBase, ItemStack stack) {
+    private void postBodyMainRender(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
         GlStateManager.popMatrix();
         GlStateManager.popMatrix();
     }
+
 
     @FunctionalInterface
     private interface IRenderCallback
     {
-        void apply(@NotNull final EntityLivingBase entity, @NotNull final ItemStack stack);
+        void apply(@NotNull final EntityLivingBase entity, @NotNull final ItemStack stack, float scale);
     }
 
     private static class ItemStackModelRenderer extends ModelRenderer
@@ -107,7 +112,7 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
             this.rotateAngleZ = (float) Math.PI;
         }
 
-        /*@Override
+        @Override
         public void render(final float scale)
         {
             if (!this.isHidden)
@@ -115,19 +120,19 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
                 if (this.showModel)
                 {
 
-                    GlStateManager.translate(this.offsetX + 1, this.offsetY, this.offsetZ);
+                    GlStateManager.translate(this.offsetX, this.offsetY, this.offsetZ);
 
                     if (this.rotateAngleX == 0.0F && this.rotateAngleY == 0.0F && this.rotateAngleZ == 0.0F)
                     {
                         if (this.rotationPointX == 0.0F && this.rotationPointY == 0.0F && this.rotationPointZ == 0.0F)
                         {
-                            renderItemStack();
+                            renderItemStack(scale);
                         }
                         else
                         {
                             GlStateManager.translate(this.rotationPointX * scale, this.rotationPointY * scale, this.rotationPointZ * scale);
 
-                            renderItemStack();
+                            renderItemStack(scale);
 
                             GlStateManager.translate(-this.rotationPointX * scale, -this.rotationPointY * scale, -this.rotationPointZ * scale);
                         }
@@ -144,15 +149,15 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
 
                         if (this.rotateAngleY != 0.0F)
                         {
-                            GlStateManager.rotate(this.rotateAngleY * (180F / (float)Math.PI), 0.0F, 1.0F, 0.0F);
+                            GlStateManager.rotate(-this.rotateAngleY * (180F / (float)Math.PI), 0.0F, 1.0F, 0.0F);
                         }
 
                         if (this.rotateAngleX != 0.0F)
                         {
-                            GlStateManager.rotate(this.rotateAngleX * (180F / (float)Math.PI), 1.0F, 0.0F, 0.0F);
+                            GlStateManager.rotate(-this.rotateAngleX * (180F / (float)Math.PI) + 180, 1.0F, 0.0F, 0.0F);
                         }
 
-                        renderItemStack();
+                        renderItemStack(scale);
 
                         GlStateManager.popMatrix();
                     }
@@ -160,19 +165,20 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
                     GlStateManager.translate(-this.offsetX, -this.offsetY, -this.offsetZ);
                 }
             }
-        }*/
+        }
 
+        /*
         @Override
         public void render(final float scale)
         {
             renderItemStack();
-        }
+        }*/
 
-        public void renderItemStack()
+        public void renderItemStack(float scale)
         {
-            preRenderCallback.apply(entity, stack);
+            preRenderCallback.apply(entity, stack, scale);
             Minecraft.getMinecraft().getRenderItem().renderItem(stack,model);
-            postRenderCallback.apply(entity, stack);
+            postRenderCallback.apply(entity, stack, scale);
         }
     }
 
