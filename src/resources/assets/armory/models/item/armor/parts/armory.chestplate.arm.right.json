@@ -1,5 +1,5 @@
 {
-  "type": "Body",
+  "type": "ArmRight",
   "base": "armory:models/item/armor/layers/armory.chestplate.arm.right.base",
   "layers": {
   },
