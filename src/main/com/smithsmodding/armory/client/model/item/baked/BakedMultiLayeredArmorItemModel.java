@@ -107,9 +107,13 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
             // getCreationRecipe the texture for each part
             ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
 
-            for(BakedMultiLayeredArmorPartItemModel part : parent.parts.values())
-            {
-                quads.addAll(part.getOverrides().handleItemState(originalModel, stack, world, entity).getQuads(null, null, 1));
+            if (parent.parts.containsKey(new ResourceLocation("armory:chestplate.arm.left"))){
+                quads.addAll(parent.parts.get(new ResourceLocation("armory:chestplate.arm.left")).getOverrides().handleItemState(originalModel, stack, world, entity).getQuads(null, null, 1));
+            } else {
+                for(BakedMultiLayeredArmorPartItemModel part : parent.parts.values())
+                {
+                    quads.addAll(part.getOverrides().handleItemState(originalModel, stack, world, entity).getQuads(null, null, 1));
+                }
             }
 
             IBakedModel model = new ItemLayerModel.BakedItemModel(quads.build(), parent.getParticleTexture(), parent.transforms, parent.getOverrides(), null);

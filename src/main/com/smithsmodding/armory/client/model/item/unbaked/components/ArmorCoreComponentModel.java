@@ -74,7 +74,7 @@ public class ArmorCoreComponentModel extends ArmorSubComponentModel {
     }
 
     /**
-     * Function to getCreationRecipe a baked model from outside of the baking proces.
+     * Function to get a baked model from outside of the baking proces.
      *
      * @param state              The model state to retrieve a model for.
      * @param format             The format of storing the individual vertexes in memory

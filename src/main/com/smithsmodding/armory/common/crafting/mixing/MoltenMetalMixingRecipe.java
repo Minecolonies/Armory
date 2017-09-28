@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 /**
  * Created by marcf on 3/9/2017.
  */
-public class MotlenMetalMixingRecipe extends IForgeRegistryEntry.Impl<IMoltenMetalMixingRecipe> implements IMoltenMetalMixingRecipe {
+public class MoltenMetalMixingRecipe extends IForgeRegistryEntry.Impl<IMoltenMetalMixingRecipe> implements IMoltenMetalMixingRecipe {
 
     private String oreDicLeft;
     private int amountLeft;
@@ -149,7 +149,7 @@ public class MotlenMetalMixingRecipe extends IForgeRegistryEntry.Impl<IMoltenMet
      */
     @Nonnull
     @Override
-    public MotlenMetalMixingRecipe setLeftInputStack(@Nonnull FluidStack inputStack) {
+    public MoltenMetalMixingRecipe setLeftInputStack(@Nonnull FluidStack inputStack) {
         if (!(inputStack.getFluid() instanceof FluidMoltenMetal) || inputStack.tag == null || !inputStack.tag.hasKey(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL))
             throw new IllegalArgumentException("Unsupported Fluid.");
 
@@ -168,7 +168,7 @@ public class MotlenMetalMixingRecipe extends IForgeRegistryEntry.Impl<IMoltenMet
      * @return The instance this was called upon.
      */
     @Nonnull
-    public MotlenMetalMixingRecipe setLeftInputData(@Nonnull String oreDicLeft, @Nonnull Integer amountLeft) {
+    public MoltenMetalMixingRecipe setLeftInputData(@Nonnull String oreDicLeft, @Nonnull Integer amountLeft) {
         this.oreDicLeft = oreDicLeft;
         this.amountLeft = amountLeft;
         
@@ -197,7 +197,7 @@ public class MotlenMetalMixingRecipe extends IForgeRegistryEntry.Impl<IMoltenMet
      */
     @Nonnull
     @Override
-    public MotlenMetalMixingRecipe setRightInputStack(@Nonnull FluidStack inputStack) {
+    public MoltenMetalMixingRecipe setRightInputStack(@Nonnull FluidStack inputStack) {
         if (!(inputStack.getFluid() instanceof FluidMoltenMetal) || inputStack.tag == null || !inputStack.tag.hasKey(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL))
             throw new IllegalArgumentException("Unsupported Fluid.");
 
@@ -216,7 +216,7 @@ public class MotlenMetalMixingRecipe extends IForgeRegistryEntry.Impl<IMoltenMet
      * @return The instance this was called upon.
      */
     @Nonnull
-    public MotlenMetalMixingRecipe setRightInputData(@Nonnull String oreDicRight, @Nonnull Integer amountRight) {
+    public MoltenMetalMixingRecipe setRightInputData(@Nonnull String oreDicRight, @Nonnull Integer amountRight) {
         this.oreDicRight = oreDicRight;
         this.amountRight = amountRight;
 
@@ -246,7 +246,7 @@ public class MotlenMetalMixingRecipe extends IForgeRegistryEntry.Impl<IMoltenMet
      */
     @Nonnull
     @Override
-    public MotlenMetalMixingRecipe setExemplaryOutputStack(@Nonnull FluidStack outputStack) {
+    public MoltenMetalMixingRecipe setExemplaryOutputStack(@Nonnull FluidStack outputStack) {
         if (!(outputStack.getFluid() instanceof FluidMoltenMetal) || outputStack.tag == null || !outputStack.tag.hasKey(References.NBTTagCompoundData.Fluids.MoltenMetal.MATERIAL))
             throw new IllegalArgumentException("Unsupported Fluid.");
 
@@ -265,7 +265,7 @@ public class MotlenMetalMixingRecipe extends IForgeRegistryEntry.Impl<IMoltenMet
      * @return The instance this was called upon.
      */
     @Nonnull
-    public MotlenMetalMixingRecipe setExamplaryOutputData(@Nonnull String oreDicOutput, @Nonnull Integer amountOutput) {
+    public MoltenMetalMixingRecipe setExamplaryOutputData(@Nonnull String oreDicOutput, @Nonnull Integer amountOutput) {
         this.oreDicOut = oreDicOutput;
         this.amountOut = amountOutput;
 
