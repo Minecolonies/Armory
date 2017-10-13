@@ -18,6 +18,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.model.TRSRTransformation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -28,6 +30,7 @@ import java.util.List;
 /**
  * ------------ Class not Documented ------------
  */
+@SideOnly(Side.CLIENT)
 public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.PerspectiveAware {
 
     @Nonnull
@@ -47,21 +50,27 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
     protected final BakedMultiLayeredArmorItemModel.Overrides                        overrides;
     protected final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
     protected final ImmutableMap<ResourceLocation, BakedMultiLayeredArmorPartItemModel> parts;
+    protected final ImmutableMap<ResourceLocation, BakedMultiLayeredArmorPartItemModel> untranslatedParts;
 
     /**
      * The length of brokenParts has to match the length of parts. If a part does not have a broken texture, the entry in
      * the array simply is null.
      */
-    public BakedMultiLayeredArmorItemModel(IBakedModel parent, ImmutableMap<ResourceLocation, BakedMultiLayeredArmorPartItemModel> parts, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+    public BakedMultiLayeredArmorItemModel(
+                                            IBakedModel parent,
+                                            ImmutableMap<ResourceLocation, BakedMultiLayeredArmorPartItemModel> parts,
+                                            ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms,
+                                            final ImmutableMap<ResourceLocation, BakedMultiLayeredArmorPartItemModel> untranslatedParts) {
         super(parent, transforms);
 
         this.parts = parts;
+        this.untranslatedParts = untranslatedParts;
         overrides = new BakedMultiLayeredArmorItemModel.Overrides(this);
         this.transforms = transforms;
     }
 
     @Nullable
-    public IBakedModel getModelForModelPart(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity, ModelPart modelPart) {
+    public IBakedModel getUntranslatedModel(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity, ModelPart modelPart) {
         IMultiComponentArmorCapability capability = ArmorNBTHelper.getArmorDataFromStack(stack);
         if (capability == null)
             return DummyModel.BAKED_MODEL;
@@ -69,7 +78,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
         // getCreationRecipe the texture for each part
         ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
 
-        for(BakedMultiLayeredArmorPartItemModel part : parts.values())
+        for(BakedMultiLayeredArmorPartItemModel part : untranslatedParts.values())
         {
             if (modelPart == part.getModelPart())
             {
@@ -107,13 +116,9 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
             // getCreationRecipe the texture for each part
             ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
 
-            if (parent.parts.containsKey(new ResourceLocation("armory:chestplate.arm.left"))){
-                quads.addAll(parent.parts.get(new ResourceLocation("armory:chestplate.arm.left")).getOverrides().handleItemState(originalModel, stack, world, entity).getQuads(null, null, 1));
-            } else {
-                for(BakedMultiLayeredArmorPartItemModel part : parent.parts.values())
-                {
-                    quads.addAll(part.getOverrides().handleItemState(originalModel, stack, world, entity).getQuads(null, null, 1));
-                }
+            for(BakedMultiLayeredArmorPartItemModel part : parent.parts.values())
+            {
+                quads.addAll(part.getOverrides().handleItemState(originalModel, stack, world, entity).getQuads(null, null, 1));
             }
 
             IBakedModel model = new ItemLayerModel.BakedItemModel(quads.build(), parent.getParticleTexture(), parent.transforms, parent.getOverrides(), null);

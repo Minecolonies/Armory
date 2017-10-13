@@ -87,7 +87,8 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
                 partDefinition.getLayers().forEach(new ModelMappingProcessingConsumer(modelLocation, layerModelBuilder, textureBuilder));
                 partDefinition.getBroken().forEach(new ModelMappingProcessingConsumer(modelLocation, brokenModelBuilder, textureBuilder));
 
-                armorPartModelBuilder.put(key, new MultiLayerArmorPartModel(armor, partTextures.build(), partDefinition.getPart(), baseModel, layerModelBuilder.build(), brokenModelBuilder.build(), definition.getTransforms()));
+                armorPartModelBuilder.put(key, new MultiLayerArmorPartModel(armor, partTextures.build(), partDefinition.getPart(), baseModel, layerModelBuilder.build(), brokenModelBuilder.build(), definition.getTransforms(),
+                                                                             partDefinition.getInternalTranslation()));
             });
 
             //Construct the new unbaked model from the collected data.

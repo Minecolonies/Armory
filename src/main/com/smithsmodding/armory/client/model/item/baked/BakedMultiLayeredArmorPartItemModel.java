@@ -9,9 +9,8 @@ import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionInformation;
 import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapability;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.client.model.item.baked.components.BakedCoreComponentModel;
-import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.armory.api.util.common.armor.ArmorNBTHelper;
+import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
 import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
@@ -24,14 +23,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.model.TRSRTransformation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
 /**
- * Created by Marc on 06.12.2015.
+ * A baked model for a part of the armor.
  */
+@SideOnly(Side.CLIENT)
 public class BakedMultiLayeredArmorPartItemModel extends BakedWrappedModel.PerspectiveAware {
 
     @Nonnull
@@ -50,7 +52,7 @@ public class BakedMultiLayeredArmorPartItemModel extends BakedWrappedModel.Persp
     @Nonnull
     protected final Overrides overrides;
     protected final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
-    protected BakedCoreComponentModel baseLayer;
+    protected BakedSubComponentModel baseLayer;
     protected HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> parts;
     protected HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> brokenParts;
     protected final ModelPart modelPart;
@@ -59,7 +61,7 @@ public class BakedMultiLayeredArmorPartItemModel extends BakedWrappedModel.Persp
      * The length of brokenParts has to match the length of parts. If a part does not have a broken texture, the entry in
      * the array simply is null.
      */
-    public BakedMultiLayeredArmorPartItemModel(IBakedModel parent, BakedCoreComponentModel baseLayer, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> parts, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> brokenParts, ModelPart modelPart, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+    public BakedMultiLayeredArmorPartItemModel(IBakedModel parent, BakedSubComponentModel baseLayer, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> parts, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> brokenParts, ModelPart modelPart, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
         super(parent, transforms);
 
         this.parts = parts;

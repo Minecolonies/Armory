@@ -113,8 +113,23 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
      */
     @Nonnull
     public BakedSubComponentModel generateBackedComponentModel(@Nonnull IModelState state, VertexFormat format, @Nonnull Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+        return this.generateBackedComponentModel(state, format, bakedTextureGetter, TRSRTransformation.identity());
+    }
+
+    /**
+     * Function to getCreationRecipe a baked model from outside of the baking proces.
+     *
+     * @param state              The model state to retrieve a model for.
+     * @param format             The format of storing the individual vertexes in memory
+     * @param bakedTextureGetter Function to getCreationRecipe the baked textures.
+     * @param internalTransformation The transformation applied before parts (if they exist) are being baked.
+     * @return A baked model containing all individual possible textures this model can have.
+     */
+    @Nonnull
+    public BakedSubComponentModel generateBackedComponentModel(@Nonnull IModelState state, VertexFormat format, @Nonnull Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter, TRSRTransformation internalTransformation) {
         return new BakedSubComponentModel(super.bake(state, format, bakedTextureGetter), transforms);
     }
+
 
     /**
      * Method to get a model used in the baking process with a single texture.
@@ -134,6 +149,18 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
      */
     @Nonnull
     ImmutableSet<BakedSubComponentModel> getBakedPartModels(@Nonnull final VertexFormat format, @Nonnull final Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+        return this.getBakedPartModels(format, bakedTextureGetter, TRSRTransformation.identity());
+    }
+
+    /**
+     * Method to get a set of baked part models.
+     * @param format The format to bake into.
+     * @param bakedTextureGetter A function to get a texture from a given resource location.
+     * @param initialTransformation The transformation applied to parts (if this model has any) before their own.
+     * @return A set of component models that hold all the parts of this layer.
+     */
+    @Nonnull
+    ImmutableSet<BakedSubComponentModel> getBakedPartModels(@Nonnull final VertexFormat format, @Nonnull final Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter, TRSRTransformation initialTransformation) {
         if (getLayerDefinition() == null)
         {
             return ImmutableSet.of();
@@ -143,7 +170,7 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
 
         for(ArmorModelLayerPartDefinition part : getLayerDefinition().getParts())
         {
-            builder.add(getBakingModelForTexture(part.getTextureLocation()).generateBackedComponentModel(TRSRTransformation.blockCenterToCorner(part.getTransformation()), format, bakedTextureGetter));
+            builder.add(getBakingModelForTexture(part.getTextureLocation()).generateBackedComponentModel(TRSRTransformation.blockCenterToCorner(initialTransformation.compose(part.getTransformation())), format, bakedTextureGetter));
         }
 
         return builder.build();

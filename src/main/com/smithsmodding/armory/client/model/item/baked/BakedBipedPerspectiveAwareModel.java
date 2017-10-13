@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.client.model.item.baked;
 
+import com.smithsmodding.armory.api.client.model.ModelPart;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
@@ -20,35 +21,15 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
                                             final EntityLivingBase entity) {
         super(1);
 
-        for(BakedMultiLayeredArmorPartItemModel partItemModel : model.parts.values())
-        {
-            IBakedModel bakedModel = partItemModel.getOverrides().handleItemState(partItemModel, stack, entity.world, entity);
 
-            switch(partItemModel.getModelPart())
-            {
-                case BODY:
-                    this.bipedBody = new ItemStackModelRenderer(entity, stack, bakedModel, this::preBodyMainRender, this::postBodyMainRender);
-                    break;
-                case ARMLEFT:
-                    this.bipedLeftArm = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
-                    break;
-                case ARMRIGHT:
-                    this.bipedRightArm = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
-                    break;
-                case HEAD:
-                    this.bipedHead = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
-                    break;
-                case HEADWEAR:
-                    this.bipedHeadwear = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
-                    break;
-                case LEGLEFT:
-                    this.bipedLeftLeg = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
-                    break;
-                case LEGRIGHT:
-                    this.bipedRightLeg = new ItemStackModelRenderer(entity, stack, bakedModel, this::preHeadRender, this::postHeadRender);
-                    break;
-            }
-        }
+        this.bipedBody = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.BODY), this::preBodyMainRender, this::postBodyMainRender);
+        this.bipedLeftArm = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.ARMLEFT), this::preHeadRender, this::postHeadRender);
+        this.bipedRightArm = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.ARMRIGHT), this::preHeadRender, this::postHeadRender);
+        this.bipedHead = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.HEAD), this::preHeadRender, this::postHeadRender);
+        this.bipedHeadwear = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.HEADWEAR), this::preHeadRender, this::postHeadRender);
+        this.bipedLeftLeg = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGLEFT), this::preHeadRender, this::postHeadRender);
+        this.bipedRightLeg = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGRIGHT), this::preHeadRender, this::postHeadRender);
+
     }
 
 
@@ -69,8 +50,8 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
     private void preBodyMainRender(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
         GlStateManager.pushMatrix();
 
-        GlStateManager.scale(2.625F, 2.625F, 2.625f);
-        GlStateManager.translate(1, -8f * scale, 0);
+        GlStateManager.translate(4f * scale, -8f * scale, 0);
+        GlStateManager.scale(1.1f, 1.1f, 1.1f);
 
         GlStateManager.pushMatrix();
     }

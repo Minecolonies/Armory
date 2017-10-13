@@ -4,8 +4,8 @@
       "id":"armory:chestplate.back",
       "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_back",
       "transformation":{
-        "translation": [ 0, 0,0.25 ],
-        "scale": [1, 1.125, 1 ],
+        "translation": [ 0, 0, 0.25 ],
+        "scale": [1, 1, 0.5 ],
         "rotation":[{"x":0},{"y":0},{"z":0} ]
       }
     },
@@ -13,26 +13,26 @@
       "id":"armory:chestplate.front",
       "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_front",
       "transformation":{
-        "translation": [ 0, 0,-0.25 ],
-        "scale": [1, 1.125, 1 ],
+        "translation": [ 0, 0, -0.25 ],
+        "scale": [1, 1, 0.5 ],
         "rotation":[{"x":0},{"y":0},{"z":0} ]
       }
     },
     {
       "id":"armory:chestplate.left",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_inside",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_inside",
       "transformation":{
-        "translation": [ -0.46875, 0,0 ],
-        "scale": [0.5, 1.125, 1 ],
-        "rotation":[{"x":0},{"y":90},{"z":0} ]
+        "translation": [-0.484375, 0,0.24 ],
+        "scale": [1, 1, 0.5 ],
+        "rotation":[{"x":0},{"y":-90},{"z":0} ]
       }
     },
     {
       "id":"armory:chestplate.right",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_inside",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_inside",
       "transformation":{
-        "translation": [ 0.46875, 0,0 ],
-        "scale": [0.5, 1.125, 1 ],
+        "translation": [ -0.015625, 0, -0.24 ],
+        "scale": [1, 1, 0.5 ],
         "rotation":[{"x":0},{"y":90},{"z":0} ]
       }
     },
@@ -40,8 +40,8 @@
       "id":"armory:chestplate.top.left",
       "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_top",
       "transformation":{
-        "translation": [ -0.375, 0.525,0 ],
-        "scale": [0.25, 0.5, 1 ],
+        "translation": [ 0, 0.484375,-0.25],
+        "scale": [1, 1, 0.5 ],
         "rotation":[{"x":90},{"y":0},{"z":0} ]
       }
     },
@@ -49,8 +49,8 @@
       "id":"armory:chestplate.top.right",
       "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_top",
       "transformation":{
-        "translation": [ 0.375, 0.525,0 ],
-        "scale": [0.25, 0.5, 1 ],
+        "translation": [ 0.375, 0.484375, -0.25],
+        "scale": [1, 1, 0.5],
         "rotation":[{"x":90},{"y":0},{"z":0} ]
       }
     }

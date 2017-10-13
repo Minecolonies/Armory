@@ -14,6 +14,10 @@ import com.smithsmodding.armory.api.util.references.ModLogger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ForgeBlockStateV1;
+import net.minecraftforge.common.model.TRSRTransformation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
@@ -25,6 +29,7 @@ import java.util.Map;
 /**
  * Class used to deserialize a {@link ArmorModelPartDefinition}
  */
+@SideOnly(Side.CLIENT)
 public class ArmorModelPartDeserializer implements JsonDeserializer<ArmorModelPartDefinition>
 {
     @Nonnull
@@ -93,7 +98,7 @@ public class ArmorModelPartDeserializer implements JsonDeserializer<ArmorModelPa
             parseJsonLayer(entry, brokenLocations, context);
         }
 
-        return new ArmorModelPartDefinition(baseLayer, layersLocations.build(), brokenLocations.build(), type);
+        return new ArmorModelPartDefinition(baseLayer, layersLocations.build(), brokenLocations.build(), type, jsonObject.has("transform") ? ForgeBlockStateV1.TRSRDeserializer.INSTANCE.deserialize(jsonObject.get("transform"), typeOfT, context) : TRSRTransformation.identity());
     }
 
     private void parseJsonLayer(@Nonnull Map.Entry<String, JsonElement> keyElementPair, @Nonnull ImmutableMap.Builder<ResourceLocation, ArmorModelLayerDefinition> target, @Nonnull JsonDeserializationContext context) {

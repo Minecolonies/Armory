@@ -21,18 +21,17 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.common.model.IModelState;
+import net.minecraftforge.common.model.TRSRTransformation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * Created by Marc on 06.12.2015.
- * <p>
- * model used to display singular components of the armor.
- * Is in implementation nearly the same as the TinkersConstruct Toolparts.
+ * A class used to represent an unbaked component model.
  */
+@SideOnly(Side.CLIENT)
 public class ArmorAddonComponentModel extends ArmorSubComponentModel {
 
     /**
@@ -44,47 +43,15 @@ public class ArmorAddonComponentModel extends ArmorSubComponentModel {
         super(textures, ModelHelper.DEFAULT_ITEM_TRANSFORMS);
     }
 
-    /**
-     * Function getCreationRecipe the baked end model.
-     *
-     * @param state              The modelstate you want a model for.
-     * @param format             The format the vertexes are stored in.
-     * @param bakedTextureGetter Function to getCreationRecipe the Texture for the model.
-     * @return A ItemStack depending model that is ready to be used.
-     */
     @Nonnull
     @Override
-    public IBakedModel bake(@Nonnull final IModelState state, @Nonnull final VertexFormat format, @Nonnull final Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
-        return generateBackedComponentModel(state, format, bakedTextureGetter);
-    }
-
-    /**
-     * Function to getCreationRecipe the grayscale texture location of this model faster.
-     *
-     * @return The location of the grayscale texture.
-     */
-    @Nullable
-    public ResourceLocation getTexture() {
-        ArrayList<ResourceLocation> textures = new ArrayList<ResourceLocation>();
-        textures.addAll(getTextures());
-
-        if (textures.size() == 0)
-            return null;
-
-        return textures.get(0);
-    }
-
-    /**
-     * Function to getCreationRecipe a baked model from outside of the baking proces.
-     *
-     * @param state              The model state to retrieve a model for.
-     * @param format             The format of storing the individual vertexes in memory
-     * @param bakedTextureGetter Function to getCreationRecipe the baked textures.
-     * @return A baked model containing all individual possible textures this model can have.
-     */
-    @Nonnull
-    public BakedSubComponentModel generateBackedComponentModel(@Nonnull IModelState state, VertexFormat format, @Nonnull Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
-        ImmutableSet<BakedSubComponentModel> partModels = getBakedPartModels(format, bakedTextureGetter);
+    public BakedSubComponentModel generateBackedComponentModel(
+                                                                @Nonnull final IModelState state,
+                                                                final VertexFormat format,
+                                                                @Nonnull final Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter,
+                                                                final TRSRTransformation internalTransformation)
+    {
+        ImmutableSet<BakedSubComponentModel> partModels = getBakedPartModels(format, bakedTextureGetter, internalTransformation);
         IBakedModel base = getBaseBakedModel(state, format, bakedTextureGetter, partModels);
 
         // Use it as our base for the BakedComponentModel.

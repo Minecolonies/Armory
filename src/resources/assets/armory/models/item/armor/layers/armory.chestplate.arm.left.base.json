@@ -4,35 +4,26 @@
       "id":"armory:chestplate.arm.top",
       "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_top",
       "transformation":{
-        "translation": [ 0, 0,0.25 ],
-        "scale": [1, 1.125, 1 ],
-        "rotation":[{"x":0},{"y":0},{"z":0} ]
-      }
-    },
-    {
-      "id":"armory:chestplate.arm.bottom",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_bottom",
-      "transformation":{
-        "translation": [ 0, 0,-0.25 ],
-        "scale": [1, 1.125, 1 ],
-        "rotation":[{"x":0},{"y":0},{"z":0} ]
+        "translation": [0, 0,0 ],
+        "scale": [1, 1, 1 ],
+        "rotation":[{"x":90},{"y":0},{"z":0} ]
       }
     },
     {
       "id":"armory:chestplate.arm.front",
       "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_inside",
       "transformation":{
-        "translation": [ -0.46875, 0,0 ],
-        "scale": [0.5, 1.125, 1 ],
-        "rotation":[{"x":0},{"y":90},{"z":0} ]
+        "translation": [ 0, 0 ,0 ],
+        "scale": [1, 1, 1 ],
+        "rotation":[{"x":0},{"y":0},{"z":0} ]
       }
     },
     {
       "id":"armory:chestplate.arm.back",
       "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_inside",
       "transformation":{
-        "translation": [ 0.46875, 0,0 ],
-        "scale": [0.5, 1.125, 1 ],
+        "translation": [0, 0, 0 ],
+        "scale": [1, 1, 1 ],
         "rotation":[{"x":0},{"y":90},{"z":0} ]
       }
     },
@@ -41,8 +32,8 @@
       "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_top",
       "transformation":{
         "translation": [ -0.375, 0.525,0 ],
-        "scale": [0.25, 0.5, 1 ],
-        "rotation":[{"x":90},{"y":0},{"z":0} ]
+        "scale": [1, 1, 1 ],
+        "rotation":[{"x":0},{"y":0},{"z":0} ]
       }
     },
     {
@@ -50,8 +41,8 @@
       "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_top",
       "transformation":{
         "translation": [ 0.375, 0.525,0 ],
-        "scale": [0.25, 0.5, 1 ],
-        "rotation":[{"x":90},{"y":0},{"z":0} ]
+        "scale": [1, 1, 1 ],
+        "rotation":[{"x":0},{"y":0},{"z":0} ]
       }
     }
   ]

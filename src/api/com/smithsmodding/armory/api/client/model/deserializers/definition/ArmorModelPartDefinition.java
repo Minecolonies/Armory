@@ -3,6 +3,7 @@ package com.smithsmodding.armory.api.client.model.deserializers.definition;
 import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.client.model.ModelPart;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.model.TRSRTransformation;
 
 import javax.annotation.Nonnull;
 
@@ -24,16 +25,20 @@ public class ArmorModelPartDefinition
     @Nonnull
     private final ModelPart                       part;
 
+    private final TRSRTransformation internalTranslation;
+
     public ArmorModelPartDefinition(
                                      @Nonnull final ArmorModelLayerDefinition base,
                                      @Nonnull final ImmutableMap<ResourceLocation, ArmorModelLayerDefinition> layers,
                                      @Nonnull final ImmutableMap<ResourceLocation, ArmorModelLayerDefinition> broken,
-                                     @Nonnull ModelPart part)
+                                     @Nonnull final ModelPart part,
+                                     @Nonnull final TRSRTransformation internalTranslation)
     {
         this.base = base;
         this.layers = layers;
         this.broken = broken;
         this.part = part;
+        this.internalTranslation = internalTranslation;
     }
 
     @Nonnull
@@ -58,5 +63,11 @@ public class ArmorModelPartDefinition
     public ModelPart getPart()
     {
         return part;
+    }
+
+    @Nonnull
+    public TRSRTransformation getInternalTranslation()
+    {
+        return internalTranslation;
     }
 }

@@ -21,6 +21,7 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.common.model.IModelState;
+import net.minecraftforge.common.model.TRSRTransformation;
 
 import javax.annotation.Nonnull;
 import java.util.Map;
@@ -46,52 +47,31 @@ public class ArmorCoreComponentModel extends ArmorSubComponentModel {
         super(textureLocation);
     }
 
-    /**
-     * Function getCreationRecipe the baked end model.
-     *
-     * @param state              The modelstate you want a model for.
-     * @param format             The format the vertexes are stored in.
-     * @param bakedTextureGetter Function to getCreationRecipe the Texture for the model.
-     * @return A ItemStack depending model that is ready to be used.
-     */
-    @Nonnull
-    @Override
-    public IBakedModel bake(@Nonnull final IModelState state, @Nonnull final VertexFormat format, @Nonnull final Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
-        return generateBackedComponentModel(state, format, bakedTextureGetter);
-    }
-
-    /**
-     * Method to get a model used in the baking process with a single texture.
-     * Allows child classes to change baking process.
-     *
-     * @param texture The texture to get a model for.
-     * @return A component model that can be used in the baking process.
-     */
     @Override
     public ArmorCoreComponentModel getBakingModelForTexture(@Nonnull final ResourceLocation texture)
     {
         return new ArmorCoreComponentModel(texture);
     }
 
-    /**
-     * Function to get a baked model from outside of the baking proces.
-     *
-     * @param state              The model state to retrieve a model for.
-     * @param format             The format of storing the individual vertexes in memory
-     * @param bakedTextureGetter Function to getCreationRecipe the baked textures.
-     * @return A baked model containing all individual possible textures this model can have.
-     */
-    @Override
     @Nonnull
-    public BakedCoreComponentModel generateBackedComponentModel(@Nonnull IModelState state, VertexFormat format, @Nonnull Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
-        ImmutableSet<BakedSubComponentModel> partModels = getBakedPartModels(format, bakedTextureGetter);
+    @Override
+    public BakedSubComponentModel generateBackedComponentModel(
+                                                                @Nonnull final IModelState state,
+                                                                final VertexFormat format,
+                                                                @Nonnull final Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter,
+                                                                final TRSRTransformation internalTransformation)
+    {
+        ImmutableSet<BakedSubComponentModel> partModels = getBakedPartModels(format, bakedTextureGetter, internalTransformation);
         IBakedModel base = getBaseBakedModel(state, format, bakedTextureGetter, partModels);
 
         // Use it as our base for the BakedComponentModel.
         BakedCoreComponentModel bakedMaterialModel = new BakedCoreComponentModel(base);
 
+        //Process the part models so that they get materialized.
         if (!partModels.isEmpty())
         {
+            //We are made up out of several parts.
+            //Most likely armor component.
             IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry().forEach(material -> {
                 ImmutableList.Builder<BakedQuad> quadBuilder = ImmutableList.builder();
                 partModels.forEach((BakedSubComponentModel model) -> quadBuilder.addAll(model.getModelByIdentifier(material.getRegistryName()).getQuads(null, null, 0)));
@@ -103,6 +83,9 @@ public class ArmorCoreComponentModel extends ArmorSubComponentModel {
         }
         else
         {
+            //We are not made up of parts so lets just retexture our own greyscale texture into the materialized one.
+            //Either a model for a upgrade Item, or a part of a Armor.
+
             //In between the loading of the model from the JSON and the baking the MaterializedTextureCreator was able to
             // generate all the necessary textures for the models.
             //We retrieve those now and register them to the BakedModel later.
@@ -118,8 +101,8 @@ public class ArmorCoreComponentModel extends ArmorSubComponentModel {
                 //We grab the material now, that way we know the material exists before continuing.
                 ICoreArmorMaterial material = ArmoryAPI.getInstance().getRegistryManager().getCoreMaterialRegistry().getValue(entry.getKey());
 
-                //We retexture this model with the newly colored textured from ther creator and getCreationRecipe a Copy of this model
-                //But then colored instead of grayscaled.
+                //We retexture this model with the newly colored textured from the creator and get a Copy of this model
+                //But then colored instead of greyscaled.
                 IModel model2 = this.retexture(ImmutableMap.of("layer0", entry.getValue().getIconName()));
 
                 //We bake the new model to getCreationRecipe a ready to use textured and ready to be colored baked model.

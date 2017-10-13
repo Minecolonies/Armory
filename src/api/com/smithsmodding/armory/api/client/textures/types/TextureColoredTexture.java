@@ -46,7 +46,10 @@ public class TextureColoredTexture extends AbstractColoredTexture {
             loadData();
         }
 
-        int c = textureData[mipmap][pxCoord];
+        int mipMapLevel = mipmap % textureData.length;
+        int coordinate = pxCoord % textureData[mipMapLevel].length;
+
+        int c = textureData[mipMapLevel][coordinate];
 
         // multiply in the color
         int r = red(c);

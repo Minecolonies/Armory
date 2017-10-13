@@ -2,9 +2,9 @@
   "parent": "item/generated",
   "display": {
     "gui": {
-      "rotation": [ 30, 225, 0 ],
-      "translation": [ 0, 0, 0],
-      "scale":[ 0.625, 0.625, 0.625 ]
+      "rotation": [ 90, 0, 0 ],
+      "translation": [ 0, 64, 0],
+      "scale":[ 64, 64, 64 ]
     },
     "ground": {
       "rotation": [ 0, 0, 0 ],

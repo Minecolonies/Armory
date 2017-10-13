@@ -15,12 +15,15 @@ import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 
 /**
- * ------------ Class not Documented ------------
+ * Class that represents an Unbaked model for the armor.
  */
+@SideOnly(Side.CLIENT)
 public class MultiLayerArmorModel extends ItemLayerModel
 {
 
@@ -42,13 +45,15 @@ public class MultiLayerArmorModel extends ItemLayerModel
         IBakedModel base = super.bake(state, format, bakedTextureGetter);
 
         //Setup the maps that contain the converted baked sub models.
-        ImmutableMap.Builder<ResourceLocation, BakedMultiLayeredArmorPartItemModel> modelBuilder = ImmutableMap.builder();
+        ImmutableMap.Builder<ResourceLocation, BakedMultiLayeredArmorPartItemModel> translatedDefaultParts = ImmutableMap.builder();
+        ImmutableMap.Builder<ResourceLocation, BakedMultiLayeredArmorPartItemModel> untranslatedParts = ImmutableMap.builder();
 
         parts.forEach((ResourceLocation key, MultiLayerArmorPartModel part) -> {
-            modelBuilder.put(key, part.bake(state, format, bakedTextureGetter));
+            translatedDefaultParts.put(key, part.bake(state, format, bakedTextureGetter));
+            untranslatedParts.put(key, part.generateUnoffsetedBakedItemModel(state, format, bakedTextureGetter));
         });
 
         //Bake the model.
-        return new BakedMultiLayeredArmorItemModel(base, modelBuilder.build(), transforms);
+        return new BakedMultiLayeredArmorItemModel(base, translatedDefaultParts.build(), transforms, untranslatedParts.build());
     }
 }
