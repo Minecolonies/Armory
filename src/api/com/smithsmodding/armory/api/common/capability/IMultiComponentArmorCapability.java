@@ -26,7 +26,7 @@ import java.util.HashMap;
 public interface IMultiComponentArmorCapability {
 
     /**
-     * Method to getCreationRecipe the Type of armor that is in the ItemStack.
+     * Method to get the Type of armor that is in the ItemStack.
      * @return The armor type that is inside the ItemStack that this capability is in.
      */
     @Nonnull
@@ -119,7 +119,7 @@ public interface IMultiComponentArmorCapability {
     void decreaseCurrentDurability(@Nonnull Integer durability);
 
     /**
-     * Method to getCreationRecipe the capabilities that the Armor has. Eg:
+     * Method to get the capabilities that the Armor has. Eg:
      *  *  ArmorDefence
      *  *  ArmorToughness
      *  *  IsAccessory
@@ -156,7 +156,7 @@ public interface IMultiComponentArmorCapability {
         private ArmorCapabilityManager armorCapabilityManager = new ArmorCapabilityManager();
 
         /**
-         * Method to getCreationRecipe the Type of armor that is in the ItemStack.
+         * Method to get the Type of armor that is in the ItemStack.
          *
          * @return The armor type that is inside the ItemStack that this capability is in.
          */
@@ -313,7 +313,7 @@ public interface IMultiComponentArmorCapability {
         }
 
         /**
-         * Method to getCreationRecipe the capabilities that the Armor has. Eg:
+         * Method to get the capabilities that the Armor has. Eg:
          * *  ArmorDefence
          * *  ArmorToughness
          * *  IsAccessory

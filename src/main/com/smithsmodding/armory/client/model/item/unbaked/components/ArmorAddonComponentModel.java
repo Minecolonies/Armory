@@ -86,11 +86,11 @@ public class ArmorAddonComponentModel extends ArmorSubComponentModel {
                 //We grab the material now, that way we know the material exists before continuing.
                 IAddonArmorMaterial material = ArmoryAPI.getInstance().getRegistryManager().getAddonArmorMaterialRegistry().getValue(entry.getKey());
 
-                //We retexture this model with the newly colored textured from ther creator and getCreationRecipe a Copy of this model
+                //We retexture this model with the newly colored textured from ther creator and get a Copy of this model
                 //But then colored instead of grayscaled.
                 IModel model2 = this.retexture(ImmutableMap.of("layer0", entry.getValue().getIconName()));
 
-                //We bake the new model to getCreationRecipe a ready to use textured and ready to be colored baked model.
+                //We bake the new model to get a ready to use textured and ready to be colored baked model.
                 IBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
 
                 // We check if a special texture for that item exists in our textures collection.

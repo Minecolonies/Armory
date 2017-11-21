@@ -53,7 +53,7 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
     }
 
     /**
-     * Method to getCreationRecipe the translation Key.
+     * Method to get the translation Key.
      *
      * @return The key to translate.
      */
@@ -64,7 +64,7 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
     }
 
     /**
-     * Method to getCreationRecipe the markup.
+     * Method to get the markup.
      *
      * @return The markup. Default is TextFormatting.Reset
      */
@@ -146,7 +146,7 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
     }
 
     /**
-     * Method to getCreationRecipe the maximum count that a Extension can be installed on a ArmorInstance.
+     * Method to get the maximum count that a Extension can be installed on a ArmorInstance.
      *
      * @return the maximum count that a Extension can be installed on a ArmorInstance.
      */
@@ -157,7 +157,7 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
     }
 
     /**
-     * Method to getCreationRecipe the additional durability this extension provides.
+     * Method to get the additional durability this extension provides.
      *
      * @return The extra durability.
      */
@@ -205,7 +205,7 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
     }
 
     /**
-     * Method to getCreationRecipe all the default capabilities this Component provides.
+     * Method to get all the default capabilities this Component provides.
      * The Capabilities stored here override those stored in the Armor and in its CoreMaterial.
      *
      * @return All the default capabilities this Component provides.
@@ -217,7 +217,7 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
     }
 
     /**
-     * Method to getCreationRecipe the renderer that is used to render the Armor on the entity.
+     * Method to get the renderer that is used to render the Armor on the entity.
      *
      * @return The in world renderer.
      */
@@ -229,7 +229,7 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
     }
 
     /**
-     * Method to getCreationRecipe the transforms for the in world rendering.
+     * Method to get the transforms for the in world rendering.
      *
      * @return The transforms for the in world rendering.
      */
@@ -272,7 +272,7 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
      * Method used to retrieve tha recipe creation callback used during initialization to create recipes
      * of this extension and its subkinds if applicable. Method is only called when hasItemStack is true.
      * <p>
-     * If the callback returns null on this getCreationRecipe method then no recipe will be registered.
+     * If the callback returns null on this get method then no recipe will be registered.
      */
     @Nonnull
     @Override

@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 public interface IDefaultCapabilitiesRetrievalCallback {
     /**
-     * Method to getCreationRecipe capabilities from the Callback.
+     * Method to get capabilities from the Callback.
      * @return All the default capabilities this Armor should provides.
      */
     @Nonnull

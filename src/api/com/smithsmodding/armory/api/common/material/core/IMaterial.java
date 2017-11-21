@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 public interface IMaterial<T> extends IForgeRegistryEntry<T>, IRenderInfoProvider<T>, ITranslateable {
 
     /**
-     * Method to getCreationRecipe the Identifier inside the OreDictionary for a Material.
+     * Method to get the Identifier inside the OreDictionary for a Material.
      * @return The String that identifies this material in the OreDictionary. IE: TK_ANVIL_IRON, TK_ANVIL_STONE etc.
      */
     @Nullable

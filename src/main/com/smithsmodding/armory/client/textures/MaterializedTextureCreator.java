@@ -61,9 +61,9 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     static {
         guiMaterial = (ICoreArmorMaterial) new MedievalCoreArmorMaterial("", "", "", 0F,0F,0,0,0F) {
             /**
-             * Method to getCreationRecipe the BaseDurability of a piece of armor made out of this material.
+             * Method to get the BaseDurability of a piece of armor made out of this material.
              *
-             * @param armor The armor to getCreationRecipe the base durability for.
+             * @param armor The armor to get the base durability for.
              * @return The durability of a piece of armor made out of this material.
              */
             @Nonnull
@@ -73,7 +73,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
             }
 
             /**
-             * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
+             * Method to get all the default capabilities this ArmorMaterial provides.
              *
              * @param armor
              * @return All the default capabilities this ArmorMaterial provides.
@@ -112,7 +112,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     }
 
     /**
-     * method to getCreationRecipe the builded textures.
+     * method to get the builded textures.
      *
      * @return A map containing all the colored textures using the base texture and the materialname as keys.
      */

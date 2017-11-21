@@ -55,7 +55,7 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
 
 
     /**
-     * Method to getCreationRecipe the TranslationKey.
+     * Method to get the TranslationKey.
      *
      * @return The translation key of the Material.
      * medieval.
@@ -67,7 +67,7 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
     }
 
     /**
-     * Method to getCreationRecipe the markup.
+     * Method to get the markup.
      *
      * @return The markup. Default is TextFormatting.Reset
      */
@@ -79,7 +79,7 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
 
 
     /**
-     * Method to getCreationRecipe the Identifier inside the OreDictionary for a Material.
+     * Method to get the Identifier inside the OreDictionary for a Material.
      *
      * @return The String that identifies this material in the OreDictionary. IE: TK_ANVIL_IRON, TK_ANVIL_STONE etc.
      */
@@ -134,7 +134,7 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
     }
 
     /**
-     * Method to getCreationRecipe the getDurability of the Anvil when it is made out of this Material
+     * Method to get the getDurability of the Anvil when it is made out of this Material
      *
      * @return A value bigger then 0, Integer.MaxValue means unbreakable.
      */
@@ -145,7 +145,7 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
     }
 
     /**
-     * Method used to getCreationRecipe the RenderInfo used to change the Texture of the Model if need be.
+     * Method used to get the RenderInfo used to change the Texture of the Model if need be.
      *
      * @return The RenderInfo used to modify the Texture of the model.
      * medieval.
@@ -171,7 +171,7 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
     }
 
     /**
-     * Method to getCreationRecipe the Override for the texture.
+     * Method to get the Override for the texture.
      * Has to be supplied so that resourcepack makers can override the behaviour if they fell the need to do it.
      *
      * @return The override identifier for overloading the programmatic behaviour of the RenderInfo.

@@ -14,7 +14,7 @@ public class HeatableObject extends IHeatableObject.Impl<IHeatableObject> implem
 
 
     /**
-     * Method to getCreationRecipe the change factor while an instance of this HeatableObject is
+     * Method to get the change factor while an instance of this HeatableObject is
      * in ItemEntity form. Its internal temperature changes with this factor.
      *
      * @param biome    The biome the ItemEntity is in.
@@ -29,7 +29,7 @@ public class HeatableObject extends IHeatableObject.Impl<IHeatableObject> implem
     }
 
     /**
-     * Method to getCreationRecipe the change factor while an instance of this HeatableObject is
+     * Method to get the change factor while an instance of this HeatableObject is
      * in an Inventory of an Entity. Its internal temperature with this factor.
      *
      * @param entity   The entity in whoms inventory this ItemStack is in.

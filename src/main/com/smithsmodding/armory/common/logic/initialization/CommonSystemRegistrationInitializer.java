@@ -82,7 +82,7 @@ public class CommonSystemRegistrationInitializer {
         itemRegistry.register(ModItems.IT_PLATE);
         itemRegistry.register(ModItems.IT_INGOT);
 
-        //itemRegistry.register(ModItems.Armor.IT_HELMET);
+        itemRegistry.register(ModItems.Armor.IT_HELMET);
         itemRegistry.register(ModItems.Armor.IT_CHESTPLATE);
         //itemRegistry.register(ModItems.Armor.IT_LEGGINGS);
         //itemRegistry.register(ModItems.Armor.IT_SHOES);

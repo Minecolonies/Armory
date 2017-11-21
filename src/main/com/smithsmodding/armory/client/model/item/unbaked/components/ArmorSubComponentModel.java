@@ -64,11 +64,11 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
     }
 
     /**
-     * Function getCreationRecipe the baked end model.
+     * Function get the baked end model.
      *
      * @param state              The modelstate you want a model for.
      * @param format             The format the vertexes are stored in.
-     * @param bakedTextureGetter Function to getCreationRecipe the Texture for the model.
+     * @param bakedTextureGetter Function to get the Texture for the model.
      * @return A ItemStack depending model that is ready to be used.
      */
     @Nonnull
@@ -78,7 +78,7 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
     }
 
     /**
-     * Function to getCreationRecipe the grayscale texture location of this model faster.
+     * Function to get the grayscale texture location of this model faster.
      *
      * @return The location of the grayscale texture.
      */
@@ -104,11 +104,11 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
     }
 
     /**
-     * Function to getCreationRecipe a baked model from outside of the baking proces.
+     * Function to get a baked model from outside of the baking proces.
      *
      * @param state              The model state to retrieve a model for.
      * @param format             The format of storing the individual vertexes in memory
-     * @param bakedTextureGetter Function to getCreationRecipe the baked textures.
+     * @param bakedTextureGetter Function to get the baked textures.
      * @return A baked model containing all individual possible textures this model can have.
      */
     @Nonnull
@@ -117,11 +117,11 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
     }
 
     /**
-     * Function to getCreationRecipe a baked model from outside of the baking proces.
+     * Function to get a baked model from outside of the baking proces.
      *
      * @param state              The model state to retrieve a model for.
      * @param format             The format of storing the individual vertexes in memory
-     * @param bakedTextureGetter Function to getCreationRecipe the baked textures.
+     * @param bakedTextureGetter Function to get the baked textures.
      * @param internalTransformation The transformation applied before parts (if they exist) are being baked.
      * @return A baked model containing all individual possible textures this model can have.
      */
@@ -196,7 +196,7 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
         }
 
         if (material.getRenderInfo().useVertexColoring() && !ResourceHelper.exists(baseTexture + "_" + material.getTextureOverrideIdentifier())) {
-            //We getCreationRecipe the color for the material.
+            //We get the color for the material.
             MinecraftColor color = (material.getRenderInfo()).getVertexColor();
 
             //We create a new list of Quads.

@@ -46,7 +46,7 @@ public class MaterialRenderControllers {
         }
 
         /**
-         * Method used by the rendering system to getCreationRecipe the Vertex color for liquids.
+         * Method used by the rendering system to get the Vertex color for liquids.
          *
          * @return The color for the molten metal if armories default system should be used.
          */

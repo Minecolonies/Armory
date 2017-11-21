@@ -40,7 +40,7 @@ public class MetalTextureTexture extends MetalColoredTexture {
                 continue;
             }
             for (int pxCoord = 0; pxCoord < data[mipmap].length; pxCoord++) {
-                // getCreationRecipe input from metal
+                // get input from metal
                 data[mipmap][pxCoord] = colorPixel(texture2.getFrameTextureData(0)[mipmap][pxCoord], mipmap, pxCoord);
             }
         }

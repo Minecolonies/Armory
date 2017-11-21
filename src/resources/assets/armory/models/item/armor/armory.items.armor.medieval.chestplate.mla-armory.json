@@ -1,7 +1,6 @@
 {
   "parent": "armory:models/item/armor/mla",
   "parts": {
-    "armory:chestplate.body":"armory:models/item/armor/parts/armory.chestplate.body"
+    "armory:chestplate.body": "armory:models/item/armor/parts/armory.chestplate.body"
   }
-
 }

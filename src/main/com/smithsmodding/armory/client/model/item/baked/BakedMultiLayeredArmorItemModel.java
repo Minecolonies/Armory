@@ -75,7 +75,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
         if (capability == null)
             return DummyModel.BAKED_MODEL;
 
-        // getCreationRecipe the texture for each part
+        // get the texture for each part
         ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
 
         for(BakedMultiLayeredArmorPartItemModel part : untranslatedParts.values())
@@ -113,7 +113,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
             if (capability == null)
                 return DummyModel.BAKED_MODEL;
 
-            // getCreationRecipe the texture for each part
+            // get the texture for each part
             ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
 
             for(BakedMultiLayeredArmorPartItemModel part : parent.parts.values())

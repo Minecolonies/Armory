@@ -111,7 +111,7 @@ public class BakedMultiLayeredArmorPartItemModel extends BakedWrappedModel.Persp
                 }
             });
 
-            // getCreationRecipe the texture for each part
+            // get the texture for each part
             ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
 
             boolean broken = ArmorNBTHelper.checkIfStackIsBroken(stack);

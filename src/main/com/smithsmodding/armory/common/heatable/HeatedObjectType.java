@@ -22,7 +22,7 @@ public class HeatedObjectType extends IHeatedObjectType.Impl<IHeatedObjectType> 
     }
 
     /**
-     * Method to getCreationRecipe the amount in millibuckets that this HeatedObjectType produces when it melts.
+     * Method to get the amount in millibuckets that this HeatedObjectType produces when it melts.
      *
      * @return The amount in millibuckets produced when an HeatableObject of this type melts.
      */

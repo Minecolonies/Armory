@@ -43,14 +43,14 @@ public interface IMultiComponentArmorExtension extends IForgeRegistryEntry<IMult
     IMultiComponentArmorExtensionPosition getPosition();
 
     /**
-     * Method to getCreationRecipe the maximum count that a Extension can be installed on a ArmorInstance.
+     * Method to get the maximum count that a Extension can be installed on a ArmorInstance.
      * @return the maximum count that a Extension can be installed on a ArmorInstance.
      */
     @Nonnull
     Integer getMaximalInstallationCount();
 
     /**
-     * Method to getCreationRecipe the additional durability this extension provides.
+     * Method to get the additional durability this extension provides.
      * @return The extra durability.
      */
     @Nonnull
@@ -81,7 +81,7 @@ public interface IMultiComponentArmorExtension extends IForgeRegistryEntry<IMult
     IMultiComponentArmorExtension setHasItemStack(@Nonnull Boolean hasItemStack);
 
     /**
-     * Method to getCreationRecipe all the default capabilities this Component provides.
+     * Method to get all the default capabilities this Component provides.
      * The Capabilities stored here override those stored in the Armor and in its CoreMaterial.
      * @return All the default capabilities this Component provides.
      */
@@ -89,7 +89,7 @@ public interface IMultiComponentArmorExtension extends IForgeRegistryEntry<IMult
     HashMap<Capability<? extends IArmorCapability>, Object> getDefaultComponentCapabilities();
 
     /**
-     * Method to getCreationRecipe the renderer that is used to render the Armor on the entity.
+     * Method to get the renderer that is used to render the Armor on the entity.
      *
      * @return The in world renderer.
      */
@@ -101,7 +101,7 @@ public interface IMultiComponentArmorExtension extends IForgeRegistryEntry<IMult
     }
 
     /**
-     * Method to getCreationRecipe the transforms for the in world rendering.
+     * Method to get the transforms for the in world rendering.
      *
      * @return The transforms for the in world rendering.
      */
@@ -144,7 +144,7 @@ public interface IMultiComponentArmorExtension extends IForgeRegistryEntry<IMult
      * Method used to retrieve tha recipe creation callback used during initialization to create recipes
      * of this extension and its subkinds if applicable. Method is only called when hasItemStack is true.
      *
-     * If the callback returns null on this getCreationRecipe method then no recipe will be registered.
+     * If the callback returns null on this get method then no recipe will be registered.
      */
     @Nonnull
     IExtensionRecipeRetrievalCallback getRecipeCallback();

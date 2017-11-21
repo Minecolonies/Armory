@@ -55,7 +55,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe the translation Key.
+     * Method to get the translation Key.
      *
      * @return The key to translate.
      */
@@ -66,7 +66,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe the markup.
+     * Method to get the markup.
      *
      * @return The markup. Default is TextFormatting.Reset
      */
@@ -77,7 +77,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe the default durability before material properties and upgrades are taken into account.
+     * Method to get the default durability before material properties and upgrades are taken into account.
      *
      * @return The default durability.
      */
@@ -88,7 +88,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe all possible extension positions for this Armor.
+     * Method to get all possible extension positions for this Armor.
      *
      * @return The positions on the armor where an extension can be installed.
      */
@@ -99,7 +99,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe all possible extensions for this armor.
+     * Method to get all possible extensions for this armor.
      *
      * @return The extensions that can be installed on this armor.
      */
@@ -110,7 +110,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe all the default capabilities this Armor provides.
+     * Method to get all the default capabilities this Armor provides.
      *
      * @return All the default capabilities this Armor provides.
      */
@@ -178,7 +178,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe the renderer that is used to render the Armor on the entity.
+     * Method to get the renderer that is used to render the Armor on the entity.
      *
      * @return The in world renderer.
      */
@@ -190,7 +190,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe the transforms for the in world rendering.
+     * Method to get the transforms for the in world rendering.
      *
      * @return The transforms for the in world rendering.
      */

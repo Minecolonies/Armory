@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 public interface IHeatedObjectType extends IForgeRegistryEntry<IHeatedObjectType> {
 
     /**
-     * Method to getCreationRecipe the amount in millibuckets that this HeatedObjectType produces when it melts.
+     * Method to get the amount in millibuckets that this HeatedObjectType produces when it melts.
      * @return The amount in millibuckets produced when an HeatableObject of this type melts.
      */
     @Nonnull

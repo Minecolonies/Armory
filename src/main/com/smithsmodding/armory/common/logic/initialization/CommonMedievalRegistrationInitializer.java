@@ -286,7 +286,7 @@ public class CommonMedievalRegistrationInitializer {
                         IRON_MELTINGPOINT, IRON_VAPORIZINGPOINT, IRON_MELTINGTIME, IRON_VAPORIZINGTIME, IRON_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
 
                             /**
-                             * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
+                             * Method to get all the default capabilities this ArmorMaterial provides.
                              *
                              * @param extension
                              * @return All the default capabilities this ArmorMaterial provides.
@@ -303,7 +303,7 @@ public class CommonMedievalRegistrationInitializer {
                         STEEL_MELTINGPOINT, STEEL_VAPORIZINGPOINT, STEEL_MELTINGTIME, STEEL_VAPORIZINGTIME, STEEL_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
 
                             /**
-                             * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
+                             * Method to get all the default capabilities this ArmorMaterial provides.
                              *
                              * @param extension
                              * @return All the default capabilities this ArmorMaterial provides.
@@ -320,7 +320,7 @@ public class CommonMedievalRegistrationInitializer {
                         GOLD_MELTINGPOINT, GOLD_VAPORIZINGPOINT, GOLD_MELTINGTIME, GOLD_VAPORIZINGTIME, GOLD_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
 
                             /**
-                             * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
+                             * Method to get all the default capabilities this ArmorMaterial provides.
                              *
                              * @param extension
                              * @return All the default capabilities this ArmorMaterial provides.
@@ -337,7 +337,7 @@ public class CommonMedievalRegistrationInitializer {
                         OBSIDIAN_MELTINGPOINT, OBSIDIAN_VAPORIZINGPOINT, OBSIDIAN_MELTINGTIME, OBSIDIAN_VAPORIZINGTIME, OBSIDIAN_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
 
                             /**
-                             * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
+                             * Method to get all the default capabilities this ArmorMaterial provides.
                              *
                              * @param extension
                              * @return All the default capabilities this ArmorMaterial provides.
@@ -354,7 +354,7 @@ public class CommonMedievalRegistrationInitializer {
                         HARDENED_IRON_MELTINGPOINT , HARDENED_IRON_VAPORIZINGPOINT, HARDENED_IRON_MELTINGTIME, HARDENED_IRON_VAPORIZINGTIME, HARDENED_IRON_HEATCOEFFICIENT, new IAddonArmorMaterialDataCallback() {
 
                             /**
-                             * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
+                             * Method to get all the default capabilities this ArmorMaterial provides.
                              *
                              * @param extension
                              * @return All the default capabilities this ArmorMaterial provides.

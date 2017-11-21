@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 public interface IAnvilRecipeComponent extends Cloneable {
 
     /**
-     * Method to getCreationRecipe the Stack that should be in the slot that this component represents.
+     * Method to get the Stack that should be in the slot that this component represents.
      * @return Null if no stack should be their or the ItemStack expected.
      */
     @Nullable
@@ -29,14 +29,14 @@ public interface IAnvilRecipeComponent extends Cloneable {
     @Nonnull IAnvilRecipeComponent setComponentTargetStack(ItemStack targetStack);
 
     /**
-     * Method to getCreationRecipe the amount of Items left in the stack after crafting.
+     * Method to get the amount of Items left in the stack after crafting.
      * @param componentStack The stack to check for.
      * @return the amount of Items left in the stack after crafting.
      */
     int getResultingStackSizeForComponent(ItemStack componentStack);
 
     /**
-     * Method to getCreationRecipe the amount of Items left in the stack after crafting.
+     * Method to get the amount of Items left in the stack after crafting.
      * @param newUsage the amount to use of a stack in a crafting attempt.
      * @return The instance this method was called on.
      */

@@ -18,28 +18,28 @@ import java.util.List;
 public interface IMultiComponentArmor extends IForgeRegistryEntry<IMultiComponentArmor>, ITranslateable, ICapabilityProvider, IInWorldRenderableArmorComponent {
 
     /**
-     * Method to getCreationRecipe the default durability before material properties and upgrades are taken into account.
+     * Method to get the default durability before material properties and upgrades are taken into account.
      * @return The default durability.
      */
     @Nonnull
     Integer getDefaultDurability();
 
     /**
-     * Method to getCreationRecipe all possible extension positions for this Armor.
+     * Method to get all possible extension positions for this Armor.
      * @return The positions on the armor where an extension can be installed.
      */
     @Nonnull
     List<IMultiComponentArmorExtensionPosition> getPossibleExtensionPositions();
 
     /**
-     * Method to getCreationRecipe all possible extensions for this armor.
+     * Method to get all possible extensions for this armor.
      * @return The extensions that can be installed on this armor.
      */
     @Nonnull
     List<IMultiComponentArmorExtension> getPossibleExtensions();
 
     /**
-     * Method to getCreationRecipe all the default capabilities this Armor provides.
+     * Method to get all the default capabilities this Armor provides.
      * @return All the default capabilities this Armor provides.
      */
     @Nonnull

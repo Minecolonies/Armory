@@ -105,7 +105,7 @@ public class ArmorCoreComponentModel extends ArmorSubComponentModel {
                 //But then colored instead of greyscaled.
                 IModel model2 = this.retexture(ImmutableMap.of("layer0", entry.getValue().getIconName()));
 
-                //We bake the new model to getCreationRecipe a ready to use textured and ready to be colored baked model.
+                //We bake the new model to get a ready to use textured and ready to be colored baked model.
                 IBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
 
                 // We check if a special texture for that item exists in our textures collection.

@@ -33,7 +33,7 @@ public interface IHeatableObjectCapability extends IMaterializedStackCapability 
     IHeatableObjectCapability setObject(@Nonnull IHeatableObject object);
 
     /**
-     * Method to getCreationRecipe the HeatedType.
+     * Method to get the HeatedType.
      * @return The Type that this HeatedObject is.
      */
     @Nonnull
@@ -88,7 +88,7 @@ public interface IHeatableObjectCapability extends IMaterializedStackCapability 
         }
 
         /**
-         * Method to getCreationRecipe the HeatedType.
+         * Method to get the HeatedType.
          *
          * @return The Type that this HeatedObject is.
          */

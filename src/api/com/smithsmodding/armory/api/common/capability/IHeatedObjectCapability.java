@@ -45,7 +45,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
     void subtractTemperatur(@Nonnull Float subtraction);
 
     /**
-     * Method to getCreationRecipe the Original stack.
+     * Method to get the Original stack.
      * @return The stack that turned into this HeatedObject. Or null if something else is Heated.
      */
     @Nullable
@@ -138,7 +138,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
         }
 
         /**
-         * Method to getCreationRecipe the Original stack.
+         * Method to get the Original stack.
          *
          * @return The stack that turned into this HeatedObject. Or null if something else is Heated.
          */

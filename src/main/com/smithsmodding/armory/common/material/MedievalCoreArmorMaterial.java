@@ -44,7 +44,7 @@ public abstract class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<
 
 
     /**
-     * Method to getCreationRecipe the translation Key.
+     * Method to get the translation Key.
      *
      * @return The key to translate.
      */
@@ -55,7 +55,7 @@ public abstract class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<
     }
 
     /**
-     * Method to getCreationRecipe the markup.
+     * Method to get the markup.
      *
      * @return The markup. Default is TextFormatting.Reset
      */
@@ -66,7 +66,7 @@ public abstract class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<
     }
 
     /**
-     * Method to getCreationRecipe the Identifier inside the OreDictionary for a Material.
+     * Method to get the Identifier inside the OreDictionary for a Material.
      *
      * @return The String that identifies this material in the OreDictionary. IE: TK_ANVIL_IRON, TK_ANVIL_STONE etc.
      */
@@ -104,7 +104,7 @@ public abstract class MedievalCoreArmorMaterial extends ICoreArmorMaterial.Impl<
     }
 
     /**
-     * Method to getCreationRecipe the Override for the texture.
+     * Method to get the Override for the texture.
      * Has to be supplied so that resourcepack makers can override the behaviour if they fell the need to do it.
      *
      * @return The override identifier for overloading the programmatic behaviour of the RenderInfo.

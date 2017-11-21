@@ -31,7 +31,7 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
     private boolean processingCraftingResult = false;
 
     /**
-     * Method called when this state getCreationRecipe attached to a TE. Allows it to store a reference or modify values of the TE.
+     * Method called when this state get attached to a TE. Allows it to store a reference or modify values of the TE.
      *
      * @param tileEntitySmithsCore The TE this state got attached to.
      */

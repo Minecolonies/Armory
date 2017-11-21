@@ -29,7 +29,7 @@ public interface IRenderInfoProvider<T> {
     T setRenderInfo(@Nonnull ITextureController renderInfo);
 
     /**
-     * Method to getCreationRecipe the Override for the texture.
+     * Method to get the Override for the texture.
      * Has to be supplied so that resourcepack makers can override the behaviour if they fell the need to do it.
      * @return The override identifier for overloading the programmatic behaviour of the RenderInfo.
      *

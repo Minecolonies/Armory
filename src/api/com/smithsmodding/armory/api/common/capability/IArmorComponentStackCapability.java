@@ -10,7 +10,7 @@ import javax.annotation.Nonnull;
 public interface IArmorComponentStackCapability {
 
     /**
-     * Method to getCreationRecipe the Extension stored in the Capability.
+     * Method to get the Extension stored in the Capability.
      * @return The extension stored in the Stack.
      */
     @Nonnull
@@ -29,7 +29,7 @@ public interface IArmorComponentStackCapability {
         private IMultiComponentArmorExtension extension;
 
         /**
-         * Method to getCreationRecipe the Extension stored in the Capability.
+         * Method to get the Extension stored in the Capability.
          *
          * @return The extension stored in the Stack.
          */
