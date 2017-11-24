@@ -22,16 +22,20 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
         super(1);
 
 
-        this.bipedBody = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.BODY), this::preBodyMainRender, this::postBodyMainRender);
-        this.bipedLeftArm = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.ARMLEFT), this::preHeadRender, this::postHeadRender);
-        this.bipedRightArm = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.ARMRIGHT), this::preHeadRender, this::postHeadRender);
-        this.bipedHead = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.HEAD), this::preHeadRender, this::postHeadRender);
-        this.bipedHeadwear = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.HEADWEAR), this::preHeadRender, this::postHeadRender);
-        this.bipedLeftLeg = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGLEFT), this::preHeadRender, this::postHeadRender);
-        this.bipedRightLeg = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGRIGHT), this::preHeadRender, this::postHeadRender);
+        this.bipedBody = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.BODY), this::preBodyMainRender, this::defaultPostRenderCallback);
+        this.bipedLeftArm = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.ARMLEFT), this::preHeadRender, this::defaultPostRenderCallback);
+        this.bipedRightArm = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.ARMRIGHT), this::preBodyArmRightCallback, this::defaultPostRenderCallback);
+        this.bipedHead = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.HEAD), this::preHeadRender, this::defaultPostRenderCallback);
+        this.bipedHeadwear = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.HEADWEAR), this::preHeadRender, this::defaultPostRenderCallback);
+        this.bipedLeftLeg = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGLEFT), this::preHeadRender, this::defaultPostRenderCallback);
+        this.bipedRightLeg = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGRIGHT), this::preHeadRender, this::defaultPostRenderCallback);
 
     }
 
+    private void defaultPostRenderCallback(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
+        GlStateManager.popMatrix();
+        GlStateManager.popMatrix();
+    }
 
     private void preHeadRender(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
         GlStateManager.pushMatrix();
@@ -40,11 +44,6 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
         GlStateManager.scale(0.625F, -0.625F, -0.625F);
 
         GlStateManager.pushMatrix();
-    }
-
-    private void postHeadRender(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
-        GlStateManager.popMatrix();
-        GlStateManager.popMatrix();
     }
 
     private void preBodyMainRender(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
@@ -56,11 +55,15 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
         GlStateManager.pushMatrix();
     }
 
-    private void postBodyMainRender(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
-        GlStateManager.popMatrix();
-        GlStateManager.popMatrix();
-    }
+    private void preBodyArmRightCallback(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
+        GlStateManager.pushMatrix();
 
+        //GlStateManager.translate(10f * scale, -1f * scale, 0f * scale);
+        //GlStateManager.rotate(180f, 0f, 1f, 0f);
+        //GlStateManager.scale(1.2f, 1f, 1.2f);
+
+        GlStateManager.pushMatrix();
+    }
 
     @FunctionalInterface
     private interface IRenderCallback

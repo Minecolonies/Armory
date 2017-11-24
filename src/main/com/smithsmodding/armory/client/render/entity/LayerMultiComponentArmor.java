@@ -73,29 +73,29 @@ public class LayerMultiComponentArmor implements LayerRenderer<EntityLivingBase>
         }
     }
 
-    protected void setModelSlotVisible(ModelBiped p_188359_1_, EntityEquipmentSlot slotIn)
+    protected void setModelSlotVisible(ModelBiped modelBiped, EntityEquipmentSlot slotIn)
     {
-        this.setModelVisible(p_188359_1_);
+        this.setModelVisible(modelBiped);
 
         switch (slotIn)
         {
             case HEAD:
-                p_188359_1_.bipedHead.showModel = true;
-                //p_188359_1_.bipedHeadwear.showModel = true;
+                modelBiped.bipedHead.showModel = true;
+                //modelBiped.bipedHeadwear.showModel = true;
                 break;
             case CHEST:
-                p_188359_1_.bipedBody.showModel = true;
-                //p_188359_1_.bipedRightArm.showModel = true;
-                //p_188359_1_.bipedLeftArm.showModel = true;
+                modelBiped.bipedBody.showModel = true;
+                modelBiped.bipedRightArm.showModel = true;
+                //modelBiped.bipedLeftArm.showModel = true;
                 break;
             case LEGS:
-                p_188359_1_.bipedBody.showModel = true;
-                p_188359_1_.bipedRightLeg.showModel = true;
-                p_188359_1_.bipedLeftLeg.showModel = true;
+                modelBiped.bipedBody.showModel = true;
+                modelBiped.bipedRightLeg.showModel = true;
+                modelBiped.bipedLeftLeg.showModel = true;
                 break;
             case FEET:
-                p_188359_1_.bipedRightLeg.showModel = true;
-                p_188359_1_.bipedLeftLeg.showModel = true;
+                modelBiped.bipedRightLeg.showModel = true;
+                modelBiped.bipedLeftLeg.showModel = true;
         }
     }
 
