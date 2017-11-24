@@ -1,48 +1,48 @@
 {
   "parts":[
     {
-      "id":"armory:chestplate.arm.top",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_top",
-      "transformation":{
-        "translation": [0, 0,0 ],
-        "scale": [1, 1, 1 ],
-        "rotation":[{"x":90},{"y":0},{"z":0} ]
-      }
-    },
-    {
       "id":"armory:chestplate.arm.front",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_inside",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_outside",
       "transformation":{
-        "translation": [ 0, 0 ,0 ],
-        "scale": [1, 1, 1 ],
+        "translation": [ 0, 0,0],
+        "scale": [1, 1, 0.5 ],
         "rotation":[{"x":0},{"y":0},{"z":0} ]
       }
     },
     {
       "id":"armory:chestplate.arm.back",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_inside",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_outside",
       "transformation":{
-        "translation": [0, 0, 0 ],
-        "scale": [1, 1, 1 ],
+        "translation": [ 0, 0,0.21875],
+        "scale": [1, 1, 0.5 ],
+        "rotation":[{"x":0},{"y":0},{"z":0} ]
+      }
+    },
+    {
+      "id":"armory:chestplate.arm.left",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_outside",
+      "transformation":{
+        "translation": [ -0.484375, 0,-0.265625],
+        "scale": [1, 1, 0.5 ],
         "rotation":[{"x":0},{"y":90},{"z":0} ]
       }
     },
     {
-      "id":"armory:chestplate.arm.inside",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_top",
+      "id":"armory:chestplate.arm.right",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_inside",
       "transformation":{
-        "translation": [ -0.375, 0.525,0 ],
-        "scale": [1, 1, 1 ],
-        "rotation":[{"x":0},{"y":0},{"z":0} ]
+        "translation": [ -0.265625, 0,-0.265625],
+        "scale": [1, 1, 0.5 ],
+        "rotation":[{"x":0},{"y":90},{"z":0} ]
       }
     },
     {
-      "id":"armory:chestplate.arm.outside",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_top",
+      "id":"armory:chestplate.arm.top",
+      "texture":"armory:items/multiarmor/base/armory.chestplate_base_arm_top",
       "transformation":{
-        "translation": [ 0.375, 0.525,0 ],
-        "scale": [1, 1, 1 ],
-        "rotation":[{"x":0},{"y":0},{"z":0} ]
+        "translation": [ 0, 0.484375,-0.265625],
+        "scale": [1, 1, 0.5 ],
+        "rotation":[{"x":90},{"y":0},{"z":0} ]
       }
     }
   ]

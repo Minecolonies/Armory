@@ -50,8 +50,8 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
     private void preBodyMainRender(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
         GlStateManager.pushMatrix();
 
-        GlStateManager.translate(4f * scale, -8f * scale, 0);
-        GlStateManager.scale(1.1f, 1.1f, 1.1f);
+        GlStateManager.translate(4.75f * scale, -8f * scale, -2f * scale);
+        GlStateManager.scale(1.2f, 1f, 1.2f);
 
         GlStateManager.pushMatrix();
     }

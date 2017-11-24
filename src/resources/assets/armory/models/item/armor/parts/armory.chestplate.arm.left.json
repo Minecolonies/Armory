@@ -4,7 +4,7 @@
   "layers": {},
   "broken": {},
   "transform":{
-    "translation": [1, 0, 0 ],
+    "translation": [-0.25, 0, 0 ],
     "scale": [1,1,1 ],
     "rotation":[{"x":0},{"y":0},{"z":0} ]
   }
