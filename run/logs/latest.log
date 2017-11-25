@@ -1,10 +1,10 @@
-[12:49:20] [Client thread/INFO]: Setting user: Player310
-[12:49:29] [Client thread/WARN]: Skipping bad option: lastServer:
-[12:49:29] [Client thread/INFO]: LWJGL Version: 2.9.4
-[12:49:33] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
+[12:19:36] [Client thread/INFO]: Setting user: Player276
+[12:19:42] [Client thread/WARN]: Skipping bad option: lastServer:
+[12:19:42] [Client thread/INFO]: LWJGL Version: 2.9.4
+[12:19:44] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
 // Why did you do that?
 
-Time: 11/24/17 12:49 PM
+Time: 11/25/17 12:19 PM
 Description: Loading screen debug info
 
 This is just a prompt for computer specs to be printed. THIS IS NOT A ERROR
@@ -17,45 +17,45 @@ A detailed walkthrough of the error, its code path and all known details is as f
 Details:
 	Minecraft Version: 1.11.2
 	Operating System: Windows 10 (amd64) version 10.0
-	Java Version: 1.8.0_131, Oracle Corporation
+	Java Version: 1.8.0_111, Oracle Corporation
 	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
-	Memory: 504461200 bytes (481 MB) / 817889280 bytes (780 MB) up to 3784310784 bytes (3609 MB)
+	Memory: 797533880 bytes (760 MB) / 1102053376 bytes (1051 MB) up to 7621050368 bytes (7268 MB)
 	JVM Flags: 0 total; 
 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
 	FML: 
 	Loaded coremods (and transformers): 
 SmithsCoreFMLPlugin (unknown)
   com.smithsmodding.smithscore.core.transformers.TextureHookTransformer
-	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.5.0 NVIDIA 382.99' Renderer: 'Quadro M520/PCIe/SSE2'
-[12:49:43] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[12:49:53] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[12:49:54] [Thread-8/INFO]: Initializing LWJGL OpenAL
-[12:49:54] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[12:49:54] [Thread-8/INFO]: OpenAL initialized.
-[12:49:54] [Sound Library Loader/INFO]: Sound engine started
-[12:50:05] [Client thread/INFO]: Created: 16x16 textures-atlas
-[12:50:10] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[12:50:15] [Client thread/INFO]: SoundSystem shutting down...
-[12:50:15] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[12:50:15] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[12:50:16] [Thread-10/INFO]: Initializing LWJGL OpenAL
-[12:50:16] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[12:50:16] [Thread-10/INFO]: OpenAL initialized.
-[12:50:16] [Sound Library Loader/INFO]: Sound engine started
-[12:50:25] [Client thread/INFO]: Created: 1024x512 textures-atlas
-[12:50:28] [Client thread/WARN]: Skipping bad option: lastServer:
-[12:50:32] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
-[12:50:52] [Server thread/INFO]: Starting integrated minecraft server version 1.11.2
-[12:50:52] [Server thread/INFO]: Generating keypair
-[12:50:53] [Server thread/INFO]: Preparing start region for level 0
-[12:50:54] [Server thread/INFO]: Changing view distance to 12, from 10
-[12:50:55] [Server thread/INFO]: Player310[local:E:65990182] logged in with entity id 68 at (-569.6693745940651, 4.0, 712.7873939934367)
-[12:50:55] [Server thread/INFO]: Player310 joined the game
-[12:50:57] [Server thread/INFO]: Saving and pausing game...
-[12:50:57] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[12:50:57] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[12:50:57] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[12:50:57] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@36c07e17[id=86e39a76-f063-3bee-9e1a-270f7c5ebf9f,name=Player310,properties={},legacy=false]
+	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.6.0 NVIDIA 387.92' Renderer: 'GeForce GTX 770/PCIe/SSE2'
+[12:19:53] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[12:20:01] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[12:20:01] [Thread-8/INFO]: Initializing LWJGL OpenAL
+[12:20:01] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[12:20:01] [Thread-8/INFO]: OpenAL initialized.
+[12:20:02] [Sound Library Loader/INFO]: Sound engine started
+[12:20:09] [Client thread/INFO]: Created: 16x16 textures-atlas
+[12:20:11] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[12:20:16] [Client thread/INFO]: SoundSystem shutting down...
+[12:20:16] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[12:20:16] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[12:20:16] [Thread-10/INFO]: Initializing LWJGL OpenAL
+[12:20:16] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[12:20:17] [Thread-10/INFO]: OpenAL initialized.
+[12:20:17] [Sound Library Loader/INFO]: Sound engine started
+[12:20:25] [Client thread/INFO]: Created: 1024x512 textures-atlas
+[12:20:27] [Client thread/WARN]: Skipping bad option: lastServer:
+[12:20:29] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[12:20:36] [Server thread/INFO]: Starting integrated minecraft server version 1.11.2
+[12:20:36] [Server thread/INFO]: Generating keypair
+[12:20:37] [Server thread/INFO]: Preparing start region for level 0
+[12:20:37] [Server thread/INFO]: Changing view distance to 12, from 10
+[12:20:39] [Server thread/INFO]: Player276[local:E:74417485] logged in with entity id 83 at (-560.1807311840553, 4.0, 719.3014069635519)
+[12:20:39] [Server thread/INFO]: Player276 joined the game
+[12:20:41] [Server thread/INFO]: Saving and pausing game...
+[12:20:41] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:20:41] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:20:41] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:20:42] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@1ec22d4a[id=157dadc9-e980-331f-9b9a-60b0f155ef62,name=Player276,properties={},legacy=false]
 com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
 	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:79) ~[YggdrasilAuthenticationService.class:?]
 	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) [YggdrasilMinecraftSessionService.class:?]
@@ -72,311 +72,110 @@ com.mojang.authlib.exceptions.AuthenticationException: The client has sent too m
 	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:170) [YggdrasilMinecraftSessionService.class:?]
 	at net.minecraft.client.Minecraft.getProfileProperties(Minecraft.java:3056) [Minecraft.class:?]
 	at net.minecraft.client.resources.SkinManager$3.run(SkinManager.java:138) [SkinManager$3.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_131]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_131]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_131]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_131]
-	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
-[12:51:27] [Server thread/INFO]: Saving and pausing game...
-[12:51:28] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[12:51:28] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[12:51:28] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[12:52:16] [Server thread/INFO]: Saving and pausing game...
-[12:52:16] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[12:52:16] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[12:52:16] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[12:52:42] [Server thread/INFO]: Saving and pausing game...
-[12:52:43] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[12:52:43] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[12:52:43] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[12:53:03] [Server thread/INFO]: Saving and pausing game...
-[12:53:03] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[12:53:04] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[12:53:04] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[12:53:23] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 10645ms behind, skipping 212 tick(s)
-[12:53:41] [Server thread/INFO]: Saving and pausing game...
-[12:53:41] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[12:53:41] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[12:53:41] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[12:54:28] [Server thread/INFO]: Saving and pausing game...
-[12:54:28] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[12:54:28] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[12:54:28] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[12:54:41] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 6357ms behind, skipping 127 tick(s)
-[12:54:58] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 6895ms behind, skipping 137 tick(s)
-[12:57:07] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 103318ms behind, skipping 2066 tick(s)
-[12:57:12] [Server thread/INFO]: Player310 has just earned the achievement [Taking Inventory]
-[12:57:13] [Client thread/INFO]: [CHAT] Player310 has just earned the achievement [Taking Inventory]
-[12:57:24] [Server thread/INFO]: Saving and pausing game...
-[12:57:24] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[12:57:24] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[12:57:24] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[12:57:55] [Server thread/INFO]: Saving and pausing game...
-[12:57:55] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[12:57:55] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[12:57:55] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[12:58:50] [Client thread/INFO]: [CHAT] [Debug]: Reloaded resource packs
-[12:58:50] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[12:58:58] [Client thread/INFO]: SoundSystem shutting down...
-[12:58:59] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[12:58:59] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[12:58:59] [Thread-21/INFO]: Initializing LWJGL OpenAL
-[12:58:59] [Thread-21/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[12:58:59] [Thread-21/INFO]: OpenAL initialized.
-[12:58:59] [Sound Library Loader/INFO]: Sound engine started
-[12:59:05] [Client thread/INFO]: Created: 1024x512 textures-atlas
-[12:59:41] [Server thread/INFO]: [Player310: Given [tile.armory.blocks.forge.name] * 1 to Player310]
-[12:59:41] [Client thread/INFO]: [CHAT] Given [tile.armory.blocks.forge.name] * 1 to Player310
-[12:59:48] [Server thread/INFO]: Saving and pausing game...
-[12:59:48] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[12:59:48] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[12:59:48] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[13:00:02] [Client thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.IndexOutOfBoundsException: Index: 39, Size: 39
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_131]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_131]
-	at net.minecraft.util.Util.runTask(Util.java:30) [Util.class:?]
-	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1109) [Minecraft.class:?]
-	at net.minecraft.client.Minecraft.run(Minecraft.java:407) [Minecraft.class:?]
-	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
-	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
-	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
-	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
-	at GradleStart.main(GradleStart.java:26) [start/:?]
-Caused by: java.lang.IndexOutOfBoundsException: Index: 39, Size: 39
-	at java.util.ArrayList.rangeCheck(ArrayList.java:653) ~[?:1.8.0_131]
-	at java.util.ArrayList.get(ArrayList.java:429) ~[?:1.8.0_131]
-	at net.minecraft.inventory.Container.getSlot(Container.java:135) ~[Container.class:?]
-	at net.minecraft.inventory.Container.setAll(Container.java:554) ~[Container.class:?]
-	at net.minecraft.client.network.NetHandlerPlayClient.handleWindowItems(NetHandlerPlayClient.java:1306) ~[NetHandlerPlayClient.class:?]
-	at net.minecraft.network.play.server.SPacketWindowItems.processPacket(SPacketWindowItems.java:72) ~[SPacketWindowItems.class:?]
-	at net.minecraft.network.play.server.SPacketWindowItems.processPacket(SPacketWindowItems.java:13) ~[SPacketWindowItems.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:21) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_131]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_131]
-	at net.minecraft.util.Util.runTask(Util.java:29) ~[Util.class:?]
-	... 15 more
-[13:00:02] [Client thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.IndexOutOfBoundsException: Index: 40, Size: 39
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_131]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_131]
-	at net.minecraft.util.Util.runTask(Util.java:30) [Util.class:?]
-	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1109) [Minecraft.class:?]
-	at net.minecraft.client.Minecraft.run(Minecraft.java:407) [Minecraft.class:?]
-	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
-	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
-	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
-	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
-	at GradleStart.main(GradleStart.java:26) [start/:?]
-Caused by: java.lang.IndexOutOfBoundsException: Index: 40, Size: 39
-	at java.util.ArrayList.rangeCheck(ArrayList.java:653) ~[?:1.8.0_131]
-	at java.util.ArrayList.get(ArrayList.java:429) ~[?:1.8.0_131]
-	at net.minecraft.inventory.Container.getSlot(Container.java:135) ~[Container.class:?]
-	at net.minecraft.inventory.Container.putStackInSlot(Container.java:546) ~[Container.class:?]
-	at net.minecraft.client.network.NetHandlerPlayClient.handleSetSlot(NetHandlerPlayClient.java:1262) ~[NetHandlerPlayClient.class:?]
-	at net.minecraft.network.play.server.SPacketSetSlot.processPacket(SPacketSetSlot.java:33) ~[SPacketSetSlot.class:?]
-	at net.minecraft.network.play.server.SPacketSetSlot.processPacket(SPacketSetSlot.java:11) ~[SPacketSetSlot.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:21) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_131]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_131]
-	at net.minecraft.util.Util.runTask(Util.java:29) ~[Util.class:?]
-	... 15 more
-[13:00:02] [Client thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.IndexOutOfBoundsException: Index: 43, Size: 39
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_131]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_131]
-	at net.minecraft.util.Util.runTask(Util.java:30) [Util.class:?]
-	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1109) [Minecraft.class:?]
-	at net.minecraft.client.Minecraft.run(Minecraft.java:407) [Minecraft.class:?]
-	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
-	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
-	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
-	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
-	at GradleStart.main(GradleStart.java:26) [start/:?]
-Caused by: java.lang.IndexOutOfBoundsException: Index: 43, Size: 39
-	at java.util.ArrayList.rangeCheck(ArrayList.java:653) ~[?:1.8.0_131]
-	at java.util.ArrayList.get(ArrayList.java:429) ~[?:1.8.0_131]
-	at net.minecraft.inventory.Container.getSlot(Container.java:135) ~[Container.class:?]
-	at net.minecraft.inventory.Container.putStackInSlot(Container.java:546) ~[Container.class:?]
-	at net.minecraft.client.network.NetHandlerPlayClient.handleSetSlot(NetHandlerPlayClient.java:1262) ~[NetHandlerPlayClient.class:?]
-	at net.minecraft.network.play.server.SPacketSetSlot.processPacket(SPacketSetSlot.java:33) ~[SPacketSetSlot.class:?]
-	at net.minecraft.network.play.server.SPacketSetSlot.processPacket(SPacketSetSlot.java:11) ~[SPacketSetSlot.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:21) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_131]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_131]
-	at net.minecraft.util.Util.runTask(Util.java:29) ~[Util.class:?]
-	... 15 more
-[13:00:20] [Server thread/INFO]: [Player310: Set the time to 1000]
-[13:00:20] [Client thread/INFO]: [CHAT] Set the time to 1000
-[13:00:24] [Client thread/INFO]: [CHAT] doDaylightCycle, doEntityDrops, doFireTick, doMobLoot, doMobSpawning, doTileDrops, doWeatherCycle
-[13:00:26] [Server thread/INFO]: [Player310: Game rule doDaylightCycle has been updated to false]
-[13:00:26] [Client thread/INFO]: [CHAT] Game rule doDaylightCycle has been updated to false
-[13:00:27] [Client thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.IndexOutOfBoundsException: Index: 39, Size: 39
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_131]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_131]
-	at net.minecraft.util.Util.runTask(Util.java:30) [Util.class:?]
-	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1109) [Minecraft.class:?]
-	at net.minecraft.client.Minecraft.run(Minecraft.java:407) [Minecraft.class:?]
-	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
-	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
-	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
-	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
-	at GradleStart.main(GradleStart.java:26) [start/:?]
-Caused by: java.lang.IndexOutOfBoundsException: Index: 39, Size: 39
-	at java.util.ArrayList.rangeCheck(ArrayList.java:653) ~[?:1.8.0_131]
-	at java.util.ArrayList.get(ArrayList.java:429) ~[?:1.8.0_131]
-	at net.minecraft.inventory.Container.getSlot(Container.java:135) ~[Container.class:?]
-	at net.minecraft.inventory.Container.setAll(Container.java:554) ~[Container.class:?]
-	at net.minecraft.client.network.NetHandlerPlayClient.handleWindowItems(NetHandlerPlayClient.java:1306) ~[NetHandlerPlayClient.class:?]
-	at net.minecraft.network.play.server.SPacketWindowItems.processPacket(SPacketWindowItems.java:72) ~[SPacketWindowItems.class:?]
-	at net.minecraft.network.play.server.SPacketWindowItems.processPacket(SPacketWindowItems.java:13) ~[SPacketWindowItems.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:21) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_131]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_131]
-	at net.minecraft.util.Util.runTask(Util.java:29) ~[Util.class:?]
-	... 15 more
-[13:00:27] [Client thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.IndexOutOfBoundsException: Index: 40, Size: 39
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_131]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_131]
-	at net.minecraft.util.Util.runTask(Util.java:30) [Util.class:?]
-	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1109) [Minecraft.class:?]
-	at net.minecraft.client.Minecraft.run(Minecraft.java:407) [Minecraft.class:?]
-	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
-	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
-	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
-	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
-	at GradleStart.main(GradleStart.java:26) [start/:?]
-Caused by: java.lang.IndexOutOfBoundsException: Index: 40, Size: 39
-	at java.util.ArrayList.rangeCheck(ArrayList.java:653) ~[?:1.8.0_131]
-	at java.util.ArrayList.get(ArrayList.java:429) ~[?:1.8.0_131]
-	at net.minecraft.inventory.Container.getSlot(Container.java:135) ~[Container.class:?]
-	at net.minecraft.inventory.Container.putStackInSlot(Container.java:546) ~[Container.class:?]
-	at net.minecraft.client.network.NetHandlerPlayClient.handleSetSlot(NetHandlerPlayClient.java:1262) ~[NetHandlerPlayClient.class:?]
-	at net.minecraft.network.play.server.SPacketSetSlot.processPacket(SPacketSetSlot.java:33) ~[SPacketSetSlot.class:?]
-	at net.minecraft.network.play.server.SPacketSetSlot.processPacket(SPacketSetSlot.java:11) ~[SPacketSetSlot.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:21) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_131]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_131]
-	at net.minecraft.util.Util.runTask(Util.java:29) ~[Util.class:?]
-	... 15 more
-[13:00:27] [Client thread/FATAL]: Error executing task
-java.util.concurrent.ExecutionException: java.lang.IndexOutOfBoundsException: Index: 43, Size: 39
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122) ~[?:1.8.0_131]
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192) ~[?:1.8.0_131]
-	at net.minecraft.util.Util.runTask(Util.java:30) [Util.class:?]
-	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1109) [Minecraft.class:?]
-	at net.minecraft.client.Minecraft.run(Minecraft.java:407) [Minecraft.class:?]
-	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
-	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
-	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
-	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
-	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
-	at GradleStart.main(GradleStart.java:26) [start/:?]
-Caused by: java.lang.IndexOutOfBoundsException: Index: 43, Size: 39
-	at java.util.ArrayList.rangeCheck(ArrayList.java:653) ~[?:1.8.0_131]
-	at java.util.ArrayList.get(ArrayList.java:429) ~[?:1.8.0_131]
-	at net.minecraft.inventory.Container.getSlot(Container.java:135) ~[Container.class:?]
-	at net.minecraft.inventory.Container.putStackInSlot(Container.java:546) ~[Container.class:?]
-	at net.minecraft.client.network.NetHandlerPlayClient.handleSetSlot(NetHandlerPlayClient.java:1262) ~[NetHandlerPlayClient.class:?]
-	at net.minecraft.network.play.server.SPacketSetSlot.processPacket(SPacketSetSlot.java:33) ~[SPacketSetSlot.class:?]
-	at net.minecraft.network.play.server.SPacketSetSlot.processPacket(SPacketSetSlot.java:11) ~[SPacketSetSlot.class:?]
-	at net.minecraft.network.PacketThreadUtil$1.run(PacketThreadUtil.java:21) ~[PacketThreadUtil$1.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_131]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_131]
-	at net.minecraft.util.Util.runTask(Util.java:29) ~[Util.class:?]
-	... 15 more
-[13:00:40] [Server thread/INFO]: Saving and pausing game...
-[13:00:40] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[13:00:40] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[13:00:40] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[13:00:47] [Server thread/INFO]: [Player310: Given [tile.armory.blocks.fireplace.name] * 1 to Player310]
-[13:00:47] [Client thread/INFO]: [CHAT] Given [tile.armory.blocks.fireplace.name] * 1 to Player310
-[13:02:12] [Server thread/INFO]: [Player310: Given [Block of Coal] * 64 to Player310]
-[13:02:12] [Client thread/INFO]: [CHAT] Given [Block of Coal] * 64 to Player310
-[13:02:28] [Server thread/INFO]: [Player310: Given [Block of Iron] * 1 to Player310]
-[13:02:28] [Client thread/INFO]: [CHAT] Given [Block of Iron] * 1 to Player310
-[13:02:44] [Server thread/INFO]: [Player310: Set own game mode to Survival Mode]
-[13:02:44] [Client thread/INFO]: [CHAT] Your game mode has been updated to Survival Mode
-[13:02:44] [Server thread/ERROR]: Encountered an unexpected exception
-net.minecraft.util.ReportedException: Ticking player
-	at net.minecraft.network.NetworkSystem.networkTick(NetworkSystem.java:212) ~[NetworkSystem.class:?]
-	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:818) ~[MinecraftServer.class:?]
-	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:699) ~[MinecraftServer.class:?]
-	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:156) ~[IntegratedServer.class:?]
-	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:548) [MinecraftServer.class:?]
-	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
-Caused by: java.lang.NullPointerException
-	at net.minecraftforge.common.ISpecialArmor$ArmorProperties.applyArmor(ISpecialArmor.java:135) ~[ISpecialArmor$ArmorProperties.class:?]
-	at net.minecraft.entity.player.EntityPlayer.damageEntity(EntityPlayer.java:1201) ~[EntityPlayer.class:?]
-	at net.minecraft.entity.EntityLivingBase.attackEntityFrom(EntityLivingBase.java:1004) ~[EntityLivingBase.class:?]
-	at net.minecraft.entity.player.EntityPlayer.attackEntityFrom(EntityPlayer.java:1118) ~[EntityPlayer.class:?]
-	at net.minecraft.entity.player.EntityPlayerMP.attackEntityFrom(EntityPlayerMP.java:622) ~[EntityPlayerMP.class:?]
-	at net.minecraft.entity.Entity.onEntityUpdate(Entity.java:556) ~[Entity.class:?]
-	at net.minecraft.entity.EntityLivingBase.onEntityUpdate(EntityLivingBase.java:262) ~[EntityLivingBase.class:?]
-	at net.minecraft.entity.Entity.onUpdate(Entity.java:454) ~[Entity.class:?]
-	at net.minecraft.entity.EntityLivingBase.onUpdate(EntityLivingBase.java:2214) ~[EntityLivingBase.class:?]
-	at net.minecraft.entity.player.EntityPlayer.onUpdate(EntityPlayer.java:259) ~[EntityPlayer.class:?]
-	at net.minecraft.entity.player.EntityPlayerMP.onUpdateEntity(EntityPlayerMP.java:371) ~[EntityPlayerMP.class:?]
-	at net.minecraft.network.NetHandlerPlayServer.update(NetHandlerPlayServer.java:176) ~[NetHandlerPlayServer.class:?]
-	at net.minecraftforge.fml.common.network.handshake.NetworkDispatcher$1.update(NetworkDispatcher.java:218) ~[NetworkDispatcher$1.class:?]
-	at net.minecraft.network.NetworkManager.processReceivedPackets(NetworkManager.java:309) ~[NetworkManager.class:?]
-	at net.minecraft.network.NetworkSystem.networkTick(NetworkSystem.java:197) ~[NetworkSystem.class:?]
-	... 5 more
-[13:02:44] [Server thread/ERROR]: This crash report has been saved to: E:\Projects\Minecraft\Armory\run\.\crash-reports\crash-2017-11-24_13.02.44-server.txt
-[13:02:44] [Server thread/INFO]: Stopping server
-[13:02:44] [Server thread/INFO]: Saving players
-[13:02:45] [Server thread/INFO]: Saving worlds
-[13:02:45] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[13:02:45] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[13:02:45] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[13:02:45] [Client Shutdown Thread/INFO]: Stopping server
-[13:02:45] [Client Shutdown Thread/INFO]: Saving players
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_111]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+[12:21:05] [Server thread/INFO]: Saving and pausing game...
+[12:21:05] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:21:05] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:21:05] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:21:33] [Server thread/INFO]: Saving and pausing game...
+[12:21:33] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:21:33] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:21:33] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:22:04] [Server thread/INFO]: Saving and pausing game...
+[12:22:04] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:22:04] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:22:04] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:22:36] [Server thread/INFO]: Saving and pausing game...
+[12:22:36] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:22:36] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:22:36] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:22:46] [Server thread/INFO]: Saving and pausing game...
+[12:22:46] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:22:46] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:22:46] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:33:20] [Server thread/INFO]: Saving and pausing game...
+[12:33:20] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:33:20] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:33:20] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:34:01] [Server thread/INFO]: Saving and pausing game...
+[12:34:01] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:34:01] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:34:01] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:36:38] [Server thread/INFO]: Saving and pausing game...
+[12:36:38] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:36:38] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:36:38] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:40:20] [Server thread/INFO]: Saving and pausing game...
+[12:40:20] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:40:20] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:40:20] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:49:36] [Server thread/INFO]: Saving and pausing game...
+[12:49:36] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:49:37] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:49:37] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:54:33] [Server thread/INFO]: Saving and pausing game...
+[12:54:34] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:54:34] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:54:34] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:55:05] [Server thread/INFO]: Saving and pausing game...
+[12:55:05] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:55:05] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:55:05] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:55:25] [Server thread/INFO]: Saving and pausing game...
+[12:55:25] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:55:25] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:55:25] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:55:54] [Server thread/INFO]: Saving and pausing game...
+[12:55:54] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:55:54] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:55:54] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:56:03] [Server thread/INFO]: Saving and pausing game...
+[12:56:03] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:56:03] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:56:03] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:56:16] [Server thread/INFO]: Saving and pausing game...
+[12:56:16] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:56:16] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:56:16] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:56:28] [Server thread/INFO]: Saving and pausing game...
+[12:56:28] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:56:28] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:56:28] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:56:49] [Server thread/INFO]: Saving and pausing game...
+[12:56:49] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:56:49] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:56:49] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:58:49] [Server thread/INFO]: Saving and pausing game...
+[12:58:49] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:58:49] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:58:49] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:59:00] [Server thread/INFO]: Saving and pausing game...
+[12:59:00] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:59:00] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:59:00] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:59:23] [Server thread/INFO]: Saving and pausing game...
+[12:59:23] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:59:23] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:59:23] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[12:59:58] [Server thread/INFO]: Saving and pausing game...
+[12:59:58] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[12:59:58] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[12:59:58] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:00:12] [Server thread/INFO]: Saving and pausing game...
+[13:00:12] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:00:12] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:00:12] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:00:38] [Server thread/INFO]: Saving and pausing game...
+[13:00:38] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:00:38] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:00:38] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:01:29] [Server thread/INFO]: Saving and pausing game...
+[13:01:29] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:01:30] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:01:30] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:02:24] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2766ms behind, skipping 55 tick(s)
+[13:11:47] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 545358ms behind, skipping 10907 tick(s)

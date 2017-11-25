@@ -68,7 +68,7 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
      */
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, @Nonnull ItemStack armor, DamageSource source, double damage, int slot) {
-        return null;
+        return new ArmorProperties(Integer.MAX_VALUE, 1, Integer.MAX_VALUE);
     }
 
     /**
