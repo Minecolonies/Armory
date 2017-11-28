@@ -2,7 +2,7 @@
   "parts":[
     {
       "id":"armory:leggings.back",
-      "texture":"armory:items/multiarmor/base/leggings/armory.leggings_base_body_back",
+      "texture":"armory:items/multiarmor/base/leggings/armory.leggings_waist_front_back",
       "transformation":{
         "translation": [ 0, 0, 0.21875],
         "scale": [1, 1, 0.5 ],
@@ -11,7 +11,7 @@
     },
     {
       "id":"armory:leggings.front",
-      "texture":"armory:items/multiarmor/base/leggings/armory.leggings_base_body_front",
+      "texture":"armory:items/multiarmor/base/leggings/armory.leggings_waist_front_back",
       "transformation":{
         "translation": [ 0, 0, 0 ],
         "scale": [1, 1, 0.5 ],
@@ -20,7 +20,7 @@
     },
     {
       "id":"armory:leggings.left",
-      "texture":"armory:items/multiarmor/base/leggings/armory.leggings_base_body_inside",
+      "texture":"armory:items/multiarmor/base/leggings/armory.leggings_waist_left_right",
       "transformation":{
         "translation": [-0.484375, 0, -0.265625],
         "scale": [1, 1, 0.5 ],
@@ -29,7 +29,7 @@
     },
     {
       "id":"armory:leggings.right",
-      "texture":"armory:items/multiarmor/base/leggings/armory.leggings_base_body_inside",
+      "texture":"armory:items/multiarmor/base/leggings/armory.leggings_waist_left_right",
       "transformation":{
         "translation": [ -0.015625, 0, -0.265625],
         "scale": [1, 1, 0.5 ],

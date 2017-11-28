@@ -1,6 +1,6 @@
 {
   "parent": "armory:models/item/armor/mla",
   "parts": {
-    "armory:leggings.body": "armory:models/item/armor/parts/armory.chestplate.body"
+    "armory:leggings.body": "armory:models/item/armor/parts/armory.leggings.body"
   }
 }

@@ -74,30 +74,33 @@ public class ArmorAddonComponentModel extends ArmorSubComponentModel {
             // generate all the necessary textures for the models.
             //We retrieve those now and register them to the BakedModel later.
             ResourceLocation baseTexture = new ResourceLocation(base.getParticleTexture().getIconName());
-            Map<ResourceLocation, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(baseTexture);
-
-            //Construct individual models for each of the sprites.
-            for (Map.Entry<ResourceLocation, TextureAtlasSprite> entry : sprites.entrySet())
+            if (!baseTexture.equals(new ResourceLocation("minecraft:missingno")))
             {
-                //Check if the sprite name contains the CoreIdentifier. Skip else.
-                if (!entry.getValue().getIconName().contains(AddonTextureCreator.ADDONTEXTUREIDENTIFIER))
-                    continue;
+                Map<ResourceLocation, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(baseTexture);
 
-                //We grab the material now, that way we know the material exists before continuing.
-                IAddonArmorMaterial material = ArmoryAPI.getInstance().getRegistryManager().getAddonArmorMaterialRegistry().getValue(entry.getKey());
+                //Construct individual models for each of the sprites.
+                for (Map.Entry<ResourceLocation, TextureAtlasSprite> entry : sprites.entrySet())
+                {
+                    //Check if the sprite name contains the CoreIdentifier. Skip else.
+                    if (!entry.getValue().getIconName().contains(AddonTextureCreator.ADDONTEXTUREIDENTIFIER))
+                        continue;
 
-                //We retexture this model with the newly colored textured from ther creator and get a Copy of this model
-                //But then colored instead of grayscaled.
-                IModel model2 = this.retexture(ImmutableMap.of("layer0", entry.getValue().getIconName()));
+                    //We grab the material now, that way we know the material exists before continuing.
+                    IAddonArmorMaterial material = ArmoryAPI.getInstance().getRegistryManager().getAddonArmorMaterialRegistry().getValue(entry.getKey());
 
-                //We bake the new model to get a ready to use textured and ready to be colored baked model.
-                IBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
+                    //We retexture this model with the newly colored textured from ther creator and get a Copy of this model
+                    //But then colored instead of grayscaled.
+                    IModel model2 = this.retexture(ImmutableMap.of("layer0", entry.getValue().getIconName()));
 
-                // We check if a special texture for that item exists in our textures collection.
-                // If not we check if the material needs coloring and color the vertexes individually.
-                bakedModel2 = checkForMaterialOverride(state, baseTexture, material, bakedModel2);
+                    //We bake the new model to get a ready to use textured and ready to be colored baked model.
+                    IBakedModel bakedModel2 = model2.bake(state, format, bakedTextureGetter);
 
-                bakedMaterialModel.addMaterialModel(material, bakedModel2);
+                    // We check if a special texture for that item exists in our textures collection.
+                    // If not we check if the material needs coloring and color the vertexes individually.
+                    bakedModel2 = checkForMaterialOverride(state, baseTexture, material, bakedModel2);
+
+                    bakedMaterialModel.addMaterialModel(material, bakedModel2);
+                }
             }
         }
 
