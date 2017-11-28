@@ -180,14 +180,15 @@ public class References {
                 public static final String ELECTRIC = "Armory.ElectricChestplate";
             }
 
-            public static final class Leggins {
-                public static final String SPEED = "Armory.SpeedLegigns";
-                public static final String JUMPASSIST = "Armory.JumpAssistLeggins";
-                public static final String UPHILLASSIST = "Armory.UpHillAssistLeggins";
-                public static final String THORNS = "Armory.ThornsLeggins";
-                public static final String AUTOREPAIR = "Armory.AutoRepairLeggins";
-                public static final String REINFORCED = "Armory.ReinforcedLeggins";
-                public static final String ELECTRIC = "Armory.ElectricLeggins";
+            public static final class Leggings
+            {
+                public static final String SPEED = "Armory.SpeedLeggings";
+                public static final String JUMPASSIST = "Armory.JumpAssistLeggings";
+                public static final String UPHILLASSIST = "Armory.UpHillAssistLeggings";
+                public static final String THORNS = "Armory.ThornsLeggings";
+                public static final String AUTOREPAIR = "Armory.AutoRepairLeggings";
+                public static final String REINFORCED = "Armory.ReinforcedLeggings";
+                public static final String ELECTRIC = "Armory.ElectricLeggings";
             }
 
             public static final class Shoes {
