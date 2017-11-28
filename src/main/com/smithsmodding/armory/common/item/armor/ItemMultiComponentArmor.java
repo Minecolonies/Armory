@@ -8,7 +8,7 @@ import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
-import com.smithsmodding.armory.client.model.item.baked.BakedBipedPerspectiveAwareModel;
+import com.smithsmodding.armory.client.model.entity.BakedMLABipedModel;
 import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
@@ -116,7 +116,7 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
         IBakedModel bakedModel= Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(itemStack);
         if(bakedModel instanceof BakedMultiLayeredArmorItemModel) {
-            return new BakedBipedPerspectiveAwareModel(itemStack, (BakedMultiLayeredArmorItemModel) bakedModel, entityLiving);
+            return new BakedMLABipedModel(itemStack, (BakedMultiLayeredArmorItemModel) bakedModel, entityLiving);
         }
         return _default;
     }

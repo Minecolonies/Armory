@@ -1,11 +1,6 @@
 {
-  "parent": "item/generated",
-  "base": "armory:items/multiarmor/base/armory.leggins_base",
-  "layers": {
-    "armory:CalfLeft": "armory:items/multiarmor/upgrades/armory.leggings_protection_back_left",
-    "armory:CalfRight": "armory:items/multiarmor/upgrades/armory.leggings_protection_back_right",
-    "armory:ShinLeft": "armory:items/multiarmor/upgrades/armory.leggings_protection_front_left",
-    "armory:ShinRight": "armory:items/multiarmor/upgrades/armory.leggings_protection_front_right"
-  },
-  "broken": {}
+  "parent": "armory:models/item/armor/mla",
+  "parts": {
+    "armory:leggings.body": "armory:models/item/armor/parts/armory.chestplate.body"
+  }
 }

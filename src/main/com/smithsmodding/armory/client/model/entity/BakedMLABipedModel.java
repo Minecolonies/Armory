@@ -1,6 +1,7 @@
-package com.smithsmodding.armory.client.model.item.baked;
+package com.smithsmodding.armory.client.model.entity;
 
 import com.smithsmodding.armory.api.client.model.ModelPart;
+import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
@@ -14,9 +15,9 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Created by marcf1 on 8/16/2016.
  */
-public class BakedBipedPerspectiveAwareModel extends ModelBiped {
+public class BakedMLABipedModel extends ModelBiped {
 
-    public BakedBipedPerspectiveAwareModel(final ItemStack stack,
+    public BakedMLABipedModel(final ItemStack stack,
                                             final BakedMultiLayeredArmorItemModel model,
                                             final EntityLivingBase entity) {
         super(1);

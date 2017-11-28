@@ -1,0 +1,7 @@
+{
+  "type": "Body",
+  "base": "armory:models/item/armor/layers/armory.leggings.body.base",
+  "layers": {
+  },
+  "broken": {}
+}
