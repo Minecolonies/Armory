@@ -1,10 +1,10 @@
-[17:37:12] [Client thread/INFO]: Setting user: Player998
-[17:37:22] [Client thread/WARN]: Skipping bad option: lastServer:
-[17:37:22] [Client thread/INFO]: LWJGL Version: 2.9.4
-[17:37:25] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
+[15:01:38] [Client thread/INFO]: Setting user: Player59
+[15:01:53] [Client thread/WARN]: Skipping bad option: lastServer:
+[15:01:53] [Client thread/INFO]: LWJGL Version: 2.9.4
+[15:02:08] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
 // This is a token for 1 free hug. Redeem at your nearest Mojangsta: [~~HUG~~]
 
-Time: 11/27/17 5:37 PM
+Time: 11/28/17 3:02 PM
 Description: Loading screen debug info
 
 This is just a prompt for computer specs to be printed. THIS IS NOT A ERROR
@@ -17,106 +17,64 @@ A detailed walkthrough of the error, its code path and all known details is as f
 Details:
 	Minecraft Version: 1.11.2
 	Operating System: Windows 10 (amd64) version 10.0
-	Java Version: 1.8.0_111, Oracle Corporation
+	Java Version: 1.8.0_131, Oracle Corporation
 	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
-	Memory: 758016344 bytes (722 MB) / 1038614528 bytes (990 MB) up to 7621050368 bytes (7268 MB)
+	Memory: 394140424 bytes (375 MB) / 774897664 bytes (739 MB) up to 3784310784 bytes (3609 MB)
 	JVM Flags: 0 total; 
 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
 	FML: 
 	Loaded coremods (and transformers): 
 SmithsCoreFMLPlugin (unknown)
   com.smithsmodding.smithscore.core.transformers.TextureHookTransformer
-	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.6.0 NVIDIA 387.92' Renderer: 'GeForce GTX 770/PCIe/SSE2'
-[17:37:31] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[17:37:40] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[17:37:41] [Thread-8/INFO]: Initializing LWJGL OpenAL
-[17:37:41] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[17:37:41] [Thread-8/INFO]: OpenAL initialized.
-[17:37:41] [Sound Library Loader/INFO]: Sound engine started
-[17:37:49] [Client thread/INFO]: Created: 16x16 textures-atlas
-[17:37:53] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[17:37:58] [Client thread/INFO]: SoundSystem shutting down...
-[17:37:58] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[17:37:58] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[17:37:58] [Thread-10/INFO]: Initializing LWJGL OpenAL
-[17:37:58] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[17:37:58] [Thread-10/INFO]: OpenAL initialized.
-[17:37:59] [Sound Library Loader/INFO]: Sound engine started
-[17:38:07] [Client thread/INFO]: Created: 1024x512 textures-atlas
-[17:38:09] [Client thread/WARN]: Skipping bad option: lastServer:
-[17:38:10] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
-[17:39:16] [Server thread/INFO]: Starting integrated minecraft server version 1.11.2
-[17:39:16] [Server thread/INFO]: Generating keypair
-[17:39:17] [Server thread/INFO]: Preparing start region for level 0
-[17:39:17] [Server thread/INFO]: Changing view distance to 12, from 10
-[17:39:19] [Server thread/INFO]: Player998[local:E:a90193e6] logged in with entity id 83 at (-558.6369009396761, 6.158146761236626, 741.9872785837466)
-[17:39:19] [Server thread/INFO]: Player998 joined the game
-[17:39:21] [Server thread/INFO]: Saving and pausing game...
-[17:39:21] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:39:21] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:39:21] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:39:21] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@625f0a4d[id=5bd62aa7-8886-32aa-953e-97bdbc2a6931,name=Player998,properties={},legacy=false]
-com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
-	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:79) ~[YggdrasilAuthenticationService.class:?]
-	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) [YggdrasilMinecraftSessionService.class:?]
-	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:60) [YggdrasilMinecraftSessionService$1.class:?]
-	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:57) [YggdrasilMinecraftSessionService$1.class:?]
-	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3524) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2317) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2280) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2195) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache.get(LocalCache.java:3934) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:3938) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:4821) [guava-17.0.jar:?]
-	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:4827) [guava-17.0.jar:?]
-	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:170) [YggdrasilMinecraftSessionService.class:?]
-	at net.minecraft.client.Minecraft.getProfileProperties(Minecraft.java:3056) [Minecraft.class:?]
-	at net.minecraft.client.resources.SkinManager$3.run(SkinManager.java:138) [SkinManager$3.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_111]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_111]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
-	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
-[17:39:22] [Server thread/INFO]: Saving and pausing game...
-[17:39:22] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:39:22] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:39:22] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:39:49] [Server thread/INFO]: Saving and pausing game...
-[17:39:49] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:39:49] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:39:49] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:40:13] [Server thread/INFO]: Player998 has just earned the achievement [Taking Inventory]
-[17:40:13] [Client thread/INFO]: [CHAT] Player998 has just earned the achievement [Taking Inventory]
-[17:40:16] [Server thread/INFO]: Saving and pausing game...
-[17:40:16] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:40:16] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:40:16] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:40:33] [Server thread/INFO]: Saving and pausing game...
-[17:40:33] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:40:33] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:40:33] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:40:41] [Server thread/INFO]: Saving and pausing game...
-[17:40:41] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:40:41] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:40:41] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:40:43] [Server thread/INFO]: Saving and pausing game...
-[17:40:43] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:40:43] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:40:43] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:41:09] [Server thread/INFO]: [Player998: Given [§rArmory.Materials.Vanilla.Gold§r item.armory.multiarmor.armor.helmet] * 1 to Player998]
-[17:41:09] [Client thread/INFO]: [CHAT] Given [§rArmory.Materials.Vanilla.Gold§r item.armory.multiarmor.armor.helmet] * 1 to Player998
-[17:41:19] [Server thread/INFO]: Saving and pausing game...
-[17:41:19] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:41:19] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:41:19] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:45:55] [Server thread/INFO]: [Player998: Given [tile.armory.blocks.moltenmetalmixer.name] * 1 to Player998]
-[17:45:55] [Client thread/INFO]: [CHAT] Given [tile.armory.blocks.moltenmetalmixer.name] * 1 to Player998
-[17:49:16] [Client thread/INFO]: Stopping!
-[17:49:16] [Server thread/INFO]: Stopping server
-[17:49:16] [Server thread/INFO]: Saving players
-[17:49:16] [Server thread/INFO]: Saving worlds
-[17:49:16] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:49:16] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:49:16] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:49:16] [Client thread/INFO]: SoundSystem shutting down...
-[17:49:16] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.5.0 NVIDIA 382.99' Renderer: 'Quadro M520/PCIe/SSE2'
+[15:02:35] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[15:02:57] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[15:02:58] [Thread-8/INFO]: Initializing LWJGL OpenAL
+[15:02:58] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[15:02:58] [Thread-8/INFO]: OpenAL initialized.
+[15:02:58] [Sound Library Loader/INFO]: Sound engine started
+[15:03:28] [Client thread/INFO]: Created: 16x16 textures-atlas
+[15:03:36] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[15:03:45] [Client thread/INFO]: SoundSystem shutting down...
+[15:03:45] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[15:03:45] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[15:03:45] [Thread-10/INFO]: Initializing LWJGL OpenAL
+[15:03:45] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[15:03:46] [Thread-10/INFO]: OpenAL initialized.
+[15:03:46] [Sound Library Loader/INFO]: Sound engine started
+[15:04:05] [Client thread/INFO]: Caught error stitching, removing all assigned resourcepacks
+java.lang.NullPointerException
+	at com.smithsmodding.smithscore.client.textures.AbstractColoredTexture.processData(AbstractColoredTexture.java:266) ~[AbstractColoredTexture.class:?]
+	at com.smithsmodding.armory.api.client.textures.types.SimpleColoredTexture.processData(SimpleColoredTexture.java:52) ~[SimpleColoredTexture.class:?]
+	at com.smithsmodding.smithscore.client.textures.AbstractColoredTexture.load(AbstractColoredTexture.java:190) ~[AbstractColoredTexture.class:?]
+	at net.minecraft.client.renderer.texture.TextureMap.loadTextureAtlas(TextureMap.java:119) ~[TextureMap.class:?]
+	at net.minecraft.client.renderer.texture.TextureMap.loadSprites(TextureMap.java:94) ~[TextureMap.class:?]
+	at net.minecraftforge.client.model.ModelLoader.setupModelRegistry(ModelLoader.java:168) ~[ModelLoader.class:?]
+	at net.minecraft.client.renderer.block.model.ModelManager.onResourceManagerReload(ModelManager.java:28) ~[ModelManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.notifyReloadListeners(SimpleReloadableResourceManager.java:132) ~[SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.reloadResources(SimpleReloadableResourceManager.java:113) ~[SimpleReloadableResourceManager.class:?]
+	at net.minecraft.client.Minecraft.refreshResources(Minecraft.java:800) [Minecraft.class:?]
+	at net.minecraftforge.fml.client.FMLClientHandler.finishMinecraftLoading(FMLClientHandler.java:372) [FMLClientHandler.class:?]
+	at net.minecraft.client.Minecraft.init(Minecraft.java:562) [Minecraft.class:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:387) [Minecraft.class:?]
+	at net.minecraft.client.main.Main.main(Main.java:118) [Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135) [launchwrapper-1.12.jar:?]
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28) [launchwrapper-1.12.jar:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_131]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_131]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_131]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_131]
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97) [start/:?]
+	at GradleStart.main(GradleStart.java:26) [start/:?]
+[15:04:05] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[15:04:14] [Client thread/INFO]: SoundSystem shutting down...
+[15:04:14] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[15:04:14] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[15:04:15] [Thread-12/INFO]: Initializing LWJGL OpenAL
+[15:04:15] [Thread-12/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[15:04:15] [Thread-12/INFO]: OpenAL initialized.
+[15:04:15] [Sound Library Loader/INFO]: Sound engine started
