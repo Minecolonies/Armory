@@ -1,6 +1,6 @@
 {
   "override":{
-    "parent": "armory:models/item/armor/layers/armory.chestplate.arm.right.base",
+    "parent": "armory:models/item/armor/layers/armory.chestplate.arm.left.base",
     "textures":{
       "armory:chestplate.arm.back":"armory:items/multiarmor/upgrades/chestplate/shoulder/left/armory.chestplate_base_arm_outside",
       "armory:chestplate.arm.front":"armory:items/multiarmor/upgrades/chestplate/shoulder/left/armory.chestplate_base_arm_outside",
