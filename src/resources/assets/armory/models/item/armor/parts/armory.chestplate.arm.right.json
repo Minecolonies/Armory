@@ -5,7 +5,7 @@
   },
   "broken": {},
   "transform":{
-    "translation": [0.5, 0, 0 ],
+    "translation": [0.109375, 0.375, 0.109375 ],
     "scale": [1,1,1 ],
     "rotation":[{"x":0},{"y":0},{"z":0} ]
   }

@@ -1,0 +1,13 @@
+{
+  "override":{
+    "parent": "armory:models/item/armor/layers/armory.chestplate.body.base",
+    "textures":{
+      "armory:chestplate.back":"armory:delete",
+      "armory:chestplate.front":"armory:items/multiarmor/upgrades/chestplate/stomach/right/armory.chestplate_base_body_front",
+      "armory:chestplate.left":"armory:delete",
+      "armory:chestplate.right":"armory:items/multiarmor/upgrades/chestplate/stomach/right/armory.chestplate_base_body_inside",
+      "armory:chestplate.top.left":"armory:delete",
+      "armory:chestplate.top.right":"armory:delete"
+    }
+  }
+}

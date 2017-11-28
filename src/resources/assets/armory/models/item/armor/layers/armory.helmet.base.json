@@ -2,7 +2,7 @@
   "parts":[
     {
       "id":"armory:helmet.back",
-      "texture":"armory:items/multiarmor/base/armory.helmet_base_back",
+      "texture":"armory:items/multiarmor/base/helmet/armory.helmet_base_back",
       "transformation":{
         "translation": [ 0, 0,0.46875 ],
         "scale": [1, 1, 1 ],
@@ -11,7 +11,7 @@
     },
     {
       "id":"armory:helmet.front",
-      "texture":"armory:items/multiarmor/base/armory.helmet_base_front",
+      "texture":"armory:items/multiarmor/base/helmet/armory.helmet_base_front",
       "transformation":{
         "translation": [ 0, 0,-0.46875 ],
         "scale": [1, 1, 1 ],
@@ -20,7 +20,7 @@
     },
     {
       "id":"armory:helmet.left",
-      "texture":"armory:items/multiarmor/base/armory.helmet_base_side",
+      "texture":"armory:items/multiarmor/base/helmet/armory.helmet_base_side",
       "transformation":{
         "translation": [ -0.46875, 0,0 ],
         "scale": [1, 1, 1 ],

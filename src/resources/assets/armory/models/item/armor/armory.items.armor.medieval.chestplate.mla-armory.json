@@ -2,7 +2,7 @@
   "parent": "armory:models/item/armor/mla",
   "parts": {
     "armory:chestplate.body": "armory:models/item/armor/parts/armory.chestplate.body",
-    "armory:chestplate.arm.right":"armory:models/item/armor/parts/armory.chestplate.arm.right",
-    "armory:chestplate.arm.left":"armory:models/item/armor/parts/armory.chestplate.arm.left"
+    "armory:chestplate.arm.left":"armory:models/item/armor/parts/armory.chestplate.arm.left",
+    "armory:chestplate.arm.right":"armory:models/item/armor/parts/armory.chestplate.arm.right"
   }
 }

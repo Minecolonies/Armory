@@ -24,10 +24,12 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
 
         this.bipedBody = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.BODY), this::preBodyMainRender, this::defaultPostRenderCallback,
                                                      this::defaultRotationAngleUpdateCallback);
-        this.bipedLeftArm = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.ARMLEFT), this::preHeadRender, this::defaultPostRenderCallback,
-                                                        this::defaultRotationAngleUpdateCallback);
+        this.bipedLeftArm = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.ARMLEFT), this::preBodyArmLeftCallback, this::defaultPostRenderCallback,
+                                                        this::leftArmRotationAngleUpdateCallback);
+        this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
         this.bipedRightArm = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.ARMRIGHT), this::preBodyArmRightCallback, this::defaultPostRenderCallback,
                                                          this::rightArmRotationAngleUpdateCallback);
+        this.bipedRightArm.setRotationPoint(-5.0F, 2.0F , 0.0F);
         this.bipedHead = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.HEAD), this::preHeadRender, this::defaultPostRenderCallback,
                                                      this::defaultRotationAngleUpdateCallback);
         this.bipedHeadwear = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.HEADWEAR), this::preHeadRender, this::defaultPostRenderCallback,
@@ -65,10 +67,8 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
     private void preBodyArmRightCallback(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
         GlStateManager.pushMatrix();
 
-        GlStateManager.translate(-8f * scale, -7f * scale, 2f * scale);
-        GlStateManager.rotate(180f, 1f, 0f, 0f);
-        GlStateManager.rotate(180f, 0f, 0f, 1f);
-        GlStateManager.scale(1.2f, 1f, 1.2f);
+        GlStateManager.translate(-0.5f * scale, 0*scale, 0);
+        GlStateManager.scale(-1.1f, 1.1f, 1.1f);
 
         GlStateManager.pushMatrix();
     }
@@ -76,7 +76,24 @@ public class BakedBipedPerspectiveAwareModel extends ModelBiped {
     private void rightArmRotationAngleUpdateCallback(@NotNull final EntityLivingBase entity, @NotNull final ItemStack stack, float scale, @NotNull final ItemStackModelRenderer renderer)
     {
         renderer.rotateAngleX *= -1f;
+        renderer.rotateAngleY *= -1f;
     }
+
+    private void preBodyArmLeftCallback(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
+        GlStateManager.pushMatrix();
+
+        GlStateManager.translate(0.5f * scale, 0*scale, 0);
+        GlStateManager.scale(-1.1f, 1.1f, 1.1f);
+
+        GlStateManager.pushMatrix();
+    }
+
+    private void leftArmRotationAngleUpdateCallback(@NotNull final EntityLivingBase entity, @NotNull final ItemStack stack, float scale, @NotNull final ItemStackModelRenderer renderer)
+    {
+        renderer.rotateAngleX *= -1f;
+        renderer.rotateAngleY *= -1f;
+    }
+
 
     private void defaultRotationAngleUpdateCallback(@NotNull final EntityLivingBase entity, @NotNull final ItemStack stack, float scale, @NotNull final ItemStackModelRenderer renderer)
     {

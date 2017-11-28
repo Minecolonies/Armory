@@ -2,7 +2,7 @@
   "parts":[
     {
       "id":"armory:chestplate.back",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_back",
+      "texture":"armory:items/multiarmor/base/chestplate/armory.chestplate_base_body_back",
       "transformation":{
         "translation": [ 0, 0, 0.21875],
         "scale": [1, 1, 0.5 ],
@@ -11,7 +11,7 @@
     },
     {
       "id":"armory:chestplate.front",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_front",
+      "texture":"armory:items/multiarmor/base/chestplate/armory.chestplate_base_body_front",
       "transformation":{
         "translation": [ 0, 0, 0 ],
         "scale": [1, 1, 0.5 ],
@@ -20,7 +20,7 @@
     },
     {
       "id":"armory:chestplate.left",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_inside",
+      "texture":"armory:items/multiarmor/base/chestplate/armory.chestplate_base_body_inside",
       "transformation":{
         "translation": [-0.484375, 0, -0.265625],
         "scale": [1, 1, 0.5 ],
@@ -29,7 +29,7 @@
     },
     {
       "id":"armory:chestplate.right",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_inside",
+      "texture":"armory:items/multiarmor/base/chestplate/armory.chestplate_base_body_inside",
       "transformation":{
         "translation": [ -0.015625, 0, -0.265625],
         "scale": [1, 1, 0.5 ],
@@ -38,7 +38,7 @@
     },
     {
       "id":"armory:chestplate.top.left",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_top",
+      "texture":"armory:items/multiarmor/base/chestplate/armory.chestplate_base_body_top",
       "transformation":{
         "translation": [ 0, 0.484375,-0.265625],
         "scale": [1, 1, 0.5 ],
@@ -47,7 +47,7 @@
     },
     {
       "id":"armory:chestplate.top.right",
-      "texture":"armory:items/multiarmor/base/armory.chestplate_base_body_top",
+      "texture":"armory:items/multiarmor/base/chestplate/armory.chestplate_base_body_top",
       "transformation":{
         "translation": [ 0.375, 0.484375, -0.265625],
         "scale": [1, 1, 0.5],

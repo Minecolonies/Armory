@@ -10,11 +10,13 @@ import com.google.gson.reflect.TypeToken;
 import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelLayerDefinition;
 import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelLayerPartDefinition;
 import com.smithsmodding.armory.api.util.references.ModLogger;
+import com.smithsmodding.armory.api.util.references.References;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -29,6 +31,9 @@ import java.util.concurrent.ExecutionException;
  */
 public class ArmorModelLayerDeserializer implements JsonDeserializer<ArmorModelLayerDefinition>
 {
+    @Nonnull private static final ResourceLocation CONST_DEBUG_CROSS_FILE = new ResourceLocation(References.General.MOD_ID,"models/item/armor/layers/armory.debug.cross");
+    @Nullable private static ArmorModelLayerDefinition CONST_DEBUG_CROSS;
+
     @Nonnull public static final ArmorModelLayerDeserializer instance = new ArmorModelLayerDeserializer();
     @Nonnull private static final Type partType = new TypeToken<ArmorModelLayerPartDefinition>(){}.getType();
     @Nonnull private static final Type definitionType = new TypeToken<ArmorModelLayerDefinition>(){}.getType();
@@ -149,6 +154,27 @@ public class ArmorModelLayerDeserializer implements JsonDeserializer<ArmorModelL
                 {
                     ModLogger.getInstance().warn("Found JSON element: " + element.toString() + " that cannot be parsed into a model Part, cause it is of an unknown json type.");
                 }
+            }
+        }
+
+        if (data.has("debug") && data.get("debug").getAsBoolean())
+        {
+            if (CONST_DEBUG_CROSS == null)
+            {
+                try
+                {
+                    CONST_DEBUG_CROSS = this.deserialize(CONST_DEBUG_CROSS_FILE);
+                }
+                catch (Exception e)
+                {
+                    ModLogger.getInstance().error("Failed to deserialize the Debug cross.");
+                    ModLogger.getInstance().error(e);
+                }
+            }
+
+            if (CONST_DEBUG_CROSS != null)
+            {
+                parts.addAll(CONST_DEBUG_CROSS.getParts());
             }
         }
 

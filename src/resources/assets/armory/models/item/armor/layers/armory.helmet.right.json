@@ -3,10 +3,10 @@
     "parent": "armory:models/item/armor/layers/armory.helmet.base",
     "textures":{
       "armory:helmet.left":"armory:delete",
-      "armory:helmet.right":"armory:items/multiarmor/upgrades/armory.helmet_protection_ear_side",
+      "armory:helmet.right":"armory:items/multiarmor/upgrades/helmet/right/armory.helmet_protection_ear_side",
       "armory:helmet.top":"armory:delete",
-      "armory:helmet.back":"armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right",
-      "armory:helmet.front":"armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right"
+      "armory:helmet.back":"armory:items/multiarmor/upgrades/helmet/right/armory.helmet_protection_ear_right",
+      "armory:helmet.front":"armory:items/multiarmor/upgrades/helmet/right/armory.helmet_protection_ear_right"
     }
   }
 }

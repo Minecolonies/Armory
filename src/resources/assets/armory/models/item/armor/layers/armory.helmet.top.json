@@ -4,9 +4,9 @@
     "textures":{
       "armory:helmet.left":"armory:delete",
       "armory:helmet.right":"armory:delete",
-      "armory:helmet.top":"armory:items/multiarmor/upgrades/armory.helmet_protection_top_top",
-      "armory:helmet.back":"armory:items/multiarmor/upgrades/armory.helmet_protection_top_back",
-      "armory:helmet.front":"armory:items/multiarmor/upgrades/armory.helmet_protection_top_front"
+      "armory:helmet.top":"armory:items/multiarmor/upgrades/helmet/top/armory.helmet_protection_top_top",
+      "armory:helmet.back":"armory:items/multiarmor/upgrades/helmet/top/armory.helmet_protection_top_back",
+      "armory:helmet.front":"armory:items/multiarmor/upgrades/helmet/top/armory.helmet_protection_top_front"
     }
   }
 }
