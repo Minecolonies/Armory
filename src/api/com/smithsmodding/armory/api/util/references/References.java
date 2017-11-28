@@ -152,7 +152,7 @@ public class References {
             public static final ResourceLocation UN_SHINRIGHT = new ResourceLocation(General.MOD_ID,  "ShinRight");
             public static final ResourceLocation UN_CALFLEFT = new ResourceLocation(General.MOD_ID,  "CalfLeft");
             public static final ResourceLocation UN_CALFRIGHT = new ResourceLocation(General.MOD_ID,  "CalfRight");
-        }
+            }
 
             public static final class Shoes {
                 public static final ResourceLocation UN_LACESLEFT = new ResourceLocation(General.MOD_ID,  "LacesLeft");
