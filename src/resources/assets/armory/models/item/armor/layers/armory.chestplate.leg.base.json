@@ -1,0 +1,41 @@
+{
+  "debug":true,
+  "parts":[
+    {
+      "id":"armory:leggings.front",
+      "texture":"armory:items/multiarmor/base/leggings/armory.leggings_leg",
+      "transformation":{
+        "translation": [0.375, -0.375, 0.109375],
+        "scale": [1, 1, 0.5 ],
+        "rotation":[{"x":0},{"y":0},{"z":0} ]
+      }
+    },
+    {
+      "id":"armory:leggings.back",
+      "texture":"armory:items/multiarmor/base/leggings/armory.leggings_leg",
+      "transformation":{
+        "translation": [0.375, -0.375, -0.109375],
+        "scale": [1, 1, 0.5 ],
+        "rotation":[{"x":0},{"y":0},{"z":0} ]
+      }
+    },
+    {
+      "id":"armory:leggings.left",
+      "texture":"armory:items/multiarmor/base/leggings/armory.leggings_leg",
+      "transformation":{
+        "translation": [ -0.109375, -0.375, -0.375 ],
+        "scale": [1, 1, 0.5 ],
+        "rotation":[{"x":0},{"y":90},{"z":0} ]
+      }
+    },
+    {
+      "id":"armory:leggings.right",
+      "texture":"armory:items/multiarmor/base/leggings/armory.leggings_leg",
+      "transformation":{
+        "translation": [ 0.109375, -0.375, -0.375 ],
+        "scale": [1, 1, 0.5 ],
+        "rotation":[{"x":0},{"y":90},{"z":0} ]
+      }
+    }
+  ]
+}
