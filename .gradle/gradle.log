@@ -7,6 +7,22 @@ The sync of the branches is not being executed, because we are not releasing a n
 Found AccessTransformer: jei_at.cfg_jei_1.11.2-4.3.6.282_at.cfg
 Found AccessTransformer: Armory_at.cfg
 
-BUILD SUCCESSFUL
+FAILURE: Build failed with an exception.
 
-Total time: 3.48 secs
+* What went wrong:
+A problem occurred configuring root project 'Armory'.
+> Could not resolve all dependencies for configuration ':deobfCompile'.
+   > Could not resolve org:SmithsCore_AlphaBuilds:33.
+     Required by:
+         com.smithsmodding.armory:Armory:1.11.2-2.0.0.0-Alpha-null
+      > Could not resolve org:SmithsCore_AlphaBuilds:33.
+         > Could not get resource 'https://teamcity.minecolonies.com/guestAuth/repository/download/SmithsCore_AlphaBuilds/33/teamcity-ivy.xml'.
+            > Could not GET 'https://teamcity.minecolonies.com/guestAuth/repository/download/SmithsCore_AlphaBuilds/33/teamcity-ivy.xml'.
+               > hostname in certificate didn't match: <teamcity.minecolonies.com> != <docker.orionminecraft.com> OR <docker.orionminecraft.com> OR <www.docker.orionminecraft.com>
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
+
+BUILD FAILED
+
+Total time: 10.782 secs

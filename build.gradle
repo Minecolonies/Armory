@@ -39,8 +39,8 @@ repositories {
     }
     ivy {
         name 'Minecolonies TeamCity Repo'
-        ivyPattern 'http://teamcity.minecolonies.com/guestAuth/repository/download/[module]/[revision]/teamcity-ivy.xml'
-        artifactPattern 'http://teamcity.minecolonies.com/guestAuth/repository/download/[module]/[revision]/[artifact](.[ext])'
+        ivyPattern 'https://teamcity.minecolonies.com/guestAuth/repository/download/[module]/[revision]/teamcity-ivy.xml'
+        artifactPattern 'https://teamcity.minecolonies.com/guestAuth/repository/download/[module]/[revision]/[artifact](.[ext])'
     }
 }
 

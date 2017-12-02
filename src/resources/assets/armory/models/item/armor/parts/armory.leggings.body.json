@@ -3,5 +3,10 @@
   "base": "armory:models/item/armor/layers/armory.leggings.body.base",
   "layers": {
   },
-  "broken": {}
+  "broken": {},
+  "transform":{
+    "translation": [0, 0.5, 0 ],
+    "scale": [1,1,1 ],
+    "rotation":[{"x":0},{"y":0},{"z":0} ]
+  }
 }
