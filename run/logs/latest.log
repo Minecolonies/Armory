@@ -123,3 +123,40 @@ com.mojang.authlib.exceptions.AuthenticationException: The client has sent too m
 [16:57:38] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
 [16:57:38] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
 [16:57:38] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:03:22] [Server thread/INFO]: Saving and pausing game...
+[17:03:22] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:03:22] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:03:22] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:03:59] [Server thread/INFO]: Saving and pausing game...
+[17:03:59] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:03:59] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:03:59] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:04:05] [Server thread/INFO]: Saving and pausing game...
+[17:04:05] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:04:05] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:04:05] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:04:21] [Server thread/INFO]: Saving and pausing game...
+[17:04:21] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:04:21] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:04:21] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:04:36] [Server thread/INFO]: Saving and pausing game...
+[17:04:36] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:04:36] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:04:36] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:04:57] [Server thread/INFO]: Saving and pausing game...
+[17:04:57] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:04:57] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:04:57] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:05:25] [Server thread/INFO]: Saving and pausing game...
+[17:05:25] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:05:25] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:05:25] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:05:25] [Client thread/INFO]: Stopping!
+[17:05:25] [Server thread/INFO]: Stopping server
+[17:05:25] [Server thread/INFO]: Saving players
+[17:05:25] [Server thread/INFO]: Saving worlds
+[17:05:25] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[17:05:25] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[17:05:25] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[17:05:25] [Client thread/INFO]: SoundSystem shutting down...
+[17:05:26] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com

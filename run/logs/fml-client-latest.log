@@ -1875,3 +1875,90 @@
 [16:56:58] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save New World
 [16:57:19] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save New World
 [16:57:38] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save New World
+[17:03:22] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save New World
+[17:03:59] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save New World
+[17:04:05] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save New World
+[17:04:20] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save New World
+[17:04:21] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save New World
+[17:04:36] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save New World
+[17:04:57] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save New World
+[17:05:25] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save New World
+[17:05:25] [Server thread/TRACE] [minecraft/minecraft]: Sending event FMLServerStoppingEvent to mod minecraft
+[17:05:25] [Server thread/TRACE] [minecraft/minecraft]: Sent event FMLServerStoppingEvent to mod minecraft
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopping - Minecraft took 0.001s
+[17:05:25] [Server thread/TRACE] [mcp/mcp]: Sending event FMLServerStoppingEvent to mod mcp
+[17:05:25] [Server thread/TRACE] [mcp/mcp]: Sent event FMLServerStoppingEvent to mod mcp
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopping - Minecraft Coder Pack took 0.000s
+[17:05:25] [Server thread/TRACE] [FML/FML]: Sending event FMLServerStoppingEvent to mod FML
+[17:05:25] [Server thread/TRACE] [FML/FML]: Sent event FMLServerStoppingEvent to mod FML
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopping - Forge Mod Loader took 0.000s
+[17:05:25] [Server thread/TRACE] [forge/forge]: Sending event FMLServerStoppingEvent to mod forge
+[17:05:25] [Server thread/TRACE] [forge/forge]: Sent event FMLServerStoppingEvent to mod forge
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopping - Minecraft Forge took 0.000s
+[17:05:25] [Server thread/TRACE] [smithscore/smithscore]: Sending event FMLServerStoppingEvent to mod smithscore
+[17:05:25] [Server thread/TRACE] [smithscore/smithscore]: Sent event FMLServerStoppingEvent to mod smithscore
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopping - smithscore took 0.000s
+[17:05:25] [Server thread/TRACE] [armory/armory]: Sending event FMLServerStoppingEvent to mod armory
+[17:05:25] [Server thread/INFO] [armory/armory]: [Armory-Main]-Starting "Server Stopping"-Phase
+[17:05:25] [Server thread/INFO] [armory/armory]: [Armory-Main]-Finished "Server Stopping"-Phase after: 1 ms!
+[17:05:25] [Server thread/TRACE] [armory/armory]: Sent event FMLServerStoppingEvent to mod armory
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopping - Armory took 0.001s
+[17:05:25] [Server thread/TRACE] [jei/jei]: Sending event FMLServerStoppingEvent to mod jei
+[17:05:25] [Server thread/TRACE] [jei/jei]: Sent event FMLServerStoppingEvent to mod jei
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopping - Just Enough Items took 0.000s
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Finished: ServerStopping took 0.003s
+[17:05:25] [Netty Local Client IO #0/INFO] [smithscore/]: Disconnect: Clearing cached connected player list.
+[17:05:25] [Server thread/DEBUG] [FML/]: Gathering id map for writing to world save New World
+[17:05:25] [Server thread/INFO] [FML/]: Unloading dimension 0
+[17:05:25] [Server thread/INFO] [FML/]: Unloading dimension -1
+[17:05:25] [Server thread/INFO] [FML/]: Unloading dimension 1
+[17:05:25] [Server thread/DEBUG] [FML/]: Reverting to frozen data state.
+[17:05:25] [Server thread/TRACE] [minecraft/minecraft]: Sending event FMLModIdMappingEvent to mod minecraft
+[17:05:25] [Server thread/TRACE] [minecraft/minecraft]: Sent event FMLModIdMappingEvent to mod minecraft
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ModIdMapping - Minecraft took 0.000s
+[17:05:25] [Server thread/TRACE] [mcp/mcp]: Sending event FMLModIdMappingEvent to mod mcp
+[17:05:25] [Server thread/TRACE] [mcp/mcp]: Sent event FMLModIdMappingEvent to mod mcp
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ModIdMapping - Minecraft Coder Pack took 0.000s
+[17:05:25] [Server thread/TRACE] [FML/FML]: Sending event FMLModIdMappingEvent to mod FML
+[17:05:25] [Server thread/TRACE] [FML/FML]: Sent event FMLModIdMappingEvent to mod FML
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ModIdMapping - Forge Mod Loader took 0.000s
+[17:05:25] [Server thread/TRACE] [forge/forge]: Sending event FMLModIdMappingEvent to mod forge
+[17:05:25] [Server thread/TRACE] [forge/forge]: Sent event FMLModIdMappingEvent to mod forge
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ModIdMapping - Minecraft Forge took 0.023s
+[17:05:25] [Server thread/TRACE] [smithscore/smithscore]: Sending event FMLModIdMappingEvent to mod smithscore
+[17:05:25] [Server thread/TRACE] [smithscore/smithscore]: Sent event FMLModIdMappingEvent to mod smithscore
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ModIdMapping - smithscore took 0.000s
+[17:05:25] [Server thread/TRACE] [armory/armory]: Sending event FMLModIdMappingEvent to mod armory
+[17:05:25] [Server thread/TRACE] [armory/armory]: Sent event FMLModIdMappingEvent to mod armory
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ModIdMapping - Armory took 0.000s
+[17:05:25] [Server thread/TRACE] [jei/jei]: Sending event FMLModIdMappingEvent to mod jei
+[17:05:25] [Server thread/TRACE] [jei/jei]: Sent event FMLModIdMappingEvent to mod jei
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ModIdMapping - Just Enough Items took 0.000s
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Finished: ModIdMapping took 0.025s
+[17:05:25] [Server thread/INFO] [FML/]: Applying holder lookups
+[17:05:25] [Server thread/INFO] [FML/]: Holder lookups applied
+[17:05:25] [Server thread/DEBUG] [FML/]: Frozen state restored.
+[17:05:25] [Server thread/TRACE] [minecraft/minecraft]: Sending event FMLServerStoppedEvent to mod minecraft
+[17:05:25] [Server thread/TRACE] [minecraft/minecraft]: Sent event FMLServerStoppedEvent to mod minecraft
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopped - Minecraft took 0.000s
+[17:05:25] [Server thread/TRACE] [mcp/mcp]: Sending event FMLServerStoppedEvent to mod mcp
+[17:05:25] [Server thread/TRACE] [mcp/mcp]: Sent event FMLServerStoppedEvent to mod mcp
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopped - Minecraft Coder Pack took 0.000s
+[17:05:25] [Server thread/TRACE] [FML/FML]: Sending event FMLServerStoppedEvent to mod FML
+[17:05:25] [Server thread/TRACE] [FML/FML]: Sent event FMLServerStoppedEvent to mod FML
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopped - Forge Mod Loader took 0.000s
+[17:05:25] [Server thread/TRACE] [forge/forge]: Sending event FMLServerStoppedEvent to mod forge
+[17:05:25] [Server thread/TRACE] [forge/forge]: Sent event FMLServerStoppedEvent to mod forge
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopped - Minecraft Forge took 0.000s
+[17:05:25] [Server thread/TRACE] [smithscore/smithscore]: Sending event FMLServerStoppedEvent to mod smithscore
+[17:05:25] [Server thread/TRACE] [smithscore/smithscore]: Sent event FMLServerStoppedEvent to mod smithscore
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopped - smithscore took 0.000s
+[17:05:25] [Server thread/TRACE] [armory/armory]: Sending event FMLServerStoppedEvent to mod armory
+[17:05:25] [Server thread/INFO] [armory/armory]: [Armory-Main]-Starting "Server Stopped"-Phase
+[17:05:25] [Server thread/INFO] [armory/armory]: [Armory-Main]-Finished "Server Stopped"-Phase after: 1 ms!
+[17:05:25] [Server thread/TRACE] [armory/armory]: Sent event FMLServerStoppedEvent to mod armory
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopped - Armory took 0.002s
+[17:05:25] [Server thread/TRACE] [jei/jei]: Sending event FMLServerStoppedEvent to mod jei
+[17:05:25] [Server thread/TRACE] [jei/jei]: Sent event FMLServerStoppedEvent to mod jei
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Step: ServerStopped - Just Enough Items took 0.000s
+[17:05:25] [Server thread/DEBUG] [FML/]: Bar Finished: ServerStopped took 0.003s

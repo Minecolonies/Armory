@@ -68,7 +68,7 @@ public class BakedMLABipedModel extends ModelBiped {
     private void preBodyArmRightCallback(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
         GlStateManager.pushMatrix();
 
-        GlStateManager.translate(-0.5f * scale, 0*scale, 0);
+        GlStateManager.translate(-1f * scale, 0*scale, 0);
         GlStateManager.scale(-1.1f, 1.1f, 1.1f);
 
         GlStateManager.pushMatrix();
@@ -83,7 +83,7 @@ public class BakedMLABipedModel extends ModelBiped {
     private void preBodyArmLeftCallback(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
         GlStateManager.pushMatrix();
 
-        GlStateManager.translate(0.5f * scale, 0*scale, 0);
+        GlStateManager.translate(1f * scale, 0*scale, 0);
         GlStateManager.scale(-1.1f, 1.1f, 1.1f);
 
         GlStateManager.pushMatrix();
