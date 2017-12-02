@@ -1,11 +1,11 @@
 {
   "type": "ArmLeft",
-  "base": "armory:models/item/armor/layers/armory.chestplate.leg.base",
+  "base": "armory:models/item/armor/layers/armory.leggings.leg.base",
   "layers": {
   },
   "broken": {},
   "transform":{
-    "translation": [-0.625, 0.375, 0.109375 ],
+    "translation": [-0.125, 0.375, 0.109375 ],
     "scale": [1,1,1 ],
     "rotation":[{"x":0},{"y":0},{"z":0} ]
   }

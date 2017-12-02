@@ -171,7 +171,7 @@ public class CommonMedievalRegistrationInitializer {
         armorRegistry.register(ModArmor.Medieval.HELMET);
         armorRegistry.register(ModArmor.Medieval.CHESTPLATE);
         armorRegistry.register(ModArmor.Medieval.LEGGINGS);
-        //armorRegistry.register(ModArmor.Medieval.SHOES);
+        armorRegistry.register(ModArmor.Medieval.SHOES);
     }
 
     @SubscribeEvent

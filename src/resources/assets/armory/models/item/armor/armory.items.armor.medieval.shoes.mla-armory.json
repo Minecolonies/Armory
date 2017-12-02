@@ -1,9 +1,7 @@
 {
-  "parent": "item/generated",
-  "base": "armory:items/multiarmor/base/armory.shoes_base",
-  "layers": {
-    "armory:LacesLeft": "armory:items/multiarmor/upgrades/armory.shoes_protection_left",
-    "armory:LacesRight": "armory:items/multiarmor/upgrades/armory.shoes_protection_right"
-  },
-  "broken": {}
+  "parent": "armory:models/item/armor/mla",
+  "parts": {
+    "armory:shoes.leg.left": "armory:models/item/armor/parts/armory.shoes.leg.left",
+    "armory:shoes.leg.right": "armory:models/item/armor/parts/armory.shoes.leg.right"
+  }
 }

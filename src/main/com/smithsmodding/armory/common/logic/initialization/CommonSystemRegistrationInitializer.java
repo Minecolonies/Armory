@@ -85,7 +85,7 @@ public class CommonSystemRegistrationInitializer {
         itemRegistry.register(ModItems.Armor.IT_HELMET);
         itemRegistry.register(ModItems.Armor.IT_CHESTPLATE);
         itemRegistry.register(ModItems.Armor.IT_LEGGINGS);
-        //itemRegistry.register(ModItems.Armor.IT_SHOES);
+        itemRegistry.register(ModItems.Armor.IT_SHOES);
 
         itemRegistry.register(new ItemBlock(ModBlocks.BL_FORGE).setRegistryName(ModBlocks.BL_FORGE.getRegistryName()));
         itemRegistry.register(new ItemBlockBlackSmithsAnvil(ModBlocks.BL_ANVIL));
