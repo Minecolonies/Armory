@@ -35,10 +35,12 @@ public class BakedMLABipedModel extends ModelBiped {
                                                      this::defaultRotationAngleUpdateCallback);
         this.bipedHeadwear = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.HEADWEAR), this::preHeadRender, this::defaultPostRenderCallback,
                                                          this::defaultRotationAngleUpdateCallback);
-        this.bipedLeftLeg = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGLEFT), this::preHeadRender, this::defaultPostRenderCallback,
-                                                        this::defaultRotationAngleUpdateCallback);
-        this.bipedRightLeg = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGRIGHT), this::preHeadRender, this::defaultPostRenderCallback,
-                                                         this::defaultRotationAngleUpdateCallback);
+        this.bipedLeftLeg = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGLEFT), this::preLegLeftCallback, this::defaultPostRenderCallback,
+                                                        this::leftLegRotationAngleUpdateCallback);
+        this.bipedLeftLeg.setRotationPoint(-1.9F, 12.0F, 0.0F);
+        this.bipedRightLeg = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGRIGHT), this::preLegRightCallback, this::defaultPostRenderCallback,
+                                                         this::rightLegRotationAngleUpdateCallback);
+        this.bipedLeftLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
 
     }
 
@@ -95,6 +97,35 @@ public class BakedMLABipedModel extends ModelBiped {
         renderer.rotateAngleY *= -1f;
     }
 
+    private void preLegRightCallback(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
+        GlStateManager.pushMatrix();
+
+        GlStateManager.translate(-2f * scale, -2f*scale, 0);
+        GlStateManager.scale(-1.1f, 1.1f, 1.1f);
+
+        GlStateManager.pushMatrix();
+    }
+
+    private void rightLegRotationAngleUpdateCallback(@NotNull final EntityLivingBase entity, @NotNull final ItemStack stack, float scale, @NotNull final ItemStackModelRenderer renderer)
+    {
+        renderer.rotateAngleX *= -1f;
+        renderer.rotateAngleY *= -1f;
+    }
+
+    private void preLegLeftCallback(EntityLivingBase entityLivingBase, ItemStack stack, float scale) {
+        GlStateManager.pushMatrix();
+
+        GlStateManager.translate(0f * scale, -2f*scale, 0);
+        GlStateManager.scale(-1.1f, 1.1f, 1.1f);
+
+        GlStateManager.pushMatrix();
+    }
+
+    private void leftLegRotationAngleUpdateCallback(@NotNull final EntityLivingBase entity, @NotNull final ItemStack stack, float scale, @NotNull final ItemStackModelRenderer renderer)
+    {
+        renderer.rotateAngleX *= -1f;
+        renderer.rotateAngleY *= -1f;
+    }
 
     private void defaultRotationAngleUpdateCallback(@NotNull final EntityLivingBase entity, @NotNull final ItemStack stack, float scale, @NotNull final ItemStackModelRenderer renderer)
     {

@@ -1,5 +1,5 @@
 {
-  "type": "ArmLeft",
+  "type": "LegLeft",
   "base": "armory:models/item/armor/layers/armory.leggings.leg.base",
   "layers": {
   },
