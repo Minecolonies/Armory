@@ -100,7 +100,7 @@ public class CommonMedievalRegistrationInitializer {
                 TextFormatting.RESET.toString(),
                 DAR_HELMET,
                 ModItems.Armor.IT_HELMET,
-                EntityEquipmentSlot.HEAD.getSlotIndex(),
+                EntityEquipmentSlot.HEAD,
                 Arrays.asList(POSITIONTOP, POSITIONLEFT, POSITIONRIGHT),
                 Arrays.asList(TOP, LEFT, RIGHT),
                 new IDefaultCapabilitiesRetrievalCallback() {
@@ -118,7 +118,7 @@ public class CommonMedievalRegistrationInitializer {
                 TextFormatting.RESET.toString(),
                 DAR_CHESTPLATE,
                 ModItems.Armor.IT_CHESTPLATE,
-                EntityEquipmentSlot.CHEST.getSlotIndex(),
+                EntityEquipmentSlot.CHEST,
                 Arrays.asList(POSITIONSHOULDERLEFT, POSITIONSHOULDERRIGHT, POSITIONSTOMACHLEFT, POSITIONSTOMACHRIGHT, POSITIONBACKLEFT, POSITIONBACKRIGHT),
                 Arrays.asList(SHOULDERLEFT, SHOULDERRIGHT, STOMACHLEFT, STOMACHRIGHT, BACKLEFT, BACKRIGHT),
                 new IDefaultCapabilitiesRetrievalCallback() {
@@ -136,7 +136,7 @@ public class CommonMedievalRegistrationInitializer {
                 TextFormatting.RESET.toString(),
                 DAR_LEGGINGS,
                 ModItems.Armor.IT_LEGGINGS,
-                EntityEquipmentSlot.LEGS.getSlotIndex(),
+                EntityEquipmentSlot.LEGS,
                 Arrays.asList(POSITIONSHINLEFT, POSITIONSHINRIGHT, POSITIONCALFLEFT, POSITIONCALFRIGHT),
                 Arrays.asList(SHINLEFT, SHINRIGHT, CALFLEFT, CALFRIGHT),
                 new IDefaultCapabilitiesRetrievalCallback() {
@@ -154,7 +154,7 @@ public class CommonMedievalRegistrationInitializer {
                 TextFormatting.RESET.toString(),
                 DAR_SHOES,
                 ModItems.Armor.IT_SHOES,
-                EntityEquipmentSlot.FEET.getSlotIndex(),
+                EntityEquipmentSlot.FEET,
                 Arrays.asList(POSITIONLACESLEFT, POSITIONLACESRIGHT),
                 Arrays.asList(LACESLEFT, LACESRIGHT),
                 new IDefaultCapabilitiesRetrievalCallback() {

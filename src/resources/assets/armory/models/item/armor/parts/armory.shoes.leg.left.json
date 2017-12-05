@@ -2,6 +2,8 @@
   "type": "LegLeft",
   "base": "armory:models/item/armor/layers/armory.shoes.leg.base",
   "layers": {
+    "armory:LacesLeft":"armory:models/item/armor/layers/armory.shoes.laces.active",
+    "armory:LacesRight":"armory:models/item/armor/layers/armory.shoes.leg.none"
   },
   "broken": {},
   "transform":{

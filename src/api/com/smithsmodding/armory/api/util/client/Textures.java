@@ -1,14 +1,19 @@
 package com.smithsmodding.armory.api.util.client;
 
+import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.smithscore.client.events.texture.TextureStitchCollectedEvent;
 import com.smithsmodding.smithscore.client.textures.HolographicTexture;
 import com.smithsmodding.smithscore.client.textures.TextureCreator;
+import com.smithsmodding.smithscore.common.events.AutomaticEventBusSubscriber;
 import com.smithsmodding.smithscore.util.client.CustomResource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 import javax.annotation.Nonnull;
 
@@ -24,7 +29,7 @@ public class Textures {
      * @param event The events fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
      */
     @SubscribeEvent(priority = EventPriority.LOW)
-    public void registerTexturesToMap(@Nonnull TextureStitchEvent.Pre event) {
+    public void registerTexturesToMap(@Nonnull TextureStitchCollectedEvent event) {
         TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWPICKAXE.getPrimaryLocation()));
         TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWBOOK.getPrimaryLocation()));
         TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWHAMMER.getPrimaryLocation()));

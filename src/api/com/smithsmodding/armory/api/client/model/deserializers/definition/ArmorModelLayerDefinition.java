@@ -2,6 +2,7 @@ package com.smithsmodding.armory.api.client.model.deserializers.definition;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.api.util.references.References;
 import net.minecraft.util.ResourceLocation;
 
@@ -53,13 +54,20 @@ public class ArmorModelLayerDefinition
         ImmutableList.Builder<ArmorModelLayerPartDefinition> builder = ImmutableList.builder();
 
         parts.forEach(part -> {
-            if (overrideMap.containsKey(part.getId()) && !overrideMap.get(part.getId()).equals(new ResourceLocation(References.General.MOD_ID, "delete")))
+            try {
+                if (overrideMap.containsKey(part.getId()) && !overrideMap.get(part.getId()).equals(new ResourceLocation(References.General.MOD_ID, "delete")))
+                {
+                    builder.add(part.createOverride(overrideMap.get(part.getId())));
+                }
+                else if (!overrideMap.get(part.getId()).equals(new ResourceLocation(References.General.MOD_ID, "delete")))
+                {
+                    builder.add(part);
+                }
+            } catch (Exception ex)
             {
-                builder.add(part.createOverride(overrideMap.get(part.getId())));
-            }
-            else if (!overrideMap.get(part.getId()).equals(new ResourceLocation(References.General.MOD_ID, "delete")))
-            {
-                builder.add(part);
+                ModLogger.getInstance().warn("Failed to override part: " + part.getId() + ". The override map is missing data: " + overrideMap.toString());
+                ModLogger.getInstance().warn(ex);
+                ex.printStackTrace();
             }
         });
 

@@ -280,6 +280,24 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
         return recipeCallback;
     }
 
+    @Override
+    public int hashCode()
+    {
+        return  getRegistryName().hashCode();
+    }
+
+    @Override
+    public boolean equals(final Object obj)
+    {
+        if (obj instanceof IMultiComponentArmorExtension)
+        {
+            IMultiComponentArmorExtension extension = (IMultiComponentArmorExtension) obj;
+            return extension.getRegistryName().equals(getRegistryName());
+        }
+
+        return false;
+    }
+
     public static class Builder implements IBuilder<MedievalArmorExtension> {
         private final String translationKey;
         private final String textFormatting;

@@ -2,6 +2,7 @@ package com.smithsmodding.armory.api.util.client;
 
 import com.smithsmodding.armory.api.client.model.renderinfo.IRenderInfoProvider;
 import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
+import com.smithsmodding.smithscore.core.interfaces.ITextureMap;
 import com.smithsmodding.smithscore.util.client.ResourceHelper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -27,7 +28,7 @@ public class TextureCreationHelper {
      *
      * @return A modified version of the base Texture.
      */
-    public static TextureAtlasSprite createTexture(@Nonnull IRenderInfoProvider renderInfoProvider, @Nonnull String textureIdentifier, @Nonnull ResourceLocation baseTexture, @Nonnull TextureAtlasSprite base, @Nonnull TextureMap map, @Nullable String creationIdentifier) {
+    public static TextureAtlasSprite createTexture(@Nonnull IRenderInfoProvider renderInfoProvider, @Nonnull String textureIdentifier, @Nonnull ResourceLocation baseTexture, @Nonnull TextureAtlasSprite base, @Nonnull ITextureMap map, @Nullable String creationIdentifier) {
         creationIdentifier = creationIdentifier == null ? "" : "_" + creationIdentifier;
         String location = (baseTexture.toString() + creationIdentifier + "_" + textureIdentifier).toLowerCase();
         TextureAtlasSprite sprite;

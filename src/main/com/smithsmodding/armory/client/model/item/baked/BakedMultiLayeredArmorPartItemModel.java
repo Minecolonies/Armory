@@ -136,7 +136,8 @@ public class BakedMultiLayeredArmorPartItemModel extends BakedWrappedModel.Persp
                     continue;
                 }
 
-                quads.addAll(partModel.getQuads(null, null, 0));
+                if (partModel != null)
+                    quads.addAll(partModel.getQuads(null, null, 0));
             }
 
             IBakedModel model = new ItemLayerModel.BakedItemModel(quads.build(), parent.getParticleTexture(), parent.transforms, parent.getOverrides(), null);

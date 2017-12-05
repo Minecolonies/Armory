@@ -3,6 +3,7 @@ package com.smithsmodding.armory.api.common.armor;
 import com.smithsmodding.armory.api.client.armor.IInWorldRenderableArmorComponent;
 import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
 import com.smithsmodding.armory.api.util.client.ITranslateable;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -57,7 +58,7 @@ public interface IMultiComponentArmor extends IForgeRegistryEntry<IMultiComponen
      *
      * @return The equipmentslot.
      */
-    Integer getEquipmentSlotIndex();
+    EntityEquipmentSlot getEquipmentSlot();
 
 
 

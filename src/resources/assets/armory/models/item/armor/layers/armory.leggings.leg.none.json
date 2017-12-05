@@ -1,0 +1,11 @@
+{
+  "override":{
+    "parent": "armory:models/item/armor/layers/armory.leggings.leg.base",
+    "textures":{
+      "armory:leggings.front":"armory:delete",
+      "armory:leggings.left":"armory:delete",
+      "armory:leggings.right":"armory:delete",
+      "armory:leggings.back":"armory:delete"
+    }
+  }
+}

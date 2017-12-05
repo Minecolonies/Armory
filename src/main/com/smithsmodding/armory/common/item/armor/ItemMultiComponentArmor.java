@@ -207,6 +207,6 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
             return false;
         }
 
-        return armor.getEquipmentSlotIndex() == armorType.getSlotIndex();
+        return armor.getEquipmentSlot() == armorType;
     }
 }

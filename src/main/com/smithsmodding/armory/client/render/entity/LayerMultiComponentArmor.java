@@ -53,7 +53,7 @@ public class LayerMultiComponentArmor implements LayerRenderer<EntityLivingBase>
         {
             @Nullable final IMultiComponentArmor armorData = ArmorHelper.getArmorForItem(itemstack.getItem());
 
-            if (armorData.getEquipmentSlotIndex() == slotIn.getSlotIndex())
+            if (armorData.getEquipmentSlot().getSlotIndex() == slotIn.getSlotIndex())
             {
                 ModelBiped t = getArmorModelHook(entityLivingBaseIn, itemstack, slotIn);
 

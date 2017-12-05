@@ -2,7 +2,9 @@ package com.smithsmodding.armory.common.logic.initialization;
 
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
+import com.smithsmodding.armory.common.handlers.EntityPickupTargetSlotEventHandler;
 import com.smithsmodding.armory.common.handlers.GuiHandler;
+import com.smithsmodding.smithscore.SmithsCore;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -28,5 +30,7 @@ public class CommonEventHandlerInitializer extends IInitializationComponent.Impl
         NetworkRegistry.INSTANCE.registerGuiHandler(Armory.instance, new GuiHandler());
 
         MinecraftForge.EVENT_BUS.register(Armory.instance);
+
+        SmithsCore.getRegistry().getCommonBus().register(new EntityPickupTargetSlotEventHandler());
     }
 }

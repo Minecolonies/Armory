@@ -117,6 +117,7 @@ public class ArmorModelPartDeserializer implements JsonDeserializer<ArmorModelPa
             {
                 ModLogger.getInstance().warn("Failed to deserialize the Layer.");
                 ModLogger.getInstance().warn(e);
+                e.printStackTrace();
             }
         }
         else
@@ -129,6 +130,7 @@ public class ArmorModelPartDeserializer implements JsonDeserializer<ArmorModelPa
             {
                 ModLogger.getInstance().warn("Failed to deserialize the Layer.");
                 ModLogger.getInstance().warn(e);
+                e.printStackTrace();
             }
         }
 

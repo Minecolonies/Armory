@@ -12,6 +12,7 @@ import com.smithsmodding.armory.common.api.ArmoryAPI;
 import com.smithsmodding.armory.common.material.MedievalCoreArmorMaterial;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.client.events.texture.TextureStitchCollectedEvent;
+import com.smithsmodding.smithscore.core.interfaces.ITextureMap;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IResourceManager;
@@ -143,7 +144,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      *
      * @param map The map to register the textures to.
      */
-    public void createMaterialTextures(@Nonnull TextureMap map) {
+    public void createMaterialTextures(@Nonnull ITextureMap map) {
         for (ResourceLocation baseTexture : baseTextures) {
             //NO Reason doing something twice!
             if (buildSprites.containsKey(baseTexture.toString()))
@@ -155,7 +156,11 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
             }
 
             for(ICreationController controller : ArmoryAPI.getInstance().getRegistryManager().getTextureCreationControllerRegistry()) {
-                ModLogger.getInstance().info("Creating textures for: " + baseTexture.toString() + " with: " + controller.getRegistryName().toString());
+                if (SmithsCore.isInDevEnvironment())
+                {
+                    ModLogger.getInstance().info("Creating textures for: " + baseTexture.toString() + " with: " + controller.getRegistryName().toString());
+                }
+
                 controller.createMaterializedTextures(map, baseTexture, buildSprites);
             }
         }
@@ -169,9 +174,6 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
             TextureMap map = e.getMap();
             String name = map.getBasePath().replace('/', '_');
             int mip = map.getMipmapLevels();
-
-            if (mip != 0)
-                return;
 
             saveGlTexture(name, map.getGlTextureId(), mip);
         }

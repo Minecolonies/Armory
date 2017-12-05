@@ -1,0 +1,11 @@
+{
+  "override":{
+    "parent": "armory:models/item/armor/layers/armory.leggings.leg.base",
+    "textures":{
+      "armory:leggings.front":"armory:delete",
+      "armory:leggings.left":"armory:items/multiarmor/upgrades/leggings/calf/armory.leggings_side",
+      "armory:leggings.right":"armory:items/multiarmor/upgrades/leggings/calf/armory.leggings_side",
+      "armory:leggings.back":"armory:items/multiarmor/upgrades/leggings/calf/armory.leggings_leg"
+    }
+  }
+}

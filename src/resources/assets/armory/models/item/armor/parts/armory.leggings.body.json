@@ -2,6 +2,10 @@
   "type": "Body",
   "base": "armory:models/item/armor/layers/armory.leggings.body.base",
   "layers": {
+    "armory:ShinLeft":"armory:models/item/armor/layers/armory.empty",
+    "armory:ShinRight":"armory:models/item/armor/layers/armory.empty",
+    "armory:CalfLeft":"armory:models/item/armor/layers/armory.empty",
+    "armory:CalfRight":"armory:models/item/armor/layers/armory.empty"
   },
   "broken": {},
   "transform":{
