@@ -11,7 +11,7 @@ public class EntityPickupTargetSlotEventHandler
 {
 
     //TODO: Fix the rendering on Zombies, Skeleton and ArmorStands.
-    //@SubscribeEvent
+    @SubscribeEvent
     public void onEntityPickupTargetSlot(final EntityPickupTargetSlotEvent event)
     {
         final ItemStack stack = event.getStack();

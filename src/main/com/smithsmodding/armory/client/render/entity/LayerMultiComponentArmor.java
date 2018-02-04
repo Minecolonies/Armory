@@ -29,6 +29,9 @@ public class LayerMultiComponentArmor implements LayerRenderer<EntityLivingBase>
 
     public LayerMultiComponentArmor(RenderLivingBase<?> rendererIn)
     {
+        if(!(rendererIn.getMainModel() instanceof ModelBiped))
+            throw new IllegalArgumentException("Only biped models are supported");
+
         this.renderer = rendererIn;
     }
 

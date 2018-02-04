@@ -40,7 +40,7 @@ public class BakedMLABipedModel extends ModelBiped {
         this.bipedLeftLeg.setRotationPoint(-1.9F, 12.0F, 0.0F);
         this.bipedRightLeg = new ItemStackModelRenderer(entity, stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGRIGHT), this::preLegRightCallback, this::defaultPostRenderCallback,
                                                          this::rightLegRotationAngleUpdateCallback);
-        this.bipedLeftLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
+        this.bipedRightLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
 
     }
 
