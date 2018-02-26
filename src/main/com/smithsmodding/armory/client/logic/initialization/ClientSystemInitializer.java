@@ -22,8 +22,9 @@ import com.smithsmodding.smithscore.client.block.statemap.ExtendedStateMap;
 import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoader;
 import com.smithsmodding.smithscore.client.model.loader.SmithsCoreOBJLoader;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
-import com.smithsmodding.smithscore.client.render.layers.CancelableLayerCustomHead;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelArmorStandArmor;
+import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.model.ModelSkeleton;
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -33,7 +34,6 @@ import net.minecraft.client.renderer.entity.RenderArmorStand;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.RenderSkeleton;
 import net.minecraft.client.renderer.entity.RenderZombie;
-import net.minecraft.client.renderer.entity.layers.LayerCustomHead;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
@@ -80,19 +80,19 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
         Map<String, RenderPlayer> skinMap = Minecraft.getMinecraft().getRenderManager().getSkinMap();
 
         RenderPlayer renderPlayer = skinMap.get("default");
-        renderPlayer.addLayer(new LayerMultiComponentArmor(renderPlayer));
+        renderPlayer.addLayer(new LayerMultiComponentArmor(new ModelPlayer(0f, false)));
 
         renderPlayer = skinMap.get("slim");
-        renderPlayer.addLayer(new LayerMultiComponentArmor(renderPlayer));
+        renderPlayer.addLayer(new LayerMultiComponentArmor(new ModelPlayer(0f, true)));
 
         RenderZombie renderZombie = (RenderZombie) Minecraft.getMinecraft().getRenderManager().entityRenderMap.get(EntityZombie.class);
-        renderZombie.addLayer(new LayerMultiComponentArmor(renderZombie));
+        renderZombie.addLayer(new LayerMultiComponentArmor(new ModelZombie()));
 
         RenderSkeleton renderSkeleton = (RenderSkeleton) Minecraft.getMinecraft().getRenderManager().entityRenderMap.get(EntitySkeleton.class);
-        renderSkeleton.addLayer(new LayerMultiComponentArmor(renderSkeleton));
+        renderSkeleton.addLayer(new LayerMultiComponentArmor(new ModelSkeleton()));
 
         RenderArmorStand renderArmorStand = (RenderArmorStand) Minecraft.getMinecraft().getRenderManager().entityRenderMap.get(EntityArmorStand.class);
-        renderArmorStand.addLayer(new LayerMultiComponentArmor(renderSkeleton));
+        renderArmorStand.addLayer(new LayerMultiComponentArmor(new ModelArmorStandArmor()));
     }
 
     private void registerIIR() {

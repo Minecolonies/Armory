@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.common.item.armor;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.client.render.provider.model.IModelProvider;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapability;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
@@ -8,7 +9,7 @@ import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
-import com.smithsmodding.armory.client.model.entity.BakedMLABipedModel;
+import com.smithsmodding.armory.client.model.entity.LayerMultiComponentArmorModelHelper;
 import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
@@ -32,6 +33,7 @@ import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -40,7 +42,8 @@ import java.util.ArrayList;
 /**
  * Class that represents MultiComponentArmor
  */
-public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
+public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IModelProvider
+{
 
 
     public ItemMultiComponentArmor(ResourceLocation internalName, String translationKey) {
@@ -101,24 +104,17 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
 
     }
 
-    /**
-     * Override this method to have an item handle its own armor rendering.
-     *
-     * @param entityLiving The entity wearing the armor
-     * @param itemStack    The itemStack to render the model of
-     * @param armorSlot    The slot the armor is in
-     * @param _default     Original armor model. Will have attributes set.
-     * @return A ModelBiped to render instead of the default
-     */
-    @SideOnly(Side.CLIENT)
-    @Nullable
     @Override
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-        IBakedModel bakedModel= Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(itemStack);
-        if(bakedModel instanceof BakedMultiLayeredArmorItemModel) {
-            return new BakedMLABipedModel(itemStack, (BakedMultiLayeredArmorItemModel) bakedModel, entityLiving);
+    public IBakedModel getRenderingModel(
+      final @NotNull EntityLivingBase entityLiving, final @NotNull ItemStack itemStack, final @NotNull EntityEquipmentSlot armorSlot)
+    {
+        final IBakedModel model = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(itemStack);
+        if (model instanceof BakedMultiLayeredArmorItemModel)
+        {
+            return model;
         }
-        return _default;
+
+        return null;
     }
 
     @Override
@@ -209,4 +205,5 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
 
         return armor.getEquipmentSlot() == armorType;
     }
+
 }

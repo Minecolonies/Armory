@@ -1,18 +1,23 @@
 package com.smithsmodding.armory.client.render.entity;
 
 import com.google.common.collect.Maps;
+import com.smithsmodding.armory.api.client.model.ModelPart;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
+import com.smithsmodding.armory.client.model.entity.ItemStackModelRenderer;
+import com.smithsmodding.armory.client.model.entity.LayerMultiComponentArmorModelHelper;
+import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
 import com.smithsmodding.armory.common.item.armor.ItemMultiComponentArmor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.renderer.entity.RenderLivingBase;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -24,15 +29,26 @@ import java.util.Map;
 public class LayerMultiComponentArmor implements LayerRenderer<EntityLivingBase>
 {
     protected static final ResourceLocation ENCHANTED_ITEM_GLINT_RES = new ResourceLocation("textures/misc/enchanted_item_glint.png");
-    private final RenderLivingBase<?> renderer;
+
+    private final ModelBiped modelBiped;
+
     private static final Map<String, ResourceLocation> ARMOR_TEXTURE_RES_MAP = Maps.<String, ResourceLocation>newHashMap();
 
-    public LayerMultiComponentArmor(RenderLivingBase<?> rendererIn)
+    public LayerMultiComponentArmor(final ModelBiped modelBiped)
     {
-        if(!(rendererIn.getMainModel() instanceof ModelBiped))
-            throw new IllegalArgumentException("Only biped models are supported");
+        this.modelBiped = modelBiped;
 
-        this.renderer = rendererIn;
+        this.updateModel();
+    }
+
+    private void updateModel()
+    {
+        modelBiped.bipedHead = LayerMultiComponentArmorModelHelper.getBipedHeadRenderer(modelBiped.bipedHead);
+        modelBiped.bipedBody = LayerMultiComponentArmorModelHelper.getBipedBodyRenderer(modelBiped.bipedBody);
+        modelBiped.bipedLeftArm = LayerMultiComponentArmorModelHelper.getBipedLeftArmRenderer(modelBiped.bipedLeftArm);
+        modelBiped.bipedRightArm = LayerMultiComponentArmorModelHelper.getBipedRightArmRenderer(modelBiped.bipedRightArm);
+        modelBiped.bipedLeftLeg = LayerMultiComponentArmorModelHelper.getBipedLeftLegRenderer(modelBiped.bipedLeftLeg);
+        modelBiped.bipedRightLeg = LayerMultiComponentArmorModelHelper.getBipedRightLegRenderer(modelBiped.bipedRightLeg);
     }
 
     public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
@@ -54,26 +70,40 @@ public class LayerMultiComponentArmor implements LayerRenderer<EntityLivingBase>
 
         if (itemstack.getItem() instanceof ItemMultiComponentArmor)
         {
+            @NotNull final ItemMultiComponentArmor itemMultiComponentArmor = (ItemMultiComponentArmor) itemstack.getItem();
             @Nullable final IMultiComponentArmor armorData = ArmorHelper.getArmorForItem(itemstack.getItem());
 
-            if (armorData.getEquipmentSlot().getSlotIndex() == slotIn.getSlotIndex())
+            if (armorData != null && armorData.getEquipmentSlot().getSlotIndex() == slotIn.getSlotIndex())
             {
-                ModelBiped t = getArmorModelHook(entityLivingBaseIn, itemstack, slotIn);
+                final IBakedModel t = itemMultiComponentArmor.getRenderingModel(entityLivingBaseIn, itemstack, armorData.getEquipmentSlot());
 
-                if (t == null)
+                if (!(t instanceof BakedMultiLayeredArmorItemModel))
                 {
                     //Abort if the model is not available.
                     return;
                 }
 
                 Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-                t.setModelAttributes(this.renderer.getMainModel());
-                t.setLivingAnimations(entityLivingBaseIn, limbSwing, limbSwingAmount, partialTicks);
-                this.setModelSlotVisible(t, slotIn);
+                modelBiped.setModelAttributes(this.modelBiped);
+                modelBiped.setLivingAnimations(entityLivingBaseIn, limbSwing, limbSwingAmount, partialTicks);
+                this.setModelSlotVisible(modelBiped, slotIn);
 
-                t.render(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+                this.updateModelsForStackAndModel(itemstack, (BakedMultiLayeredArmorItemModel) t, entityLivingBaseIn);
+
+                modelBiped.isChild = entityLivingBaseIn.isChild();
+                modelBiped.render(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
             }
         }
+    }
+
+    private void updateModelsForStackAndModel(@NotNull final ItemStack stack, @NotNull final BakedMultiLayeredArmorItemModel model, @NotNull final EntityLivingBase entity)
+    {
+        ((ItemStackModelRenderer) modelBiped.bipedHead).setRenderingData(stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.HEAD));
+        ((ItemStackModelRenderer) modelBiped.bipedBody).setRenderingData(stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.BODY));
+        ((ItemStackModelRenderer) modelBiped.bipedLeftArm).setRenderingData(stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.ARMLEFT));
+        ((ItemStackModelRenderer) modelBiped.bipedRightArm).setRenderingData(stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.ARMRIGHT));
+        ((ItemStackModelRenderer) modelBiped.bipedLeftLeg).setRenderingData(stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGLEFT));
+        ((ItemStackModelRenderer) modelBiped.bipedRightLeg).setRenderingData(stack, model.getUntranslatedModel(model, stack, entity.world, entity, ModelPart.LEGRIGHT));
     }
 
     protected void setModelSlotVisible(ModelBiped modelBiped, EntityEquipmentSlot slotIn)
@@ -107,22 +137,4 @@ public class LayerMultiComponentArmor implements LayerRenderer<EntityLivingBase>
     {
         model.setInvisible(false);
     }
-
-    /*=================================== FORGE START =========================================*/
-
-    /**
-     * Hook to allow item-sensitive armor model. for LayerBipedArmor.
-     */
-    @Nullable
-    protected ModelBiped getArmorModelHook(EntityLivingBase entity, ItemStack itemStack, EntityEquipmentSlot slot)
-    {
-        if (itemStack.isEmpty() || !(itemStack.getItem() instanceof ItemMultiComponentArmor))
-        {
-            return null;
-        }
-
-        ItemMultiComponentArmor itemMultiComponentArmor = (ItemMultiComponentArmor) itemStack.getItem();
-        return itemMultiComponentArmor.getArmorModel(entity, itemStack, slot, null);
-    }
-    /*=================================== FORGE END ===========================================*/
 }
