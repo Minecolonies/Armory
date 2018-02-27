@@ -7,6 +7,8 @@ import com.smithsmodding.armory.api.common.helpers.IMaterialConstructionHelper;
 import com.smithsmodding.armory.api.common.helpers.IMedievalUpgradeConstructionHelper;
 import com.smithsmodding.armory.common.factories.FactoryController;
 import com.smithsmodding.armory.common.heatable.HeatedObjectOverrideManager;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 

@@ -43,6 +43,17 @@ public class ArmorAddonComponentModel extends ArmorSubComponentModel {
         super(textures, ModelHelper.DEFAULT_ITEM_TRANSFORMS);
     }
 
+    public ArmorAddonComponentModel(final ResourceLocation texture)
+    {
+        super(texture);
+    }
+
+    @Override
+    ArmorSubComponentModel getBakingModelForTexture(@Nonnull final ResourceLocation texture)
+    {
+        return new ArmorAddonComponentModel(texture);
+    }
+
     @Nonnull
     @Override
     public BakedSubComponentModel generateBackedComponentModel(

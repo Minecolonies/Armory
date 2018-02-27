@@ -109,6 +109,7 @@ public class BakedMultiLayeredArmorItemModel extends BakedWrappedModel.Perspecti
         @Nullable
         @Override
         public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
+
             IMultiComponentArmorCapability capability = ArmorNBTHelper.getArmorDataFromStack(stack);
             if (capability == null)
                 return DummyModel.BAKED_MODEL;

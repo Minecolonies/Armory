@@ -23,6 +23,7 @@ import com.smithsmodding.smithscore.client.model.loader.MultiComponentModelLoade
 import com.smithsmodding.smithscore.client.model.loader.SmithsCoreOBJLoader;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelArmorStandArmor;
 import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.model.ModelSkeleton;
@@ -80,19 +81,19 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
         Map<String, RenderPlayer> skinMap = Minecraft.getMinecraft().getRenderManager().getSkinMap();
 
         RenderPlayer renderPlayer = skinMap.get("default");
-        renderPlayer.addLayer(new LayerMultiComponentArmor(new ModelPlayer(0f, false)));
+        renderPlayer.addLayer(new LayerMultiComponentArmor(new ModelPlayer(0f, false), renderPlayer.getMainModel()));
 
         renderPlayer = skinMap.get("slim");
-        renderPlayer.addLayer(new LayerMultiComponentArmor(new ModelPlayer(0f, true)));
+        renderPlayer.addLayer(new LayerMultiComponentArmor(new ModelPlayer(0f, true), renderPlayer.getMainModel()));
 
         RenderZombie renderZombie = (RenderZombie) Minecraft.getMinecraft().getRenderManager().entityRenderMap.get(EntityZombie.class);
-        renderZombie.addLayer(new LayerMultiComponentArmor(new ModelZombie()));
+        renderZombie.addLayer(new LayerMultiComponentArmor(new ModelZombie(), renderZombie.getMainModel()));
 
         RenderSkeleton renderSkeleton = (RenderSkeleton) Minecraft.getMinecraft().getRenderManager().entityRenderMap.get(EntitySkeleton.class);
-        renderSkeleton.addLayer(new LayerMultiComponentArmor(new ModelSkeleton()));
+        renderSkeleton.addLayer(new LayerMultiComponentArmor(new ModelSkeleton(), renderSkeleton.getMainModel()));
 
         RenderArmorStand renderArmorStand = (RenderArmorStand) Minecraft.getMinecraft().getRenderManager().entityRenderMap.get(EntityArmorStand.class);
-        renderArmorStand.addLayer(new LayerMultiComponentArmor(new ModelArmorStandArmor()));
+        renderArmorStand.addLayer(new LayerMultiComponentArmor(new ModelArmorStandArmor(), renderArmorStand.getMainModel()));
     }
 
     private void registerIIR() {

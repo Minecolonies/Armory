@@ -152,7 +152,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
     }
 
     @Override
-    public EntityPlayer getPlayer(MessageContext pContext) {
+    public EntityPlayer getPlayer(MessageContext messageContext) {
         return Minecraft.getMinecraft().player;
     }
 

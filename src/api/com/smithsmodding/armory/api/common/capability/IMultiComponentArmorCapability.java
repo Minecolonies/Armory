@@ -365,7 +365,7 @@ public interface IMultiComponentArmorCapability {
             NBTTagCompound compound = (NBTTagCompound) nbt;
 
             instance.setArmorType(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Armor.NAME))));
-            instance.setInstalledExtensions(ArmorNBTHelper.getExtensionMap(compound.getTagList(References.NBTTagCompoundData.Armor.ADDONS, Constants.NBT.TAG_STRING)));
+            instance.setInstalledExtensions(ArmorNBTHelper.getExtensionMap(compound.getTagList(References.NBTTagCompoundData.Armor.ADDONS, Constants.NBT.TAG_COMPOUND)));
             instance.setBroken(compound.getBoolean(References.NBTTagCompoundData.Armor.IS_BROKEN));
             instance.setMaterial(IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Armor.CORE_MATERIAL))));
             instance.setMaximalDurability(compound.getInteger(References.NBTTagCompoundData.Armor.TOTAL_DURABILITY));

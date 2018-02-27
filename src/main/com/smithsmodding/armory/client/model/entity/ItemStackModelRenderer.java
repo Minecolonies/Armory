@@ -1,13 +1,13 @@
 package com.smithsmodding.armory.client.model.entity;
 
+import com.smithsmodding.armory.api.client.model.entity.IRenderCallback;
+import com.smithsmodding.armory.api.client.model.entity.IRotationAngleUpdateCallback;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -18,35 +18,30 @@ public class ItemStackModelRenderer extends ModelRenderer
     private IBakedModel model = null;
     private final IRenderCallback              preRenderCallback;
     private final IRenderCallback              postRenderCallback;
-    private final IRotationAngleUpdateCallback rotationAngleUpdateCallback;
 
     public ItemStackModelRenderer(
                                    final IRenderCallback preRenderCallback,
-                                   final IRenderCallback postRenderCallback,
-                                   final IRotationAngleUpdateCallback rotationAngleUpdateCallback)
+                                   final IRenderCallback postRenderCallback)
     {
-        this(preRenderCallback, postRenderCallback, rotationAngleUpdateCallback, Optional.empty());
+        this(preRenderCallback, postRenderCallback, Optional.empty());
     }
 
     public ItemStackModelRenderer(
       final IRenderCallback preRenderCallback,
       final IRenderCallback postRenderCallback,
-      final IRotationAngleUpdateCallback rotationAngleUpdateCallback,
       final ModelRenderer originalRenderer)
     {
-        this(preRenderCallback, postRenderCallback, rotationAngleUpdateCallback, Optional.ofNullable(originalRenderer));
+        this(preRenderCallback, postRenderCallback, Optional.ofNullable(originalRenderer));
     }
 
     public ItemStackModelRenderer(
       final IRenderCallback preRenderCallback,
       final IRenderCallback postRenderCallback,
-      final IRotationAngleUpdateCallback rotationAngleUpdateCallback,
       final Optional<ModelRenderer> originalRenderer)
     {
         super(new ModelBase() {});
         this.preRenderCallback = preRenderCallback;
         this.postRenderCallback = postRenderCallback;
-        this.rotationAngleUpdateCallback = rotationAngleUpdateCallback;
 
         this.rotateAngleZ = (float) Math.PI;
         
@@ -78,8 +73,6 @@ public class ItemStackModelRenderer extends ModelRenderer
         {
             if (this.showModel)
             {
-
-                this.rotationAngleUpdateCallback.apply(scale, this);
                 GlStateManager.translate(this.offsetX, this.offsetY, this.offsetZ);
 
                 if (this.rotateAngleX == 0.0F && this.rotateAngleY == 0.0F && this.rotateAngleZ == 0.0F)
@@ -109,12 +102,12 @@ public class ItemStackModelRenderer extends ModelRenderer
 
                     if (this.rotateAngleY != 0.0F)
                     {
-                        GlStateManager.rotate(-this.rotateAngleY * (180F / (float)Math.PI), 0.0F, 1.0F, 0.0F);
+                        GlStateManager.rotate(this.rotateAngleY * (180F / (float)Math.PI), 0.0F, 1.0F, 0.0F);
                     }
 
                     if (this.rotateAngleX != 0.0F)
                     {
-                        GlStateManager.rotate(-this.rotateAngleX * (180F / (float)Math.PI) + 180, 1.0F, 0.0F, 0.0F);
+                        GlStateManager.rotate(this.rotateAngleX * (180F / (float)Math.PI), 1.0F, 0.0F, 0.0F);
                     }
 
                     renderItemStack(scale);

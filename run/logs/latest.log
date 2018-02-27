@@ -1,10 +1,10 @@
-[16:52:06] [Client thread/INFO]: Setting user: Player565
-[16:52:12] [Client thread/WARN]: Skipping bad option: lastServer:
-[16:52:12] [Client thread/INFO]: LWJGL Version: 2.9.4
-[16:52:13] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
-// Oh - I know what I did wrong!
+[13:34:48] [Client thread/INFO]: Setting user: Player854
+[13:34:54] [Client thread/WARN]: Skipping bad option: lastServer:
+[13:34:54] [Client thread/INFO]: LWJGL Version: 2.9.4
+[13:34:56] [Client thread/INFO]: [STDOUT]: ---- Minecraft Crash Report ----
+// I'm sorry, Dave.
 
-Time: 2/26/18 4:52 PM
+Time: 2/27/18 1:34 PM
 Description: Loading screen debug info
 
 This is just a prompt for computer specs to be printed. THIS IS NOT A ERROR
@@ -19,7 +19,7 @@ Details:
 	Operating System: Windows 10 (amd64) version 10.0
 	Java Version: 1.8.0_151, Oracle Corporation
 	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
-	Memory: 689075760 bytes (657 MB) / 892338176 bytes (851 MB) up to 7621050368 bytes (7268 MB)
+	Memory: 702688440 bytes (670 MB) / 894435328 bytes (853 MB) up to 7621050368 bytes (7268 MB)
 	JVM Flags: 0 total; 
 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
 	FML: 
@@ -27,35 +27,35 @@ Details:
 SmithsCoreFMLPlugin (unknown)
   
 	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.6.0 NVIDIA 388.13' Renderer: 'GeForce GTX 770/PCIe/SSE2'
-[16:52:19] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[16:52:26] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[16:52:26] [Thread-8/INFO]: Initializing LWJGL OpenAL
-[16:52:26] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[16:52:26] [Thread-8/INFO]: OpenAL initialized.
-[16:52:26] [Sound Library Loader/INFO]: Sound engine started
-[16:52:34] [Client thread/INFO]: Created: 16x16 textures-atlas
-[16:52:37] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
-[16:52:42] [Client thread/INFO]: SoundSystem shutting down...
-[16:52:42] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
-[16:52:42] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[16:52:42] [Thread-10/INFO]: Initializing LWJGL OpenAL
-[16:52:42] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[16:52:42] [Thread-10/INFO]: OpenAL initialized.
-[16:52:42] [Sound Library Loader/INFO]: Sound engine started
-[16:52:50] [Client thread/INFO]: Created: 1024x1024 textures-atlas
-[16:52:52] [Client thread/WARN]: Skipping bad option: lastServer:
-[16:52:54] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
-[16:54:49] [Server thread/INFO]: Starting integrated minecraft server version 1.11.2
-[16:54:49] [Server thread/INFO]: Generating keypair
-[16:54:50] [Server thread/INFO]: Preparing start region for level 0
-[16:54:50] [Server thread/INFO]: Changing view distance to 12, from 10
-[16:54:52] [Server thread/INFO]: Player565[local:E:c9a5ba9d] logged in with entity id 16 at (-569.697012947515, 4.5, 736.3359101152986)
-[16:54:52] [Server thread/INFO]: Player565 joined the game
-[16:54:53] [Server thread/INFO]: Saving and pausing game...
-[16:54:53] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[16:54:53] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[16:54:53] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[16:54:53] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@193ba49e[id=f72636fb-c7db-3c44-8cd4-8a6790fd9b69,name=Player565,properties={},legacy=false]
+[13:35:02] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[13:35:09] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[13:35:09] [Thread-8/INFO]: Initializing LWJGL OpenAL
+[13:35:09] [Thread-8/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[13:35:09] [Thread-8/INFO]: OpenAL initialized.
+[13:35:10] [Sound Library Loader/INFO]: Sound engine started
+[13:35:17] [Client thread/INFO]: Created: 16x16 textures-atlas
+[13:35:20] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:smithscore, FMLFileResourcePack:Just Enough Items
+[13:35:26] [Client thread/INFO]: SoundSystem shutting down...
+[13:35:26] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[13:35:26] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[13:35:26] [Thread-10/INFO]: Initializing LWJGL OpenAL
+[13:35:26] [Thread-10/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[13:35:26] [Thread-10/INFO]: OpenAL initialized.
+[13:35:26] [Sound Library Loader/INFO]: Sound engine started
+[13:35:35] [Client thread/INFO]: Created: 1024x1024 textures-atlas
+[13:36:34] [Client thread/WARN]: Skipping bad option: lastServer:
+[13:36:35] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
+[13:36:42] [Server thread/INFO]: Starting integrated minecraft server version 1.11.2
+[13:36:42] [Server thread/INFO]: Generating keypair
+[13:36:42] [Server thread/INFO]: Preparing start region for level 0
+[13:36:43] [Server thread/INFO]: Changing view distance to 12, from 10
+[13:36:44] [Server thread/INFO]: Player854[local:E:151b76e3] logged in with entity id 98 at (135.95388730415172, 58.0, 539.6489697106407)
+[13:36:44] [Server thread/INFO]: Player854 joined the game
+[13:36:47] [Server thread/INFO]: Saving and pausing game...
+[13:36:47] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:36:47] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:36:47] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:36:48] [pool-2-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@2180872a[id=2a68c4a4-c1ba-3396-a626-ac7041e25da5,name=Player854,properties={},legacy=false]
 com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
 	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:79) ~[YggdrasilAuthenticationService.class:?]
 	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) [YggdrasilMinecraftSessionService.class:?]
@@ -79,18 +79,51 @@ com.mojang.authlib.exceptions.AuthenticationException: The client has sent too m
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_151]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_151]
 	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_151]
-[16:54:54] [Server thread/INFO]: Saving and pausing game...
-[16:54:54] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[16:54:54] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[16:54:54] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[16:55:54] [Server thread/INFO]: Player565 has just earned the achievement [Taking Inventory]
-[16:55:54] [Client thread/INFO]: [CHAT] Player565 has just earned the achievement [Taking Inventory]
-[17:06:11] [Client thread/INFO]: Stopping!
-[17:06:11] [Server thread/INFO]: Stopping server
-[17:06:11] [Server thread/INFO]: Saving players
-[17:06:11] [Server thread/INFO]: Saving worlds
-[17:06:11] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[17:06:11] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[17:06:11] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[17:06:11] [Client thread/INFO]: SoundSystem shutting down...
-[17:06:11] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[13:36:48] [Server thread/INFO]: Saving and pausing game...
+[13:36:48] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[13:36:48] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[13:36:48] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[13:36:57] [Server thread/INFO]: Player854 has just earned the achievement [Taking Inventory]
+[13:36:58] [Client thread/INFO]: [CHAT] Player854 has just earned the achievement [Taking Inventory]
+[14:01:20] [Server thread/INFO]: [Player854: Given [Obsidian §rBlacksmiths Anvil] * 1 to Player854]
+[14:01:20] [Client thread/INFO]: [CHAT] Given [Obsidian §rBlacksmiths Anvil] * 1 to Player854
+[14:01:49] [Client thread/INFO]: [CHAT] armory:gold.addon, armory:gold.core, armory:iron.addon, armory:iron.anvil, armory:iron.core, armory:iron.hardened.addon, armory:iron.hardened.core, armory:obsidian.addon, armory:obsidian.anvil, armory:obsidian.core, armory:steel.addon, armory:steel.core, armory:stone.anvil
+[14:02:01] [Client thread/INFO]: [CHAT] armory:block, armory:chain, armory:ingot, armory:nugget, armory:plate, armory:ring
+[14:02:02] [Client thread/INFO]: [CHAT] armory:block, armory:chain, armory:ingot, armory:nugget, armory:plate, armory:ring
+[14:02:02] [Client thread/INFO]: [CHAT] armory:block, armory:chain, armory:ingot, armory:nugget, armory:plate, armory:ring
+[14:02:02] [Client thread/INFO]: [CHAT] armory:block, armory:chain, armory:ingot, armory:nugget, armory:plate, armory:ring
+[14:02:03] [Client thread/INFO]: [CHAT] armory:block, armory:chain, armory:ingot, armory:nugget, armory:plate, armory:ring
+[14:02:03] [Client thread/INFO]: [CHAT] armory:block, armory:chain, armory:ingot, armory:nugget, armory:plate, armory:ring
+[14:02:44] [Server thread/INFO]: [Player854: Given [§rLeft ear Protector] * 1 to Player854]
+[14:02:44] [Client thread/INFO]: [CHAT] Given [§rLeft ear Protector] * 1 to Player854
+[14:02:45] [Server thread/INFO]: [Player854: Given [§rRight ear Protector] * 1 to Player854]
+[14:02:45] [Client thread/INFO]: [CHAT] Given [§rRight ear Protector] * 1 to Player854
+[14:02:58] [Server thread/INFO]: [Player854: Given [Smith's Hammer] * 1 to Player854]
+[14:02:58] [Client thread/INFO]: [CHAT] Given [Smith's Hammer] * 1 to Player854
+[14:03:01] [Server thread/INFO]: [Player854: Given [Smith's Tongs] * 1 to Player854]
+[14:03:01] [Client thread/INFO]: [CHAT] Given [Smith's Tongs] * 1 to Player854
+[14:03:43] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 5571ms behind, skipping 111 tick(s)
+[14:05:19] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 45282ms behind, skipping 905 tick(s)
+[14:05:44] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 24337ms behind, skipping 486 tick(s)
+[14:07:37] [Server thread/INFO]: [Player854: Given [Iron§r Medieval Chestplate] * 1 to Player854]
+[14:07:37] [Client thread/INFO]: [CHAT] Given [Iron§r Medieval Chestplate] * 1 to Player854
+[14:07:53] [Server thread/INFO]: [Player854: Given [§rLeft shoulder Protector Pad] * 1 to Player854]
+[14:07:53] [Client thread/INFO]: [CHAT] Given [§rLeft shoulder Protector Pad] * 1 to Player854
+[14:07:59] [Server thread/INFO]: [Player854: Set the time to 1000]
+[14:07:59] [Client thread/INFO]: [CHAT] Set the time to 1000
+[14:09:43] [Server thread/INFO]: Saving and pausing game...
+[14:09:43] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[14:09:43] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[14:09:43] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[14:09:44] [Server thread/INFO]: Stopping server
+[14:09:44] [Server thread/INFO]: Saving players
+[14:09:44] [Server thread/INFO]: Player854 lost connection: TextComponent{text='Disconnected', siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}}
+[14:09:44] [Server thread/INFO]: Player854 left the game
+[14:09:44] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[14:09:44] [Server thread/INFO]: Saving worlds
+[14:09:44] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[14:09:44] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[14:09:44] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[14:09:45] [Client thread/INFO]: Stopping!
+[14:09:45] [Client thread/INFO]: SoundSystem shutting down...
+[14:09:45] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com

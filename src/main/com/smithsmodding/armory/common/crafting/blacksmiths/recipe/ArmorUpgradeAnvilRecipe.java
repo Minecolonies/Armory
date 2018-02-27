@@ -93,7 +93,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
         for (int slot = 0; slot < ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS; slot++) {
             ItemStack slotContent = additionalSlotContents[slot];
 
-            if (slotContent != null) {
+            if (slotContent != null && !slotContent.isEmpty()) {
                 if (getAdditionalComponents()[slot] == null) {
                     return false;
                 } else if (!getAdditionalComponents()[slot].isValidComponentForSlot(slotContent)) {

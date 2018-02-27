@@ -26,7 +26,8 @@ public class ArmoryCommonProxy {
         registry.register(CommonCommandInitializer.getInstance().setRegistryName(References.InternalNames.InitializationComponents.Common.COMMAND));
     }
 
-    public EntityPlayer getPlayer(@Nonnull MessageContext pContext) {
-        return pContext.getServerHandler().playerEntity;
+    public EntityPlayer getPlayer(@Nonnull MessageContext messageContext) {
+        return messageContext.getServerHandler().playerEntity;
     }
+
 }

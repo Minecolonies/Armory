@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.client.render.entity;
 
-import com.google.common.collect.Maps;
 import com.smithsmodding.armory.api.client.model.ModelPart;
+import com.smithsmodding.armory.api.client.model.entity.IModelUpdateCallback;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
 import com.smithsmodding.armory.client.model.entity.ItemStackModelRenderer;
@@ -9,34 +9,34 @@ import com.smithsmodding.armory.client.model.entity.LayerMultiComponentArmorMode
 import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
 import com.smithsmodding.armory.common.item.armor.ItemMultiComponentArmor;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Map;
 
 /**
  * Class used to render an ItemMultiComponentArmor as Armor on Biped Models.
  */
-public class LayerMultiComponentArmor implements LayerRenderer<EntityLivingBase>
+public class LayerMultiComponentArmor<E extends EntityLivingBase, M extends ModelBiped> implements LayerRenderer<E>
 {
-    protected static final ResourceLocation ENCHANTED_ITEM_GLINT_RES = new ResourceLocation("textures/misc/enchanted_item_glint.png");
+    @Nonnull
+    private final M         modelBiped;
+    @Nonnull
+    private final ModelBase mainModel;
 
-    private final ModelBiped modelBiped;
-
-    private static final Map<String, ResourceLocation> ARMOR_TEXTURE_RES_MAP = Maps.<String, ResourceLocation>newHashMap();
-
-    public LayerMultiComponentArmor(final ModelBiped modelBiped)
+    public LayerMultiComponentArmor(@Nonnull final M modelBiped, @Nonnull final ModelBase mainModel)
     {
         this.modelBiped = modelBiped;
+        this.mainModel = mainModel;
 
         this.updateModel();
     }
@@ -51,7 +51,7 @@ public class LayerMultiComponentArmor implements LayerRenderer<EntityLivingBase>
         modelBiped.bipedRightLeg = LayerMultiComponentArmorModelHelper.getBipedRightLegRenderer(modelBiped.bipedRightLeg);
     }
 
-    public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    public void doRenderLayer(E entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
         this.renderArmorLayer(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale, EntityEquipmentSlot.CHEST);
         this.renderArmorLayer(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale, EntityEquipmentSlot.LEGS);
@@ -64,7 +64,7 @@ public class LayerMultiComponentArmor implements LayerRenderer<EntityLivingBase>
         return false;
     }
 
-    private void renderArmorLayer(EntityLivingBase entityLivingBaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale, EntityEquipmentSlot slotIn)
+    private void renderArmorLayer(E entityLivingBaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale, EntityEquipmentSlot slotIn)
     {
         @Nonnull final ItemStack itemstack = entityLivingBaseIn.getItemStackFromSlot(slotIn);
 
@@ -84,13 +84,14 @@ public class LayerMultiComponentArmor implements LayerRenderer<EntityLivingBase>
                 }
 
                 Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-                modelBiped.setModelAttributes(this.modelBiped);
                 modelBiped.setLivingAnimations(entityLivingBaseIn, limbSwing, limbSwingAmount, partialTicks);
-                this.setModelSlotVisible(modelBiped, slotIn);
+                modelBiped.setModelAttributes(this.mainModel);
 
+                this.setModelSlotVisible(modelBiped, slotIn);
                 this.updateModelsForStackAndModel(itemstack, (BakedMultiLayeredArmorItemModel) t, entityLivingBaseIn);
 
                 modelBiped.isChild = entityLivingBaseIn.isChild();
+                modelBiped.swingProgress = entityLivingBaseIn.getSwingProgress(partialTicks);
                 modelBiped.render(entityLivingBaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
             }
         }
