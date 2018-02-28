@@ -1,8 +1,10 @@
 package com.smithsmodding.armory.common.item;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.capability.IArmorComponentStackCapability;
+import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.References;
@@ -51,6 +53,14 @@ public class ItemArmorComponent extends Item {
 
         IArmorComponentStackCapability capability = stack.getCapability(ModCapabilities.MOD_ARMORCOMPONENT_CAPABILITY, null);
         IMultiComponentArmorExtension extension = capability.getExtension();
+
+        if (extension instanceof IMaterialDependantMultiComponentArmorExtension)
+        {
+            IMaterialDependantMultiComponentArmorExtension materialDependantMultiComponentArmorExtension = (IMaterialDependantMultiComponentArmorExtension) extension;
+            IMaterial material = materialDependantMultiComponentArmorExtension.getMaterial();
+
+            return material.getTextFormatting() + I18n.translateToLocal(material.getTranslationKey()) + " " + extension.getTextFormatting() + I18n.translateToLocal(extension.getTranslationKey());
+        }
 
         return extension.getTextFormatting() + I18n.translateToLocal(extension.getTranslationKey());
     }

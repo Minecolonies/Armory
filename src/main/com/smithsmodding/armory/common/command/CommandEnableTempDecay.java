@@ -8,6 +8,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.text.TextComponentTranslation;
 
 import javax.annotation.Nonnull;
 
@@ -37,6 +38,18 @@ public class CommandEnableTempDecay extends CommandBase {
         if (args.length != 1)
             throw new WrongUsageException(TranslationKeys.Messages.Commands.TK_TEMPDECAYUSAGE);
 
-        ArmoryConfig.enableTemperatureDecay = parseBoolean(args[0]);
+        boolean enabled = ArmoryConfig.enableTemperatureDecay;
+
+        if (!args[0].equalsIgnoreCase("query"))
+        {
+            enabled = parseBoolean(args[0]);
+        }
+
+        ArmoryConfig.enableTemperatureDecay = enabled;
+
+        String resultMessage = enabled ? TranslationKeys.Messages.Commands.Successfull.TK_TEMPDECAY_ENABLE : TranslationKeys.Messages.Commands.Successfull.TK_TEMPDECAY_DISABLE;
+
+        sender.sendMessage(new TextComponentTranslation(resultMessage));
     }
+
 }

@@ -88,9 +88,15 @@ item.armory.multiarmor.upgrade.shoes.lacesleft=Left laces Protector
 item.armory.multiarmor.upgrade.shoes.lacesright=Right laces Protector
 #
 #Commands
-armory.usage=/armory
+armory.usage=/armory <subcommand>
 give-heated-item.usage=Gives heated Items. Syntax: <Player> <MaterialID> <ItemType> <Temperature>
-temp-decay.usage=Enables or disables the server wide decay of a heated Item in a PlayerInventory. Syntax <True/False>
+temp-decay.usage=Enables or disables the server wide decay of a heated Item in a PlayerInventory. Syntax <True/False/Query>
+temp-decay.success.enable=Temperature decay is enabled.
+temp-decay.success.disable=Temperature decay is disabled.
+upgrade-armor.usage=Upgrades the currently selected Armor with an Extension off the given Id. Syntax: <ExtensionId>
+upgrade-armor.error.noarmorselected=Cannot upgrade Armor. You have to hold the armor you want to upgrade in your main hand.
+upgrade-armor.error.alreadyinstalled=Cannot upgrade Armor. You have the requested upgrade already installed.
+upgrade-armor.error.notpossible=Cannot upgrade Armor. The installation failed.
 #
 #Smithings Guide Tooltip
 armory.items.smithingsguide.tooltip1=Contains:

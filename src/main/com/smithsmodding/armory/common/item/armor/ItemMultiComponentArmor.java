@@ -9,6 +9,7 @@ import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
+import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.client.model.entity.LayerMultiComponentArmorModelHelper;
 import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
@@ -172,6 +173,14 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
     public String getItemStackDisplayName(ItemStack stack) {
         if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
             return "Stack has No Data!";
+
+        if (stack.hasTagCompound())
+        {
+            if (stack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
+            {
+                return TextFormatting.ITALIC + stack.getTagCompound().getString(References.NBTTagCompoundData.CustomName) + TextFormatting.RESET;
+            }
+        }
 
         IMultiComponentArmorCapability capability = stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
         IMultiComponentArmor armorType = capability.getArmorType();

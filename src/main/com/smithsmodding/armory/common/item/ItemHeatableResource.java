@@ -22,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
@@ -47,7 +48,7 @@ public abstract class ItemHeatableResource extends Item implements IHeatableObje
 
         IMaterializedStackCapability capability = stack.getCapability(ModCapabilities.MOD_MATERIALIZEDSSTACK_CAPABIITY, null);
         return capability.getMaterial().getTextFormatting() + I18n.translateToLocal(capability.getMaterial().getTranslationKey())
-                + " " + I18n.translateToLocal(this.getUnlocalizedName() + ".name");
+                + " " + TextFormatting.RESET + I18n.translateToLocal(this.getUnlocalizedName() + ".name");
     }
 
     @Override

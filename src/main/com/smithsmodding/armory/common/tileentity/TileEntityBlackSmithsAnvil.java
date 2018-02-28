@@ -15,6 +15,7 @@ import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -288,6 +289,10 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
                 } else {
                     outputStacks[0] = getCurrentRecipe().getResult(craftingStacks, additionalCraftingStacks);
                     if (!(getState()).getItemName().equals("")) {
+                        if (!outputStacks[0].hasTagCompound())
+                        {
+                            outputStacks[0].setTagCompound(new NBTTagCompound());
+                        }
                         outputStacks[0].getTagCompound().setString(References.NBTTagCompoundData.CustomName, (getState()).getItemName());
                     }
                 }

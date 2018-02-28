@@ -61,6 +61,6 @@ public class ItemBlockHeatbableResource extends ItemBlock {
             return super.getItemStackDisplayName(stack);
 
         IMaterializedStackCapability capability = stack.getCapability(ModCapabilities.MOD_MATERIALIZEDSSTACK_CAPABIITY, null);
-        return I18n.format(this.getUnlocalizedName() + ".name") + capability.getMaterial().getTextFormatting() + I18n.format(capability.getMaterial().getTranslationKey()) + TextFormatting.RESET;
+        return I18n.format(this.getUnlocalizedName() + ".name") + " " + capability.getMaterial().getTextFormatting() + I18n.format(capability.getMaterial().getTranslationKey()) + TextFormatting.RESET;
     }
 }

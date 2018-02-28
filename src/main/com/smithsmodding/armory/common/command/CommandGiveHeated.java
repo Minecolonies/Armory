@@ -35,6 +35,12 @@ public class CommandGiveHeated extends CommandBase {
         return References.InternalNames.Commands.GIVEHEATED;
     }
 
+    @Override
+    public int getRequiredPermissionLevel()
+    {
+        return 2;
+    }
+
     /**
      * Gets the usage string for the command.
      *

@@ -20,9 +20,21 @@ public class TranslationKeys {
 
     public static final class Messages {
         public static final class Commands {
-            public static final String TK_BASEUSAGE = References.InternalNames.Commands.BASECOMMAND + ".usage";
-            public static final String TK_GIVEHEATEDUSAGE = References.InternalNames.Commands.GIVEHEATED + ".usage";
-            public static final String TK_TEMPDECAYUSAGE = References.InternalNames.Commands.ENABLEDECAY + ".usage";
+            public static final String TK_BASEUSAGE         = References.InternalNames.Commands.BASECOMMAND + ".usage";
+            public static final String TK_GIVEHEATEDUSAGE   = References.InternalNames.Commands.GIVEHEATED + ".usage";
+            public static final String TK_TEMPDECAYUSAGE    = References.InternalNames.Commands.ENABLEDECAY + ".usage";
+            public static final String TK_UPGRADEARMORUSAGE = References.InternalNames.Commands.UPGRADEARMOR + ".usage";
+
+            public static final class Successfull {
+                public static final String TK_TEMPDECAY_ENABLE = References.InternalNames.Commands.ENABLEDECAY + ".success.enable";
+                public static final String TK_TEMPDECAY_DISABLE = References.InternalNames.Commands.ENABLEDECAY + ".success.disable";
+            }
+
+            public static final class Errors {
+                public static final String TK_UPGRADEARMOR_NOARMORSELECTED = References.InternalNames.Commands.UPGRADEARMOR + ".error.noarmorselected";
+                public static final String TK_UPGRADEARMOR_ALREADYINSTALLED = References.InternalNames.Commands.UPGRADEARMOR + ".error.alreadyinstalled";
+                public static final String TK_UPGRADEARMOR_NOTPOSSIBLE = References.InternalNames.Commands.UPGRADEARMOR + ".error.notpossible";
+            }
         }
 
     }

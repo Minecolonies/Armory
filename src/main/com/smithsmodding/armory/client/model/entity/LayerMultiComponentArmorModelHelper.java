@@ -96,7 +96,7 @@ public class LayerMultiComponentArmorModelHelper
         GlStateManager.pushMatrix();
 
         GlStateManager.translate(-0.5f * scale, 2f*scale, 0);
-        GlStateManager.scale(1.2f, -1.0f, 1.2f);
+        GlStateManager.scale(-1.2f, -1.0f, -1.2f);
 
         GlStateManager.pushMatrix();
     }
@@ -105,7 +105,7 @@ public class LayerMultiComponentArmorModelHelper
         GlStateManager.pushMatrix();
 
         GlStateManager.translate(+0.5f * scale, 2f*scale, -0*scale);
-        GlStateManager.scale(1.2f, -1f, 1.2f);
+        GlStateManager.scale(-1.2f, -1f, -1.2f);
 
         GlStateManager.pushMatrix();
     }
