@@ -68,8 +68,8 @@ public class LayerMultiComponentArmorModelHelper
     private static void preBodyMainRender(float scale, @NotNull final ModelRenderer renderer) {
         GlStateManager.pushMatrix();
 
-        GlStateManager.translate(4.75f * scale, 7.5f * scale, -2f * scale);
-        GlStateManager.scale(1.2f, -1f, 1.2f);
+        GlStateManager.translate(-4.75f * scale, 7.5f * scale, -2f * scale);
+        GlStateManager.scale(-1.2f, -1f, 1.2f);
 
         GlStateManager.pushMatrix();
     }

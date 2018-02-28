@@ -25,6 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import javax.vecmath.Vector3f;
 import java.util.HashMap;
 
 /**
@@ -110,11 +111,11 @@ public class MultiLayerArmorPartModel extends ItemLayerModel {
                 extension = ((IMaterialDependantMultiComponentArmorExtension) extension).getMaterialIndependentExtension();
 
             if (parts.containsKey(extension)) {
-                mappedParts.put(extension, parts.get(extension).generateBackedComponentModel(state, format, bakedTextureGetter));
+                mappedParts.put(extension, parts.get(extension).generateBackedComponentModel(state, format, bakedTextureGetter, internalTransform));
 
                 //If a part was found, also check for its broken counterpart.
                 if (brokenParts.containsKey(extension)) {
-                    mappedBrokenParts.put(extension, parts.get(extension).generateBackedComponentModel(state, format, bakedTextureGetter));
+                    mappedBrokenParts.put(extension, parts.get(extension).generateBackedComponentModel(state, format, bakedTextureGetter, internalTransform));
                 }
             } else {
                 //For a given MLAAddon on the armor was no texture found.
