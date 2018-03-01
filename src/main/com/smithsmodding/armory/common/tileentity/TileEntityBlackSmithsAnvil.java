@@ -297,6 +297,8 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
                     }
                 }
 
+                getState().setItemName("");
+
                 ProcessPerformedCrafting();
                 setCurrentRecipe(null);
                 (getState()).setCraftingprogress(0);

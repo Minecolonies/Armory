@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "armory:guide/Guide.obj",
+    "model": "armory:guide/guide.obj",
     "custom": {
       "flip-v": true,
       "gui3d": false

@@ -69,6 +69,7 @@ public class ItemStackModelRenderer extends ModelRenderer
     @Override
     public void render(final float scale)
     {
+        Minecraft.getMinecraft().world.theProfiler.startSection("Armory-3D-Model");
         if (!this.isHidden)
         {
             if (this.showModel)
@@ -118,6 +119,7 @@ public class ItemStackModelRenderer extends ModelRenderer
                 GlStateManager.translate(-this.offsetX, -this.offsetY, -this.offsetZ);
             }
         }
+        Minecraft.getMinecraft().world.theProfiler.endSection();
     }
 
     public void renderItemStack(float scale)
@@ -125,8 +127,16 @@ public class ItemStackModelRenderer extends ModelRenderer
         if (stack == null || model == null)
             return;
 
+        Minecraft.getMinecraft().world.theProfiler.startSection("Pre-Callback");
         preRenderCallback.apply(scale, this);
+        Minecraft.getMinecraft().world.theProfiler.endSection();
+
+        Minecraft.getMinecraft().world.theProfiler.startSection("Model-Render");
         Minecraft.getMinecraft().getRenderItem().renderItem(stack, model);
+        Minecraft.getMinecraft().world.theProfiler.endSection();
+
+        Minecraft.getMinecraft().world.theProfiler.startSection("Post-Callback");
         postRenderCallback.apply(scale, this);
+        Minecraft.getMinecraft().world.theProfiler.endSection();
     }
 }

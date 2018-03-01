@@ -72,7 +72,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
         meltIngots();
 
-        //markDirty();
+        markDirty();
     }
 
     @Override
@@ -126,7 +126,7 @@ public class TileEntityForge extends TileEntityForgeBase<TileEntityForgeState, T
 
                 getState().setMeltingProgress(i, (getState().getMeltingProgess(i) + 1F / material.getMeltingTime()));
 
-                stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null).setTemperatur(material.getMeltingPoint());
+                stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null).setTemperature(material.getMeltingPoint());
             }
 
             if (getState().getMeltingProgess(i) > 1F) {

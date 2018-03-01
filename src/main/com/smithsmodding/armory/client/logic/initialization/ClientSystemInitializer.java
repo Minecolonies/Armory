@@ -112,7 +112,8 @@ public class ClientSystemInitializer extends IInitializationComponent.Impl {
         ArmoryClientProxy.registerMaterializedItemModel(ModItems.IT_INGOT);
 
         SmithsCoreOBJLoader.INSTANCE.addDomain(References.General.MOD_ID.toLowerCase());
-        ModelLoader.setCustomModelResourceLocation(ModItems.IT_GUIDE, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + "armory.Items.SmithingsGuide", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(ModItems.IT_GUIDE, 0, new ModelResourceLocation(References.General.MOD_ID.toLowerCase() + ":" + "armory.items.smithingsguide", "inventory"));
+        ModelBakery.registerItemVariants(ModItems.IT_GUIDE, new ResourceLocation(References.General.MOD_ID.toLowerCase(), "armory.items.smithingsguide"));
 
         MultiComponentModelLoader.instance.registerDomain(References.General.MOD_ID);
         CoreClientProxy.registerMultiComponentItemModel(ModItems.IT_TONGS, new ResourceLocation(References.General.MOD_ID.toLowerCase(), "Armory.Resources." + MultiComponentModelLoader.EXTENSION));

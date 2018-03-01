@@ -30,7 +30,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
      * @param temperature the new Temperature
      * @return The instance this method was called on so that method chaining can happen.
      */
-    IHeatedObjectCapability setTemperatur(@Nonnull Float temperature);
+    IHeatedObjectCapability setTemperature(@Nonnull Float temperature);
 
     /**
      * Method used to increase the temperature stored in this capability.
@@ -112,7 +112,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
          * @return The instance this method was called on so that method chaining can happen.
          */
         @Override
-        public IHeatedObjectCapability setTemperatur(@Nonnull Float temperature) {
+        public IHeatedObjectCapability setTemperature(@Nonnull Float temperature) {
             this.temperature = temperature;
             return this;
         }
@@ -124,7 +124,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
          */
         @Override
         public void increaseTemperatur(@Nonnull Float addition) {
-            this.setTemperatur(getTemperature() + addition);
+            this.setTemperature(getTemperature() + addition);
         }
 
         /**
@@ -218,7 +218,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
 
             heatableStorage.read(instance, compound);
 
-            instance.setTemperatur(compound.getFloat(References.NBTTagCompoundData.HeatedObject.HEATEDTEMP));
+            instance.setTemperature(compound.getFloat(References.NBTTagCompoundData.HeatedObject.HEATEDTEMP));
 
             if (compound.hasKey(References.NBTTagCompoundData.HeatedObject.HEATEDSTACK))
                 instance.setOriginalStack(new ItemStack(compound.getCompoundTag(References.NBTTagCompoundData.HeatedObject.HEATEDSTACK)));

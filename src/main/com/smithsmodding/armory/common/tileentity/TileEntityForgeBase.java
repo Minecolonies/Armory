@@ -40,8 +40,12 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
         fuelData.setBurning(fuelData.getBurningTicksLeftOnCurrentFuel() >= 1F);
 
         if (!heatIngots(fuelData, localData)) {
-            if (localData.getCurrentTemp() >= 20F) {
-                localData.setCurrentTemp(localData.getCurrentTemp() + (localData.getLastPositiveTerm() * (1 - localData.getHeatedPercentage())));
+            if (localData.getCurrentTemp() >= 19F) {
+                if (getFuelData().getBurningTicksLeftOnCurrentFuel()>0)
+                {
+                    localData.setCurrentTemp(localData.getCurrentTemp() + (localData.getLastPositiveTerm() * (1 - localData.getHeatedPercentage())));
+                }
+
                 localData.setCurrentTemp(localData.getCurrentTemp() + (localData.getLastNegativeTerm() * localData.getHeatedPercentage()));
             }
         }
@@ -134,10 +138,10 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
                 setIngotStack(ingotStackIndex, HeatedItemFactory.getInstance().convertToCooledIngot(stack));
             } else if (currentStackTemp <= localData.getCurrentTemp()) {
                 localData.setCurrentTemp(localData.getCurrentTemp() + sourceDifference);
-                capability.setTemperatur(capability.getTemperature() + targetDifference);
+                capability.setTemperature(capability.getTemperature() + targetDifference);
             } else if (capability.getTemperature() > localData.getCurrentTemp()) {
                 localData.setCurrentTemp(localData.getCurrentTemp() + targetDifference);
-                capability.setTemperatur(capability.getTemperature() + sourceDifference);
+                capability.setTemperature(capability.getTemperature() + sourceDifference);
             }
 
         }

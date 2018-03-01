@@ -2,9 +2,12 @@ package com.smithsmodding.armory.common.item.block;
 
 import com.smithsmodding.armory.api.common.capability.IMaterializedStackCapability;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
+import com.smithsmodding.armory.client.ArmoryClientProxy;
+import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -12,6 +15,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -53,6 +58,12 @@ public class ItemBlockHeatbableResource extends ItemBlock {
         internalParentDispatcher.deserializeNBT(parentCompound);
 
         return internalParentDispatcher;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public FontRenderer getFontRenderer(ItemStack stack) {
+        return CoreClientProxy.getMultiColoredFontRenderer();
     }
 
     @Override
