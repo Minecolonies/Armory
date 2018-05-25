@@ -6,6 +6,8 @@ import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.smithscore.client.events.gui.GuiInputEvent;
 import com.smithsmodding.smithscore.client.gui.components.core.IGUIComponent;
 import com.smithsmodding.smithscore.client.gui.management.TileStorageBasedGUIManager;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 
 import javax.annotation.Nonnull;
 
@@ -37,6 +39,21 @@ public class TileEntityBlackSmithsAnvilGuiManager extends TileStorageBasedGUIMan
             if (!(anvil.getCurrentRecipe() instanceof VanillaAnvilRecipe)) return "";
 
             return String.valueOf(((VanillaAnvilRecipe) anvil.getCurrentRecipe()).getRequiredLevelsPerPlayer());
+        }
+
+        if (component.getID().contains(".material"))
+        {
+            return anvil.getState().getMaterial().getTextFormatting() + I18n.translateToLocal(anvil.getState().getMaterial().getTranslationKey()) + TextFormatting.RESET;
+        }
+
+        if (component.getID().contains(".maxDurability"))
+        {
+            return anvil.getState().getMaterial().getDurability().toString();
+        }
+
+        if (component.getID().contains(".currentDurability"))
+        {
+            return ((Integer) anvil.getState().getRemainingUses()).toString();
         }
 
         return "UNKNOWN";

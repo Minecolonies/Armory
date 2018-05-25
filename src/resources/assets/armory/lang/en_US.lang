@@ -27,9 +27,26 @@ armory.gui.forge.ledger.tempcurrent=Current
 armory.gui.forge.ledger.lastadded=Last added
 armory.gui.forge.ledger.cookingmultiplier=Cooking Speed
 #
-#ArmorsAnvil GUi Specific information
+#ArmorsAnvil GUI Specific information
 armory.gui.anvil.ledger.infoline1=The Blacksmiths Anvil is used by Smiths to craft several Items from hot Metals.
 armory.gui.anvil.ledger.infoline2=It takes some time to process and sometimes a Hammer and a pair of Tongs.
+armory.gui.anvil.ledger.materialtitel=Material information
+armory.gui.anvil.ledger.materialmax=Max. Durability
+armory.gui.anvil.ledger.materialcurrent=Cur. Durability
+armory.gui.forge.anvil.material=Material
+#
+#Smithing guide GUI
+##### Introduction page
+armory.gui.guide.pages.introduction.title=Introduction
+armory.gui.guide.pages.introduction.section.one=Welcome to Armory, a modular tiered Armor mod. Armory allows you to create modular armor of 3 different tiers, each with their own abilities.
+armory.gui.guide.pages.introduction.section.two=In the next sections this Book will guide you through the basics of Armory, for example it will explain how the temperature of metal objects effects your ability to craft with them. But it will also explain the basic features and components of the Armor tiers.
+armory.gui.guide.pages.introduction.section.three=A quick reminder though, Armory is in Alpha and still under Development, as of now the first tier (Medieval) is nearly finished, and the machines for the production of the second tier are nearly finished. So certain features are both missing from the game as well as from the book.
+##### Medieval page
+armory.gui.guide.pages.medieval.title=Medieval armor
+armory.gui.guide.pages.medieval.section.one.title=Lore:
+armory.gui.guide.pages.medieval.section.one.content=When you first entered this wonderful world you noticed that hot metals are modifiable into rings and chains. After thinking about the metals and how they behaved when you used them as tools, you realized (may or may not have been due to a unfortunate encounter with a natural inhabitant of this brave new world) that you can use those metal rings and chains to protect your, oh so precious, Life. You just hoped that the metals would be able to support you during the day, but you did not get much further then adding upgrades to your newly crafted armor that defends your life.
+armory.gui.guide.pages.medieval.section.two.title=Creation:
+armory.gui.guide.pages.medieval.section.two.content.part.one=Medieval armor is made using hot rings and chains in the Blacksmiths Anvil. By combining them in the right way you can create pieces of armor that fit your body:
 #
 #NEI Compat
 armory.nei.compatibility.armorsanvilrecipe=Blacksmiths Anvil
@@ -61,6 +78,9 @@ armory.items.heatedobject.tooltip.temperature=Current Temperature
 #
 #MoltenMetalTank Specific
 item.armory.multimetaltank.contents=Contents:
+#Anvil Specific
+item.armory.itemblock.anvil.tooltip.material=Material:
+item.armory.itemblock.anvil.tooltip.remaininguses=Remaining uses:
 #
 #Materials
 armory.materials.vanilla.stone=Stone
@@ -97,10 +117,6 @@ upgrade-armor.usage=Upgrades the currently selected Armor with an Extension off 
 upgrade-armor.error.noarmorselected=Cannot upgrade Armor. You have to hold the armor you want to upgrade in your main hand.
 upgrade-armor.error.alreadyinstalled=Cannot upgrade Armor. You have the requested upgrade already installed.
 upgrade-armor.error.notpossible=Cannot upgrade Armor. The installation failed.
-#
-#Smithings Guide Tooltip
-armory.items.smithingsguide.tooltip1=Contains:
-armory.items.smithingsguide.tooltip2= Blueprints.
 #
 #Molten Metals
 armory.fluids.molten=Molten

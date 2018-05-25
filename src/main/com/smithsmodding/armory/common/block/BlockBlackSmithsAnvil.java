@@ -2,18 +2,25 @@ package com.smithsmodding.armory.common.block;
 
 import com.google.common.collect.Lists;
 import com.smithsmodding.armory.Armory;
+import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.util.client.TranslationKeys;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.ModMaterials;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
+import com.smithsmodding.armory.common.block.properties.PropertyAnvilDurability;
 import com.smithsmodding.armory.common.block.properties.PropertyAnvilMaterial;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
+import com.smithsmodding.armory.common.tileentity.state.TileEntityBlackSmithsAnvilState;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -27,6 +34,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -39,6 +47,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Marc on 14.02.2016.
@@ -46,10 +55,11 @@ import java.util.ArrayList;
 public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICustomDebugInformationBlock {
 
     public static final PropertyAnvilMaterial PROPERTY_ANVIL_MATERIAL = new PropertyAnvilMaterial("CoreMaterial");
+    public static final PropertyAnvilDurability PROPERTY_REMAINING_USES = new PropertyAnvilDurability("RemainingUses");
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
     @Nonnull
-    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE, PROPERTY_ANVIL_MATERIAL});
+    private ExtendedBlockState state = new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE, PROPERTY_ANVIL_MATERIAL, PROPERTY_REMAINING_USES});
 
 
     public BlockBlackSmithsAnvil() {
@@ -151,8 +161,12 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
     @Override
     public void onBlockPlacedBy(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull EntityLivingBase placer, @Nonnull ItemStack stack) {
         String materialID = stack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL);
+        IAnvilMaterial material = IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(materialID));
 
-        ((TileEntityBlackSmithsAnvil) worldIn.getTileEntity(pos)).getState().setMaterial(ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(materialID)));
+        TileEntityBlackSmithsAnvil tileEntityBlackSmithsAnvil = (TileEntityBlackSmithsAnvil) worldIn.getTileEntity(pos);
+        tileEntityBlackSmithsAnvil.getState().setMaterial(material);
+        if (stack.getTagCompound().hasKey(References.NBTTagCompoundData.TE.Anvil.REMAININGUSES))
+            tileEntityBlackSmithsAnvil.getState().setRemainingUses(stack.getTagCompound().getInteger(References.NBTTagCompoundData.TE.Anvil.REMAININGUSES));
 
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
 
@@ -179,6 +193,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
 
             NBTTagCompound compound = new NBTTagCompound();
             compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, material.getRegistryName().toString());
+            compound.setInteger(References.NBTTagCompoundData.TE.Anvil.REMAININGUSES, material.getDurability());
 
             stack.setTagCompound(compound);
 
@@ -203,11 +218,14 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
 
         OBJModel.OBJState objState = new OBJModel.OBJState(Lists.newArrayList(OBJModel.Group.ALL), true, transformation);
 
-        IAnvilMaterial material = ((TileEntityBlackSmithsAnvil) world.getTileEntity(pos)).getState().getMaterial();
+        TileEntityBlackSmithsAnvilState tileEntityBlackSmithsAnvilState = ((TileEntityBlackSmithsAnvil) world.getTileEntity(pos)).getState();
+        IAnvilMaterial material = tileEntityBlackSmithsAnvilState.getMaterial();
         if (material == null)
             material = ModMaterials.Anvil.IRON;
 
-        return ((IExtendedBlockState) state).withProperty(PROPERTY_ANVIL_MATERIAL, material.getRegistryName().toString()).withProperty(OBJModel.OBJProperty.INSTANCE, objState);
+        return ((IExtendedBlockState) state).withProperty(PROPERTY_ANVIL_MATERIAL, material.getRegistryName().toString())
+                 .withProperty(OBJModel.OBJProperty.INSTANCE, objState)
+                 .withProperty(PROPERTY_REMAINING_USES, tileEntityBlackSmithsAnvilState.getRemainingUses());
     }
 
     /**
@@ -270,8 +288,9 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
 
     @Nonnull
     protected BlockStateContainer createBlockState() {
-        return new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE, PROPERTY_ANVIL_MATERIAL});
+        return new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE, PROPERTY_ANVIL_MATERIAL, PROPERTY_REMAINING_USES});
     }
+
 
     @Override
     public void handleDebugInformation(@Nonnull RenderGameOverlayEvent.Text event, @Nonnull World worldIn, @Nonnull BlockPos pos) {
@@ -288,6 +307,21 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
         } else {
             event.getRight().add("AnvilMaterial: " + blackSmithsAnvil.getState().getMaterial().getRegistryName().toString());
         }
+        event.getRight().add("RemainingUses:" + blackSmithsAnvil.getState().getRemainingUses());
+    }
+
+    @Override
+    public void addInformation(final ItemStack stack, final EntityPlayer player, final List<String> tooltip, final boolean advanced)
+    {
+        String materialID = stack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL);
+        IAnvilMaterial material = IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(materialID));
+
+        if (!stack.getTagCompound().hasKey(References.NBTTagCompoundData.TE.Anvil.REMAININGUSES))
+            stack.getTagCompound().setInteger(References.NBTTagCompoundData.TE.Anvil.REMAININGUSES, material.getDurability());
+
+        tooltip.add(I18n.translateToLocal(TranslationKeys.Items.ItemBlocks.Anvil.TK_MATERIAL) + " " + material.getTextFormatting() + I18n.translateToLocal(material.getTranslationKey()));
+        tooltip.add(I18n.translateToLocal(TranslationKeys.Items.ItemBlocks.Anvil.TK_REMAININGUSES) + " " + stack.getTagCompound().getInteger(References.NBTTagCompoundData.TE.Anvil.REMAININGUSES));
+        super.addInformation(stack, player, tooltip, advanced);
     }
 
     private ItemStack generateItemStackFromWorldPos(IBlockAccess world, BlockPos pos, IBlockState state) {
@@ -296,7 +330,10 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
         ItemStack stack = new ItemStack(Item.getItemFromBlock(state.getBlock()));
         NBTTagCompound compound = new NBTTagCompound();
 
-        compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, ((IExtendedBlockState) state).getValue(PROPERTY_ANVIL_MATERIAL));
+        final IExtendedBlockState extendedBlockState = (IExtendedBlockState) state;
+
+        compound.setString(References.NBTTagCompoundData.TE.Anvil.MATERIAL, extendedBlockState.getValue(PROPERTY_ANVIL_MATERIAL));
+        compound.setInteger(References.NBTTagCompoundData.TE.Anvil.REMAININGUSES, extendedBlockState.getValue(PROPERTY_REMAINING_USES));
         stack.setTagCompound(compound);
 
         return stack;

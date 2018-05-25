@@ -11,10 +11,8 @@ import com.smithsmodding.armory.client.gui.implementations.blacksmithsanvil.GuiB
 import com.smithsmodding.armory.client.gui.implementations.fireplace.GuiFireplace;
 import com.smithsmodding.armory.client.gui.implementations.forge.GuiForge;
 import com.smithsmodding.armory.client.gui.implementations.moltenmetalmixer.GuiMoltenMetalMixer;
-import com.smithsmodding.armory.common.inventory.ContainerBlacksmithsAnvil;
-import com.smithsmodding.armory.common.inventory.ContainerFireplace;
-import com.smithsmodding.armory.common.inventory.ContainerForge;
-import com.smithsmodding.armory.common.inventory.ContainerMoltenMetalMixer;
+import com.smithsmodding.armory.client.gui.implementations.smithingsguide.GuiSmithingsGuide;
+import com.smithsmodding.armory.common.inventory.*;
 import com.smithsmodding.armory.common.tileentity.TileEntityBlackSmithsAnvil;
 import com.smithsmodding.armory.common.tileentity.TileEntityFireplace;
 import com.smithsmodding.armory.common.tileentity.TileEntityForge;
@@ -48,6 +46,11 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerMoltenMetalMixer(pPlayer, (TileEntityMoltenMetalMixer) pWorld.getTileEntity(new BlockPos(pX, pY, pZ)));
         }
 
+        if (pID == References.GuiIDs.SMITHINGSGUIDE)
+        {
+            return new ContainerSmithingsGuide(References.InternalNames.Items.IN_GUIDE, true, pPlayer);
+        }
+
         return null;
     }
 
@@ -68,6 +71,11 @@ public class GuiHandler implements IGuiHandler {
 
         if (pID == References.GuiIDs.MOLTENMETALMIXER) {
             return new GuiMoltenMetalMixer(new ContainerMoltenMetalMixer(pPlayer, (TileEntityMoltenMetalMixer) pWorld.getTileEntity(new BlockPos(pX, pY, pZ))));
+        }
+
+        if (pID == References.GuiIDs.SMITHINGSGUIDE)
+        {
+            return new GuiSmithingsGuide(new ContainerSmithingsGuide(References.InternalNames.Items.IN_GUIDE, true, pPlayer));
         }
 
         return null;

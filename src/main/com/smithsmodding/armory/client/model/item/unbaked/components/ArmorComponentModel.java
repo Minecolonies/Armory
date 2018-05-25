@@ -3,6 +3,7 @@ package com.smithsmodding.armory.client.model.item.unbaked.components;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.client.model.renderinfo.IRenderInfoProvider;
 import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
@@ -104,25 +105,32 @@ public class ArmorComponentModel extends ItemLayerModel implements IModel {
         // generate all the necessary textures for the models.
         //We retrieve those now and register them to the BakedModel later.
         ResourceLocation baseTexture = new ResourceLocation(base.getParticleTexture().getIconName());
-        Map<ResourceLocation, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(baseTexture);
+        Map<String, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(baseTexture);
 
         //Construct individual models for each of the sprites.
-        for (Map.Entry<ResourceLocation, TextureAtlasSprite> entry : sprites.entrySet()) {
+        for (Map.Entry<String, TextureAtlasSprite> entry : sprites.entrySet()) {
             //We grab the material now, that way we know the material exists before continuing.
-            ICoreArmorMaterial coreArmorMaterial = ArmoryAPI.getInstance().getRegistryManager().getCoreMaterialRegistry().getValue(entry.getKey());
-            IAddonArmorMaterial addonArmorMaterial = ArmoryAPI.getInstance().getRegistryManager().getAddonArmorMaterialRegistry().getValue(entry.getKey());
+            ICoreArmorMaterial coreArmorMaterial = IArmoryAPI.Holder.getInstance().getHelpers()
+                                                     .getRegistryHelpers()
+                                                     .findCoreMaterialUsingPredicate(c -> c.getOreDictionaryIdentifier().equalsIgnoreCase(entry.getKey()))
+                                                     .orElse(null);
+
+            IAddonArmorMaterial addonArmorMaterial = IArmoryAPI.Holder.getInstance().getHelpers()
+                                                       .getRegistryHelpers()
+                                                       .findAddonMaterialUsingPredicate(c -> c.getOreDictionaryIdentifier().equalsIgnoreCase(entry.getKey()))
+                                                       .orElse(null);
+
 
             IBakedModel bakedModel2;
 
             if (coreArmorMaterial != null) {
                 bakedModel2 = retextureIfRequired(state, format, bakedTextureGetter, entry.getValue(), coreArmorMaterial, baseTexture, coreArmorMaterial.getTextureOverrideIdentifier());
                 bakedMaterialModel.addCoreMaterialModel(coreArmorMaterial, bakedModel2);
-            } else if (addonArmorMaterial != null) {
+            }
+
+            if (addonArmorMaterial != null) {
                 bakedModel2 = retextureIfRequired(state, format, bakedTextureGetter, entry.getValue(), addonArmorMaterial, baseTexture, addonArmorMaterial.getTextureOverrideIdentifier());
                 bakedMaterialModel.addAddonMaterialModel(addonArmorMaterial, bakedModel2);
-            } else {
-                //ModLogger.getInstance().error("A ArmorItemComponentModel has a sprite without a CoreMaterial: " + entry.getKey().toString());
-                continue;
             }
         }
 

@@ -90,16 +90,21 @@ public class ArmorCoreComponentModel extends ArmorSubComponentModel {
             // generate all the necessary textures for the models.
             //We retrieve those now and register them to the BakedModel later.
             ResourceLocation baseTexture = new ResourceLocation(base.getParticleTexture().getIconName());
-            Map<ResourceLocation, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(baseTexture);
+            Map<String, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(baseTexture);
 
             //Construct individual models for each of the sprites.
-            for (Map.Entry<ResourceLocation, TextureAtlasSprite> entry : sprites.entrySet()) {
-                //Check if the sprite name contains the CoreIdentifier. Skip else.
-                if (!entry.getValue().getIconName().contains(CoreTextureCreator.CORETEXTUREIDENTIFIER))
-                    continue;
+            for (Map.Entry<String, TextureAtlasSprite> entry : sprites.entrySet()) {
 
                 //We grab the material now, that way we know the material exists before continuing.
-                ICoreArmorMaterial material = ArmoryAPI.getInstance().getRegistryManager().getCoreMaterialRegistry().getValue(entry.getKey());
+                ICoreArmorMaterial material = IArmoryAPI.Holder.getInstance().getHelpers()
+                                                .getRegistryHelpers()
+                                                .findCoreMaterialUsingPredicate(c -> c.getOreDictionaryIdentifier().equalsIgnoreCase(entry.getKey()))
+                                                .orElse(null);
+
+                if (material == null)
+                {
+                    continue;
+                }
 
                 //We retexture this model with the newly colored textured from the creator and get a Copy of this model
                 //But then colored instead of greyscaled.

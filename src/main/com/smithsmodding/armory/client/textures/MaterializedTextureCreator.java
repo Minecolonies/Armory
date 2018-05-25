@@ -56,11 +56,11 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     private static ArrayList<ResourceLocation> baseTextures = new ArrayList<ResourceLocation>();
     //Variable that holds the colored end textures when the Creator has reloaded
     @Nonnull
-    private static Map<ResourceLocation, Map<ResourceLocation, TextureAtlasSprite>> buildSprites = Maps.newHashMap();
+    private static Map<ResourceLocation, Map<String, TextureAtlasSprite>> buildSprites = Maps.newHashMap();
 
     //Initializes the dummy gui material with a proper set of render info.
     static {
-        guiMaterial = (ICoreArmorMaterial) new MedievalCoreArmorMaterial("", "", "", 0F,0F,0,0,0F) {
+        guiMaterial = new MedievalCoreArmorMaterial("", "", "", 0F,0F,0,0,0F) {
             /**
              * Method to get the BaseDurability of a piece of armor made out of this material.
              *
@@ -118,7 +118,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      * @return A map containing all the colored textures using the base texture and the materialname as keys.
      */
     @Nonnull
-    public static Map<ResourceLocation, Map<ResourceLocation, TextureAtlasSprite>> getBuildSprites() {
+    public static Map<ResourceLocation, Map<String, TextureAtlasSprite>> getBuildSprites() {
         return buildSprites;
     }
 

@@ -5,6 +5,7 @@ import com.smithsmodding.armory.api.common.heatable.IHeatedObjectOverrideManager
 import com.smithsmodding.armory.api.common.helpers.IArmoryHelpers;
 import com.smithsmodding.armory.api.common.helpers.IMaterialConstructionHelper;
 import com.smithsmodding.armory.api.common.helpers.IMedievalUpgradeConstructionHelper;
+import com.smithsmodding.armory.api.common.helpers.IRegistryHelper;
 import com.smithsmodding.armory.common.factories.FactoryController;
 import com.smithsmodding.armory.common.heatable.HeatedObjectOverrideManager;
 import net.minecraftforge.fml.relauncher.Side;
@@ -48,5 +49,11 @@ public class ArmoryHelpers implements IArmoryHelpers {
     @Override
     public IHeatedObjectOverrideManager getHeatableOverrideManager() {
         return HeatedObjectOverrideManager.getInstance();
+    }
+
+    @Override
+    public IRegistryHelper getRegistryHelpers()
+    {
+        return RegistryHelper.getInstance();
     }
 }

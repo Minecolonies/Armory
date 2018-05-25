@@ -16,6 +16,7 @@ import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.ModHeatableObjects;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
+import com.smithsmodding.armory.common.entity.EntityItemHeatable;
 import com.smithsmodding.armory.common.factories.HeatedItemFactory;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
@@ -121,6 +122,19 @@ public class ItemHeatedItem extends Item {
 
         IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
         return capability.getOriginalStack().getItem().getItemStackDisplayName(capability.getOriginalStack());
+    }
+
+    @Override
+    public boolean hasCustomEntity(final ItemStack stack)
+    {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public Entity createEntity(final World world, final Entity location, final ItemStack itemstack)
+    {
+        return new EntityItemHeatable(world, location.getPosition().getX(), location.getPosition().getY(), location.getPosition().getZ(), itemstack);
     }
 
     @Override

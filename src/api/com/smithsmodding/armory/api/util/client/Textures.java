@@ -1,19 +1,15 @@
 package com.smithsmodding.armory.api.util.client;
 
-import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.smithscore.client.events.texture.TextureStitchCollectedEvent;
 import com.smithsmodding.smithscore.client.textures.HolographicTexture;
 import com.smithsmodding.smithscore.client.textures.TextureCreator;
-import com.smithsmodding.smithscore.common.events.AutomaticEventBusSubscriber;
 import com.smithsmodding.smithscore.util.client.CustomResource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.LoaderState;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
 import javax.annotation.Nonnull;
 
@@ -40,7 +36,8 @@ public class Textures {
             return;
         }
 
-        Gui.Anvil.LOGO.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.Anvil.LOGO.getPrimaryLocation())));
+        Gui.Anvil.LOGO_BIG.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.Anvil.LOGO_BIG.getPrimaryLocation())));
+        Gui.Anvil.LOGO_SMALL.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.Anvil.LOGO_SMALL.getPrimaryLocation())));
         Gui.FirePit.THERMOMETERICON.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.FirePit.THERMOMETERICON.getPrimaryLocation())));
         Blocks.LiquidMetalFlow.addIcon(event.getMap().registerSprite(new ResourceLocation(Blocks.LiquidMetalFlow.getPrimaryLocation())));
         Blocks.LiquidMetalStill.addIcon(event.getMap().registerSprite(new ResourceLocation(Blocks.LiquidMetalStill.getPrimaryLocation())));
@@ -131,11 +128,13 @@ public class Textures {
 
         public static class Anvil {
             @Nonnull
-            public static CustomResource LOGO = new CustomResource("Gui.Anvil.Image.Logo", "armory:gui/images/anvilhammer", Colors.DEFAULT, 0, 0, 15, 15);
+            public static CustomResource LOGO_BIG      = new CustomResource("Gui.Anvil.Image.Logo.Big", "armory:gui/images/32x anvilhammer", Colors.DEFAULT, 0, 0, 32, 32);
+            @Nonnull
+            public static CustomResource LOGO_SMALL      = new CustomResource("Gui.Anvil.Image.Logo.Small", "armory:gui/images/16x anvilhammer", Colors.DEFAULT, 0, 0, 16, 16);
             @Nonnull
             public static CustomResource EXPERIENCEORB = new CustomResource("Gui.Anvil.Image.ExperienceOrb", GUITEXTUREPATH + "components/randomelements.png", Colors.DEFAULT, 16, 0, 16, 16);
             @Nonnull
-            public static CustomResource HOLOWPICKAXE = new CustomResource("Gui.Anvil.SlotHolo.Pickaxe", "minecraft:items/iron_pickaxe", Colors.DEFAULT, 0, 0, 16, 16);
+            public static CustomResource HOLOWPICKAXE  = new CustomResource("Gui.Anvil.SlotHolo.Pickaxe", "minecraft:items/iron_pickaxe", Colors.DEFAULT, 0, 0, 16, 16);
             @Nonnull
             public static CustomResource HOLOWBOOK = new CustomResource("Gui.Anvil.SlotHolo.Book", "minecraft:items/book_normal", Colors.DEFAULT, 0,0, 16, 16);
             @Nonnull

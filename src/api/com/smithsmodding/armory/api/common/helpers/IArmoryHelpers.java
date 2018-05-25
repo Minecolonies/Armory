@@ -17,4 +17,6 @@ public interface IArmoryHelpers {
     IFactoryController getFactories();
 
     IHeatedObjectOverrideManager getHeatableOverrideManager();
+
+    IRegistryHelper getRegistryHelpers();
 }

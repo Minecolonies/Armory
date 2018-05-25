@@ -280,6 +280,12 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
     public void update() {
         boolean tUpdated = false;
 
+        if (getState().getRemainingUses() <= 0)
+        {
+            getWorld().setBlockToAir(getPos());
+            return;
+        }
+
         if (getCurrentRecipe() != null) {
             (getState()).setCraftingprogress((getState()).getCraftingprogress() + (1f / 20f));
 
@@ -296,6 +302,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
                         outputStacks[0].getTagCompound().setString(References.NBTTagCompoundData.CustomName, (getState()).getItemName());
                     }
                 }
+
+                if (getCurrentRecipe().getUsesHammer())
+                    getState().decrementRemainingUses(getCurrentRecipe().getHammerUsage());
 
                 getState().setItemName("");
 
@@ -338,6 +347,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
 
         for (IAnvilRecipe tRecipe : IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry()) {
             if (tRecipe.matchesRecipe(craftingStacks, additionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft)) {
+                if (tRecipe.getUsesHammer() && getState().getRemainingUses() < tRecipe.getHammerUsage())
+                    continue;
+
                 if (!outputStacks[0].isEmpty()) {
                     ItemStack tResultStack = tRecipe.getResult(craftingStacks, additionalCraftingStacks);
 

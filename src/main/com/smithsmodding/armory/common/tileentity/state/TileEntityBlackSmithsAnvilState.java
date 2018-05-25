@@ -30,6 +30,8 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
     private String itemName = "";
     private boolean processingCraftingResult = false;
 
+    private int remainingUses = 0;
+
     /**
      * Method called when this state get attached to a TE. Allows it to store a reference or modify values of the TE.
      *
@@ -89,6 +91,18 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
             this.itemName = ((NBTTagCompound) stateData).getString(References.NBTTagCompoundData.TE.Anvil.ITEMNAME);
             this.processingCraftingResult = ((NBTTagCompound) stateData).getBoolean(References.NBTTagCompoundData.TE.Anvil.PROCESSING);
 
+            this.remainingUses = ((NBTTagCompound) stateData).getInteger(References.NBTTagCompoundData.TE.Anvil.REMAININGUSES);
+
+            if (this.remainingUses > this.getMaterial().getDurability())
+            {
+                this.remainingUses = this.getMaterial().getDurability();
+            }
+
+            if (this.remainingUses < 0)
+            {
+                this.remainingUses = 0;
+            }
+
             if (updateModel && anvil.getWorld() != null)
                 anvil.getWorld().markChunkDirty(anvil.getPos(), anvil);
         } catch (Exception ex) {
@@ -96,6 +110,7 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
             this.craftingprogress = 0F;
             this.itemName = "";
             this.processingCraftingResult = false;
+            this.remainingUses = 0;
         }
     }
 
@@ -113,6 +128,7 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
         compound.setFloat(References.NBTTagCompoundData.TE.Anvil.CRAFTINGPROGRESS, craftingprogress);
         compound.setString(References.NBTTagCompoundData.TE.Anvil.ITEMNAME, itemName);
         compound.setBoolean(References.NBTTagCompoundData.TE.Anvil.PROCESSING, processingCraftingResult);
+        compound.setInteger(References.NBTTagCompoundData.TE.Anvil.REMAININGUSES, remainingUses);
 
         return compound;
     }
@@ -159,6 +175,7 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
 
     public void setMaterial(IAnvilMaterial material) {
         this.material = material;
+        this.remainingUses = material.getDurability();
     }
 
     public float getCraftingprogress() {
@@ -193,5 +210,20 @@ public class TileEntityBlackSmithsAnvilState implements ITileEntityState {
 
     public void setRecipe(IAnvilRecipe recipe) {
         this.recipe = recipe;
+    }
+
+    public int getRemainingUses()
+    {
+        return remainingUses;
+    }
+
+    public void setRemainingUses(final int remainingUses)
+    {
+        this.remainingUses = remainingUses;
+    }
+
+    public void decrementRemainingUses(final int delta)
+    {
+        this.remainingUses -= delta;
     }
 }

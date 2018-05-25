@@ -30,7 +30,7 @@ public class AnvilTextureCreator extends IForgeRegistryEntry.Impl<ICreationContr
      * @param buildSprites A List of textures already created. The upper Map holds te baseTexture as key and the lower map the material name as key.
      */
     @Override
-    public void createMaterializedTextures(@Nonnull ITextureMap map, @Nonnull ResourceLocation baseTexture, @Nonnull Map<ResourceLocation, Map<ResourceLocation, TextureAtlasSprite>> buildSprites) {
+    public void createMaterializedTextures(@Nonnull ITextureMap map, @Nonnull ResourceLocation baseTexture, @Nonnull Map<ResourceLocation, Map<String, TextureAtlasSprite>> buildSprites) {
         if (!buildSprites.containsKey(baseTexture))
             buildSprites.put(baseTexture, new HashMap<>());
 
@@ -42,11 +42,16 @@ public class AnvilTextureCreator extends IForgeRegistryEntry.Impl<ICreationContr
             return;
         }
 
-        Map<ResourceLocation, TextureAtlasSprite> coloredSprites = buildSprites.get(baseTexture);
+        Map<String, TextureAtlasSprite> coloredSprites = buildSprites.get(baseTexture);
         for (IAnvilMaterial material : ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry()) {
+            if (coloredSprites.containsKey(material.getOreDictionaryIdentifier()))
+            {
+                continue;
+            }
+
             TextureAtlasSprite sprite =  TextureCreationHelper.createTexture(material, material.getTextureOverrideIdentifier(), baseTexture, base, map, ANVILTEXTUREIDENTIFIER);
             if (sprite != null) {
-                coloredSprites.put(material.getRegistryName(), sprite);
+                coloredSprites.put(material.getOreDictionaryIdentifier(), sprite);
             }
         }
     }

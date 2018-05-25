@@ -43,7 +43,7 @@ public interface IArmoryAPI
          * @return The current instance of the ArmoryAPI
          * @throws IllegalStateException thrown when the API has not been initialized
          */
-        @Nullable
+        @Nonnull
         public static IArmoryAPI getInstance() throws IllegalStateException {
             if (INSTANCE == null)
                 throw new IllegalStateException();

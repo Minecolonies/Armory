@@ -87,6 +87,14 @@ public class TranslationKeys {
         public class MoltenMetalTank {
             public static final String TK_CONTENTS = "item.armory.multimetaltank.contents";
         }
+
+        public class ItemBlocks {
+
+            public class Anvil {
+                public static final String TK_MATERIAL = "item.armory.itemblock.anvil.tooltip.material";
+                public static final String TK_REMAININGUSES = "item.armory.itemblock.anvil.tooltip.remaininguses";
+            }
+        }
     }
 
     public class Materials {
@@ -139,6 +147,10 @@ public class TranslationKeys {
         public class Anvil {
             public static final String InfoLine1 = "armory.gui.anvil.ledger.infoline1";
             public static final String InfoLine2 = "armory.gui.anvil.ledger.infoline2";
+            public static final String MaterialTitel = "armory.gui.anvil.ledger.materialtitel";
+            public static final String MaterialMax = "armory.gui.anvil.ledger.materialmax";
+            public static final String MaterialCurrent = "armory.gui.anvil.ledger.materialcurrent";
+            public static final String Material = "armory.gui.forge.anvil.material";
         }
 
         public class JEI {
@@ -151,6 +163,28 @@ public class TranslationKeys {
             public static final String FLUIDTANKAMOUNT = "armory.gui.components.fluidtank.tooltip.amount";
             public static final String FLUIDTANKCAPACITY = "armory.gui.components.fluidtank.tooltip.capacity";
             public static final String FLUIDTANKNOLIQUID = "armory.gui.components.fluidtank.tooltip.noliquid";
+        }
+
+        public class Guide {
+
+            public class Introduction {
+                public static final String TK_INTRODUCTION = "armory.gui.guide.pages.introduction.title";
+
+                public static final String TK_SECTION_ONE = "armory.gui.guide.pages.introduction.section.one";
+                public static final String TK_SECTION_TWO = "armory.gui.guide.pages.introduction.section.two";
+                public static final String TK_SECTION_THREE = "armory.gui.guide.pages.introduction.section.three";
+            }
+
+            public class Medieval {
+                public static final String TK_MEDIEVAL = "armory.gui.guide.pages.medieval.title";
+
+                public static final String TK_SECTION_ONE_TITLE = "armory.gui.guide.pages.medieval.section.one.title";
+                public static final String TK_SECTION_ONE_CONTENT = "armory.gui.guide.pages.medieval.section.one.content";
+                public static final String TK_SECTION_TWO_TITLE = "armory.gui.guide.pages.medieval.section.two.title";
+                public static final String TK_SECTION_TWO_CONTENT_PART_ONE = "armory.gui.guide.pages.medieval.section.two.content.part.one";
+
+            }
+
         }
     }
 }

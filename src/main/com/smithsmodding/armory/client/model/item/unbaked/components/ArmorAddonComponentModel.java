@@ -87,17 +87,21 @@ public class ArmorAddonComponentModel extends ArmorSubComponentModel {
             ResourceLocation baseTexture = new ResourceLocation(base.getParticleTexture().getIconName());
             if (!baseTexture.equals(new ResourceLocation("minecraft:missingno")))
             {
-                Map<ResourceLocation, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(baseTexture);
+                Map<String, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(baseTexture);
 
                 //Construct individual models for each of the sprites.
-                for (Map.Entry<ResourceLocation, TextureAtlasSprite> entry : sprites.entrySet())
+                for (Map.Entry<String, TextureAtlasSprite> entry : sprites.entrySet())
                 {
-                    //Check if the sprite name contains the CoreIdentifier. Skip else.
-                    if (!entry.getValue().getIconName().contains(AddonTextureCreator.ADDONTEXTUREIDENTIFIER))
-                        continue;
-
                     //We grab the material now, that way we know the material exists before continuing.
-                    IAddonArmorMaterial material = ArmoryAPI.getInstance().getRegistryManager().getAddonArmorMaterialRegistry().getValue(entry.getKey());
+                    IAddonArmorMaterial material = IArmoryAPI.Holder.getInstance().getHelpers()
+                                                     .getRegistryHelpers()
+                                                     .findAddonMaterialUsingPredicate(c -> c.getOreDictionaryIdentifier().equalsIgnoreCase(entry.getKey()))
+                                                     .orElse(null);
+
+                    if (material == null)
+                    {
+                        continue;
+                    }
 
                     //We retexture this model with the newly colored textured from ther creator and get a Copy of this model
                     //But then colored instead of grayscaled.

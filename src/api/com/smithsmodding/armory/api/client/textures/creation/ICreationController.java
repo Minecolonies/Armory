@@ -20,7 +20,7 @@ public interface ICreationController extends IForgeRegistryEntry<ICreationContro
      * @param baseTexture The baseTexture to manipulate
      * @param buildSprites A List of textures already created. The upper Map holds te baseTexture as key and the lower map the material name as key.
      */
-    void createMaterializedTextures(@Nonnull ITextureMap map, @Nonnull ResourceLocation baseTexture, @Nonnull Map<ResourceLocation, Map<ResourceLocation, TextureAtlasSprite>> buildSprites);
+    void createMaterializedTextures(@Nonnull ITextureMap map, @Nonnull ResourceLocation baseTexture, @Nonnull Map<ResourceLocation, Map<String, TextureAtlasSprite>> buildSprites);
 
 
 }

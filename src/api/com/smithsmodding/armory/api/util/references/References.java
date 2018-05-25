@@ -21,6 +21,7 @@ public class References {
         public static int FIREPLACEID = 1;
         public static int ANVILID = 2;
         public static int MOLTENMETALMIXER = 3;
+        public static int SMITHINGSGUIDE = 4;
     }
 
     public static final class General {
@@ -547,6 +548,7 @@ public class References {
                 public static final String MATERIAL = "corematerial";
                 public static final String ITEMNAME = "itemname";
                 public static final String PROCESSING = "processing";
+                public static final String REMAININGUSES = "usesRemaining";
             }
 
             public class Conduit {
