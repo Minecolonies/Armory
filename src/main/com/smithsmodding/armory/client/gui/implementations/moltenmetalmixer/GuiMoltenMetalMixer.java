@@ -25,7 +25,7 @@ import static com.smithsmodding.armory.api.util.references.References.InternalNa
 public class GuiMoltenMetalMixer extends GuiContainerSmithsCore {
 
     @Nonnull
-    public static Plane GUI = new Plane(0, 0, ComponentPlayerInventory.WIDTH, 200);
+    public static Plane GUI = new Plane(0, 0, ComponentPlayerInventory.DEFAULT_WIDTH, 200);
 
     public GuiMoltenMetalMixer(@Nonnull ContainerSmithsCore container) {
         super(container);

@@ -1,0 +1,14 @@
+{
+  "type": "Body",
+  "base": "armory:models/item/armor/layers/armory.chestplate.body.base",
+  "layers": {
+    "armory:ShoulderLeft":"armory:models/item/armor/layers/armory.chestplate.body.shoulder.left",
+    "armory:ShoulderRight":"armory:models/item/armor/layers/armory.chestplate.body.shoulder.right",
+    "armory:BackLeft":"armory:models/item/armor/layers/armory.chestplate.body.back.left",
+    "armory:BackRight":"armory:models/item/armor/layers/armory.chestplate.body.back.right",
+    "armory:StomachLeft":"armory:models/item/armor/layers/armory.chestplate.body.stomach.left",
+    "armory:StomachRight":"armory:models/item/armor/layers/armory.chestplate.body.stomach.right"
+
+  },
+  "broken": {}
+}

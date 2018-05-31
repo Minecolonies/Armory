@@ -52,7 +52,7 @@ public class AnimatedColoredTexture extends TextureColoredTexture {
 
     @Override
     protected void processData (int[][] data) {
-        // getCreationRecipe animation data again
+        // get animation data again
         ResourceLocation resourcelocation1 = this.completeResourceLocation(new ResourceLocation(addTextureLocation), 0);
         IResource iresource = null;
         try {

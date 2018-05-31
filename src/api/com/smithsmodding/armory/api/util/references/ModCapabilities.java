@@ -42,15 +42,6 @@ public class ModCapabilities {
     public static Capability<IArmorComponentStackCapability> MOD_ARMORCOMPONENT_CAPABILITY;
 
 
-
-
-
-
-
-
-
-
-
     static {
         CapabilityManager.INSTANCE.register(IMoltenMetalAcceptor.class, new NullStorage<>(), new NullFactory<>());
         CapabilityManager.INSTANCE.register(IMoltenMetalProvider.class, new NullStorage<>(), new NullFactory<>());

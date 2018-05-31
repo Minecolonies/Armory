@@ -1,7 +1,10 @@
 package com.smithsmodding.armory.client.logic.initialization;
 
 import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
+import com.smithsmodding.armory.api.util.client.Textures;
+import com.smithsmodding.armory.client.handler.CancelableLayerCustomHeadHandler;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
+import com.smithsmodding.smithscore.SmithsCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,9 +29,13 @@ public class ClientEventHandlerInitialization extends IInitializationComponent.I
     @Override
     public void onPreInit(@Nonnull FMLPreInitializationEvent preInitializationEvent) {
         MaterializedTextureCreator materializedTextureCreator = new MaterializedTextureCreator();
+        SmithsCore.getRegistry().getClientBus().register(materializedTextureCreator);
+        SmithsCore.getRegistry().getClientBus().register(new CancelableLayerCustomHeadHandler());
         MinecraftForge.EVENT_BUS.register(materializedTextureCreator);
         ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(materializedTextureCreator);
 
-        MinecraftForge.EVENT_BUS.register(new com.smithsmodding.armory.api.util.client.Textures());
+        Textures textureConstants = new Textures();
+        SmithsCore.getRegistry().getClientBus().register(textureConstants);
+        MinecraftForge.EVENT_BUS.register(textureConstants);
     }
 }

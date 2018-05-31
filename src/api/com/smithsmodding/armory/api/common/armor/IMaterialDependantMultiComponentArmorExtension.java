@@ -28,7 +28,7 @@ public interface IMaterialDependantMultiComponentArmorExtension extends IMultiCo
     IAddonArmorMaterial getMaterial();
 
     /**
-     * Method to getCreationRecipe all the default capabilities this Component provides.
+     * Method to get all the default capabilities this Component provides.
      * The Capabilities stored here override those stored in the Armor and in its CoreMaterial.
      *
      * In its default implementation it takes the Capabilities from the MaterialIndependentExtension

@@ -1,0 +1,12 @@
+{
+  "override":{
+    "parent": "armory:models/item/armor/layers/armory.helmet.base",
+    "textures":{
+      "armory:helmet.left":"armory:items/multiarmor/upgrades/helmet/left/armory.helmet_protection_ear_side",
+      "armory:helmet.right":"armory:delete",
+      "armory:helmet.top":"armory:delete",
+      "armory:helmet.back":"armory:items/multiarmor/upgrades/helmet/left/armory.helmet_protection_ear_left",
+      "armory:helmet.front":"armory:items/multiarmor/upgrades/helmet/left/armory.helmet_protection_ear_left"
+    }
+  }
+}

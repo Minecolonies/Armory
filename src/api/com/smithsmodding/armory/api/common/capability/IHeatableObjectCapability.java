@@ -4,6 +4,8 @@ import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
 import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.util.references.ModHeatableObjects;
+import com.smithsmodding.armory.api.util.references.ModHeatedObjectTypes;
 import com.smithsmodding.armory.api.util.references.References;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -33,7 +35,7 @@ public interface IHeatableObjectCapability extends IMaterializedStackCapability 
     IHeatableObjectCapability setObject(@Nonnull IHeatableObject object);
 
     /**
-     * Method to getCreationRecipe the HeatedType.
+     * Method to get the HeatedType.
      * @return The Type that this HeatedObject is.
      */
     @Nonnull
@@ -63,6 +65,12 @@ public interface IHeatableObjectCapability extends IMaterializedStackCapability 
         @Nonnull
         private IHeatedObjectType type;
 
+        public Impl()
+        {
+            object = ModHeatableObjects.ITEMSTACK;
+            type = ModHeatedObjectTypes.INGOT;
+        }
+
         /**
          * Getter for the HeatableItemType that this capability holds
          *
@@ -88,7 +96,7 @@ public interface IHeatableObjectCapability extends IMaterializedStackCapability 
         }
 
         /**
-         * Method to getCreationRecipe the HeatedType.
+         * Method to get the HeatedType.
          *
          * @return The Type that this HeatedObject is.
          */
@@ -119,6 +127,16 @@ public interface IHeatableObjectCapability extends IMaterializedStackCapability 
         @Override
         public IHeatableObjectCapability setMaterial(@Nonnull IMaterial material) {
             return (IHeatableObjectCapability) super.setMaterial(material);
+        }
+
+        @Override
+        public String toString()
+        {
+            return super.toString() + "\n" +
+                     "Heatable{" +
+                     "object=" + object +
+                     ", type=" + type +
+                     '}';
         }
     }
 

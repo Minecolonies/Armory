@@ -1,20 +1,22 @@
 package com.smithsmodding.armory.common.item.armor;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.client.render.provider.model.IModelProvider;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapability;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
-import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
+import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -25,19 +27,22 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
 /**
- * Created by marcf on 1/25/2017.
+ * Class that represents MultiComponentArmor
  */
-public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
+public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IModelProvider
+{
 
 
     public ItemMultiComponentArmor(ResourceLocation internalName, String translationKey) {
@@ -65,7 +70,7 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
      */
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, @Nonnull ItemStack armor, DamageSource source, double damage, int slot) {
-        return null;
+        return new ArmorProperties(Integer.MAX_VALUE, 1, Integer.MAX_VALUE);
     }
 
     /**
@@ -98,24 +103,17 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
 
     }
 
-    /**
-     * Override this method to have an item handle its own armor rendering.
-     *
-     * @param entityLiving The entity wearing the armor
-     * @param itemStack    The itemStack to render the model of
-     * @param armorSlot    The slot the armor is in
-     * @param _default     Original armor model. Will have attributes set.
-     * @return A ModelBiped to render instead of the default
-     */
-    @SideOnly(Side.CLIENT)
-    @Nullable
     @Override
-    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-        IBakedModel bakedModel= Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(itemStack,entityLiving.getEntityWorld(),entityLiving);
-        if(bakedModel instanceof ModelBiped) {
-            return (ModelBiped) bakedModel;
+    public IBakedModel getRenderingModel(
+      final @NotNull EntityLivingBase entityLiving, final @NotNull ItemStack itemStack, final @NotNull EntityEquipmentSlot armorSlot)
+    {
+        final IBakedModel model = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(itemStack);
+        if (model instanceof BakedMultiLayeredArmorItemModel)
+        {
+            return model;
         }
-        return _default;
+
+        return null;
     }
 
     @Override
@@ -140,6 +138,30 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
         }
     }
 
+    @Override
+    public String getItemStackDisplayName(ItemStack stack)
+    {
+        if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
+        {
+            return "Stack has No Data!";
+        }
+
+        if (stack.hasTagCompound())
+        {
+            if (stack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
+            {
+                return TextFormatting.ITALIC + stack.getTagCompound().getString(References.NBTTagCompoundData.CustomName) + TextFormatting.RESET;
+            }
+        }
+
+        IMultiComponentArmorCapability capability = stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+        IMultiComponentArmor armorType = capability.getArmorType();
+        IMaterial material = capability.getMaterial();
+
+        return material.getTextFormatting() + I18n.translateToLocal(material.getTranslationKey()) + TextFormatting.RESET + " "
+                 + I18n.translateToLocal(armorType.getTranslationKey());
+    }
+
     /**
      * Called from ItemStack.setItem, will hold extra data for the life of this ItemStack.
      * Can be retrieved from stack.getCapabilities()
@@ -156,28 +178,46 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor {
     @Nullable
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
-        if (nbt == null || stack.getItem() == null)
+        if (stack.getItem() == null)
             return null;
-
-        NBTTagCompound parentCompound = nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
 
         SmithsCoreCapabilityDispatcher internalParentDispatcher = new SmithsCoreCapabilityDispatcher();
         internalParentDispatcher.registerNewInstance(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY);
 
-        internalParentDispatcher.deserializeNBT(parentCompound);
+        if (nbt != null)
+        {
+            NBTTagCompound parentCompound =
+              nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
+            internalParentDispatcher.deserializeNBT(parentCompound);
+        }
 
         return internalParentDispatcher;
     }
 
+    /**
+     * Determines if the specific ItemStack can be placed in the specified armor slot.
+     *
+     * @param stack     The ItemStack
+     * @param armorType Armor slot ID: 0: Helmet, 1: Chest, 2: Legs, 3: Boots
+     * @param entity    The entity trying to equip the armor
+     * @return True if the given ItemStack can be inserted in the slot
+     */
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
-        if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
-            return "Stack has No Data!";
+    public boolean isValidArmor(final ItemStack stack, final EntityEquipmentSlot armorType, final Entity entity)
+    {
+        if (stack.isEmpty())
+        {
+            return false;
+        }
 
-        IMultiComponentArmorCapability capability = stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
-        IMultiComponentArmor armorType = capability.getArmorType();
-        IMaterial material = capability.getMaterial();
+        @Nullable final IMultiComponentArmor armor  = ArmorHelper.getArmorForItemName(stack.getItem().getRegistryName());
 
-        return material.getTextFormatting() + I18n.format(material.getTranslationKey()) + TextFormatting.RESET + " " + I18n.format(armorType.getTranslationKey());
+        if (armor == null)
+        {
+            return false;
+        }
+
+        return armor.getEquipmentSlot() == armorType;
     }
+
 }

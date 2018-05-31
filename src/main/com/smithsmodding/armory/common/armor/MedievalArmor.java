@@ -9,6 +9,7 @@ import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
 import com.smithsmodding.armory.api.util.client.ModelTransforms;
 import com.smithsmodding.smithscore.util.common.IBuilder;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -28,16 +29,16 @@ import java.util.List;
 public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor> implements IMultiComponentArmor {
 
 
-    private final String translationKey;
-    private final String textFormatting;
-    private final Integer defaultDurability;
-    private final Item item;
-    private final Integer equipmentSlot;
+    private final String                                      translationKey;
+    private final String                                      textFormatting;
+    private final Integer                         defaultDurability;
+    private final Item                                        item;
+    private final EntityEquipmentSlot                                     equipmentSlot;
     private final List<IMultiComponentArmorExtensionPosition> possibleExtensionPositions;
-    private final List<IMultiComponentArmorExtension> possibleExtensions;
-    private final ArmorCapabilityManager capabilityManager;
-    private ModelRenderer modelRenderer;
-    private ModelTransforms modelTransforms;
+    private final List<IMultiComponentArmorExtension>         possibleExtensions;
+    private final ArmorCapabilityManager                      capabilityManager;
+    private       ModelRenderer                               modelRenderer;
+    private       ModelTransforms                             modelTransforms;
 
     private MedievalArmor(Builder builder) {
         this.translationKey = builder.getTranslationKey();
@@ -55,7 +56,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe the translation Key.
+     * Method to get the translation Key.
      *
      * @return The key to translate.
      */
@@ -66,7 +67,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe the markup.
+     * Method to get the markup.
      *
      * @return The markup. Default is TextFormatting.Reset
      */
@@ -77,7 +78,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe the default durability before material properties and upgrades are taken into account.
+     * Method to get the default durability before material properties and upgrades are taken into account.
      *
      * @return The default durability.
      */
@@ -88,7 +89,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe all possible extension positions for this Armor.
+     * Method to get all possible extension positions for this Armor.
      *
      * @return The positions on the armor where an extension can be installed.
      */
@@ -99,7 +100,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe all possible extensions for this armor.
+     * Method to get all possible extensions for this armor.
      *
      * @return The extensions that can be installed on this armor.
      */
@@ -110,7 +111,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe all the default capabilities this Armor provides.
+     * Method to get all the default capabilities this Armor provides.
      *
      * @return All the default capabilities this Armor provides.
      */
@@ -137,7 +138,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
      * @return The equipmentslot.
      */
     @Override
-    public Integer getEquipmentSlotIndex() {
+    public EntityEquipmentSlot getEquipmentSlot() {
         return equipmentSlot;
     }
 
@@ -178,19 +179,19 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
     }
 
     /**
-     * Method to getCreationRecipe the renderer that is used to render the Armor on the entity.
+     * Method to get the renderer that is used to render the Armor on the entity.
      *
      * @return The in world renderer.
      */
     @SideOnly(Side.CLIENT)
-    @Nonnull
+    @Nullable
     @Override
     public ModelRenderer getRendererForArmor() {
         return modelRenderer;
     }
 
     /**
-     * Method to getCreationRecipe the transforms for the in world rendering.
+     * Method to get the transforms for the in world rendering.
      *
      * @return The transforms for the in world rendering.
      */
@@ -234,20 +235,20 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
         private final String textFormatting;
         private final Integer defaultDurability;
         private final Item item;
-        private final Integer equipmentSlot;
+        private final EntityEquipmentSlot equipmentSlot;
         private final List<IMultiComponentArmorExtensionPosition> possibleExtensionPositions;
         private final List<IMultiComponentArmorExtension> possibleExtensions;
         private final ArmorCapabilityManager manager;
 
-        public Builder(String translationKey, String textFormatting, Integer defaultDurability, Item item, Integer equipmentSlot, List<IMultiComponentArmorExtensionPosition> possibleExtensionPositions, List<IMultiComponentArmorExtension> posibleExtensions, IDefaultCapabilitiesRetrievalCallback callback) {
+        public Builder(String translationKey, String textFormatting, Integer defaultDurability, Item item, EntityEquipmentSlot equipmentSlot, List<IMultiComponentArmorExtensionPosition> possibleExtensionPositions, List<IMultiComponentArmorExtension> posibleExtensions, IDefaultCapabilitiesRetrievalCallback callback) {
             this(translationKey, textFormatting, defaultDurability, item, equipmentSlot, possibleExtensionPositions, posibleExtensions, callback.get());
         }
 
-        public Builder(String translationKey, String textFormatting, Integer defaultDurability, Item item, Integer equipmentSlot, List<IMultiComponentArmorExtensionPosition> possibleExtensionPositions, List<IMultiComponentArmorExtension> posibleExtensions, HashMap<Capability<? extends IArmorCapability>, Object> defaultCapabilities) {
+        public Builder(String translationKey, String textFormatting, Integer defaultDurability, Item item, EntityEquipmentSlot equipmentSlot, List<IMultiComponentArmorExtensionPosition> possibleExtensionPositions, List<IMultiComponentArmorExtension> posibleExtensions, HashMap<Capability<? extends IArmorCapability>, Object> defaultCapabilities) {
             this(translationKey, textFormatting, defaultDurability, item, equipmentSlot, possibleExtensionPositions, posibleExtensions, new ArmorCapabilityManager(defaultCapabilities));
         }
 
-        public Builder(String translationKey, String textFormatting, Integer defaultDurability, Item item, Integer equipmentSlot, List<IMultiComponentArmorExtensionPosition> possibleExtensionPositions, List<IMultiComponentArmorExtension> posibleExtensions, ArmorCapabilityManager manager) {
+        public Builder(String translationKey, String textFormatting, Integer defaultDurability, Item item, EntityEquipmentSlot equipmentSlot, List<IMultiComponentArmorExtensionPosition> possibleExtensionPositions, List<IMultiComponentArmorExtension> posibleExtensions, ArmorCapabilityManager manager) {
             this.translationKey = translationKey;
             this.textFormatting = textFormatting;
             this.defaultDurability = defaultDurability;
@@ -274,7 +275,7 @@ public class MedievalArmor extends IForgeRegistryEntry.Impl<IMultiComponentArmor
             return item;
         }
 
-        public Integer getEquipmentSlot() {
+        public EntityEquipmentSlot getEquipmentSlot() {
             return equipmentSlot;
         }
 

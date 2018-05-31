@@ -1,0 +1,12 @@
+{
+  "override":{
+    "parent": "armory:models/item/armor/layers/armory.chestplate.arm.left.base",
+    "textures":{
+      "armory:chestplate.arm.back":"armory:delete",
+      "armory:chestplate.arm.front":"armory:delete",
+      "armory:chestplate.arm.left":"armory:delete",
+      "armory:chestplate.arm.right":"armory:delete",
+      "armory:chestplate.arm.top":"armory:delete"
+    }
+  }
+}

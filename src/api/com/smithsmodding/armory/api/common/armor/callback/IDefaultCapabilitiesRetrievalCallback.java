@@ -9,9 +9,10 @@ import java.util.HashMap;
 /**
  * Created by marcf on 1/21/2017.
  */
+@FunctionalInterface
 public interface IDefaultCapabilitiesRetrievalCallback {
     /**
-     * Method to getCreationRecipe capabilities from the Callback.
+     * Method to get capabilities from the Callback.
      * @return All the default capabilities this Armor should provides.
      */
     @Nonnull

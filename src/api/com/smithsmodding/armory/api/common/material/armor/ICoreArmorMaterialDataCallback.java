@@ -12,15 +12,15 @@ import java.util.HashMap;
  */
 public interface ICoreArmorMaterialDataCallback {
     /**
-     * Method to getCreationRecipe the BaseDurability of a piece of armor made out of this material.
-     * @param armor The armor to getCreationRecipe the base durability for.
+     * Method to get the BaseDurability of a piece of armor made out of this material.
+     * @param armor The armor to get the base durability for.
      * @return The durability of a piece of armor made out of this material.
      */
     @Nonnull
     Integer getBaseDurabilityForArmor(@Nonnull IMultiComponentArmor armor);
 
     /**
-     * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
+     * Method to get all the default capabilities this ArmorMaterial provides.
      * @return All the default capabilities this ArmorMaterial provides.
      */
     @Nonnull

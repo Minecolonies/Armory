@@ -4,11 +4,11 @@ import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.heatable.IHeatableObjectWrapper;
 import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
-import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper;
+import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.common.block.properties.PropertyHeatableMaterial;
+import com.smithsmodding.armory.common.item.ItemHeatableResource;
 import com.smithsmodding.armory.common.tileentity.TileEntityHeatableBlock;
-import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import com.smithsmodding.smithscore.SmithsCore;
 import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;
 import net.minecraft.block.material.Material;
@@ -37,7 +37,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -55,6 +54,7 @@ public class BlockHeatableResource extends BlockArmoryTileEntity implements ICus
         super(References.InternalNames.Blocks.Resource, Material.IRON);
         setCreativeTab(ModCreativeTabs.GENERAL);
         this.setDefaultState(this.blockState.getBaseState());
+        this.disableStats();
     }
 
     /**
@@ -110,7 +110,7 @@ public class BlockHeatableResource extends BlockArmoryTileEntity implements ICus
 
     @Override
     public void handleDebugInformation(@Nonnull RenderGameOverlayEvent.Text event, @Nonnull World worldIn, @Nonnull BlockPos pos) {
-        if (!SmithsCore.isInDevenvironment() && !Minecraft.getMinecraft().gameSettings.showDebugInfo)
+        if (!SmithsCore.isInDevEnvironment() && !Minecraft.getMinecraft().gameSettings.showDebugInfo)
             return;
 
         TileEntity tileEntity = worldIn.getTileEntity(pos);
@@ -165,18 +165,7 @@ public class BlockHeatableResource extends BlockArmoryTileEntity implements ICus
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
-        HashMap<String, ItemStack> mappedOreDictionaryStacks = new HashMap<>();
-
-        for(RegistryMaterialWrapper wrapper : IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry()) {
-            if (mappedOreDictionaryStacks.containsKey(wrapper.getWrapped().getOreDictionaryIdentifier()))
-                continue;
-
-            ItemStack stack = CapabilityHelper.generateMaterializedStack(this, wrapper.getWrapped(), 1);
-
-            mappedOreDictionaryStacks.put(wrapper.getWrapped().getOreDictionaryIdentifier(), stack);
-        }
-
-        list.addAll(mappedOreDictionaryStacks.values());
+        ItemHeatableResource.getSubItemsStatic(itemIn, list);
     }
 
     @Override

@@ -54,16 +54,16 @@ public class MaterializedBlockModel implements IModel {
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         ImmutableMap.Builder<IMaterial, IBakedModel> subModelBuilder = new ImmutableMap.Builder<>();
 
-        Map<ResourceLocation, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(materializableTexture);
+        Map<String, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(materializableTexture);
 
         for(RegistryMaterialWrapper materialWrapper : IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry()) {
-            if (!sprites.containsKey(materialWrapper.getRegistryName()) && !materialOverrides.containsKey(materialWrapper.getRegistryName())) {
+            if (!sprites.containsKey(materialWrapper.getWrapped().getOreDictionaryIdentifier()) && !materialOverrides.containsKey(materialWrapper.getRegistryName())) {
                 continue;
             }
 
             TextureAtlasSprite retexturedSprite;
             if (!materialOverrides.containsKey(materialWrapper.getRegistryName())) {
-                retexturedSprite = sprites.get(materialWrapper.getRegistryName());
+                retexturedSprite = sprites.get(materialWrapper.getWrapped().getOreDictionaryIdentifier());
             } else {
                 retexturedSprite = bakedTextureGetter.apply(materialOverrides.get(materialWrapper.getRegistryName()));
             }

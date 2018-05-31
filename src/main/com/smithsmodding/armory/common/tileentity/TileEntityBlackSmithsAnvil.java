@@ -15,6 +15,7 @@ import com.smithsmodding.smithscore.common.inventory.IItemStorage;
 import com.smithsmodding.smithscore.common.tileentity.TileEntitySmithsCore;
 import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -279,6 +280,12 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
     public void update() {
         boolean tUpdated = false;
 
+        if (getState().getRemainingUses() <= 0)
+        {
+            getWorld().setBlockToAir(getPos());
+            return;
+        }
+
         if (getCurrentRecipe() != null) {
             (getState()).setCraftingprogress((getState()).getCraftingprogress() + (1f / 20f));
 
@@ -288,9 +295,18 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
                 } else {
                     outputStacks[0] = getCurrentRecipe().getResult(craftingStacks, additionalCraftingStacks);
                     if (!(getState()).getItemName().equals("")) {
+                        if (!outputStacks[0].hasTagCompound())
+                        {
+                            outputStacks[0].setTagCompound(new NBTTagCompound());
+                        }
                         outputStacks[0].getTagCompound().setString(References.NBTTagCompoundData.CustomName, (getState()).getItemName());
                     }
                 }
+
+                if (getCurrentRecipe().getUsesHammer())
+                    getState().decrementRemainingUses(getCurrentRecipe().getHammerUsage());
+
+                getState().setItemName("");
 
                 ProcessPerformedCrafting();
                 setCurrentRecipe(null);
@@ -313,7 +329,7 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
 
         setCurrentRecipe(null);
 
-        if (SmithsCore.isInDevenvironment()) {
+        if (SmithsCore.isInDevEnvironment()) {
             ModLogger.getInstance().info("Checking Recipe for:");
             for (ItemStack tStack : craftingStacks) {
                 ModLogger.getInstance().info("   " + ItemStackHelper.toString(tStack));
@@ -331,6 +347,9 @@ public class TileEntityBlackSmithsAnvil extends TileEntitySmithsCore<TileEntityB
 
         for (IAnvilRecipe tRecipe : IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry()) {
             if (tRecipe.matchesRecipe(craftingStacks, additionalCraftingStacks, tHammerUsagesLeft, tTongUsagesLeft)) {
+                if (tRecipe.getUsesHammer() && getState().getRemainingUses() < tRecipe.getHammerUsage())
+                    continue;
+
                 if (!outputStacks[0].isEmpty()) {
                     ItemStack tResultStack = tRecipe.getResult(craftingStacks, additionalCraftingStacks);
 

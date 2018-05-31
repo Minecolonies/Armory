@@ -1,0 +1,16 @@
+{
+  "type": "Body",
+  "base": "armory:models/item/armor/layers/armory.leggings.body.base",
+  "layers": {
+    "armory:ShinLeft":"armory:models/item/armor/layers/armory.empty",
+    "armory:ShinRight":"armory:models/item/armor/layers/armory.empty",
+    "armory:CalfLeft":"armory:models/item/armor/layers/armory.empty",
+    "armory:CalfRight":"armory:models/item/armor/layers/armory.empty"
+  },
+  "broken": {},
+  "transform":{
+    "translation": [0, 0.75, 0 ],
+    "scale": [1,1,1 ],
+    "rotation":[{"x":0},{"y":0},{"z":0} ]
+  }
+}

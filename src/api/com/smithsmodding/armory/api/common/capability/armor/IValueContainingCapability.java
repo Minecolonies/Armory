@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
 public interface IValueContainingCapability<T, V> extends IArmorCapability {
 
     /**
-     * Method to getCreationRecipe the value stored in this capability;
+     * Method to get the value stored in this capability;
      * @return The value stored.
      */
     @Nonnull
@@ -28,7 +28,7 @@ public interface IValueContainingCapability<T, V> extends IArmorCapability {
 
 
         /**
-         * Method to getCreationRecipe the value stored in this capability;
+         * Method to get the value stored in this capability;
          * @return The value stored.
          */
         @Nonnull

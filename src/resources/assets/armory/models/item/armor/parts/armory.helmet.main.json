@@ -1,0 +1,10 @@
+{
+  "type":"Head",
+  "base": "armory:models/item/armor/layers/armory.helmet.base",
+  "layers": {
+    "armory:top":"armory:models/item/armor/layers/armory.helmet.top",
+    "armory:left":"armory:models/item/armor/layers/armory.helmet.left",
+    "armory:right":"armory:models/item/armor/layers/armory.helmet.right"
+  },
+  "broken": {}
+}

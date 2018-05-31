@@ -7,6 +7,8 @@ import com.smithsmodding.armory.api.common.capability.armor.ArmorCapabilityManag
 import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.util.common.armor.ArmorNBTHelper;
+import com.smithsmodding.armory.api.util.references.ModArmor;
+import com.smithsmodding.armory.api.util.references.ModMaterials;
 import com.smithsmodding.armory.api.util.references.References;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,7 +28,7 @@ import java.util.HashMap;
 public interface IMultiComponentArmorCapability {
 
     /**
-     * Method to getCreationRecipe the Type of armor that is in the ItemStack.
+     * Method to get the Type of armor that is in the ItemStack.
      * @return The armor type that is inside the ItemStack that this capability is in.
      */
     @Nonnull
@@ -119,7 +121,7 @@ public interface IMultiComponentArmorCapability {
     void decreaseCurrentDurability(@Nonnull Integer durability);
 
     /**
-     * Method to getCreationRecipe the capabilities that the Armor has. Eg:
+     * Method to get the capabilities that the Armor has. Eg:
      *  *  ArmorDefence
      *  *  ArmorToughness
      *  *  IsAccessory
@@ -133,8 +135,7 @@ public interface IMultiComponentArmorCapability {
     class Impl implements IMultiComponentArmorCapability {
 
         @Nonnull
-        private IMultiComponentArmor armor = IArmoryAPI.Holder.getInstance().getRegistryManager()
-                .getMultiComponentArmorRegistry().getValue(new ResourceLocation(References.General.MOD_ID.toLowerCase(), References.InternalNames.Armor.MEDIEVALCHESTPLATE));
+        private IMultiComponentArmor armor = ModArmor.Medieval.CHESTPLATE;
 
         @Nonnull
         private ArrayList<IMultiComponentArmorExtensionInformation> installedExtensions = new ArrayList<>();
@@ -143,20 +144,23 @@ public interface IMultiComponentArmorCapability {
         private Boolean broken = Boolean.FALSE;
 
         @Nonnull
-        private ICoreArmorMaterial coreArmorMaterial = IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry()
-                .getValue(References.InternalNames.Materials.Core.CMN_IRON);
+        private ICoreArmorMaterial coreArmorMaterial = ModMaterials.Armor.Core.IRON;
 
         @Nonnull
-        private Integer durability;
+        private Integer durability = 100;
 
         @Nonnull
-        private Integer maximalDurability;
+        private Integer maximalDurability = 100;
 
         @Nonnull
         private ArmorCapabilityManager armorCapabilityManager = new ArmorCapabilityManager();
 
+        public Impl()
+        {
+        }
+
         /**
-         * Method to getCreationRecipe the Type of armor that is in the ItemStack.
+         * Method to get the Type of armor that is in the ItemStack.
          *
          * @return The armor type that is inside the ItemStack that this capability is in.
          */
@@ -313,7 +317,7 @@ public interface IMultiComponentArmorCapability {
         }
 
         /**
-         * Method to getCreationRecipe the capabilities that the Armor has. Eg:
+         * Method to get the capabilities that the Armor has. Eg:
          * *  ArmorDefence
          * *  ArmorToughness
          * *  IsAccessory
@@ -365,7 +369,7 @@ public interface IMultiComponentArmorCapability {
             NBTTagCompound compound = (NBTTagCompound) nbt;
 
             instance.setArmorType(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Armor.NAME))));
-            instance.setInstalledExtensions(ArmorNBTHelper.getExtensionMap(compound.getTagList(References.NBTTagCompoundData.Armor.ADDONS, Constants.NBT.TAG_STRING)));
+            instance.setInstalledExtensions(ArmorNBTHelper.getExtensionMap(compound.getTagList(References.NBTTagCompoundData.Armor.ADDONS, Constants.NBT.TAG_COMPOUND)));
             instance.setBroken(compound.getBoolean(References.NBTTagCompoundData.Armor.IS_BROKEN));
             instance.setMaterial(IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Armor.CORE_MATERIAL))));
             instance.setMaximalDurability(compound.getInteger(References.NBTTagCompoundData.Armor.TOTAL_DURABILITY));

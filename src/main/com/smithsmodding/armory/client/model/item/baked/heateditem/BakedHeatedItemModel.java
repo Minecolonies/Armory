@@ -74,7 +74,7 @@ public class BakedHeatedItemModel extends BakedWrappedModel {
         @Nonnull
         @Override
         public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
-            // getCreationRecipe the texture for each part
+            // get the texture for each part
             ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
 
             if (!stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null)) {

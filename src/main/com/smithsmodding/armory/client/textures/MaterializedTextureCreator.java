@@ -10,6 +10,9 @@ import com.smithsmodding.armory.api.common.material.client.MaterialRenderControl
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
 import com.smithsmodding.armory.common.material.MedievalCoreArmorMaterial;
+import com.smithsmodding.smithscore.SmithsCore;
+import com.smithsmodding.smithscore.client.events.texture.TextureStitchCollectedEvent;
+import com.smithsmodding.smithscore.core.interfaces.ITextureMap;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IResourceManager;
@@ -53,15 +56,15 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     private static ArrayList<ResourceLocation> baseTextures = new ArrayList<ResourceLocation>();
     //Variable that holds the colored end textures when the Creator has reloaded
     @Nonnull
-    private static Map<ResourceLocation, Map<ResourceLocation, TextureAtlasSprite>> buildSprites = Maps.newHashMap();
+    private static Map<ResourceLocation, Map<String, TextureAtlasSprite>> buildSprites = Maps.newHashMap();
 
     //Initializes the dummy gui material with a proper set of render info.
     static {
-        guiMaterial = (ICoreArmorMaterial) new MedievalCoreArmorMaterial("", "", "", 0F,0F,0,0,0F) {
+        guiMaterial = new MedievalCoreArmorMaterial("", "", "", 0F,0F,0,0,0F) {
             /**
-             * Method to getCreationRecipe the BaseDurability of a piece of armor made out of this material.
+             * Method to get the BaseDurability of a piece of armor made out of this material.
              *
-             * @param armor The armor to getCreationRecipe the base durability for.
+             * @param armor The armor to get the base durability for.
              * @return The durability of a piece of armor made out of this material.
              */
             @Nonnull
@@ -71,7 +74,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
             }
 
             /**
-             * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
+             * Method to get all the default capabilities this ArmorMaterial provides.
              *
              * @param armor
              * @return All the default capabilities this ArmorMaterial provides.
@@ -110,12 +113,12 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     }
 
     /**
-     * method to getCreationRecipe the builded textures.
+     * method to get the builded textures.
      *
      * @return A map containing all the colored textures using the base texture and the materialname as keys.
      */
     @Nonnull
-    public static Map<ResourceLocation, Map<ResourceLocation, TextureAtlasSprite>> getBuildSprites() {
+    public static Map<ResourceLocation, Map<String, TextureAtlasSprite>> getBuildSprites() {
         return buildSprites;
     }
 
@@ -126,7 +129,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      * @param event The events fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
      */
     @SubscribeEvent(priority = EventPriority.LOW)
-    public void createCustomTextures(@Nonnull TextureStitchEvent.Pre event) {
+    public void createCustomTextures(@Nonnull TextureStitchCollectedEvent event) {
         //Only run the creation once, after all mods have been loaded.
         if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
             return;
@@ -141,7 +144,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      *
      * @param map The map to register the textures to.
      */
-    public void createMaterialTextures(@Nonnull TextureMap map) {
+    public void createMaterialTextures(@Nonnull ITextureMap map) {
         for (ResourceLocation baseTexture : baseTextures) {
             //NO Reason doing something twice!
             if (buildSprites.containsKey(baseTexture.toString()))
@@ -153,7 +156,11 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
             }
 
             for(ICreationController controller : ArmoryAPI.getInstance().getRegistryManager().getTextureCreationControllerRegistry()) {
-                ModLogger.getInstance().info("Creating textures for: " + baseTexture.toString() + " with: " + controller.getRegistryName().toString());
+                if (SmithsCore.isInDevEnvironment())
+                {
+                    ModLogger.getInstance().info("Creating textures for: " + baseTexture.toString() + " with: " + controller.getRegistryName().toString());
+                }
+
                 controller.createMaterializedTextures(map, baseTexture, buildSprites);
             }
         }
@@ -162,14 +169,14 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
     @SubscribeEvent
     public void postTextureStitch(TextureStitchEvent.Post e) throws Exception
     {
-        TextureMap map = e.getMap();
-        String name = map.getBasePath().replace('/', '_');
-        int mip = map.getMipmapLevels();
+        if (SmithsCore.isInDevEnvironment())
+        {
+            TextureMap map = e.getMap();
+            String name = map.getBasePath().replace('/', '_');
+            int mip = map.getMipmapLevels();
 
-        if (mip != 0)
-            return;
-
-        saveGlTexture(name, map.getGlTextureId(), mip);
+            saveGlTexture(name, map.getGlTextureId(), mip);
+        }
     }
 
     public static void saveGlTexture(String name, int textureId, int mipmapLevels) {

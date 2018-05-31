@@ -305,7 +305,7 @@ public class BlockConduit extends BlockArmoryTileEntity implements ICustomDebugI
      */
     @Override
     public void handleDebugInformation(@Nonnull RenderGameOverlayEvent.Text event, @Nonnull World worldIn, @Nonnull BlockPos pos) {
-        if (!SmithsCore.isInDevenvironment() && !Minecraft.getMinecraft().gameSettings.showDebugInfo)
+        if (!SmithsCore.isInDevEnvironment() && !Minecraft.getMinecraft().gameSettings.showDebugInfo)
             return;
 
         TileEntityConduit conduit = (TileEntityConduit) worldIn.getTileEntity(pos);

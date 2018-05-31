@@ -74,6 +74,12 @@ public class ItemBlockMoltenMetalTank extends ItemBlock {
 
         if (stack.hasTagCompound() && stack.getTagCompound().hasKey(References.NBTTagCompoundData.TE.MoltenMetalTank.CONTENTS)) {
             FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(stack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.TE.MoltenMetalTank.CONTENTS));
+
+            if (fluidStack == null)
+            {
+                return;
+            }
+
             tooltip.add(I18n.format(TranslationKeys.Items.MoltenMetalTank.TK_CONTENTS));
             tooltip.add(" -  " + fluidStack.getLocalizedName() + ": " + fluidStack.amount + " mB.");
         }

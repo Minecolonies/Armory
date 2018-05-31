@@ -23,13 +23,13 @@ local.properties
 *.launch
 
 #Forge
-build
-out
-run
+build/
+out/
+run/
 *.ipr
 *.iws
 *.iml
 *.db
 .gradle/
 classes/
-.idea
+.idea/

@@ -1,0 +1,18 @@
+{
+  "type": "ArmLeft",
+  "base": "armory:models/item/armor/layers/armory.chestplate.arm.left.base",
+  "layers": {
+    "armory:ShoulderLeft":"armory:models/item/armor/layers/armory.chestplate.arm.left.shoulder.left",
+    "armory:ShoulderRight":"armory:models/item/armor/layers/armory.chestplate.arm.left.shoulder.right",
+    "armory:BackLeft":"armory:models/item/armor/layers/armory.chestplate.arm.left.back.left",
+    "armory:BackRight":"armory:models/item/armor/layers/armory.chestplate.arm.left.back.right",
+    "armory:StomachLeft":"armory:models/item/armor/layers/armory.chestplate.arm.left.stomach.left",
+    "armory:StomachRight":"armory:models/item/armor/layers/armory.chestplate.arm.left.stomach.right"
+  },
+  "broken": {},
+  "transform":{
+    "translation": [-0.625, 0.375, 0.109375 ],
+    "scale": [1,1,1 ],
+    "rotation":[{"x":0},{"y":0},{"z":0} ]
+  }
+}

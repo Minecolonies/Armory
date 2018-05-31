@@ -13,7 +13,7 @@ import java.util.HashMap;
 public interface IAddonArmorMaterialDataCallback {
 
     /**
-     * Method to getCreationRecipe all the default capabilities this ArmorMaterial provides.
+     * Method to get all the default capabilities this ArmorMaterial provides.
      * @return All the default capabilities this ArmorMaterial provides.
      */
     @Nonnull

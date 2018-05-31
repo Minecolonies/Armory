@@ -8,13 +8,14 @@ import com.smithsmodding.armory.client.textures.creators.CoreTextureCreator;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 import javax.annotation.Nonnull;
 
 /**
  * Created by marcf on 1/29/2017.
  */
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = References.General.MOD_ID, value = Side.CLIENT)
 public class ClientCreationControllerRegistratitionInitializer {
 
     @SubscribeEvent

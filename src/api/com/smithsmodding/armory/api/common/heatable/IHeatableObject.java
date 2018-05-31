@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 public interface IHeatableObject extends IForgeRegistryEntry<IHeatableObject> {
 
     /**
-     * Method to getCreationRecipe the change factor while an instance of this HeatableObject is
+     * Method to get the change factor while an instance of this HeatableObject is
      * in ItemEntity form. Its internal temperature changes with this factor.
      * @param biome The biome the ItemEntity is in.
      * @param instance The capability stored on the stack in the ItemEntity, which can be seen as
@@ -24,7 +24,7 @@ public interface IHeatableObject extends IForgeRegistryEntry<IHeatableObject> {
     Float getChangeFactorForBiome(Biome biome, IHeatedObjectCapability instance);
 
     /**
-     * Method to getCreationRecipe the change factor while an instance of this HeatableObject is
+     * Method to get the change factor while an instance of this HeatableObject is
      * in an Inventory of an Entity. Its internal temperature with this factor.
      * @param entity The entity in whoms inventory this ItemStack is in.
      * @param instance The capability stored on the stack in the inventory, which can be seen as

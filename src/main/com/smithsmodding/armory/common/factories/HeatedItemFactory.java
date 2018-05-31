@@ -74,7 +74,7 @@ public class HeatedItemFactory implements IHeatedItemFactory {
         SmithsCoreCapabilityDispatcher createdStackCapDispatcher = createdStack.getCapability(SmithsCoreCapabilityDispatcher.INSTANCE_CAPABILITY, null).getDispatcher();
 
         IHeatedObjectCapability heatedObjectCapability = wrapHeatableData(originalStack)
-                .setTemperatur(temp)
+                .setTemperature(temp)
                 .setOriginalStack(originalStack);
         createdStackCapDispatcher.registerCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, heatedObjectCapability);
 

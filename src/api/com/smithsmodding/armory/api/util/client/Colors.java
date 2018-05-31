@@ -3,6 +3,7 @@ package com.smithsmodding.armory.api.util.client;
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nonnull;
 import java.awt.*;
 
 /**
@@ -30,6 +31,11 @@ public class Colors {
         public static MinecraftColor BLACK = new MinecraftColor(255, 255, 255);
         @NotNull
         public static MinecraftColor GREY = new MinecraftColor(139, 139, 139);
+    }
+
+    public static class Guide {
+        @Nonnull
+        public static MinecraftColor PAPYRUS = new MinecraftColor(255,252,188);
     }
 
 }

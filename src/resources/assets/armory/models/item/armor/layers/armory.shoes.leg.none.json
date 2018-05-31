@@ -1,0 +1,11 @@
+{
+  "override":{
+    "parent": "armory:models/item/armor/layers/armory.shoes.leg.base",
+    "textures":{
+      "armory:shoes.front":"armory:delete",
+      "armory:shoes.left":"armory:delete",
+      "armory:shoes.right":"armory:delete",
+      "armory:shoes.back":"armory:delete"
+    }
+  }
+}

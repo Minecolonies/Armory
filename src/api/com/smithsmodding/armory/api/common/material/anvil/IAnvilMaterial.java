@@ -15,14 +15,14 @@ import javax.annotation.Nullable;
 public interface IAnvilMaterial extends IMaterial<IAnvilMaterial> {
 
     /**
-     * Method to getCreationRecipe the getDurability of the Anvil when it is made out of this Material
+     * Method to get the getDurability of the Anvil when it is made out of this Material
      * @return A value bigger then 0, Integer.MaxValue means unbreakable.
      */
     @Nonnull
     Integer getDurability();
 
     /**
-     * Method used to getCreationRecipe the RenderInfo used to change the Texture of the Model if need be.
+     * Method used to get the RenderInfo used to change the Texture of the Model if need be.
      * @return The RenderInfo used to modify the Texture of the model.
      */
     @SideOnly(Side.CLIENT)

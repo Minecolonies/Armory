@@ -110,10 +110,15 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
 
     public void setCurrentTemp(float currentTemp) {
         this.currentTemp = currentTemp;
+        if (this.currentTemp < 20F)
+            this.currentTemp = 20F;
     }
 
     public void addLastChangeToCurrentTemp() {
         this.currentTemp += getLastChange();
+
+        if (this.currentTemp < 20F)
+            this.currentTemp = 20F;
     }
 
     public float getLastTemp() {

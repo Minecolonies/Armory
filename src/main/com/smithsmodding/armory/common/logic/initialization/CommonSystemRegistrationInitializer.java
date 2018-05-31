@@ -25,7 +25,7 @@ import javax.annotation.Nonnull;
 /**
  * Created by marcf on 1/25/2017.
  */
-@Mod.EventBusSubscriber()  //modid = (References.General.MOD_ID)
+@Mod.EventBusSubscriber(modid = References.General.MOD_ID) //modid = (References.General.MOD_ID)
 public class CommonSystemRegistrationInitializer {
 
     @SubscribeEvent
@@ -72,7 +72,7 @@ public class CommonSystemRegistrationInitializer {
         ModItems.Armor.IT_SHOES = new ItemMultiComponentArmor(References.InternalNames.Items.Armor.IN_SHOES, TranslationKeys.Items.MultiArmor.Armor.TK_SHOES);
 
         itemRegistry.register(ModItems.IT_HEATEDITEM);
-        //itemRegistry.register(ModItems.IT_GUIDE);
+        itemRegistry.register(ModItems.IT_GUIDE);
         itemRegistry.register(ModItems.IT_COMPONENT);
         itemRegistry.register(ModItems.IT_TONGS);
         itemRegistry.register(ModItems.IT_HAMMER);

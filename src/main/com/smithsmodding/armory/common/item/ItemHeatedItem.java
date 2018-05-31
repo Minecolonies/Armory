@@ -16,6 +16,7 @@ import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.ModHeatableObjects;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
+import com.smithsmodding.armory.common.entity.EntityItemHeatable;
 import com.smithsmodding.armory.common.factories.HeatedItemFactory;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
@@ -120,7 +121,25 @@ public class ItemHeatedItem extends Item {
             return "";
 
         IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
+        if (capability.getOriginalStack() == null)
+        {
+            return "NO ORIGINAL STACK FOUND ERROR!";
+        }
+
         return capability.getOriginalStack().getItem().getItemStackDisplayName(capability.getOriginalStack());
+    }
+
+    @Override
+    public boolean hasCustomEntity(final ItemStack stack)
+    {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public Entity createEntity(final World world, final Entity location, final ItemStack itemstack)
+    {
+        return new EntityItemHeatable(world, location.getPosition().getX(), location.getPosition().getY(), location.getPosition().getZ(), itemstack);
     }
 
     @Override
@@ -193,15 +212,18 @@ public class ItemHeatedItem extends Item {
     @Nullable
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
-        if (nbt == null || stack.getItem() == null)
+        if (stack.getItem() == null)
             return null;
-
-        NBTTagCompound parentCompound = nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
 
         SmithsCoreCapabilityDispatcher internalParentDispatcher = new SmithsCoreCapabilityDispatcher();
         internalParentDispatcher.registerNewInstance(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY);
 
-        internalParentDispatcher.deserializeNBT(parentCompound);
+        if (nbt != null)
+        {
+            NBTTagCompound parentCompound =
+              nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
+            internalParentDispatcher.deserializeNBT(parentCompound);
+        }
 
         return internalParentDispatcher;
     }

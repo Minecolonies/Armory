@@ -5,6 +5,7 @@ import com.smithsmodding.armory.api.client.textures.creation.ICreationController
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
 import com.smithsmodding.armory.api.util.client.TextureCreationHelper;
+import com.smithsmodding.smithscore.core.interfaces.ITextureMap;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
@@ -29,7 +30,7 @@ public class AddonTextureCreator extends IForgeRegistryEntry.Impl<ICreationContr
      * @param buildSprites A List of textures already created. The upper Map holds te baseTexture as key and the lower map the material name as key.
      */
     @Override
-    public void createMaterializedTextures(@Nonnull TextureMap map, @Nonnull ResourceLocation baseTexture, @Nonnull Map<ResourceLocation, Map<ResourceLocation, TextureAtlasSprite>> buildSprites) {
+    public void createMaterializedTextures(@Nonnull ITextureMap map, @Nonnull ResourceLocation baseTexture, @Nonnull Map<ResourceLocation, Map<String, TextureAtlasSprite>> buildSprites) {
         if (!buildSprites.containsKey(baseTexture))
             buildSprites.put(baseTexture, new HashMap<>());
 
@@ -41,11 +42,16 @@ public class AddonTextureCreator extends IForgeRegistryEntry.Impl<ICreationContr
             return;
         }
 
-        Map<ResourceLocation, TextureAtlasSprite> coloredSprites = buildSprites.get(baseTexture);
+        Map<String, TextureAtlasSprite> coloredSprites = buildSprites.get(baseTexture);
         for (IAddonArmorMaterial material : ArmoryAPI.getInstance().getRegistryManager().getAddonArmorMaterialRegistry()) {
+            if (coloredSprites.containsKey(material.getOreDictionaryIdentifier()))
+            {
+                continue;
+            }
+
             TextureAtlasSprite sprite = TextureCreationHelper.createTexture(material, material.getTextureOverrideIdentifier(), baseTexture, base, map, ADDONTEXTUREIDENTIFIER);
             if (sprite != null) {
-                coloredSprites.put(material.getRegistryName(), sprite);
+                coloredSprites.put(material.getOreDictionaryIdentifier(), sprite);
             }
         }
     }

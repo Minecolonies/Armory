@@ -22,7 +22,7 @@ public class HeatedObjectType extends IHeatedObjectType.Impl<IHeatedObjectType> 
     }
 
     /**
-     * Method to getCreationRecipe the amount in millibuckets that this HeatedObjectType produces when it melts.
+     * Method to get the amount in millibuckets that this HeatedObjectType produces when it melts.
      *
      * @return The amount in millibuckets produced when an HeatableObject of this type melts.
      */
@@ -47,6 +47,6 @@ public class HeatedObjectType extends IHeatedObjectType.Impl<IHeatedObjectType> 
         if (matches.isEmpty())
             throw new IllegalArgumentException("The given material has no Ore Dictionary entry for prefix: " + oreDicPrefix + " and Identifier: " + material.getOreDictionaryIdentifier());
 
-        return new ItemStack(matches.get(0).serializeNBT());
+        return matches.get(0).copy();
     }
 }

@@ -2,6 +2,7 @@ package com.smithsmodding.armory.api.common.capability;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.util.references.ModMaterials;
 import com.smithsmodding.armory.api.util.references.References;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -35,6 +36,10 @@ public interface IMaterializedStackCapability {
         @Nonnull
         private IMaterial material;
 
+        public Impl()
+        {
+            material = ModMaterials.Armor.Core.IRON;
+        }
 
         /**
          * Getter for the Material.
@@ -57,6 +62,14 @@ public interface IMaterializedStackCapability {
         public IMaterializedStackCapability setMaterial(@Nonnull IMaterial material) {
             this.material = material;
             return this;
+        }
+
+        @Override
+        public String toString()
+        {
+            return "Materialized{" +
+                     "material=" + material +
+                     '}';
         }
     }
 

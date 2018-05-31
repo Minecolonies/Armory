@@ -2,10 +2,42 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {},
-    "model": "armory:guide/Guide.obj",
+    "model": "armory:guide/guide.obj",
     "custom": {
       "flip-v": true,
       "gui3d": false
+    },
+    "transform": {
+      "gui": {
+        "rotation":  [ {"x": 75}, {"y": -45}, {"z": 30}],
+        "translation": [ 0.1, 0.25, 0],
+        "scale":[ 1, 1, 1 ]
+      },
+      "ground": {
+        "rotation":  [ {"x": 0}, {"y": 0}, {"z": 0}],
+        "translation": [ 0, 3, 0],
+        "scale":[ 0.25, 0.25, 0.25 ]
+      },
+      "fixed": {
+        "rotation":  [ {"x": 0}, {"y": 0}, {"z": 0}],
+        "translation": [ 0, 0, 0],
+        "scale":[ 0.5, 0.5, 0.5 ]
+      },
+      "thirdperson_righthand": {
+        "rotation":  [ {"x": 75}, {"y": 45}, {"z": 0}],
+        "translation": [ 0, 2.5, 0],
+        "scale": [ 0.375, 0.375, 0.375 ]
+      },
+      "firstperson_righthand": {
+        "rotation":  [ {"x": 0}, {"y": 45}, {"z": 0}],
+        "translation": [ 0, 0, 0 ],
+        "scale": [ 0.40, 0.40, 0.40 ]
+      },
+      "firstperson_lefthand": {
+        "rotation":  [ {"x": 0}, {"y": 225}, {"z": 0}],
+        "translation": [ 0, 0, 0 ],
+        "scale": [ 0.40, 0.40, 0.40 ]
+      }
     }
   },
   "variants": {

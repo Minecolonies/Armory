@@ -45,18 +45,18 @@ public class MaterializedItemModel extends ItemLayerModel {
 
         ImmutableMap.Builder<IMaterial, IBakedModel> modelBuilder = new ImmutableMap.Builder<>();
 
-        Map<ResourceLocation, TextureAtlasSprite> materializedTextures = MaterializedTextureCreator.getBuildSprites().get(new ResourceLocation(parent.getParticleTexture().getIconName()));
+        Map<String, TextureAtlasSprite> materializedTextures = MaterializedTextureCreator.getBuildSprites().get(new ResourceLocation(parent.getParticleTexture().getIconName()));
 
         for (ICoreArmorMaterial material : ArmoryAPI.getInstance().getRegistryManager().getCoreMaterialRegistry()) {
-            modelBuilder.put(material, this.retexture(ImmutableMap.of("layer0", materializedTextures.get(material.getRegistryName()).getIconName())).bake(state, format, bakedTextureGetter));
+            modelBuilder.put(material, this.retexture(ImmutableMap.of("layer0", materializedTextures.get(material.getOreDictionaryIdentifier()).getIconName())).bake(state, format, bakedTextureGetter));
         }
 
         for (IAddonArmorMaterial material : ArmoryAPI.getInstance().getRegistryManager().getAddonArmorMaterialRegistry()) {
-            modelBuilder.put(material, this.retexture(ImmutableMap.of("layer0", materializedTextures.get(material.getRegistryName()).getIconName())).bake(state, format, bakedTextureGetter));
+            modelBuilder.put(material, this.retexture(ImmutableMap.of("layer0", materializedTextures.get(material.getOreDictionaryIdentifier()).getIconName())).bake(state, format, bakedTextureGetter));
         }
 
         for (IAnvilMaterial material : ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry()) {
-            modelBuilder.put(material, this.retexture(ImmutableMap.of("layer0", materializedTextures.get(material.getRegistryName()).getIconName())).bake(state, format, bakedTextureGetter));
+            modelBuilder.put(material, this.retexture(ImmutableMap.of("layer0", materializedTextures.get(material.getOreDictionaryIdentifier()).getIconName())).bake(state, format, bakedTextureGetter));
         }
 
         return new BakedMaterializedModel(parent, modelBuilder.build(), transforms);

@@ -4,44 +4,44 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.model.TRSRTransformation;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
+import javax.annotation.Nonnull;
 
 /**
- * Author Marc (Created on: 28.05.2016)
+ * Definition of a Armor model.
  */
 public class MultiLayeredArmorModelDefinition {
 
-    final ResourceLocation baseLocation;
-    @NotNull
-    final Map<ResourceLocation, ResourceLocation> layerLocations;
-    final Map<ResourceLocation, ResourceLocation> brokenLocations;
-    final Map<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
+    @Nonnull private final ImmutableMap<ResourceLocation, ArmorModelPartDefinition> parts;
+    @Nonnull private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
 
-    public MultiLayeredArmorModelDefinition(ResourceLocation baseLocation, @NotNull Map<ResourceLocation, ResourceLocation> layerLocations, Map<ResourceLocation, ResourceLocation> brokenLocations, Map<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
-        this.baseLocation = baseLocation;
-        this.layerLocations = layerLocations;
-        this.brokenLocations = brokenLocations;
+    /**
+     * Constructor for a new armor model definition.
+     * @param parts The parts of the model.
+     * @param transforms The model transformers applied to the global model.  @throws IllegalArgumentException when a attempt is made to construct a definition without supplying any data.
+     */
+    public MultiLayeredArmorModelDefinition(
+                                             @Nonnull final ImmutableMap<ResourceLocation, ArmorModelPartDefinition> parts,
+                                             @Nonnull final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) throws IllegalArgumentException {
+        this.parts = parts;
         this.transforms = transforms;
 
-        if (layerLocations.isEmpty())
-            throw new IllegalArgumentException("Cannot create a MultiLayeredArmorModel without components!");
+        if (this.parts.isEmpty())
+            throw new IllegalArgumentException("Cannot create a new armor model definition if no layers, broken parts, base layer, or transformers are provided.");
     }
 
-    public ResourceLocation getBaseLocation() {
-        return baseLocation;
+    @Nonnull
+    public ImmutableMap<ResourceLocation, ArmorModelPartDefinition> getParts()
+    {
+        return parts;
     }
 
-    public ImmutableMap<ResourceLocation, ResourceLocation> getLayerLocations() {
-        return ImmutableMap.copyOf(layerLocations);
-    }
-
-    public ImmutableMap<ResourceLocation, ResourceLocation> getBrokenLocations() {
-        return ImmutableMap.copyOf(brokenLocations);
-    }
-
-    public Map<ItemCameraTransforms.TransformType, TRSRTransformation> getTransforms() {
+    /**
+     * The global render transforms for the model.
+     * @return The {@link TRSRTransformation} for the model.
+     */
+    @Nonnull
+    public ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> getTransforms() {
         return transforms;
     }
 }

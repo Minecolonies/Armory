@@ -31,14 +31,14 @@ public interface IAnvilRecipe extends IForgeRegistryEntry<IAnvilRecipe> {
 
     /**
      * Getter for the recipe Component on a given slot index.
-     * @param componentIndex The slot index to getCreationRecipe the component for
+     * @param componentIndex The slot index to get the component for
      * @return The component for the slot. Or null if none should be required.
      */
     @Nullable IAnvilRecipeComponent getComponent(int componentIndex);
 
     /**
      * Getter for the recipe additional Component on a given slot index.
-     * @param componentIndex The slot index to getCreationRecipe the additional component for
+     * @param componentIndex The slot index to get the additional component for
      * @return The additional component for the slot. Or null if none should be required.
      */
     @Nullable IAnvilRecipeComponent getAdditionalComponent(int componentIndex);
@@ -94,7 +94,7 @@ public interface IAnvilRecipe extends IForgeRegistryEntry<IAnvilRecipe> {
     @Nonnull IAnvilRecipe setShapeLess();
 
     /**
-     * Method to getCreationRecipe the result of the recipe for the given inputs.
+     * Method to get the result of the recipe for the given inputs.
      * @param craftingSlotContents The standard crafting slot inputs.
      * @param additionalSlotContents The additional crafting slot inputs.
      * @return The result stack for a given input.
@@ -121,7 +121,7 @@ public interface IAnvilRecipe extends IForgeRegistryEntry<IAnvilRecipe> {
     @Nonnull IAnvilRecipeComponent[] getAdditionalComponents();
 
     /**
-     * Method to getCreationRecipe the amount of progress that is required to complete the crafting.
+     * Method to get the amount of progress that is required to complete the crafting.
      * @return The amount of ticks required to craft this recipe.
      */
     int getProgress();

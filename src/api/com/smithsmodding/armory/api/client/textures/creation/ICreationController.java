@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.api.client.textures.creation;
 
+import com.smithsmodding.smithscore.core.interfaces.ITextureMap;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
@@ -19,7 +20,7 @@ public interface ICreationController extends IForgeRegistryEntry<ICreationContro
      * @param baseTexture The baseTexture to manipulate
      * @param buildSprites A List of textures already created. The upper Map holds te baseTexture as key and the lower map the material name as key.
      */
-    void createMaterializedTextures(@Nonnull TextureMap map, @Nonnull ResourceLocation baseTexture, @Nonnull Map<ResourceLocation, Map<ResourceLocation, TextureAtlasSprite>> buildSprites);
+    void createMaterializedTextures(@Nonnull ITextureMap map, @Nonnull ResourceLocation baseTexture, @Nonnull Map<ResourceLocation, Map<String, TextureAtlasSprite>> buildSprites);
 
 
 }

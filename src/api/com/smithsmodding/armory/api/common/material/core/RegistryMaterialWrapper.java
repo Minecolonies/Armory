@@ -18,7 +18,7 @@ public final class RegistryMaterialWrapper extends IForgeRegistryEntry.Impl<Regi
     }
 
     /**
-     * Method to getCreationRecipe the wrapped entry of a other registry.
+     * Method to get the wrapped entry of a other registry.
      * @return The wrapped nonnull entry.
      */
     @Nonnull

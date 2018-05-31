@@ -1,0 +1,16 @@
+{
+  "type": "LegRight",
+  "base": "armory:models/item/armor/layers/armory.leggings.leg.base",
+  "layers": {
+    "armory:ShinLeft":"armory:models/item/armor/layers/armory.leggings.leg.none",
+    "armory:ShinRight":"armory:models/item/armor/layers/armory.leggings.shin.active",
+    "armory:CalfLeft":"armory:models/item/armor/layers/armory.leggings.leg.none",
+    "armory:CalfRight":"armory:models/item/armor/layers/armory.leggings.calf.active"
+  },
+  "broken": {},
+  "transform":{
+    "translation": [-0.125, 0.375, 0.109375 ],
+    "scale": [-1,1,-1 ],
+    "rotation":[{"x":0},{"y":0},{"z":0} ]
+  }
+}

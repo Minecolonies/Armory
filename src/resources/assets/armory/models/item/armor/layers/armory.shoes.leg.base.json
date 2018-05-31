@@ -1,0 +1,40 @@
+{
+  "parts":[
+    {
+      "id":"armory:shoes.front",
+      "texture":"armory:items/multiarmor/base/shoes/armory.shoes_leg",
+      "transformation":{
+        "translation": [0.375, -0.375, 0.109375],
+        "scale": [1, 1, 0.5 ],
+        "rotation":[{"x":0},{"y":0},{"z":0} ]
+      }
+    },
+    {
+      "id":"armory:shoes.back",
+      "texture":"armory:items/multiarmor/base/shoes/armory.shoes_leg",
+      "transformation":{
+        "translation": [0.375, -0.375, -0.109375],
+        "scale": [1, 1, 0.5 ],
+        "rotation":[{"x":0},{"y":0},{"z":0} ]
+      }
+    },
+    {
+      "id":"armory:shoes.left",
+      "texture":"armory:items/multiarmor/base/shoes/armory.shoes_leg",
+      "transformation":{
+        "translation": [ -0.109375, -0.375, -0.375 ],
+        "scale": [1, 1, 0.5 ],
+        "rotation":[{"x":0},{"y":90},{"z":0} ]
+      }
+    },
+    {
+      "id":"armory:shoes.right",
+      "texture":"armory:items/multiarmor/base/shoes/armory.shoes_leg",
+      "transformation":{
+        "translation": [ 0.109375, -0.375, -0.375 ],
+        "scale": [1, 1, 0.5 ],
+        "rotation":[{"x":0},{"y":90},{"z":0} ]
+      }
+    }
+  ]
+}

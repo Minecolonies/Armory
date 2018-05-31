@@ -17,7 +17,7 @@ public class RegisterMaterialEvent<T extends IForgeRegistryEntry<T>> extends Smi
     }
 
     /**
-     * Method to getCreationRecipe the registry for the ICoreArmorMaterial.
+     * Method to get the registry for the ICoreArmorMaterial.
      * @return The registry for the ICoreArmorMaterial.
      */
     public IForgeRegistry<T> getRegistry() {
@@ -25,7 +25,7 @@ public class RegisterMaterialEvent<T extends IForgeRegistryEntry<T>> extends Smi
     }
 
     /**
-     * Method to getCreationRecipe the construction helpers for materials inside Armory.
+     * Method to get the construction helpers for materials inside Armory.
      * @return The IMaterialConstructionHelper used to create materials for Armory.
      */
     public IMaterialConstructionHelper getConstructionHelper() {

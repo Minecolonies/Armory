@@ -4,6 +4,7 @@ import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
 import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -30,7 +31,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
      * @param temperature the new Temperature
      * @return The instance this method was called on so that method chaining can happen.
      */
-    IHeatedObjectCapability setTemperatur(@Nonnull Float temperature);
+    IHeatedObjectCapability setTemperature(@Nonnull Float temperature);
 
     /**
      * Method used to increase the temperature stored in this capability.
@@ -45,7 +46,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
     void subtractTemperatur(@Nonnull Float subtraction);
 
     /**
-     * Method to getCreationRecipe the Original stack.
+     * Method to get the Original stack.
      * @return The stack that turned into this HeatedObject. Or null if something else is Heated.
      */
     @Nullable
@@ -112,7 +113,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
          * @return The instance this method was called on so that method chaining can happen.
          */
         @Override
-        public IHeatedObjectCapability setTemperatur(@Nonnull Float temperature) {
+        public IHeatedObjectCapability setTemperature(@Nonnull Float temperature) {
             this.temperature = temperature;
             return this;
         }
@@ -124,7 +125,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
          */
         @Override
         public void increaseTemperatur(@Nonnull Float addition) {
-            this.setTemperatur(getTemperature() + addition);
+            this.setTemperature(getTemperature() + addition);
         }
 
         /**
@@ -138,7 +139,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
         }
 
         /**
-         * Method to getCreationRecipe the Original stack.
+         * Method to get the Original stack.
          *
          * @return The stack that turned into this HeatedObject. Or null if something else is Heated.
          */
@@ -194,6 +195,15 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
         public IHeatedObjectCapability setMaterial(@Nonnull IMaterial material) {
             return (IHeatedObjectCapability) super.setMaterial(material);
         }
+
+        @Override
+        public String toString()
+        {
+            return "Heated{" +
+                     "temperature=" + temperature +
+                     ", stack=" + ItemStackHelper.toString(stack) +
+                     '}';
+        }
     }
 
     class Storage implements Capability.IStorage<IHeatedObjectCapability> {
@@ -218,7 +228,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
 
             heatableStorage.read(instance, compound);
 
-            instance.setTemperatur(compound.getFloat(References.NBTTagCompoundData.HeatedObject.HEATEDTEMP));
+            instance.setTemperature(compound.getFloat(References.NBTTagCompoundData.HeatedObject.HEATEDTEMP));
 
             if (compound.hasKey(References.NBTTagCompoundData.HeatedObject.HEATEDSTACK))
                 instance.setOriginalStack(new ItemStack(compound.getCompoundTag(References.NBTTagCompoundData.HeatedObject.HEATEDSTACK)));

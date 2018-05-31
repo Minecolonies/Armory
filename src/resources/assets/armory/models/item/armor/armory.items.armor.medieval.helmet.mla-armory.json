@@ -1,10 +1,6 @@
 {
-  "parent": "item/generated",
-  "base": "armory:items/multiarmor/base/armory.helmet_base",
-  "layers": {
-    "armory:Top": "armory:items/multiarmor/upgrades/armory.helmet_tophead",
-    "armory:Left": "armory:items/multiarmor/upgrades/armory.helmet_protection_ear_left",
-    "armory:Right": "armory:items/multiarmor/upgrades/armory.helmet_protection_ear_right"
-  },
-  "broken": {}
+  "parent": "armory:models/item/armor/mla",
+  "parts": {
+    "armory:helmet.main":"armory:models/item/armor/parts/armory.helmet.main"
+  }
 }
