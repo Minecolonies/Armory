@@ -287,6 +287,13 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
     }
 
     @Override
+    public String toString()
+    {
+        return "MedievalArmorExtension{"
+                 + "registryName=" + getRegistryName().toString() + "}";
+    }
+
+    @Override
     public boolean equals(final Object obj)
     {
         if (obj instanceof IMultiComponentArmorExtension)

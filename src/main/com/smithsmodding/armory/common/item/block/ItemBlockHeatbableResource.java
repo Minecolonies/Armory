@@ -1,19 +1,21 @@
 package com.smithsmodding.armory.common.item.block;
 
 import com.smithsmodding.armory.api.common.capability.IMaterializedStackCapability;
+import com.smithsmodding.armory.api.common.heatable.IHeatableObjectWrapper;
+import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
-import com.smithsmodding.armory.client.ArmoryClientProxy;
+import com.smithsmodding.armory.api.util.references.ModHeatedObjectTypes;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -23,11 +25,33 @@ import javax.annotation.Nullable;
 /**
  * Created by marcf on 2/2/2017.
  */
-public class ItemBlockHeatbableResource extends ItemBlock {
+public class ItemBlockHeatbableResource extends ItemBlock implements IHeatableObjectWrapper
+{
 
     public ItemBlockHeatbableResource(Block block) {
         super(block);
         this.setRegistryName(block.getRegistryName());
+    }
+
+    @Override
+    public String getItemStackDisplayName(ItemStack stack)
+    {
+        if (!stack.hasCapability(ModCapabilities.MOD_MATERIALIZEDSSTACK_CAPABIITY, null))
+        {
+            return super.getItemStackDisplayName(stack);
+        }
+
+        IMaterializedStackCapability capability = stack.getCapability(ModCapabilities.MOD_MATERIALIZEDSSTACK_CAPABIITY, null);
+        return I18n.translateToLocal(this.getUnlocalizedName() + ".name") + " " + capability.getMaterial().getTextFormatting() + I18n.translateToLocal(capability.getMaterial()
+                                                                                                                                                         .getTranslationKey())
+                 + TextFormatting.RESET;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public FontRenderer getFontRenderer(ItemStack stack)
+    {
+        return CoreClientProxy.getMultiColoredFontRenderer();
     }
 
     /**
@@ -46,32 +70,26 @@ public class ItemBlockHeatbableResource extends ItemBlock {
     @Nullable
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
-        if (nbt == null || stack.getItem() == null)
+        if (stack.getItem() == null)
             return null;
-
-        NBTTagCompound parentCompound = nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
 
         SmithsCoreCapabilityDispatcher internalParentDispatcher = new SmithsCoreCapabilityDispatcher();
         internalParentDispatcher.registerNewInstance(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY);
         internalParentDispatcher.registerNewInstance(ModCapabilities.MOD_MATERIALIZEDSSTACK_CAPABIITY);
 
-        internalParentDispatcher.deserializeNBT(parentCompound);
+        if (nbt != null)
+        {
+            NBTTagCompound parentCompound =
+              nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
+            internalParentDispatcher.deserializeNBT(parentCompound);
+        }
 
         return internalParentDispatcher;
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public FontRenderer getFontRenderer(ItemStack stack) {
-        return CoreClientProxy.getMultiColoredFontRenderer();
-    }
-
-    @Override
-    public String getItemStackDisplayName(ItemStack stack) {
-        if (!stack.hasCapability(ModCapabilities.MOD_MATERIALIZEDSSTACK_CAPABIITY, null))
-            return super.getItemStackDisplayName(stack);
-
-        IMaterializedStackCapability capability = stack.getCapability(ModCapabilities.MOD_MATERIALIZEDSSTACK_CAPABIITY, null);
-        return I18n.format(this.getUnlocalizedName() + ".name") + " " + capability.getMaterial().getTextFormatting() + I18n.format(capability.getMaterial().getTranslationKey()) + TextFormatting.RESET;
+    public IHeatedObjectType getHeatableObjectType()
+    {
+        return ModHeatedObjectTypes.BLOCK;
     }
 }

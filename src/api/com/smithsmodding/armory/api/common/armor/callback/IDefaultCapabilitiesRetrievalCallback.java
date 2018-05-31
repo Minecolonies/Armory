@@ -9,6 +9,7 @@ import java.util.HashMap;
 /**
  * Created by marcf on 1/21/2017.
  */
+@FunctionalInterface
 public interface IDefaultCapabilitiesRetrievalCallback {
     /**
      * Method to get capabilities from the Callback.

@@ -101,6 +101,14 @@ public class MedievalMaterialDependantArmorExtension extends MedievalArmorExtens
         return super.setRenderTransforms(transforms);
     }
 
+    @Override
+    public String toString()
+    {
+        return "MedievalMaterialDependantArmorExtension{" +
+                 "registryname=" + getRegistryName().toString() +
+                 '}';
+    }
+
     /**
      * @return
      */

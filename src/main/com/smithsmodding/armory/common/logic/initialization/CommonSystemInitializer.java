@@ -14,6 +14,7 @@ import com.smithsmodding.armory.common.creativetabs.ArmorTab;
 import com.smithsmodding.armory.common.creativetabs.ComponentsTab;
 import com.smithsmodding.armory.common.creativetabs.GeneralTabs;
 import com.smithsmodding.armory.common.creativetabs.HeatedItemTab;
+import com.smithsmodding.armory.common.item.ItemHeatableResource;
 import com.smithsmodding.armory.common.tileentity.*;
 import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.init.Blocks;
@@ -188,12 +189,12 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
         NonNullList<ItemStack> ingots = NonNullList.create();
         NonNullList<ItemStack> blocks = NonNullList.create();
 
-        ModItems.IT_CHAIN.getSubItems(ModItems.IT_CHAIN, null, chains);
-        ModItems.IT_NUGGET.getSubItems(ModItems.IT_NUGGET, null, nuggets);
-        ModItems.IT_PLATE.getSubItems(ModItems.IT_PLATE, null, plates);
-        ModItems.IT_RING.getSubItems(ModItems.IT_RING, null, rings);
-        ModItems.IT_INGOT.getSubItems(ModItems.IT_INGOT, null, ingots);
-        ModBlocks.BL_RESOURCE.getSubBlocks(Item.getItemFromBlock(ModBlocks.BL_RESOURCE), null, blocks);
+        ItemHeatableResource.getSubItemsStatic(ModItems.IT_CHAIN, chains);
+        ItemHeatableResource.getSubItemsStatic(ModItems.IT_NUGGET, nuggets);
+        ItemHeatableResource.getSubItemsStatic(ModItems.IT_PLATE, plates);
+        ItemHeatableResource.getSubItemsStatic(ModItems.IT_RING, rings);
+        ItemHeatableResource.getSubItemsStatic(ModItems.IT_INGOT, ingots);
+        ItemHeatableResource.getSubItemsStatic(Item.getItemFromBlock(ModBlocks.BL_RESOURCE), blocks);
 
         for (ItemStack chain : chains) {
             OreDictionary.registerOre("chain" + CapabilityHelper.getMaterialFromMaterializedStack(chain).getOreDictionaryIdentifier(), chain);

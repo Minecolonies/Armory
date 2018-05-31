@@ -41,6 +41,7 @@ public class Textures {
         Gui.FirePit.THERMOMETERICON.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.FirePit.THERMOMETERICON.getPrimaryLocation())));
         Blocks.LiquidMetalFlow.addIcon(event.getMap().registerSprite(new ResourceLocation(Blocks.LiquidMetalFlow.getPrimaryLocation())));
         Blocks.LiquidMetalStill.addIcon(event.getMap().registerSprite(new ResourceLocation(Blocks.LiquidMetalStill.getPrimaryLocation())));
+        Gui.Book.SLOT.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.Book.SLOT.getPrimaryLocation())));
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
@@ -130,17 +131,23 @@ public class Textures {
             @Nonnull
             public static CustomResource LOGO_BIG      = new CustomResource("Gui.Anvil.Image.Logo.Big", "armory:gui/images/32x anvilhammer", Colors.DEFAULT, 0, 0, 32, 32);
             @Nonnull
-            public static CustomResource LOGO_SMALL      = new CustomResource("Gui.Anvil.Image.Logo.Small", "armory:gui/images/16x anvilhammer", Colors.DEFAULT, 0, 0, 16, 16);
+            public static CustomResource LOGO_SMALL    = new CustomResource("Gui.Anvil.Image.Logo.Small", "armory:gui/images/16x anvilhammer", Colors.DEFAULT, 0, 0, 16, 16);
             @Nonnull
             public static CustomResource EXPERIENCEORB = new CustomResource("Gui.Anvil.Image.ExperienceOrb", GUITEXTUREPATH + "components/randomelements.png", Colors.DEFAULT, 16, 0, 16, 16);
             @Nonnull
             public static CustomResource HOLOWPICKAXE  = new CustomResource("Gui.Anvil.SlotHolo.Pickaxe", "minecraft:items/iron_pickaxe", Colors.DEFAULT, 0, 0, 16, 16);
             @Nonnull
-            public static CustomResource HOLOWBOOK = new CustomResource("Gui.Anvil.SlotHolo.Book", "minecraft:items/book_normal", Colors.DEFAULT, 0,0, 16, 16);
+            public static CustomResource HOLOWBOOK     = new CustomResource("Gui.Anvil.SlotHolo.Book", "minecraft:items/book_normal", Colors.DEFAULT, 0,0, 16, 16);
             @Nonnull
-            public static CustomResource HOLOWHAMMER = new CustomResource("Gui.Anvil.SlotHolo.Hammer", "armory:items/basic/16x work hammer", Colors.DEFAULT, 0,0,16,16);
+            public static CustomResource HOLOWHAMMER   = new CustomResource("Gui.Anvil.SlotHolo.Hammer", "armory:items/basic/16x work hammer", Colors.DEFAULT, 0,0,16,16);
             @Nonnull
-            public static CustomResource HOLOWTONGS = new CustomResource("Gui.Anvil.SlotHolo.Tongs", "armory:items/basic/16x tongs", Colors.DEFAULT, 0,0,16,16);
+            public static CustomResource HOLOWTONGS    = new CustomResource("Gui.Anvil.SlotHolo.Tongs", "armory:items/basic/16x tongs", Colors.DEFAULT, 0,0,16,16);
+        }
+
+        public static class Book
+        {
+            @Nonnull
+            public static CustomResource SLOT = new CustomResource("Gui.Book.Anvil.5x5.Slot", "armory:gui/components/slot_default", Colors.DEFAULT, 0, 0, 18, 18);
         }
 
         public static class Compatibility {

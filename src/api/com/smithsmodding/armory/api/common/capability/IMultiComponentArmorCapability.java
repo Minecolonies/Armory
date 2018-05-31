@@ -7,6 +7,8 @@ import com.smithsmodding.armory.api.common.capability.armor.ArmorCapabilityManag
 import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.util.common.armor.ArmorNBTHelper;
+import com.smithsmodding.armory.api.util.references.ModArmor;
+import com.smithsmodding.armory.api.util.references.ModMaterials;
 import com.smithsmodding.armory.api.util.references.References;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -133,8 +135,7 @@ public interface IMultiComponentArmorCapability {
     class Impl implements IMultiComponentArmorCapability {
 
         @Nonnull
-        private IMultiComponentArmor armor = IArmoryAPI.Holder.getInstance().getRegistryManager()
-                .getMultiComponentArmorRegistry().getValue(new ResourceLocation(References.General.MOD_ID.toLowerCase(), References.InternalNames.Armor.MEDIEVALCHESTPLATE));
+        private IMultiComponentArmor armor = ModArmor.Medieval.CHESTPLATE;
 
         @Nonnull
         private ArrayList<IMultiComponentArmorExtensionInformation> installedExtensions = new ArrayList<>();
@@ -143,17 +144,20 @@ public interface IMultiComponentArmorCapability {
         private Boolean broken = Boolean.FALSE;
 
         @Nonnull
-        private ICoreArmorMaterial coreArmorMaterial = IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry()
-                .getValue(References.InternalNames.Materials.Core.CMN_IRON);
+        private ICoreArmorMaterial coreArmorMaterial = ModMaterials.Armor.Core.IRON;
 
         @Nonnull
-        private Integer durability;
+        private Integer durability = 100;
 
         @Nonnull
-        private Integer maximalDurability;
+        private Integer maximalDurability = 100;
 
         @Nonnull
         private ArmorCapabilityManager armorCapabilityManager = new ArmorCapabilityManager();
+
+        public Impl()
+        {
+        }
 
         /**
          * Method to get the Type of armor that is in the ItemStack.

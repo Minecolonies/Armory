@@ -5,10 +5,10 @@ import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponen
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.capability.IArmorComponentStackCapability;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
@@ -96,15 +96,18 @@ public class ItemArmorComponent extends Item {
     @Nullable
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
-        if (nbt == null || stack.getItem() == null)
+        if (stack.getItem() == null)
             return null;
-
-        NBTTagCompound parentCompound = nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
 
         SmithsCoreCapabilityDispatcher internalParentDispatcher = new SmithsCoreCapabilityDispatcher();
         internalParentDispatcher.registerNewInstance(ModCapabilities.MOD_ARMORCOMPONENT_CAPABILITY);
 
-        internalParentDispatcher.deserializeNBT(parentCompound);
+        if (nbt != null)
+        {
+            NBTTagCompound parentCompound =
+              nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
+            internalParentDispatcher.deserializeNBT(parentCompound);
+        }
 
         return internalParentDispatcher;
     }

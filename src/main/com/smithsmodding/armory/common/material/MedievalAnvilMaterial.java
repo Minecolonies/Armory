@@ -248,4 +248,12 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
                 .setCraftingSlotContent(24, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.INGOT, ModHeatableObjects.ITEMSTACK, this, getMeltingPoint() * 0.5F * 0.85F, getMeltingPoint() * 0.5F * 0.95F)))
                 .setProgress(25).setResult(stack).setHammerUsage(30);
     }
+
+    @Override
+    public String toString()
+    {
+        return "MedievalAnvilMaterial{" +
+                 "registryname='" + getRegistryName().toString() + "\'" +
+                 '}';
+    }
 }

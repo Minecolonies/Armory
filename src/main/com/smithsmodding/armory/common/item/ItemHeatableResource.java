@@ -10,8 +10,8 @@ import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.capability.IMaterializedStackCapability;
 import com.smithsmodding.armory.api.common.heatable.IHeatableObjectWrapper;
 import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper;
-import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.common.CapabilityHelper;
+import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
@@ -35,6 +35,12 @@ import java.util.HashMap;
 public abstract class ItemHeatableResource extends Item implements IHeatableObjectWrapper {
 
     @Override
+    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems)
+    {
+        ItemHeatableResource.getSubItemsStatic(itemIn, subItems);
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public FontRenderer getFontRenderer(ItemStack stack) {
         return CoreClientProxy.getMultiColoredFontRenderer();
@@ -56,15 +62,15 @@ public abstract class ItemHeatableResource extends Item implements IHeatableObje
         return true;
     }
 
-    @Override
-    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
+    public static void getSubItemsStatic(final Item itemIn, final NonNullList<ItemStack> subItems)
+    {
         HashMap<String, ItemStack> mappedOreDictionaryStacks = new HashMap<>();
 
         for(RegistryMaterialWrapper wrapper : IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry()) {
             if (mappedOreDictionaryStacks.containsKey(wrapper.getWrapped().getOreDictionaryIdentifier()))
                 continue;
 
-            ItemStack stack = CapabilityHelper.generateMaterializedStack(this, wrapper.getWrapped(), 1);
+            ItemStack stack = CapabilityHelper.generateMaterializedStack(itemIn, wrapper.getWrapped(), 1);
 
             mappedOreDictionaryStacks.put(wrapper.getWrapped().getOreDictionaryIdentifier(), stack);
 
@@ -90,16 +96,19 @@ public abstract class ItemHeatableResource extends Item implements IHeatableObje
     @Nullable
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
-        if (nbt == null || stack.getItem() == null)
+        if (stack.getItem() == null)
             return null;
-
-        NBTTagCompound parentCompound = nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
 
         SmithsCoreCapabilityDispatcher internalParentDispatcher = new SmithsCoreCapabilityDispatcher();
         internalParentDispatcher.registerNewInstance(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY);
         internalParentDispatcher.registerNewInstance(ModCapabilities.MOD_MATERIALIZEDSSTACK_CAPABIITY);
 
-        internalParentDispatcher.deserializeNBT(parentCompound);
+        if (nbt != null)
+        {
+            NBTTagCompound parentCompound =
+              nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
+            internalParentDispatcher.deserializeNBT(parentCompound);
+        }
 
         return internalParentDispatcher;
     }

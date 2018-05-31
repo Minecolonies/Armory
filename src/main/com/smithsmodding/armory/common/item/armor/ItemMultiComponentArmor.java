@@ -10,14 +10,11 @@ import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.client.model.entity.LayerMultiComponentArmorModelHelper;
 import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,6 +27,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
@@ -140,6 +138,30 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
         }
     }
 
+    @Override
+    public String getItemStackDisplayName(ItemStack stack)
+    {
+        if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
+        {
+            return "Stack has No Data!";
+        }
+
+        if (stack.hasTagCompound())
+        {
+            if (stack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
+            {
+                return TextFormatting.ITALIC + stack.getTagCompound().getString(References.NBTTagCompoundData.CustomName) + TextFormatting.RESET;
+            }
+        }
+
+        IMultiComponentArmorCapability capability = stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+        IMultiComponentArmor armorType = capability.getArmorType();
+        IMaterial material = capability.getMaterial();
+
+        return material.getTextFormatting() + I18n.translateToLocal(material.getTranslationKey()) + TextFormatting.RESET + " "
+                 + I18n.translateToLocal(armorType.getTranslationKey());
+    }
+
     /**
      * Called from ItemStack.setItem, will hold extra data for the life of this ItemStack.
      * Can be retrieved from stack.getCapabilities()
@@ -156,37 +178,20 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
     @Nullable
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
-        if (nbt == null || stack.getItem() == null)
+        if (stack.getItem() == null)
             return null;
-
-        NBTTagCompound parentCompound = nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
 
         SmithsCoreCapabilityDispatcher internalParentDispatcher = new SmithsCoreCapabilityDispatcher();
         internalParentDispatcher.registerNewInstance(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY);
 
-        internalParentDispatcher.deserializeNBT(parentCompound);
-
-        return internalParentDispatcher;
-    }
-
-    @Override
-    public String getItemStackDisplayName(ItemStack stack) {
-        if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
-            return "Stack has No Data!";
-
-        if (stack.hasTagCompound())
+        if (nbt != null)
         {
-            if (stack.getTagCompound().hasKey(References.NBTTagCompoundData.CustomName))
-            {
-                return TextFormatting.ITALIC + stack.getTagCompound().getString(References.NBTTagCompoundData.CustomName) + TextFormatting.RESET;
-            }
+            NBTTagCompound parentCompound =
+              nbt.getCompoundTag(new ResourceLocation(CoreReferences.General.MOD_ID.toLowerCase(), CoreReferences.CapabilityManager.DEFAULT).toString());
+            internalParentDispatcher.deserializeNBT(parentCompound);
         }
 
-        IMultiComponentArmorCapability capability = stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
-        IMultiComponentArmor armorType = capability.getArmorType();
-        IMaterial material = capability.getMaterial();
-
-        return material.getTextFormatting() + I18n.format(material.getTranslationKey()) + TextFormatting.RESET + " " + I18n.format(armorType.getTranslationKey());
+        return internalParentDispatcher;
     }
 
     /**

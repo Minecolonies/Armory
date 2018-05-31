@@ -1,6 +1,7 @@
 package com.smithsmodding.armory.api.common.capability;
 
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.util.references.ModExtensions;
 
 import javax.annotation.Nonnull;
 
@@ -28,6 +29,11 @@ public interface IArmorComponentStackCapability {
         @Nonnull
         private IMultiComponentArmorExtension extension;
 
+        public Impl()
+        {
+            extension = ModExtensions.Medieval.Helmet.TOP;
+        }
+
         /**
          * Method to get the Extension stored in the Capability.
          *
@@ -49,6 +55,14 @@ public interface IArmorComponentStackCapability {
         public IArmorComponentStackCapability setExtension(@Nonnull IMultiComponentArmorExtension extension) {
             this.extension = extension;
             return this;
+        }
+
+        @Override
+        public String toString()
+        {
+            return "ArmorComponent{" +
+                     "extension=" + extension +
+                     '}';
         }
     }
 }

@@ -4,6 +4,7 @@ import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
 import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.references.References;
+import com.smithsmodding.smithscore.util.common.helper.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -193,6 +194,15 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
         @Override
         public IHeatedObjectCapability setMaterial(@Nonnull IMaterial material) {
             return (IHeatedObjectCapability) super.setMaterial(material);
+        }
+
+        @Override
+        public String toString()
+        {
+            return "Heated{" +
+                     "temperature=" + temperature +
+                     ", stack=" + ItemStackHelper.toString(stack) +
+                     '}';
         }
     }
 
