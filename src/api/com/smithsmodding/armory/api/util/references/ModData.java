@@ -98,4 +98,36 @@ public class ModData {
             public static final Integer DAN_STONE = 575;
         }
     }
+
+    public static class Ratio
+    {
+
+        public static class Armor
+        {
+            @Nonnull
+            public static final Float RAT_HELMET     = 0.2f;
+            @Nonnull
+            public static final Float RAT_CHESTPLATE = 0.4f;
+            @Nonnull
+            public static final Float RAT_LEGGINGS   = 0.3f;
+            @Nonnull
+            public static final Float RAT_SHOES      = 0.1f;
+        }
+    }
+
+    public static class Defence
+    {
+
+        public static class Armor
+        {
+            @Nonnull
+            public static final Float DER_HELMET     = 0.2f;
+            @Nonnull
+            public static final Float DER_CHESTPLATE = 0.4f;
+            @Nonnull
+            public static final Float DER_LEGGINGS   = 0.3f;
+            @Nonnull
+            public static final Float DER_SHOES      = 0.1f;
+        }
+    }
 }

@@ -8,9 +8,22 @@ import net.minecraftforge.common.capabilities.Capability;
 /**
  * Created by marcf on 1/15/2017.
  */
-public class ArmorToughnessCapability extends IValueContainingCapability.Impl<Float> {
+public interface IArmorDefenceCapability extends IValueContainingCapability<IArmorDefenceCapability, Float>
+{
 
-    public class Storage implements Capability.IStorage<ArmorToughnessCapability> {
+    /**
+     * Creates a new {@link IArmorDefenceCapability} instance.
+     *
+     * @param value The value.
+     * @return The instance.
+     */
+    static IArmorDefenceCapability create(final float value)
+    {
+        return new Impl(value);
+    }
+
+    class Storage implements Capability.IStorage<IArmorDefenceCapability>
+    {
 
         /**
          * Serialize the capability instance to a NBTTag.
@@ -31,7 +44,7 @@ public class ArmorToughnessCapability extends IValueContainingCapability.Impl<Fl
          * @return a NBT holding the data. Null if no data needs to be stored.
          */
         @Override
-        public NBTBase writeNBT(Capability<ArmorToughnessCapability> capability, ArmorToughnessCapability instance, EnumFacing side) {
+        public NBTBase writeNBT(Capability<IArmorDefenceCapability> capability, IArmorDefenceCapability instance, EnumFacing side) {
             return new NBTTagFloat(instance.getValue());
         }
 
@@ -55,8 +68,20 @@ public class ArmorToughnessCapability extends IValueContainingCapability.Impl<Fl
          * @param nbt        A NBT holding the data. Must not be null, as doesn't make sense to call this function with nothing to read...
          */
         @Override
-        public void readNBT(Capability<ArmorToughnessCapability> capability, ArmorToughnessCapability instance, EnumFacing side, NBTBase nbt) {
+        public void readNBT(Capability<IArmorDefenceCapability> capability, IArmorDefenceCapability instance, EnumFacing side, NBTBase nbt) {
             instance.setValue(((NBTTagFloat) nbt).getFloat());
+        }
+    }
+
+    class Impl extends IValueContainingCapability.Impl<IArmorDefenceCapability, Float> implements IArmorDefenceCapability
+    {
+        public Impl()
+        {
+        }
+
+        public Impl(float value)
+        {
+            setValue(value);
         }
     }
 }

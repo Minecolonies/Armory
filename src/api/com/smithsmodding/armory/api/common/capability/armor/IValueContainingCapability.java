@@ -22,9 +22,10 @@ public interface IValueContainingCapability<T, V> extends IArmorCapability {
     @Nonnull
     T setValue(@Nonnull V value);
 
-    class Impl<T> implements IValueContainingCapability<Impl<T>, T> {
+    class Impl<T, V> implements IValueContainingCapability<T, V>
+    {
 
-        T value;
+        V value;
 
 
         /**
@@ -33,7 +34,8 @@ public interface IValueContainingCapability<T, V> extends IArmorCapability {
          */
         @Nonnull
         @Override
-        public T getValue() {
+        public V getValue()
+        {
             return value;
         }
 
@@ -44,9 +46,10 @@ public interface IValueContainingCapability<T, V> extends IArmorCapability {
          */
         @Nonnull
         @Override
-        public Impl<T> setValue(@Nonnull T value) {
+        public T setValue(@Nonnull V value)
+        {
             this.value = value;
-            return this;
+            return (T) this;
         }
     }
 }

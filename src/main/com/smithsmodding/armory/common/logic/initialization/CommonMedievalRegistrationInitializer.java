@@ -5,6 +5,8 @@ import com.smithsmodding.armory.api.common.armor.*;
 import com.smithsmodding.armory.api.common.armor.callback.IDefaultCapabilitiesRetrievalCallback;
 import com.smithsmodding.armory.api.common.armor.callback.IExtensionRecipeRetrievalCallback;
 import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
+import com.smithsmodding.armory.api.common.capability.armor.IArmorDefenceCapability;
+import com.smithsmodding.armory.api.common.capability.armor.IArmorToughnessCapability;
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.component.HeatedAnvilRecipeComponent;
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.component.StandardAnvilRecipeComponent;
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.AnvilRecipe;
@@ -104,16 +106,13 @@ public class CommonMedievalRegistrationInitializer {
                 EntityEquipmentSlot.HEAD,
                 Arrays.asList(POSITIONTOP, POSITIONLEFT, POSITIONRIGHT),
                 Arrays.asList(TOP, LEFT, RIGHT),
-                new IDefaultCapabilitiesRetrievalCallback() {
-                    @Nonnull
-                    @Override
-                    public HashMap<Capability<? extends IArmorCapability>, Object> get() {
-                        //TODO: Define the default capabilities of a medieval Helmet.
-
-                        return new HashMap<>();
-                    }
-                }).build()
-                .setRegistryName(new ResourceLocation(References.General.MOD_ID.toLowerCase(), References.InternalNames.Armor.MEDIEVALHELMET));
+          (builder) ->
+            builder
+              .put(ModCapabilities.MOD_ARMOR_DEFENCE_CAPABILITY, IArmorDefenceCapability.create(0f))
+              .put(ModCapabilities.MOD_ARMOR_THOUGHNESS_CAPABILITY, IArmorToughnessCapability.create(0f))
+        )
+                                     .build()
+                                     .setRegistryName(new ResourceLocation(References.General.MOD_ID.toLowerCase(), References.InternalNames.Armor.MEDIEVALHELMET));
 
         ModArmor.Medieval.CHESTPLATE = new MedievalArmor.Builder(TK_CHESTPLATE,
                 TextFormatting.RESET.toString(),

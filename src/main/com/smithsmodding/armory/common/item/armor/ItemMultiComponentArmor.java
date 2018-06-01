@@ -70,6 +70,24 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
      */
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, @Nonnull ItemStack armor, DamageSource source, double damage, int slot) {
+        if (!armor.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
+        {
+            throw new IllegalArgumentException("Armor is not an instance of multicomponent armor.");
+        }
+
+        IMultiComponentArmorCapability componentArmorCapability = armor.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+        IMultiComponentArmor componentArmor = componentArmorCapability.getArmorType();
+
+        float armorDefence = componentArmor.getCapability(ModCapabilities.MOD_ARMOR_DEFENCE_CAPABILITY, null).getValue();
+        float armorThoughness = componentArmor.getCapability(ModCapabilities.MOD_ARMOR_THOUGHNESS_CAPABILITY, null).getValue();
+
+        ICoreArmorMaterial coreArmorMaterial = componentArmorCapability.getMaterial();
+        armorDefence *= coreArmorMaterial.
+                          armorThoughness *= componentArmor
+
+
+
+
         return new ArmorProperties(Integer.MAX_VALUE, 1, Integer.MAX_VALUE);
     }
 

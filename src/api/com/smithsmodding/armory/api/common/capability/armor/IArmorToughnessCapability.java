@@ -8,9 +8,22 @@ import net.minecraftforge.common.capabilities.Capability;
 /**
  * Created by marcf on 1/15/2017.
  */
-public class ArmorDefenceCapability extends IValueContainingCapability.Impl<Float> {
+public interface IArmorToughnessCapability extends IValueContainingCapability<IArmorToughnessCapability, Float>
+{
 
-    public class Storage implements Capability.IStorage<ArmorDefenceCapability> {
+    /**
+     * Creates a new {@link IArmorToughnessCapability} instance.
+     *
+     * @param value The value.
+     * @return The instance.
+     */
+    static IArmorToughnessCapability create(final float value)
+    {
+        return new Impl(value);
+    }
+
+    class Storage implements Capability.IStorage<IArmorToughnessCapability>
+    {
 
         /**
          * Serialize the capability instance to a NBTTag.
@@ -31,7 +44,7 @@ public class ArmorDefenceCapability extends IValueContainingCapability.Impl<Floa
          * @return a NBT holding the data. Null if no data needs to be stored.
          */
         @Override
-        public NBTBase writeNBT(Capability<ArmorDefenceCapability> capability, ArmorDefenceCapability instance, EnumFacing side) {
+        public NBTBase writeNBT(Capability<IArmorToughnessCapability> capability, IArmorToughnessCapability instance, EnumFacing side) {
             return new NBTTagFloat(instance.getValue());
         }
 
@@ -55,8 +68,20 @@ public class ArmorDefenceCapability extends IValueContainingCapability.Impl<Floa
          * @param nbt        A NBT holding the data. Must not be null, as doesn't make sense to call this function with nothing to read...
          */
         @Override
-        public void readNBT(Capability<ArmorDefenceCapability> capability, ArmorDefenceCapability instance, EnumFacing side, NBTBase nbt) {
+        public void readNBT(Capability<IArmorToughnessCapability> capability, IArmorToughnessCapability instance, EnumFacing side, NBTBase nbt) {
             instance.setValue(((NBTTagFloat) nbt).getFloat());
+        }
+    }
+
+    class Impl extends IValueContainingCapability.Impl<IArmorToughnessCapability, Float> implements IArmorToughnessCapability
+    {
+        public Impl()
+        {
+        }
+
+        public Impl(float value)
+        {
+            setValue(value);
         }
     }
 }

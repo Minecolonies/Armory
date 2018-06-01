@@ -2,6 +2,9 @@ package com.smithsmodding.armory.api.util.references;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.capability.*;
+import com.smithsmodding.armory.api.common.capability.armor.IArmorDefenceCapability;
+import com.smithsmodding.armory.api.common.capability.armor.IArmorDurabilityCapability;
+import com.smithsmodding.armory.api.common.capability.armor.IArmorToughnessCapability;
 import com.smithsmodding.armory.api.common.fluid.IMoltenMetalAcceptor;
 import com.smithsmodding.armory.api.common.fluid.IMoltenMetalProvider;
 import com.smithsmodding.smithscore.util.common.capabilities.NullFactory;
@@ -41,16 +44,24 @@ public class ModCapabilities {
     @CapabilityInject(IArmorComponentStackCapability.class)
     public static Capability<IArmorComponentStackCapability> MOD_ARMORCOMPONENT_CAPABILITY;
 
+    @CapabilityInject(IArmorDefenceCapability.class)
+    public static Capability<IArmorDefenceCapability> MOD_ARMOR_DEFENCE_CAPABILITY;
+
+    @CapabilityInject(IArmorToughnessCapability.class)
+    public static Capability<IArmorToughnessCapability> MOD_ARMOR_THOUGHNESS_CAPABILITY;
+
+    @CapabilityInject(IArmorDurabilityCapability.class)
+    public static Capability<IArmorDurabilityCapability> MOD_ARMOR_DURABILITY_CAPABILITY;
 
     static {
         CapabilityManager.INSTANCE.register(IMoltenMetalAcceptor.class, new NullStorage<>(), new NullFactory<>());
         CapabilityManager.INSTANCE.register(IMoltenMetalProvider.class, new NullStorage<>(), new NullFactory<>());
 
-        CapabilityManager.INSTANCE.register(IMultiComponentArmorCapability.class, new IMultiComponentArmorCapability.Storage(), IMultiComponentArmorCapability.Impl.class);
+        CapabilityManager.INSTANCE.register(IMultiComponentArmorCapability.class, new IMultiComponentArmorCapability.Storage(), IMultiComponentArmorCapability.Impl::new);
 
-        CapabilityManager.INSTANCE.register(IMaterializedStackCapability.class, new IMaterializedStackCapability.Storage(), IMaterializedStackCapability.Impl.class);
-        CapabilityManager.INSTANCE.register(IHeatableObjectCapability.class, new IHeatableObjectCapability.Storage(), IHeatableObjectCapability.Impl.class);
-        CapabilityManager.INSTANCE.register(IHeatedObjectCapability.class, new IHeatedObjectCapability.Storage(), IHeatedObjectCapability.Impl.class);
+        CapabilityManager.INSTANCE.register(IMaterializedStackCapability.class, new IMaterializedStackCapability.Storage(), IMaterializedStackCapability.Impl::new);
+        CapabilityManager.INSTANCE.register(IHeatableObjectCapability.class, new IHeatableObjectCapability.Storage(), IHeatableObjectCapability.Impl::new);
+        CapabilityManager.INSTANCE.register(IHeatedObjectCapability.class, new IHeatedObjectCapability.Storage(), IHeatedObjectCapability.Impl::new);
 
         CapabilityManager.INSTANCE.register(IArmorComponentStackCapability.class, new Capability.IStorage<IArmorComponentStackCapability>() {
 
@@ -69,7 +80,11 @@ public class ModCapabilities {
 
                 instance.setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Item.ItemComponent.EXTENSION))));
             }
-        }, IArmorComponentStackCapability.Impl.class);
+        }, IArmorComponentStackCapability.Impl::new);
+
+        CapabilityManager.INSTANCE.register(IArmorDefenceCapability.class, new IArmorDefenceCapability.Storage(), IArmorDefenceCapability.Impl::new);
+        CapabilityManager.INSTANCE.register(IArmorToughnessCapability.class, new IArmorToughnessCapability.Storage(), IArmorToughnessCapability.Impl::new);
+        CapabilityManager.INSTANCE.register(IArmorDurabilityCapability.class, new IArmorDurabilityCapability.Storage(), IArmorDurabilityCapability.Impl::new);
     }
 
 }
