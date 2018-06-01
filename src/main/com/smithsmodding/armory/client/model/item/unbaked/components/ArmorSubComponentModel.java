@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.client.model.item.unbaked.components;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -19,13 +18,14 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.IPerspectiveAwareModel;
+import net.minecraftforge.client.model.PerspectiveMapWrapper;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.function.Function;
 
 /**
  * A class describing a layer of a Model in its most basic form.
@@ -207,7 +207,7 @@ public class ArmorSubComponentModel extends ItemLayerModel implements IModel {
                 quads.add(ModelHelper.colorQuad(color, quad));
             }
 
-            return new BakedItemModel(quads.build(), original.getParticleTexture(), IPerspectiveAwareModel.MapWrapper.getTransforms(state), original.getOverrides(), null);
+            return new BakedItemModel(quads.build(), original.getParticleTexture(), PerspectiveMapWrapper.getTransforms(state), original.getOverrides(), null);
         }
         return original;
     }

@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * ONLY USE THIS IF YOU KNOW WHAT YOU'RE DOING!
@@ -39,15 +40,17 @@ public class AnimatedColoredTexture extends TextureColoredTexture {
     }
 
     @Override
-    public boolean load (IResourceManager manager, ResourceLocation location) {
+    public boolean load(
+      final IResourceManager manager, final ResourceLocation location, final Function<ResourceLocation, TextureAtlasSprite> textureGetter)
+    {
         if (addTexture.getFrameCount() > 0) {
             actualTexture = addTexture;
         } else {
             actualTexture = backupLoadTextureAtlasSprite(new ResourceLocation(addTextureLocation),
-                    Minecraft.getMinecraft().getResourceManager());
+              Minecraft.getMinecraft().getResourceManager());
         }
 
-        return super.load(manager, location);
+        return super.load(manager, location, textureGetter);
     }
 
     @Override

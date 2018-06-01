@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.client.model.item.unbaked.components;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.IArmoryAPI;
@@ -9,7 +8,6 @@ import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
-import com.smithsmodding.armory.common.api.ArmoryAPI;
 import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import com.smithsmodding.smithscore.util.client.ResourceHelper;
@@ -21,7 +19,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.IPerspectiveAwareModel;
+import net.minecraftforge.client.model.PerspectiveMapWrapper;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 import org.jetbrains.annotations.Nullable;
@@ -29,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Created by Marc on 06.12.2015.
@@ -163,7 +162,8 @@ public class ArmorComponentModel extends ItemLayerModel implements IModel {
             }
 
 
-            bakedModel2 = new ItemLayerModel.BakedItemModel(quads.build(), bakedModel2.getParticleTexture(), IPerspectiveAwareModel.MapWrapper.getTransforms(state), bakedModel2.getOverrides(), null);
+            bakedModel2 =
+              new ItemLayerModel.BakedItemModel(quads.build(), bakedModel2.getParticleTexture(), PerspectiveMapWrapper.getTransforms(state), bakedModel2.getOverrides(), null);
 
         }
 

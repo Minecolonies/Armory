@@ -158,14 +158,14 @@ public class BlockHeatableResource extends BlockArmoryTileEntity implements ICus
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      *
-     * @param itemIn
      * @param tab
      * @param list
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
-        ItemHeatableResource.getSubItemsStatic(itemIn, list);
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
+    {
+        ItemHeatableResource.getSubItemsStatic(Item.getItemFromBlock(this), list);
     }
 
     @Override

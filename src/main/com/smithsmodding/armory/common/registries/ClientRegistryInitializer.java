@@ -2,7 +2,7 @@ package com.smithsmodding.armory.common.registries;
 
 import com.smithsmodding.armory.api.client.textures.creation.ICreationController;
 import com.smithsmodding.armory.api.util.references.ModRegistries;
-import net.minecraftforge.fml.common.registry.RegistryBuilder;
+import net.minecraftforge.registries.RegistryBuilder;
 
 /**
  * Created by marcf on 1/14/2017.
@@ -17,7 +17,6 @@ public class ClientRegistryInitializer extends CommonRegistryInitializer {
                 .setName(ModRegistries.TEXTURECREATIONCONTROLLER)
                 .setType(ICreationController.class)
                 .setIDRange(0, 255)
-                .addCallback(new RegistryManager.RegistryCallbackToEventConverter<ICreationController>())
                 .create();
     }
 }

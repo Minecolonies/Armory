@@ -1,7 +1,6 @@
 package com.smithsmodding.armory.api.common.initialization;
 
 import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 
@@ -11,7 +10,8 @@ import javax.annotation.Nonnull;
  *
  * Created by marcf on 1/20/2017.
  */
-public interface IInitializationComponent extends IForgeRegistryEntry<IInitializationComponent> {
+public interface IInitializationComponent
+{
 
     default Integer getPriority() { return 100; }
 
@@ -31,7 +31,8 @@ public interface IInitializationComponent extends IForgeRegistryEntry<IInitializ
 
     default void onLoadCompleted(@Nonnull FMLLoadCompleteEvent event) {}
 
-    abstract class Impl  extends IForgeRegistryEntry.Impl<IInitializationComponent> implements IInitializationComponent {
+    abstract class Impl implements IInitializationComponent
+    {
 
     }
 }

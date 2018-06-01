@@ -14,7 +14,8 @@ import javax.annotation.Nonnull;
 public class TileEntityRendererMoltenMetalTank extends TileEntitySpecialRenderer<TileEntityMoltenMetalTank> {
 
     @Override
-    public void renderTileEntityAt(TileEntityMoltenMetalTank te, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(final TileEntityMoltenMetalTank te, final double x, final double y, final double z, final float partialTicks, final int destroyStage, final float alpha)
+    {
         if (te == null)
             return;
 

@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.client.model.item.unbaked;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponentArmorExtension;
@@ -19,7 +18,7 @@ import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 
 import javax.annotation.Nonnull;
-
+import java.util.function.Function;
 
 /**
  * Author Marc (Created on: 12.06.2016)

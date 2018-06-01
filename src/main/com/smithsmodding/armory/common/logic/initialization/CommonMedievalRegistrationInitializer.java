@@ -34,8 +34,9 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -92,7 +93,7 @@ import static com.smithsmodding.armory.api.util.references.References.InternalNa
 public class CommonMedievalRegistrationInitializer {
 
     //Events
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void handleMedievalArmorRegistration(@Nonnull RegistryEvent.Register<IMultiComponentArmor> armorRegisterEvent) {
         IForgeRegistry<IMultiComponentArmor> armorRegistry = armorRegisterEvent.getRegistry();
 
@@ -174,7 +175,7 @@ public class CommonMedievalRegistrationInitializer {
         armorRegistry.register(ModArmor.Medieval.SHOES);
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void handleCoreMaterialRegistration(@Nonnull RegistryEvent.Register<ICoreArmorMaterial> coreArmorMaterialRegisterMaterialEvent) {
         IForgeRegistry<ICoreArmorMaterial> registry = coreArmorMaterialRegisterMaterialEvent.getRegistry();
         IMaterialConstructionHelper helper = IArmoryAPI.Holder.getInstance().getHelpers().getMaterialConstructionHelper();
@@ -276,7 +277,7 @@ public class CommonMedievalRegistrationInitializer {
         registry.register(ModMaterials.Armor.Core.HARDENED_IRON);
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void handleAddonMaterialRegistration(@Nonnull RegistryEvent.Register<IAddonArmorMaterial> addonArmorMaterialRegisterMaterialEvent) {
         IForgeRegistry<IAddonArmorMaterial> registry = addonArmorMaterialRegisterMaterialEvent.getRegistry();
         IMaterialConstructionHelper helper = IArmoryAPI.Holder.getInstance().getHelpers().getMaterialConstructionHelper();
@@ -373,7 +374,7 @@ public class CommonMedievalRegistrationInitializer {
         registry.register(ModMaterials.Armor.Addon.HARDENED_IRON);
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void handleAnvilMaterialRegistration(@Nonnull RegistryEvent.Register<IAnvilMaterial> anvilMaterialRegisterMaterialEvent) {
         IForgeRegistry<IAnvilMaterial> registry = anvilMaterialRegisterMaterialEvent.getRegistry();
         IMaterialConstructionHelper helper = IArmoryAPI.Holder.getInstance().getHelpers().getMaterialConstructionHelper();

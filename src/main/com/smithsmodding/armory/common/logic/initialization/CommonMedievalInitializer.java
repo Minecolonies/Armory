@@ -10,15 +10,16 @@ import com.smithsmodding.armory.api.common.initialization.IInitializationCompone
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.common.factories.ArmorFactory;
-import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.ForgeRegistry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -43,9 +44,16 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
 
     @Override
     public void onLoadCompleted(@Nonnull FMLLoadCompleteEvent event) {
-        IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().getValues().clear();
+        ((ForgeRegistry<IAnvilRecipe>) IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry()).clear();
         initializeAnvilRecipes();
-        GameRegistry.addShapedRecipe(new ItemStack(ModItems.IT_HAMMER, 1, 150), "  B", " S ", "S  ", 'B', new ItemStack(Blocks.IRON_BLOCK), 'S', new ItemStack(Items.STICK));
+        GameRegistry.addShapedRecipe(
+          new ResourceLocation(References.General.MOD_ID, References.InternalNames.Items.IN_HAMMER),
+          new ResourceLocation(References.General.MOD_ID, References.InternalNames.Items.IN_HAMMER),
+          new ItemStack(ModItems.IT_HAMMER, 1, 150),
+          "  B", " S ", "S  ",
+          'B', new ItemStack(Blocks.IRON_BLOCK),
+          'S', new ItemStack(Items.STICK)
+        );
         registerHeatableOverrides();
     }
 

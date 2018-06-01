@@ -61,8 +61,9 @@ public class ItemHammer extends Item {
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-        ItemStack hammerStack = new ItemStack(itemIn, 1, 150);
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
+    {
+        ItemStack hammerStack = new ItemStack(this, 1, 150);
         subItems.add(hammerStack);
     }
 

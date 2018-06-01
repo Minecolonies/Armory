@@ -11,6 +11,8 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.Function;
+
 public class MetalTextureTexture extends MetalColoredTexture {
 
     protected TextureColoredTexture texture2;
@@ -26,10 +28,11 @@ public class MetalTextureTexture extends MetalColoredTexture {
     }
 
     @Override
-    public boolean load (IResourceManager manager, ResourceLocation location) {
-        // at frist do the metal texture
-        texture2.load(manager, location);
-        return super.load(manager, location);
+    public boolean load(
+      final IResourceManager manager, final ResourceLocation location, final Function<ResourceLocation, TextureAtlasSprite> textureGetter)
+    {
+        texture2.load(manager, location, textureGetter);
+        return super.load(manager, location, textureGetter);
     }
 
     @Override

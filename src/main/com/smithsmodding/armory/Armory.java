@@ -1,12 +1,12 @@
 package com.smithsmodding.armory;
 
 import com.google.common.base.Stopwatch;
-import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.ArmoryCommonProxy;
 import com.smithsmodding.armory.common.api.APICallbackManager;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
+import com.smithsmodding.armory.common.logic.ArmoryInitializer;
 import com.smithsmodding.armory.common.registries.CommonRegistryInitializer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -51,9 +51,7 @@ public class Armory {
 
         side = preInitializationEvent.getSide();
 
-        IArmoryAPI.Holder.getInstance().getRegistryManager().getInitializationComponentRegistry().forEach(iInitializationComponent ->  {
-            iInitializationComponent.onPreInit(preInitializationEvent);
-        });
+        ArmoryInitializer.getInstance().onPreInit(preInitializationEvent);
         
         ModLogger.getInstance().info("Finished \"PreInit\"-Phase after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();
@@ -64,9 +62,7 @@ public class Armory {
         Stopwatch watch = Stopwatch.createStarted();
         ModLogger.getInstance().info("Starting \"Init\"-Phase");
 
-        IArmoryAPI.Holder.getInstance().getRegistryManager().getInitializationComponentRegistry().forEach(iInitializationComponent ->  {
-            iInitializationComponent.onInit(initializationEvent);
-        });
+        ArmoryInitializer.getInstance().onInit(initializationEvent);
 
         ModLogger.getInstance().info("Finished \"Init\"-Phase after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();
@@ -77,9 +73,7 @@ public class Armory {
         Stopwatch watch = Stopwatch.createStarted();
         ModLogger.getInstance().info("Starting \"PostInit\"-Phase");
 
-        IArmoryAPI.Holder.getInstance().getRegistryManager().getInitializationComponentRegistry().forEach(iInitializationComponent ->  {
-            iInitializationComponent.onPostInit(postInitializationEvent);
-        });
+        ArmoryInitializer.getInstance().onPostInit(postInitializationEvent);
 
         ModLogger.getInstance().info("Finished \"PostInit\"-Phase after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();
@@ -90,9 +84,7 @@ public class Armory {
         Stopwatch watch = Stopwatch.createStarted();
         ModLogger.getInstance().info("Starting \"Starting Server\"-Phase");
 
-        IArmoryAPI.Holder.getInstance().getRegistryManager().getInitializationComponentRegistry().forEach(iInitializationComponent ->  {
-            iInitializationComponent.onServerStarting(serverStartingEvent);
-        });
+        ArmoryInitializer.getInstance().onServerStarting(serverStartingEvent);
 
         ModLogger.getInstance().info("Finished \"Starting Server\"-Phase after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();
@@ -103,9 +95,7 @@ public class Armory {
         Stopwatch watch = Stopwatch.createStarted();
         ModLogger.getInstance().info("Starting \"Server Started\"-Phase");
 
-        IArmoryAPI.Holder.getInstance().getRegistryManager().getInitializationComponentRegistry().forEach(iInitializationComponent ->  {
-            iInitializationComponent.onServerStarted(serverStartedEvent);
-        });
+        ArmoryInitializer.getInstance().onServerStarted(serverStartedEvent);
 
         ModLogger.getInstance().info("Finished \"Server Started\"-Phase after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();
@@ -116,9 +106,7 @@ public class Armory {
         Stopwatch watch = Stopwatch.createStarted();
         ModLogger.getInstance().info("Starting \"Server Stopping\"-Phase");
 
-        IArmoryAPI.Holder.getInstance().getRegistryManager().getInitializationComponentRegistry().forEach(iInitializationComponent ->  {
-            iInitializationComponent.onServerStopping(serverStoppingEvent);
-        });
+        ArmoryInitializer.getInstance().onServerStopping(serverStoppingEvent);
 
         ModLogger.getInstance().info("Finished \"Server Stopping\"-Phase after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();
@@ -129,9 +117,7 @@ public class Armory {
         Stopwatch watch = Stopwatch.createStarted();
         ModLogger.getInstance().info("Starting \"Server Stopped\"-Phase");
 
-        IArmoryAPI.Holder.getInstance().getRegistryManager().getInitializationComponentRegistry().forEach(iInitializationComponent ->  {
-            iInitializationComponent.onServerStopped(serverStoppedEvent);
-        });
+        ArmoryInitializer.getInstance().onServerStopped(serverStoppedEvent);
 
         ModLogger.getInstance().info("Finished \"Server Stopped\"-Phase after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();
@@ -143,9 +129,7 @@ public class Armory {
         ModLogger.getInstance().info("Starting \"Load Complete\"-Phase");
 
         APICallbackManager.callAPIRequests();
-        IArmoryAPI.Holder.getInstance().getRegistryManager().getInitializationComponentRegistry().forEach(iInitializationComponent ->  {
-            iInitializationComponent.onLoadCompleted(loadCompleteEvent);
-        });
+        ArmoryInitializer.getInstance().onLoadCompleted(loadCompleteEvent);
 
         ModLogger.getInstance().info("Finished \"Load Complete\"-Phase after: " + watch.elapsed(TimeUnit.MILLISECONDS) + " ms!");
         watch.stop();

@@ -20,8 +20,10 @@ import com.smithsmodding.armory.common.entity.EntityItemHeatable;
 import com.smithsmodding.armory.common.factories.HeatedItemFactory;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,19 +70,8 @@ public class ItemHeatedItem extends Item {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public FontRenderer getFontRenderer(@Nonnull ItemStack stack) {
-        if (!stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null))
-            return super.getFontRenderer(stack);
-
-        IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
-
-        return capability.getOriginalStack().getItem().getFontRenderer(capability.getOriginalStack());
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, @Nonnull List<String> tooltip, boolean extraInformation) {
+    public void addInformation(final ItemStack stack, @Nullable final World worldIn, final List<String> tooltip, final ITooltipFlag flagIn)
+    {
         if (!stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null))
             return;
 
@@ -92,14 +83,11 @@ public class ItemHeatedItem extends Item {
         tooltip.add(temperatureLine);
     }
 
-    @Override
-    public boolean getHasSubtypes() {
-        return true;
-    }
-
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs tabs, NonNullList<ItemStack> list) {
+    public void getSubItems(CreativeTabs tabs, NonNullList<ItemStack> list)
+    {
+        list.clear();
         if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION))
             return;
 
@@ -112,6 +100,30 @@ public class ItemHeatedItem extends Item {
         }
 
         list.addAll(heatedItems.values());
+    }
+
+    @Override
+    public boolean getHasSubtypes()
+    {
+        return true;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public FontRenderer getFontRenderer(@Nonnull ItemStack stack)
+    {
+        if (!stack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null))
+        {
+            return super.getFontRenderer(stack);
+        }
+
+        IHeatedObjectCapability capability = stack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
+        if (capability.getOriginalStack() == null)
+        {
+            return Minecraft.getMinecraft().fontRenderer;
+        }
+
+        return capability.getOriginalStack().getItem().getFontRenderer(capability.getOriginalStack());
     }
 
     @Nonnull

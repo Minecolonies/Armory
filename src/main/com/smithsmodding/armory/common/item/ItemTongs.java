@@ -51,8 +51,9 @@ public class ItemTongs extends Item {
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item pTongs, CreativeTabs pCreativeTab, NonNullList<ItemStack> pItemStacks) {
-        ItemStack tTongsStack = new ItemStack(pTongs, 1, 150);
+    public void getSubItems(CreativeTabs pCreativeTab, NonNullList<ItemStack> pItemStacks)
+    {
+        ItemStack tTongsStack = new ItemStack(this, 1, 150);
         pItemStacks.add(tTongsStack);
     }
 }

@@ -15,7 +15,7 @@ import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispat
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
+import net.minecraftforge.registries.ForgeRegistry;
 
 /**
  * Created by marcf on 1/24/2017.
@@ -53,9 +53,10 @@ public class CapabilityHelper {
     }
 
     public static ItemStack forceGenerateMaterializedStack(Item item, IMaterial material, Integer count, IHeatedObjectType type) {
-        final FMLControlledNamespacedRegistry<RegistryMaterialWrapper> controlledNamespacedRegistry = (FMLControlledNamespacedRegistry<RegistryMaterialWrapper>) IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry();
+        final ForgeRegistry<RegistryMaterialWrapper> controlledNamespacedRegistry =
+          (ForgeRegistry<RegistryMaterialWrapper>) IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry();
 
-        ItemStack stack = new ItemStack(item, count, controlledNamespacedRegistry.getId(material.getRegistryName()));
+        ItemStack stack = new ItemStack(item, count, controlledNamespacedRegistry.getID(material.getRegistryName()));
         IHeatableObjectCapability capability = new IHeatableObjectCapability.Impl()
                 .setMaterial(material)
                 .setObject(ModHeatableObjects.ITEMSTACK)
@@ -71,9 +72,10 @@ public class CapabilityHelper {
 
 
     public static ItemStack forceGenerateMaterializedStack(Block block, IMaterial material, Integer count, IHeatedObjectType type) {
-        final FMLControlledNamespacedRegistry<RegistryMaterialWrapper> controlledNamespacedRegistry = (FMLControlledNamespacedRegistry<RegistryMaterialWrapper>) IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry();
+        final ForgeRegistry<RegistryMaterialWrapper> controlledNamespacedRegistry =
+          (ForgeRegistry<RegistryMaterialWrapper>) IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry();
 
-        ItemStack stack = new ItemStack(block, count, controlledNamespacedRegistry.getId(material.getRegistryName()));
+        ItemStack stack = new ItemStack(block, count, controlledNamespacedRegistry.getID(material.getRegistryName()));
         IHeatableObjectCapability capability = new IHeatableObjectCapability.Impl()
                 .setMaterial(material)
                 .setObject(ModHeatableObjects.ITEMSTACK)

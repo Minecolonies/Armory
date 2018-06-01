@@ -2,8 +2,9 @@ package com.smithsmodding.armory.client;
 
 import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
 import com.smithsmodding.armory.api.util.references.ModLogger;
-import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.client.logic.initialization.*;
+import com.smithsmodding.armory.client.logic.initialization.ClientEventHandlerInitialization;
+import com.smithsmodding.armory.client.logic.initialization.ClientStructureInitializer;
+import com.smithsmodding.armory.client.logic.initialization.ClientSystemInitializer;
 import com.smithsmodding.armory.client.model.loaders.ArmorComponentModelLoader;
 import com.smithsmodding.armory.client.model.loaders.HeatedItemModelLoader;
 import com.smithsmodding.armory.client.model.loaders.MaterializedItemModelLoader;
@@ -23,9 +24,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 /**
  * Created by Orion on 26-3-2014.
@@ -157,13 +158,12 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
     }
 
     @Override
-    public void registerInitializationComponents(IForgeRegistry<IInitializationComponent> registry) {
+    public void registerInitializationComponents(List<IInitializationComponent> registry)
+    {
         super.registerInitializationComponents(registry);
 
-        registry.register(ClientEventHandlerInitialization.getInstance().setRegistryName(References.InternalNames.InitializationComponents.Client.EVENTHANDLER));
-        registry.register(ClientModelLoaderInitializer.getInstance().setRegistryName(References.InternalNames.InitializationComponents.Client.MODELLOADER));
-        registry.register(ClientStructureInitializer.getInstance().setRegistryName(References.InternalNames.InitializationComponents.Client.STRUCTURE));
-        registry.register(ClientSystemInitializer.getInstance().setRegistryName(References.InternalNames.InitializationComponents.Client.SYSTEM));
-        registry.register(ClientMedievalInitializer.getInstance().setRegistryName(References.InternalNames.InitializationComponents.Client.MEDIEVAL));
+        registry.add(ClientEventHandlerInitialization.getInstance());
+        registry.add(ClientStructureInitializer.getInstance());
+        registry.add(ClientSystemInitializer.getInstance());
     }
 }

@@ -3,9 +3,7 @@ package com.smithsmodding.armory.client.model.item.baked.heateditem;
 import com.smithsmodding.smithscore.client.model.baked.BakedWrappedModel;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import org.apache.commons.lang3.tuple.Pair;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.vecmath.Matrix4f;
@@ -14,12 +12,13 @@ import java.util.HashMap;
 /**
  * Created by Marc on 08.12.2015.
  */
-public class PerspectiveUnawareBakedHeatedItemItemModel extends BakedWrappedModel implements IPerspectiveAwareModel {
+public class PerspectiveUnawareBakedHeatedItemItemModel extends BakedWrappedModel
+{
 
     private boolean inventory = false;
 
     @Nonnull
-    private HashMap<ItemCameraTransforms.TransformType, IPerspectiveAwareModel> modelHashMap = new HashMap<ItemCameraTransforms.TransformType, IPerspectiveAwareModel>();
+    private HashMap<ItemCameraTransforms.TransformType, IBakedModel> modelHashMap = new HashMap<>();
 
     public PerspectiveUnawareBakedHeatedItemItemModel(IBakedModel standard) {
         super(standard);
@@ -29,24 +28,24 @@ public class PerspectiveUnawareBakedHeatedItemItemModel extends BakedWrappedMode
         inventory = mode;
     }
 
-    public void registerModel(ItemCameraTransforms.TransformType cameraTransforms, IPerspectiveAwareModel model) {
+    public void registerModel(ItemCameraTransforms.TransformType cameraTransforms, IBakedModel model)
+    {
         modelHashMap.put(cameraTransforms, model);
-    }
-
-    public IPerspectiveAwareModel getModel(ItemCameraTransforms.TransformType cameraTransforms) {
-        return modelHashMap.get(cameraTransforms);
     }
 
     @Override
     public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType) {
-        if (cameraTransformType == ItemCameraTransforms.TransformType.GUI && getModel(ItemCameraTransforms.TransformType.GUI) instanceof IPerspectiveAwareModel) {
+        if (cameraTransformType == ItemCameraTransforms.TransformType.GUI)
+        {
             return getModel(ItemCameraTransforms.TransformType.GUI).handlePerspective(cameraTransformType);
         }
 
-        if (getParentModel() instanceof IPerspectiveAwareModel)
-            return ((IPerspectiveAwareModel) getParentModel()).handlePerspective(cameraTransformType);
+        return getParentModel().handlePerspective(cameraTransformType);
+    }
 
-        return Pair.of(this, null);
+    public IBakedModel getModel(ItemCameraTransforms.TransformType cameraTransforms)
+    {
+        return modelHashMap.get(cameraTransforms);
     }
 
 }

@@ -143,17 +143,6 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
         return iLevelPerPlayer;
     }
 
-    private boolean checkForge(ItemStack pLeftStack, ItemStack pRightStack, String pName, int pBaseCost) {
-        AnvilUpdateEvent e = new AnvilUpdateEvent(pLeftStack, pRightStack, pName, pBaseCost);
-        if (MinecraftForge.EVENT_BUS.post(e)) return false;
-        if (e.getOutput() == null) return true;
-
-        this.iOutputStack = e.getOutput();
-        this.iMaximumCost = e.getCost();
-        this.iStackSizeToBeUsedInRepair = e.getMaterialCost();
-        return false;
-    }
-
     private void calculateValues() {
         this.iMaximumCost = 0;
         int i = 0;
@@ -183,7 +172,8 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
             if (iRightInputStack != null) {
                 if (!checkForge(iLeftInputStack, iRightInputStack, iEntity.getState().getItemName(), tBaseLevelExperienceCost))
                     return;
-                tFlagIsEnchantableByBook = iRightInputStack.getItem() == Items.ENCHANTED_BOOK && Items.ENCHANTED_BOOK.getEnchantments(iRightInputStack).tagCount() > 0;
+
+                tFlagIsEnchantableByBook = iRightInputStack.getItem() == Items.ENCHANTED_BOOK && ItemEnchantedBook.getEnchantments(iRightInputStack).tagCount() > 0;
 
                 if (tEventStack.isItemStackDamageable() && tEventStack.getItem().getIsRepairable(iLeftInputStack, iRightInputStack)) {
                     tRepairAmount = Math.min(tEventStack.getItem().getDamage(tEventStack), tEventStack.getMaxDamage() / 4);
@@ -328,5 +318,23 @@ public class VanillaAnvilRecipe extends AnvilRecipe {
 
             iOutputStack = tEventStack;
         }
+    }
+
+    private boolean checkForge(ItemStack pLeftStack, ItemStack pRightStack, String pName, int pBaseCost)
+    {
+        AnvilUpdateEvent e = new AnvilUpdateEvent(pLeftStack, pRightStack, pName, pBaseCost);
+        if (MinecraftForge.EVENT_BUS.post(e))
+        {
+            return false;
+        }
+        if (e.getOutput() == null || e.getOutput().isEmpty())
+        {
+            return true;
+        }
+
+        this.iOutputStack = e.getOutput();
+        this.iMaximumCost = e.getCost();
+        this.iStackSizeToBeUsedInRepair = e.getMaterialCost();
+        return false;
     }
 }

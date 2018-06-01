@@ -2,23 +2,64 @@ package com.smithsmodding.armory.common.logic;
 
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
-import com.smithsmodding.armory.api.util.references.References;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.event.*;
 
-/*
- *   ArmoryInitializer
- *   Created by: Orion
- *   Created on: 17-9-2014
- */
-@Mod.EventBusSubscriber(modid = References.General.MOD_ID)
-public class ArmoryInitializer {
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
 
-    @SubscribeEvent
-    public static void handleInitializationRegistration(RegistryEvent.Register<IInitializationComponent> initializationComponentRegisterEvent) {
-        Armory.proxy.registerInitializationComponents(initializationComponentRegisterEvent.getRegistry());
+public class ArmoryInitializer
+{
+    private static ArmoryInitializer              ourInstance = new ArmoryInitializer();
+    private        List<IInitializationComponent> components  = new ArrayList<>();
+
+    private ArmoryInitializer()
+    {
     }
 
+    public static ArmoryInitializer getInstance()
+    {
+        return ourInstance;
+    }
 
+    public void onPreInit(@Nonnull FMLPreInitializationEvent preInitializationEvent)
+    {
+        Armory.proxy.registerInitializationComponents(components);
+        components.forEach(c -> c.onPreInit(preInitializationEvent));
+    }
+
+    public void onInit(@Nonnull FMLInitializationEvent initializationEvent)
+    {
+        components.forEach(c -> c.onInit(initializationEvent));
+    }
+
+    public void onPostInit(@Nonnull FMLPostInitializationEvent postInitializationEvent)
+    {
+        components.forEach(c -> c.onPostInit(postInitializationEvent));
+    }
+
+    public void onServerStarting(@Nonnull FMLServerStartingEvent serverStartingEvent)
+    {
+        components.forEach(c -> c.onServerStarting(serverStartingEvent));
+    }
+
+    public void onServerStarted(@Nonnull FMLServerStartedEvent serverStartedEvent)
+    {
+        components.forEach(c -> c.onServerStarted(serverStartedEvent));
+    }
+
+    public void onServerStopping(@Nonnull FMLServerStoppingEvent serverStoppingEvent)
+    {
+        components.forEach(c -> c.onServerStopping(serverStoppingEvent));
+    }
+
+    public void onServerStopped(@Nonnull FMLServerStoppedEvent serverStoppedEvent)
+    {
+        components.forEach(c -> c.onServerStopped(serverStoppedEvent));
+    }
+
+    public void onLoadCompleted(@Nonnull FMLLoadCompleteEvent event)
+    {
+        components.forEach(c -> c.onLoadCompleted(event));
+    }
 }

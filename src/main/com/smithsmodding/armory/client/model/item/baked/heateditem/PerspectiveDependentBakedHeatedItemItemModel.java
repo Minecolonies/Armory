@@ -7,9 +7,7 @@ import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import org.apache.commons.lang3.tuple.Pair;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.vecmath.Matrix4f;
@@ -19,7 +17,8 @@ import java.util.List;
 /**
  * Created by Marc on 08.12.2015.
  */
-public class PerspectiveDependentBakedHeatedItemItemModel extends BakedWrappedModel implements IPerspectiveAwareModel {
+public class PerspectiveDependentBakedHeatedItemItemModel extends BakedWrappedModel
+{
 
     private final ImmutableList<BakedQuad> gaugeQuads;
 
@@ -40,10 +39,6 @@ public class PerspectiveDependentBakedHeatedItemItemModel extends BakedWrappedMo
     @Nonnull
     @Override
     public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType) {
-        if (getParentModel() instanceof IPerspectiveAwareModel) {
-            return Pair.of(this, ((IPerspectiveAwareModel) getParentModel()).handlePerspective(cameraTransformType).getRight());
-        }
-
-        return Pair.of(this, null);
+        return Pair.of(this, getParentModel().handlePerspective(cameraTransformType).getRight());
     }
 }

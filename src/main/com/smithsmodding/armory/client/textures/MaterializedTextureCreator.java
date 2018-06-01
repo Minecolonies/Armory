@@ -21,8 +21,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLLog;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.jetbrains.annotations.Nullable;
@@ -130,11 +128,6 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
      */
     @SubscribeEvent(priority = EventPriority.LOW)
     public void createCustomTextures(@Nonnull TextureStitchCollectedEvent event) {
-        //Only run the creation once, after all mods have been loaded.
-        if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
-            return;
-        }
-
         //Function is called so that all textures can be created.
         createMaterialTextures(event.getMap());
     }

@@ -170,11 +170,6 @@ public class BlockForge extends BlockArmoryTileEntity implements ICustomDebugInf
         return false;
     }
 
-    @Override
-    public boolean isFullyOpaque(IBlockState state) {
-        return false;
-    }
-
     //NEEDS TO BE REDONE!
     @Override
     public IBlockState getExtendedState(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {

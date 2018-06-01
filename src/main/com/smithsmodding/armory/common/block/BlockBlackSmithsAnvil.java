@@ -3,9 +3,7 @@ package com.smithsmodding.armory.common.block;
 import com.google.common.collect.Lists;
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
-import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.client.TranslationKeys;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.ModMaterials;
@@ -20,10 +18,10 @@ import com.smithsmodding.smithscore.client.block.ICustomDebugInformationBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -179,15 +177,9 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
         return generateItemStackFromWorldPos(world, pos, state);
     }
 
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     *
-     * @param itemIn
-     * @param tab
-     * @param list
-     */
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(final CreativeTabs itemIn, final NonNullList<ItemStack> items)
+    {
         for (IAnvilMaterial material : ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry()) {
             ItemStack stack = new ItemStack(Item.getItemFromBlock(this));
 
@@ -197,7 +189,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
 
             stack.setTagCompound(compound);
 
-            list.add(stack);
+            items.add(stack);
         }
     }
 
@@ -226,16 +218,6 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
         return ((IExtendedBlockState) state).withProperty(PROPERTY_ANVIL_MATERIAL, material.getRegistryName().toString())
                  .withProperty(OBJModel.OBJProperty.INSTANCE, objState)
                  .withProperty(PROPERTY_REMAINING_USES, tileEntityBlackSmithsAnvilState.getRemainingUses());
-    }
-
-    /**
-     * Checks if an IBlockState represents a block that is opaque and a full cube.
-     *
-     * @param state
-     */
-    @Override
-    public boolean isFullyOpaque(IBlockState state) {
-        return false;
     }
 
     /**
@@ -291,7 +273,6 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
         return new ExtendedBlockState(this, new IProperty[]{FACING}, new IUnlistedProperty[]{OBJModel.OBJProperty.INSTANCE, PROPERTY_ANVIL_MATERIAL, PROPERTY_REMAINING_USES});
     }
 
-
     @Override
     public void handleDebugInformation(@Nonnull RenderGameOverlayEvent.Text event, @Nonnull World worldIn, @Nonnull BlockPos pos) {
         if (!SmithsCore.isInDevEnvironment() && !Minecraft.getMinecraft().gameSettings.showDebugInfo)
@@ -311,8 +292,13 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
     }
 
     @Override
-    public void addInformation(final ItemStack stack, final EntityPlayer player, final List<String> tooltip, final boolean advanced)
+    public void addInformation(final ItemStack stack, @javax.annotation.Nullable final World worldIn, final List<String> tooltip, final ITooltipFlag flagIn)
     {
+        if (stack.getTagCompound() == null)
+        {
+            return;
+        }
+
         String materialID = stack.getTagCompound().getString(References.NBTTagCompoundData.TE.Anvil.MATERIAL);
         IAnvilMaterial material = IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValue(new ResourceLocation(materialID));
 
@@ -321,7 +307,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
 
         tooltip.add(I18n.translateToLocal(TranslationKeys.Items.ItemBlocks.Anvil.TK_MATERIAL) + " " + material.getTextFormatting() + I18n.translateToLocal(material.getTranslationKey()));
         tooltip.add(I18n.translateToLocal(TranslationKeys.Items.ItemBlocks.Anvil.TK_REMAININGUSES) + " " + stack.getTagCompound().getInteger(References.NBTTagCompoundData.TE.Anvil.REMAININGUSES));
-        super.addInformation(stack, player, tooltip, advanced);
+        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
     private ItemStack generateItemStackFromWorldPos(IBlockAccess world, BlockPos pos, IBlockState state) {

@@ -23,17 +23,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.ListIterator;
 
 /**
  * Created by marcf on 1/25/2017.
@@ -49,11 +49,19 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
     private CommonSystemInitializer() {
     }
 
-    @Override
-    public void onPreInit(@Nonnull FMLPreInitializationEvent preInitializationEvent) {
-        registerFluids();
-        registerTileEntities();
-        registerCreativeTabs();
+    private static void removeRecipes()
+    {
+        if (!ArmoryConfig.enableHardModeNuggetRemoval)
+        {
+            return;
+        }
+
+        Iterator<IRecipe> iterator = CraftingManager.REGISTRY.iterator();
+        while (iterator.hasNext())
+        {
+            IRecipe recipe = iterator.next();
+            tryRemoveRecipeFromGame(recipe, iterator);
+        }
     }
 
     @Override
@@ -76,17 +84,65 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
         }
     }
 
-    private void registerTileEntities() {
-        GameRegistry.registerTileEntity(TileEntityForge.class, References.InternalNames.TileEntities.ForgeContainer);
-        GameRegistry.registerTileEntity(TileEntityFireplace.class, References.InternalNames.TileEntities.FireplaceContainer);
-        GameRegistry.registerTileEntity(TileEntityBlackSmithsAnvil.class, References.InternalNames.TileEntities.ArmorsAnvil);
-        GameRegistry.registerTileEntity(TileEntityConduit.class, References.InternalNames.TileEntities.Conduit);
-        GameRegistry.registerTileEntity(TileEntityMoltenMetalTank.class, References.InternalNames.TileEntities.Tank);
-        GameRegistry.registerTileEntity(TileEntityPump.class, References.InternalNames.TileEntities.Pump);
-        GameRegistry.registerTileEntity(TileEntityMoltenMetalMixer.class, References.InternalNames.TileEntities.MoltenMetalMixer);
+    private static void tryRemoveRecipeFromGame(@Nonnull IRecipe recipe, @Nonnull Iterator iterator) {
+        if (recipe.getRecipeOutput().isEmpty())
+            return;
+
+        if (recipe.getRecipeOutput().getItem() == null)
+            return;
+
+        int[] oreIds = OreDictionary.getOreIDs(recipe.getRecipeOutput());
+
+        for (int Id : oreIds) {
+            String oreName = OreDictionary.getOreName(Id);
+            if (oreName.contains("nugget")) {
+                for (ICoreArmorMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry()) {
+                    if (oreName.toLowerCase().contains(material.getOreDictionaryIdentifier().toLowerCase())) {
+                        try {
+                            iterator.remove();
+                            return;
+                        }
+                        catch (Exception ex)
+                        {
+                            ModLogger.getInstance().info("Could not remove recipe of: " + ItemStackHelper.toString(recipe.getRecipeOutput()));
+                            return;
+                        }
+                    }
+                }
+
+                for (IAddonArmorMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getAddonArmorMaterialRegistry()) {
+                    if (oreName.toLowerCase().contains(material.getOreDictionaryIdentifier().toLowerCase())) {
+                        try {
+                            iterator.remove();
+                            return;
+                        }
+                        catch (Exception ex)
+                        {
+                            ModLogger.getInstance().info("Could not remove recipe of: " + ItemStackHelper.toString(recipe.getRecipeOutput()));
+                            return;
+                        }
+                    }
+                }
+
+                for (IAnvilMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry()) {
+                    if (oreName.toLowerCase().contains(material.getOreDictionaryIdentifier().toLowerCase())) {
+                        try {
+                            iterator.remove();
+                            return;
+                        }
+                        catch (Exception ex)
+                        {
+                            ModLogger.getInstance().info("Could not remove recipe of: " + ItemStackHelper.toString(recipe.getRecipeOutput()));
+                            return;
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    private static void registerCreativeTabs() {
+    private static void registerCreativeTabs()
+    {
         ModCreativeTabs.GENERAL = new GeneralTabs();
         ModCreativeTabs.COMPONENTS = new ComponentsTab();
         ModCreativeTabs.HEATEDITEM = new HeatedItemTab();
@@ -119,66 +175,23 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
         ModBlocks.BL_RESOURCE.setCreativeTab(ModCreativeTabs.GENERAL);
     }
 
-    private static void removeRecipes() {
-        if (!ArmoryConfig.enableHardModeNuggetRemoval)
-            return;
-
-        ListIterator<IRecipe> iterator = CraftingManager.getInstance().getRecipeList().listIterator();
-        while (iterator.hasNext()) {
-            IRecipe recipe = iterator.next();
-            tryRemoveRecipeFromGame(recipe, iterator);
-        }
+    @Override
+    public void onInit(@Nonnull final FMLInitializationEvent initializationEvent)
+    {
+        registerFluids();
+        registerTileEntities();
+        registerCreativeTabs();
     }
 
-    private static void tryRemoveRecipeFromGame(@Nonnull IRecipe recipe, @Nonnull Iterator iterator) {
-        if (recipe.getRecipeOutput().isEmpty())
-            return;
-
-        if (recipe.getRecipeOutput().getItem() == null)
-            return;
-
-        int[] oreIds = OreDictionary.getOreIDs(recipe.getRecipeOutput());
-
-        for (int Id : oreIds) {
-            String oreName = OreDictionary.getOreName(Id);
-            if (oreName.contains("nugget")) {
-                for (ICoreArmorMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry()) {
-                    if (oreName.toLowerCase().contains(material.getOreDictionaryIdentifier().toLowerCase())) {
-                        try {
-                            iterator.remove();
-                            return;
-                        } catch (IllegalStateException ex) {
-                            ModLogger.getInstance().info("Could not remove recipe of: " + ItemStackHelper.toString(recipe.getRecipeOutput()));
-                            return;
-                        }
-                    }
-                }
-
-                for (IAddonArmorMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getAddonArmorMaterialRegistry()) {
-                    if (oreName.toLowerCase().contains(material.getOreDictionaryIdentifier().toLowerCase())) {
-                        try {
-                            iterator.remove();
-                            return;
-                        } catch (IllegalStateException ex) {
-                            ModLogger.getInstance().info("Could not remove recipe of: " + ItemStackHelper.toString(recipe.getRecipeOutput()));
-                            return;
-                        }
-                    }
-                }
-
-                for (IAnvilMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry()) {
-                    if (oreName.toLowerCase().contains(material.getOreDictionaryIdentifier().toLowerCase())) {
-                        try {
-                            iterator.remove();
-                            return;
-                        } catch (IllegalStateException ex) {
-                            ModLogger.getInstance().info("Could not remove recipe of: " + ItemStackHelper.toString(recipe.getRecipeOutput()));
-                            return;
-                        }
-                    }
-                }
-            }
-        }
+    private void registerTileEntities()
+    {
+        GameRegistry.registerTileEntity(TileEntityForge.class, new ResourceLocation(References.General.MOD_ID, References.InternalNames.TileEntities.ForgeContainer));
+        GameRegistry.registerTileEntity(TileEntityFireplace.class, new ResourceLocation(References.General.MOD_ID, References.InternalNames.TileEntities.FireplaceContainer));
+        GameRegistry.registerTileEntity(TileEntityBlackSmithsAnvil.class, new ResourceLocation(References.General.MOD_ID, References.InternalNames.TileEntities.ArmorsAnvil));
+        GameRegistry.registerTileEntity(TileEntityConduit.class, new ResourceLocation(References.General.MOD_ID, References.InternalNames.TileEntities.Conduit));
+        GameRegistry.registerTileEntity(TileEntityMoltenMetalTank.class, new ResourceLocation(References.General.MOD_ID, References.InternalNames.TileEntities.Tank));
+        GameRegistry.registerTileEntity(TileEntityPump.class, new ResourceLocation(References.General.MOD_ID, References.InternalNames.TileEntities.Pump));
+        GameRegistry.registerTileEntity(TileEntityMoltenMetalMixer.class, new ResourceLocation(References.General.MOD_ID, References.InternalNames.TileEntities.MoltenMetalMixer));
     }
 
     private static void initializeOreDict() {

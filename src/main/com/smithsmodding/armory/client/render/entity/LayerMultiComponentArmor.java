@@ -1,7 +1,6 @@
 package com.smithsmodding.armory.client.render.entity;
 
 import com.smithsmodding.armory.api.client.model.ModelPart;
-import com.smithsmodding.armory.api.client.model.entity.IModelUpdateCallback;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
 import com.smithsmodding.armory.client.model.entity.ItemStackModelRenderer;
@@ -12,7 +11,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.EntityLivingBase;
@@ -136,6 +134,6 @@ public class LayerMultiComponentArmor<E extends EntityLivingBase, M extends Mode
 
     protected void setModelVisible(ModelBiped model)
     {
-        model.setInvisible(false);
+        model.setVisible(false);
     }
 }

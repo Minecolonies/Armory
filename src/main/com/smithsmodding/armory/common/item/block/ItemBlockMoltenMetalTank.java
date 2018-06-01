@@ -6,6 +6,7 @@ import com.smithsmodding.armory.common.tileentity.TileEntityMoltenMetalTank;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -14,9 +15,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -59,18 +59,10 @@ public class ItemBlockMoltenMetalTank extends ItemBlock {
         return true;
     }
 
-    /**
-     * allows items to add custom lines of information to the mouseover description
-     *
-     * @param stack
-     * @param playerIn
-     * @param tooltip
-     * @param advanced
-     */
-    @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        super.addInformation(stack, playerIn, tooltip, advanced);
+    public void addInformation(final ItemStack stack, @Nullable final World worldIn, final List<String> tooltip, final ITooltipFlag flagIn)
+    {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
 
         if (stack.hasTagCompound() && stack.getTagCompound().hasKey(References.NBTTagCompoundData.TE.MoltenMetalTank.CONTENTS)) {
             FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(stack.getTagCompound().getCompoundTag(References.NBTTagCompoundData.TE.MoltenMetalTank.CONTENTS));

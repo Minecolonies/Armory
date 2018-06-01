@@ -12,9 +12,9 @@ import net.minecraftforge.fluids.FluidStack;
  */
 public class TileEntityRendererConduit extends TileEntitySpecialRenderer<TileEntityConduit> {
 
-
     @Override
-    public void renderTileEntityAt(TileEntityConduit te, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(final TileEntityConduit te, final double x, final double y, final double z, final float partialTicks, final int destroyStage, final float alpha)
+    {
         if (te == null)
             return;
 

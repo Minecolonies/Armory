@@ -9,7 +9,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidStack;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.vecmath.Vector3d;
@@ -20,7 +19,8 @@ import javax.vecmath.Vector3d;
 public class TileEntityRendererForge extends TileEntitySpecialRenderer<TileEntityForge> {
 
     @Override
-    public void renderTileEntityAt(TileEntityForge te, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(final TileEntityForge te, final double x, final double y, final double z, final float partialTicks, final int destroyStage, final float alpha)
+    {
         if (te == null)
             return;
 

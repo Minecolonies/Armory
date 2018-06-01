@@ -201,7 +201,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
         {
             return "Heated{" +
                      "temperature=" + temperature +
-                     ", stack=" + ItemStackHelper.toString(stack) +
+                     ", stack=" + (stack == null ? "null" : ItemStackHelper.toString(stack)) +
                      '}';
         }
     }

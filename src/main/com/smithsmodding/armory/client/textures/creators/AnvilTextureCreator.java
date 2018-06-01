@@ -2,14 +2,13 @@ package com.smithsmodding.armory.client.textures.creators;
 
 import com.smithsmodding.armory.api.client.textures.creation.ICreationController;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.util.client.TextureCreationHelper;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
-import com.smithsmodding.armory.api.util.client.TextureCreationHelper;
 import com.smithsmodding.smithscore.core.interfaces.ITextureMap;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;

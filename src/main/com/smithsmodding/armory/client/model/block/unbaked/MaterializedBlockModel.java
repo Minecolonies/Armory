@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.client.model.block.unbaked;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
@@ -15,7 +14,6 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.IRetexturableModel;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 
@@ -28,12 +26,17 @@ import java.util.Map;
  */
 public class MaterializedBlockModel implements IModel {
 
-    private final IRetexturableModel parent;
-    private final ResourceLocation materializableTexture;
-    private final Map<ResourceLocation, ResourceLocation> materialOverrides;
+    private final IModel                                                               parent;
+    private final ResourceLocation                                                     materializableTexture;
+    private final Map<ResourceLocation, ResourceLocation>                              materialOverrides;
     private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transformations;
 
-    public MaterializedBlockModel(IRetexturableModel parent, ResourceLocation materializableTexture, Map<ResourceLocation, ResourceLocation> materialOverrides, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transformations) {
+    public MaterializedBlockModel(
+      IModel parent,
+      ResourceLocation materializableTexture,
+      Map<ResourceLocation, ResourceLocation> materialOverrides,
+      ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transformations)
+    {
         this.parent = parent;
         this.materializableTexture = materializableTexture;
         this.materialOverrides = materialOverrides;
@@ -51,7 +54,9 @@ public class MaterializedBlockModel implements IModel {
     }
 
     @Override
-    public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+    public IBakedModel bake(
+      final IModelState state, final VertexFormat format, final java.util.function.Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter)
+    {
         ImmutableMap.Builder<IMaterial, IBakedModel> subModelBuilder = new ImmutableMap.Builder<>();
 
         Map<String, TextureAtlasSprite> sprites = MaterializedTextureCreator.getBuildSprites().get(materializableTexture);

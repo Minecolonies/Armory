@@ -20,7 +20,6 @@ import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorCoreCo
 import com.smithsmodding.armory.client.model.item.unbaked.components.ArmorSubComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
-import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
@@ -28,8 +27,6 @@ import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.TRSRTransformation;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
@@ -48,10 +45,6 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
 
     @Override
     public IModel loadModel(@Nonnull ResourceLocation modelLocation) throws IOException {
-        if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
-            return DummyModel.INSTANCE;
-        }
-
         try {
             //Retrieve the Name of the armor.
             //The file name without the extension has to be equal to the Name used in Armories registry.

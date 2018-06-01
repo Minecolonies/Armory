@@ -40,9 +40,8 @@ public class JEICompatMod extends BlankModPlugin {
     {
         subtypeRegistry.registerSubtypeInterpreter(ModItems.IT_HEATEDITEM, new ISubtypeRegistry.ISubtypeInterpreter()
         {
-            @Nullable
             @Override
-            public String getSubtypeInfo(final ItemStack itemStack)
+            public String apply(final ItemStack itemStack)
             {
                 if (!itemStack.isEmpty() && itemStack.hasCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null))
                 {
@@ -57,7 +56,7 @@ public class JEICompatMod extends BlankModPlugin {
         {
             @Nullable
             @Override
-            public String getSubtypeInfo(final ItemStack itemStack)
+            public String apply(final ItemStack itemStack)
             {
                 if (!itemStack.isEmpty() && itemStack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null))
                 {
@@ -72,7 +71,7 @@ public class JEICompatMod extends BlankModPlugin {
         {
             @Nullable
             @Override
-            public String getSubtypeInfo(final ItemStack itemStack)
+            public String apply(final ItemStack itemStack)
             {
                 if (!itemStack.isEmpty() && itemStack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null))
                 {
@@ -87,7 +86,7 @@ public class JEICompatMod extends BlankModPlugin {
         {
             @Nullable
             @Override
-            public String getSubtypeInfo(final ItemStack itemStack)
+            public String apply(final ItemStack itemStack)
             {
                 if (!itemStack.isEmpty() && itemStack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null))
                 {
@@ -102,7 +101,7 @@ public class JEICompatMod extends BlankModPlugin {
         {
             @Nullable
             @Override
-            public String getSubtypeInfo(final ItemStack itemStack)
+            public String apply(final ItemStack itemStack)
             {
                 if (!itemStack.isEmpty() && itemStack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null))
                 {
@@ -117,7 +116,7 @@ public class JEICompatMod extends BlankModPlugin {
         {
             @Nullable
             @Override
-            public String getSubtypeInfo(final ItemStack itemStack)
+            public String apply(final ItemStack itemStack)
             {
                 if (!itemStack.isEmpty() && itemStack.hasCapability(ModCapabilities.MOD_HEATABLEOBJECT_CAPABILITY, null))
                 {
@@ -132,7 +131,7 @@ public class JEICompatMod extends BlankModPlugin {
         {
             @Nullable
             @Override
-            public String getSubtypeInfo(final ItemStack itemStack)
+            public String apply(final ItemStack itemStack)
             {
                 if (!itemStack.isEmpty() && itemStack.hasCapability(ModCapabilities.MOD_ARMORCOMPONENT_CAPABILITY, null))
                 {
@@ -147,7 +146,7 @@ public class JEICompatMod extends BlankModPlugin {
         {
             @Nullable
             @Override
-            public String getSubtypeInfo(final ItemStack itemStack)
+            public String apply(final ItemStack itemStack)
             {
                 if (itemStack.isEmpty() || !itemStack.hasTagCompound() || !itemStack.getTagCompound().hasKey(MATERIAL))
                 {
@@ -171,7 +170,7 @@ public class JEICompatMod extends BlankModPlugin {
         registry.addRecipeClickArea(GuiBlacksmithsAnvil.class, 17, 7, 30, 30, References.Compatibility.JEI.RecipeTypes.ANVIL);
 
         NonNullList<ItemStack> anvils = NonNullList.create();
-        ModBlocks.BL_ANVIL.getSubBlocks(Item.getItemFromBlock(ModBlocks.BL_ANVIL), null, anvils);
+        ModBlocks.BL_ANVIL.getSubBlocks(null, anvils);
 
         for (ItemStack stack : anvils)
             registry.addRecipeCategoryCraftingItem(stack, References.Compatibility.JEI.RecipeTypes.ANVIL);

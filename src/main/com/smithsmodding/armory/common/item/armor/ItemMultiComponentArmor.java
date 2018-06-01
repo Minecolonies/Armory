@@ -124,14 +124,14 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      *
-     * @param itemIn
      * @param tab
      * @param subItems
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-        IMultiComponentArmor armorType = ArmorHelper.getArmorForItem(itemIn);
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
+    {
+        IMultiComponentArmor armorType = ArmorHelper.getArmorForItem(this);
 
         for(ICoreArmorMaterial coreArmorMaterial : IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry()) {
             subItems.add(IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getMLAFactory().buildNewMLAArmor(armorType, new ArrayList<>(), coreArmorMaterial.getBaseDurabilityForArmor(armorType), coreArmorMaterial));

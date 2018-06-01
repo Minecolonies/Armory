@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.common.armor.extension;
 
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionPosition;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 

@@ -90,12 +90,8 @@ public class BlockMoltenMetalTank extends BlockArmoryTileEntity {
     }
 
     @Override
-    public boolean isFullyOpaque(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
+    {
         ArrayList<String> materialOreDicNames = new ArrayList<>();
 
         for (RegistryMaterialWrapper wrapper : IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry()) {
