@@ -34,7 +34,7 @@ public interface IMLAFactory {
      * @param coreMaterial The core material of the armor.
      * @param addons    The new addons stored in a ArrayList
      * @return A new ItemStack with full durability.
-     * @throws IllegalArgumentException When the Addons are not compatible, or the durability <= 0
+     * @throws IllegalArgumentException When the Addons are not compatible, or when the durability is smaller or equal to 0
      */
     @Nonnull
     ItemStack buildNewMLAArmor(IMultiComponentArmor armor, ICoreArmorMaterial coreMaterial, List<IMultiComponentArmorExtensionInformation> addons) throws IllegalArgumentException;
