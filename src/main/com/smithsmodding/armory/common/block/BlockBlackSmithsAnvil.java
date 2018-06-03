@@ -22,7 +22,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -178,7 +177,7 @@ public class BlockBlackSmithsAnvil extends BlockArmoryTileEntity implements ICus
     }
 
     @Override
-    public void getSubBlocks(final CreativeTabs itemIn, final NonNullList<ItemStack> items)
+    public void getSubBlocksWithItem(final Item item, final NonNullList<ItemStack> items)
     {
         for (IAnvilMaterial material : ArmoryAPI.getInstance().getRegistryManager().getAnvilMaterialRegistry()) {
             ItemStack stack = new ItemStack(Item.getItemFromBlock(this));

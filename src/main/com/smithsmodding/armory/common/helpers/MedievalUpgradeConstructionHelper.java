@@ -38,8 +38,14 @@ public final class MedievalUpgradeConstructionHelper implements IMedievalUpgrade
      */
     @Nonnull
     @Override
-    public IMultiComponentArmorExtension buildStandardExtension(String translationKey, String textFormatting, IMultiComponentArmorExtensionPosition position, Integer additionalDurability, IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback, IExtensionRecipeRetrievalCallback extensionRecipeRetrievalCallback) {
-        return new MedievalArmorExtension.Builder(translationKey, textFormatting, position, additionalDurability, capabilitiesRetrievalCallback, extensionRecipeRetrievalCallback).build();
+    public IMultiComponentArmorExtension buildStandardExtension(
+      String translationKey,
+      String textFormatting,
+      IMultiComponentArmorExtensionPosition position,
+      IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback,
+      IExtensionRecipeRetrievalCallback extensionRecipeRetrievalCallback)
+    {
+        return new MedievalArmorExtension.Builder(translationKey, textFormatting, position, capabilitiesRetrievalCallback, extensionRecipeRetrievalCallback).build();
     }
 
     /**
@@ -50,7 +56,19 @@ public final class MedievalUpgradeConstructionHelper implements IMedievalUpgrade
      */
     @Nonnull
     @Override
-    public IMaterialDependantMultiComponentArmorExtension buildMaterialDependantExtension(String translationKey, String textFormatting, IMultiComponentArmorExtensionPosition position, Integer additionalDurability, IMaterializableMultiComponentArmorExtension materialIndependentArmorExtension, IAddonArmorMaterial material, IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback) {
-        return new MedievalMaterialDependantArmorExtension.Builder(translationKey, textFormatting, position, additionalDurability, materialIndependentArmorExtension, material, capabilitiesRetrievalCallback).build();
+    public IMaterialDependantMultiComponentArmorExtension buildMaterialDependantExtension(
+      String translationKey,
+      String textFormatting,
+      IMultiComponentArmorExtensionPosition position,
+      IMaterializableMultiComponentArmorExtension materialIndependentArmorExtension,
+      IAddonArmorMaterial material,
+      IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback)
+    {
+        return new MedievalMaterialDependantArmorExtension.Builder(translationKey,
+          textFormatting,
+          position,
+          materialIndependentArmorExtension,
+          material,
+          capabilitiesRetrievalCallback).build();
     }
 }

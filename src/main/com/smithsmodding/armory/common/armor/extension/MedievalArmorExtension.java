@@ -4,10 +4,11 @@ import com.smithsmodding.armory.api.common.armor.IMaterializableMultiComponentAr
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionPosition;
+import com.smithsmodding.armory.api.common.armor.callback.ICapabilityMapBuilder;
 import com.smithsmodding.armory.api.common.armor.callback.IDefaultCapabilitiesRetrievalCallback;
 import com.smithsmodding.armory.api.common.armor.callback.IExtensionRecipeRetrievalCallback;
+import com.smithsmodding.armory.api.common.armor.callback.SimpleCapabilityMapBuilder;
 import com.smithsmodding.armory.api.common.capability.armor.ArmorCapabilityManager;
-import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
 import com.smithsmodding.armory.api.util.client.ModelTransforms;
 import com.smithsmodding.smithscore.util.common.IBuilder;
 import net.minecraft.client.model.ModelRenderer;
@@ -19,7 +20,6 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashMap;
 
 /**
  * Created by marcf on 1/21/2017.
@@ -30,7 +30,6 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
     private final String textFormatting;
 
     private final IMultiComponentArmorExtensionPosition position;
-    private final Integer additionalDurability;
     private final ArmorCapabilityManager capabilityManager;
 
     private IMultiComponentArmor armor;
@@ -44,7 +43,6 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
         this.translationKey = builder.getTranslationKey();
         this.textFormatting = builder.getTextFormatting();
         this.position = builder.getPosition();
-        this.additionalDurability = builder.getAdditionalDurability();
         this.capabilityManager = builder.getCapabilityManager();
         this.recipeCallback = builder.getExtensionRecipeRetrievalCallback();
 
@@ -91,7 +89,7 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
      */
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
-        return false;
+        return capabilityManager.hasCapability(capability, facing);
     }
 
     /**
@@ -107,7 +105,7 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
     @Nullable
     @Override
     public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-        return null;
+        return capabilityManager.getCapability(capability, facing);
     }
 
     /**
@@ -157,17 +155,6 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
     }
 
     /**
-     * Method to get the additional durability this extension provides.
-     *
-     * @return The extra durability.
-     */
-    @Nonnull
-    @Override
-    public Integer getAdditionalDurability() {
-        return additionalDurability;
-    }
-
-    /**
      * Method to check weither a other Extension can be installed together with this extension.
      *
      * @param other            The other extension.
@@ -202,18 +189,6 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
     public IMultiComponentArmorExtension setHasItemStack(@Nonnull Boolean hasItemStack) {
         this.hasItemStack = hasItemStack;
         return this;
-    }
-
-    /**
-     * Method to get all the default capabilities this Component provides.
-     * The Capabilities stored here override those stored in the Armor and in its CoreMaterial.
-     *
-     * @return All the default capabilities this Component provides.
-     */
-    @Nonnull
-    @Override
-    public HashMap<Capability<? extends IArmorCapability>, Object> getDefaultComponentCapabilities() {
-        return capabilityManager.getCapabilities();
     }
 
     /**
@@ -280,6 +255,17 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
         return recipeCallback;
     }
 
+    /**
+     * Clones the current extensions capabilities into the given {@link ICapabilityMapBuilder}.
+     *
+     * @param builder THe {@link ICapabilityMapBuilder} to clone the capabilities into.
+     */
+    @Override
+    public void cloneCapabilities(@Nonnull final ICapabilityMapBuilder builder)
+    {
+
+    }
+
     @Override
     public int hashCode()
     {
@@ -310,24 +296,23 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
         private final String textFormatting;
 
         private final IMultiComponentArmorExtensionPosition position;
-        private final Integer additionalDurability;
         private final ArmorCapabilityManager capabilityManager;
         private final IExtensionRecipeRetrievalCallback extensionRecipeRetrievalCallback;
 
-        public Builder(String translationKey, String textFormatting, IMultiComponentArmorExtensionPosition position, Integer additionalDurability, IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback, IExtensionRecipeRetrievalCallback extensionRecipeRetrievalCallback) {
-            this(translationKey, textFormatting, position, additionalDurability, capabilitiesRetrievalCallback.get(), extensionRecipeRetrievalCallback);
-        }
+        public Builder(
+          String translationKey,
+          String textFormatting,
+          IMultiComponentArmorExtensionPosition position,
+          IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback,
+          IExtensionRecipeRetrievalCallback extensionRecipeRetrievalCallback)
+        {
+            final ICapabilityMapBuilder builder = new SimpleCapabilityMapBuilder();
+            capabilitiesRetrievalCallback.get(builder);
 
-        public Builder(String translationKey, String textFormatting, IMultiComponentArmorExtensionPosition position, Integer additionalDurability, HashMap<Capability<? extends IArmorCapability>, Object> defaultCapabilities, IExtensionRecipeRetrievalCallback extensionRecipeRetrievalCallback) {
-            this(translationKey, textFormatting, position, additionalDurability, new ArmorCapabilityManager(defaultCapabilities), extensionRecipeRetrievalCallback);
-        }
-
-        public Builder(String translationKey, String textFormatting, IMultiComponentArmorExtensionPosition position, Integer additionalDurability, ArmorCapabilityManager capabilityManager, IExtensionRecipeRetrievalCallback extensionRecipeRetrievalCallback) {
             this.translationKey = translationKey;
             this.textFormatting = textFormatting;
             this.position = position;
-            this.additionalDurability = additionalDurability;
-            this.capabilityManager = capabilityManager;
+            this.capabilityManager = new ArmorCapabilityManager(builder);
             this.extensionRecipeRetrievalCallback = extensionRecipeRetrievalCallback;
         }
 
@@ -341,10 +326,6 @@ public class MedievalArmorExtension extends IForgeRegistryEntry.Impl<IMultiCompo
 
         public IMultiComponentArmorExtensionPosition getPosition() {
             return position;
-        }
-
-        public Integer getAdditionalDurability() {
-            return additionalDurability;
         }
 
         public ArmorCapabilityManager getCapabilityManager() {

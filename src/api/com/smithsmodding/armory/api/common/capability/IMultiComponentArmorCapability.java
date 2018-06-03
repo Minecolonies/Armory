@@ -3,8 +3,6 @@ package com.smithsmodding.armory.api.common.capability;
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionInformation;
-import com.smithsmodding.armory.api.common.capability.armor.ArmorCapabilityManager;
-import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.util.common.armor.ArmorNBTHelper;
 import com.smithsmodding.armory.api.util.references.ModArmor;
@@ -20,7 +18,7 @@ import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by marcf on 1/5/2017.
@@ -45,13 +43,13 @@ public interface IMultiComponentArmorCapability {
      * @return A list of installed ADDONS.
      */
     @Nonnull
-    ArrayList<IMultiComponentArmorExtensionInformation> getInstalledExtensions();
+    List<IMultiComponentArmorExtensionInformation> getInstalledExtensions();
 
     /**
      * Setter for a List of installed ADDONS in the ItemStack
      * @param  installedExtensions The new list of installed addons.
      */
-    IMultiComponentArmorCapability setInstalledExtensions(@Nonnull ArrayList<IMultiComponentArmorExtensionInformation> installedExtensions);
+    IMultiComponentArmorCapability setInstalledExtensions(@Nonnull List<IMultiComponentArmorExtensionInformation> installedExtensions);
 
     /**
      * Method to check if an Instance is broken.
@@ -80,21 +78,6 @@ public interface IMultiComponentArmorCapability {
     IMultiComponentArmorCapability setMaterial(@Nonnull ICoreArmorMaterial coreArmorMaterial);
 
     /**
-     * Getter for the maximal durability in the current configuration.
-     * @return The maximal durability.
-     */
-    @Nonnull
-    Integer getMaximalDurability();
-
-    /**
-     * Setter for the maximal durability in the current configuration.
-     * @param maximalDurability The new maximal configuration.
-     * @return The instance this method was called on.
-     */
-    @Nonnull
-    IMultiComponentArmorCapability setMaximalDurability(@Nonnull Integer maximalDurability);
-
-    /**
      * Getter for the current durability in the current configuration.
      * @return The current durability.
      */
@@ -120,25 +103,13 @@ public interface IMultiComponentArmorCapability {
      */
     void decreaseCurrentDurability(@Nonnull Integer durability);
 
-    /**
-     * Method to get the capabilities that the Armor has. Eg:
-     *  *  ArmorDefence
-     *  *  ArmorToughness
-     *  *  IsAccessory
-     *  *  Etc.
-     *
-     * @return The ArmorCapabilityManager that handles the Capabilities of this Armor piece.
-     */
-    @Nonnull
-    ArmorCapabilityManager getCapabilities();
-
     class Impl implements IMultiComponentArmorCapability {
 
         @Nonnull
         private IMultiComponentArmor armor = ModArmor.Medieval.CHESTPLATE;
 
         @Nonnull
-        private ArrayList<IMultiComponentArmorExtensionInformation> installedExtensions = new ArrayList<>();
+        private List<IMultiComponentArmorExtensionInformation> installedExtensions = new ArrayList<>();
 
         @Nonnull
         private Boolean broken = Boolean.FALSE;
@@ -148,12 +119,6 @@ public interface IMultiComponentArmorCapability {
 
         @Nonnull
         private Integer durability = 100;
-
-        @Nonnull
-        private Integer maximalDurability = 100;
-
-        @Nonnull
-        private ArmorCapabilityManager armorCapabilityManager = new ArmorCapabilityManager();
 
         public Impl()
         {
@@ -178,7 +143,6 @@ public interface IMultiComponentArmorCapability {
         @Override
         public IMultiComponentArmorCapability setArmorType(@Nonnull IMultiComponentArmor armorType) {
             this.armor = armorType;
-            this.rebuildCapabilities();
             return this;
         }
 
@@ -189,7 +153,8 @@ public interface IMultiComponentArmorCapability {
          */
         @Nonnull
         @Override
-        public ArrayList<IMultiComponentArmorExtensionInformation> getInstalledExtensions() {
+        public List<IMultiComponentArmorExtensionInformation> getInstalledExtensions()
+        {
             return new ArrayList<>(this.installedExtensions);
         }
 
@@ -199,9 +164,9 @@ public interface IMultiComponentArmorCapability {
          * @param installedExtensions The new list of installed addons.
          */
         @Override
-        public IMultiComponentArmorCapability setInstalledExtensions(@Nonnull ArrayList<IMultiComponentArmorExtensionInformation> installedExtensions) {
+        public IMultiComponentArmorCapability setInstalledExtensions(@Nonnull List<IMultiComponentArmorExtensionInformation> installedExtensions)
+        {
             this.installedExtensions = installedExtensions;
-            this.rebuildCapabilities();
             return this;
         }
 
@@ -213,7 +178,7 @@ public interface IMultiComponentArmorCapability {
         @Nonnull
         @Override
         public Boolean isBroken() {
-            return broken;
+            return broken || getCurrentDurability() <= 0;
         }
 
         /**
@@ -246,31 +211,6 @@ public interface IMultiComponentArmorCapability {
         @Override
         public IMultiComponentArmorCapability setMaterial(@Nonnull ICoreArmorMaterial coreArmorMaterial) {
             this.coreArmorMaterial = coreArmorMaterial;
-            this.rebuildCapabilities();
-            return this;
-        }
-
-        /**
-         * Getter for the maximal durability in the current configuration.
-         *
-         * @return The maximal durability.
-         */
-        @Nonnull
-        @Override
-        public Integer getMaximalDurability() {
-            return maximalDurability;
-        }
-
-        /**
-         * Setter for the maximal durability in the current configuration.
-         *
-         * @param maximalDurability The new maximal configuration.
-         * @return The instance this method was called on.
-         */
-        @Nonnull
-        @Override
-        public IMultiComponentArmorCapability setMaximalDurability(@Nonnull Integer maximalDurability) {
-            this.maximalDurability = maximalDurability;
             return this;
         }
 
@@ -315,33 +255,6 @@ public interface IMultiComponentArmorCapability {
         public void decreaseCurrentDurability(@Nonnull Integer durability) {
             this.durability = this.durability - durability;
         }
-
-        /**
-         * Method to get the capabilities that the Armor has. Eg:
-         * *  ArmorDefence
-         * *  ArmorToughness
-         * *  IsAccessory
-         * *  Etc.
-         *
-         * @return The ArmorCapabilityManager that handles the Capabilities of this Armor piece.
-         */
-        @Nonnull
-        @Override
-        public ArmorCapabilityManager getCapabilities() {
-            return armorCapabilityManager;
-        }
-
-        private void rebuildCapabilities() {
-            this.armorCapabilityManager = new ArmorCapabilityManager();
-
-            HashMap<Capability<? extends IArmorCapability>, Object> capabilityObjectHashMap = new HashMap<>();
-
-            capabilityObjectHashMap.putAll(getArmorType().getDefaultArmorCapabilities());
-            capabilityObjectHashMap.putAll(getMaterial().getOverrideCoreMaterialCapabilities(getArmorType()));
-            getInstalledExtensions().forEach((I) -> capabilityObjectHashMap.putAll(I.getExtension().getDefaultComponentCapabilities()));
-
-            capabilityObjectHashMap.forEach((Capability<? extends IArmorCapability> C, Object I) -> this.armorCapabilityManager.registerCapability(C, I));
-        }
     }
 
     class Storage implements Capability.IStorage<IMultiComponentArmorCapability> {
@@ -357,9 +270,7 @@ public interface IMultiComponentArmorCapability {
 
             compound.setBoolean(References.NBTTagCompoundData.Armor.IS_BROKEN, instance.isBroken());
             compound.setString(References.NBTTagCompoundData.Armor.CORE_MATERIAL, instance.getMaterial().getRegistryName().toString());
-            compound.setInteger(References.NBTTagCompoundData.Armor.TOTAL_DURABILITY, instance.getMaximalDurability());
             compound.setInteger(References.NBTTagCompoundData.Armor.CURRENT_DURABILITY, instance.getCurrentDurability());
-            compound.setTag(References.NBTTagCompoundData.Armor.CAPABILITY_DATA, instance.getCapabilities().serializeNBT());
 
             return compound;
         }
@@ -372,9 +283,7 @@ public interface IMultiComponentArmorCapability {
             instance.setInstalledExtensions(ArmorNBTHelper.getExtensionMap(compound.getTagList(References.NBTTagCompoundData.Armor.ADDONS, Constants.NBT.TAG_COMPOUND)));
             instance.setBroken(compound.getBoolean(References.NBTTagCompoundData.Armor.IS_BROKEN));
             instance.setMaterial(IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry().getValue(new ResourceLocation(compound.getString(References.NBTTagCompoundData.Armor.CORE_MATERIAL))));
-            instance.setMaximalDurability(compound.getInteger(References.NBTTagCompoundData.Armor.TOTAL_DURABILITY));
             instance.setCurrentDurability(compound.getInteger(References.NBTTagCompoundData.Armor.CURRENT_DURABILITY));
-            instance.getCapabilities().deserializeNBT(compound.getCompoundTag(References.NBTTagCompoundData.Armor.CAPABILITY_DATA));
         }
     }
 }

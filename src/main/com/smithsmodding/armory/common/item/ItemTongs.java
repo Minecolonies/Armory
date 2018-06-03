@@ -51,9 +51,14 @@ public class ItemTongs extends Item {
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(CreativeTabs pCreativeTab, NonNullList<ItemStack> pItemStacks)
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> stacks)
     {
+        if (tab != getCreativeTab())
+        {
+            return;
+        }
+
         ItemStack tTongsStack = new ItemStack(this, 1, 150);
-        pItemStacks.add(tTongsStack);
+        stacks.add(tTongsStack);
     }
 }

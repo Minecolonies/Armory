@@ -75,7 +75,7 @@ public class SimpleColoredTexture extends AbstractColoredTexture {
         g = mult(g, blue(pixel)) & 0xff;
         b = mult(b, green(pixel)) & 0xff;
 
-        // put it back together
+        // register it back together
         return compose(r, g, b, a);
     }
 }

@@ -3,8 +3,7 @@ package com.smithsmodding.armory.client.textures;
 import com.google.common.collect.Maps;
 import com.smithsmodding.armory.api.client.textures.creation.ICreationController;
 import com.smithsmodding.armory.api.client.textures.types.GuiOutlineTexture;
-import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
-import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
+import com.smithsmodding.armory.api.common.capability.armor.ArmorCapabilityManager;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.common.material.client.MaterialRenderControllers;
 import com.smithsmodding.armory.api.util.references.ModLogger;
@@ -19,7 +18,6 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -36,7 +34,6 @@ import java.io.IOException;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -58,31 +55,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
 
     //Initializes the dummy gui material with a proper set of render info.
     static {
-        guiMaterial = new MedievalCoreArmorMaterial("", "", "", 0F,0F,0,0,0F) {
-            /**
-             * Method to get the BaseDurability of a piece of armor made out of this material.
-             *
-             * @param armor The armor to get the base durability for.
-             * @return The durability of a piece of armor made out of this material.
-             */
-            @Nonnull
-            @Override
-            public Integer getBaseDurabilityForArmor(@Nonnull IMultiComponentArmor armor) {
-                return 0;
-            }
-
-            /**
-             * Method to get all the default capabilities this ArmorMaterial provides.
-             *
-             * @param armor
-             * @return All the default capabilities this ArmorMaterial provides.
-             */
-            @Nonnull
-            @Override
-            public HashMap<Capability<? extends IArmorCapability>, Object> getOverrideCoreMaterialCapabilities(IMultiComponentArmor armor) {
-                return new HashMap<>();
-            }
-        };
+        guiMaterial = new MedievalCoreArmorMaterial("", "", "", 0F, 0F, 0, 0, 0F, new ArmorCapabilityManager());
         guiMaterial.setRenderInfo(new MaterialRenderControllers.AbstractMaterialTextureController() {
             @Nonnull
             @Override
@@ -122,7 +95,7 @@ public class MaterializedTextureCreator implements IResourceManagerReloadListene
 
     /**
      * Actual construction method is called from the ForgeEvent system.
-     * This method kicks the creation of the textures of and provided a map to put the textures in.
+     * This method kicks the creation of the textures of and provided a map to register the textures in.
      *
      * @param event The events fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
      */

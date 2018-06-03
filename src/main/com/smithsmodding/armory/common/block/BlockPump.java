@@ -10,9 +10,9 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -57,16 +57,15 @@ public class BlockPump extends BlockArmoryTileEntity {
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubBlocksWithItem(final Item item, final NonNullList<ItemStack> items)
     {
-        list.add(new ItemStack(this, 1, EnumPumpType.HORIZONTAL.getMetadata()));
-        list.add(new ItemStack(this, 1, EnumPumpType.VERTICAL.getMetadata()));
+        items.add(new ItemStack(this, 1, EnumPumpType.HORIZONTAL.getMetadata()));
+        items.add(new ItemStack(this, 1, EnumPumpType.VERTICAL.getMetadata()));
     }
 
     @Override
     public void onBlockPlacedBy(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, EntityLivingBase placer, @Nonnull ItemStack stack) {
         state = state.withProperty(TYPE, EnumPumpType.byMetadata(stack.getItemDamage()));
-
         state = state.withProperty(DIRECTION, placer.getHorizontalFacing().getOpposite());
 
         worldIn.setBlockState(pos, state, 2);

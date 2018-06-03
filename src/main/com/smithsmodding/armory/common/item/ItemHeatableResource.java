@@ -37,6 +37,11 @@ public abstract class ItemHeatableResource extends Item implements IHeatableObje
     @Override
     public void getSubItems(final CreativeTabs tab, final NonNullList<ItemStack> items)
     {
+        if (tab != getCreativeTab())
+        {
+            return;
+        }
+
         ItemHeatableResource.getSubItemsStatic(this, items);
     }
 

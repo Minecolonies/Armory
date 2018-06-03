@@ -1,14 +1,14 @@
 package com.smithsmodding.armory.api.common.capability.armor;
 
 import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagFloat;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 
 /**
  * Created by marcf on 1/15/2017.
  */
-public interface IArmorDurabilityCapability extends IValueContainingCapability<IArmorDurabilityCapability, Float>
+public interface IArmorDurabilityCapability extends IValueModifyingCapability<IArmorDurabilityCapability, Float>
 {
 
     /**
@@ -17,10 +17,45 @@ public interface IArmorDurabilityCapability extends IValueContainingCapability<I
      * @param value The value.
      * @return The instance.
      */
-    static IArmorDurabilityCapability create(final float value)
+    static IArmorDurabilityCapability add(final float value)
     {
-        return new Impl(value);
+        return create(value, ValueModificationType.ADD);
     }
+
+    /**
+     * Creates a new {@link IArmorDurabilityCapability} instance.
+     *
+     * @param value The value.
+     * @return The instance.
+     */
+    static IArmorDurabilityCapability create(final float value, final ValueModificationType type)
+    {
+        return new IArmorDurabilityCapability.Impl(value, type);
+    }
+
+    /**
+     * Creates a new {@link IArmorDurabilityCapability} instance.
+     *
+     * @param value The value.
+     * @return The instance.
+     */
+    static IArmorDurabilityCapability multiply(final float value)
+    {
+        return create(value, ValueModificationType.MULTIPLY);
+    }
+
+    /**
+     * Creates a new {@link IArmorDurabilityCapability} instance.
+     *
+     * @param value The value.
+     * @return The instance.
+     */
+    static IArmorDurabilityCapability set(final float value)
+    {
+        return create(value, ValueModificationType.SET);
+    }
+    
+    
 
     class Storage implements Capability.IStorage<IArmorDurabilityCapability>
     {
@@ -46,7 +81,11 @@ public interface IArmorDurabilityCapability extends IValueContainingCapability<I
         @Override
         public NBTBase writeNBT(Capability<IArmorDurabilityCapability> capability, IArmorDurabilityCapability instance, EnumFacing side)
         {
-            return new NBTTagFloat(instance.getValue());
+            final NBTTagCompound compound = new NBTTagCompound();
+            compound.setFloat("value", instance.getValue());
+            compound.setInteger("type", instance.getType().ordinal());
+
+            return compound;
         }
 
         /**
@@ -71,19 +110,23 @@ public interface IArmorDurabilityCapability extends IValueContainingCapability<I
         @Override
         public void readNBT(Capability<IArmorDurabilityCapability> capability, IArmorDurabilityCapability instance, EnumFacing side, NBTBase nbt)
         {
-            instance.setValue(((NBTTagFloat) nbt).getFloat());
+            final NBTTagCompound compound = (NBTTagCompound) nbt;
+
+            instance.setValue(compound.getFloat("value"));
+            instance.setType(ValueModificationType.values()[compound.getInteger("type")]);
         }
     }
 
-    class Impl extends IValueContainingCapability.Impl<IArmorDurabilityCapability, Float> implements IArmorDurabilityCapability
+    class Impl extends IValueModifyingCapability.Impl<IArmorDurabilityCapability, Float> implements IArmorDurabilityCapability
     {
         public Impl()
         {
+            this(0f, ValueModificationType.ADD);
         }
 
-        public Impl(float value)
+        public Impl(final float value, final ValueModificationType type)
         {
-            setValue(value);
+            setValue(value).setType(type);
         }
     }
 }

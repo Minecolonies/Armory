@@ -2,6 +2,7 @@ package com.smithsmodding.armory.api.util.references;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.capability.*;
+import com.smithsmodding.armory.api.common.capability.armor.IArmorAbsorptionRatioCapability;
 import com.smithsmodding.armory.api.common.capability.armor.IArmorDefenceCapability;
 import com.smithsmodding.armory.api.common.capability.armor.IArmorDurabilityCapability;
 import com.smithsmodding.armory.api.common.capability.armor.IArmorToughnessCapability;
@@ -53,6 +54,9 @@ public class ModCapabilities {
     @CapabilityInject(IArmorDurabilityCapability.class)
     public static Capability<IArmorDurabilityCapability> MOD_ARMOR_DURABILITY_CAPABILITY;
 
+    @CapabilityInject(IArmorAbsorptionRatioCapability.class)
+    public static Capability<IArmorAbsorptionRatioCapability> MOD_ARMOR_ABSORPTION_RATIO_CAPABILITY;
+
     static {
         CapabilityManager.INSTANCE.register(IMoltenMetalAcceptor.class, new NullStorage<>(), new NullFactory<>());
         CapabilityManager.INSTANCE.register(IMoltenMetalProvider.class, new NullStorage<>(), new NullFactory<>());
@@ -85,6 +89,7 @@ public class ModCapabilities {
         CapabilityManager.INSTANCE.register(IArmorDefenceCapability.class, new IArmorDefenceCapability.Storage(), IArmorDefenceCapability.Impl::new);
         CapabilityManager.INSTANCE.register(IArmorToughnessCapability.class, new IArmorToughnessCapability.Storage(), IArmorToughnessCapability.Impl::new);
         CapabilityManager.INSTANCE.register(IArmorDurabilityCapability.class, new IArmorDurabilityCapability.Storage(), IArmorDurabilityCapability.Impl::new);
+        CapabilityManager.INSTANCE.register(IArmorAbsorptionRatioCapability.class, new IArmorAbsorptionRatioCapability.Storage(), IArmorAbsorptionRatioCapability.Impl::new);
     }
 
 }

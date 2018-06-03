@@ -8,54 +8,54 @@ import net.minecraftforge.common.capabilities.Capability;
 /**
  * Created by marcf on 1/15/2017.
  */
-public interface IArmorToughnessCapability extends IValueModifyingCapability<IArmorToughnessCapability, Float>
+public interface IArmorAbsorptionRatioCapability extends IValueModifyingCapability<IArmorAbsorptionRatioCapability, Float>
 {
 
     /**
-     * Creates a new {@link IArmorDefenceCapability} instance.
+     * Creates a new {@link IArmorAbsorptionRatioCapability} instance.
      *
      * @param value The value.
      * @return The instance.
      */
-    static IArmorToughnessCapability add(final float value)
+    static IArmorAbsorptionRatioCapability add(final float value)
     {
         return create(value, ValueModificationType.ADD);
     }
 
     /**
-     * Creates a new {@link IArmorToughnessCapability} instance.
+     * Creates a new {@link IArmorAbsorptionRatioCapability} instance.
      *
      * @param value The value.
      * @return The instance.
      */
-    static IArmorToughnessCapability create(final float value, final ValueModificationType type)
+    static IArmorAbsorptionRatioCapability create(final float value, final ValueModificationType type)
     {
-        return new IArmorToughnessCapability.Impl(value, type);
+        return new Impl(value, type);
     }
 
     /**
-     * Creates a new {@link IArmorDefenceCapability} instance.
+     * Creates a new {@link IArmorAbsorptionRatioCapability} instance.
      *
      * @param value The value.
      * @return The instance.
      */
-    static IArmorToughnessCapability multiply(final float value)
+    static IArmorAbsorptionRatioCapability multiply(final float value)
     {
         return create(value, ValueModificationType.MULTIPLY);
     }
 
     /**
-     * Creates a new {@link IArmorDefenceCapability} instance.
+     * Creates a new {@link IArmorAbsorptionRatioCapability} instance.
      *
      * @param value The value.
      * @return The instance.
      */
-    static IArmorToughnessCapability set(final float value)
+    static IArmorAbsorptionRatioCapability set(final float value)
     {
         return create(value, ValueModificationType.SET);
     }
 
-    class Storage implements Capability.IStorage<IArmorToughnessCapability>
+    class Storage implements Capability.IStorage<IArmorAbsorptionRatioCapability>
     {
 
         /**
@@ -77,7 +77,8 @@ public interface IArmorToughnessCapability extends IValueModifyingCapability<IAr
          * @return a NBT holding the data. Null if no data needs to be stored.
          */
         @Override
-        public NBTBase writeNBT(Capability<IArmorToughnessCapability> capability, IArmorToughnessCapability instance, EnumFacing side) {
+        public NBTBase writeNBT(Capability<IArmorAbsorptionRatioCapability> capability, IArmorAbsorptionRatioCapability instance, EnumFacing side)
+        {
             final NBTTagCompound compound = new NBTTagCompound();
             compound.setFloat("value", instance.getValue());
             compound.setInteger("type", instance.getType().ordinal());
@@ -105,7 +106,8 @@ public interface IArmorToughnessCapability extends IValueModifyingCapability<IAr
          * @param nbt        A NBT holding the data. Must not be null, as doesn't make sense to call this function with nothing to read...
          */
         @Override
-        public void readNBT(Capability<IArmorToughnessCapability> capability, IArmorToughnessCapability instance, EnumFacing side, NBTBase nbt) {
+        public void readNBT(Capability<IArmorAbsorptionRatioCapability> capability, IArmorAbsorptionRatioCapability instance, EnumFacing side, NBTBase nbt)
+        {
             final NBTTagCompound compound = (NBTTagCompound) nbt;
 
             instance.setValue(compound.getFloat("value"));
@@ -113,7 +115,7 @@ public interface IArmorToughnessCapability extends IValueModifyingCapability<IAr
         }
     }
 
-    class Impl extends IValueModifyingCapability.Impl<IArmorToughnessCapability, Float> implements IArmorToughnessCapability
+    class Impl extends IValueModifyingCapability.Impl<IArmorAbsorptionRatioCapability, Float> implements IArmorAbsorptionRatioCapability
     {
         public Impl()
         {

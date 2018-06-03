@@ -1,9 +1,8 @@
 package com.smithsmodding.armory.api.common.helpers;
 
+import com.smithsmodding.armory.api.common.armor.callback.IDefaultCapabilitiesRetrievalCallback;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
-import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterialDataCallback;
-import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterialDataCallback;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 
 import javax.annotation.Nonnull;
@@ -17,8 +16,26 @@ public interface IMaterialConstructionHelper {
     IAnvilMaterial createMedievalAnvilMaterial(String translationKey, String textFormatting, String oreDictionaryIdentifier, Float meltingPoint, Float vaporizingPoint, Integer meltingTime, Integer vaporizingTime, Float heatCoefficient, Integer durability);
 
     @Nonnull
-    ICoreArmorMaterial createMedievalCoreArmorMaterial(String translationKey, String textFormatting, String oreDictionaryIdentifier, Float meltingPoint, Float vaporizingPoint, Integer meltingTime, Integer vaporizingTime, Float heatCoefficient, ICoreArmorMaterialDataCallback callback);
+    ICoreArmorMaterial createMedievalCoreArmorMaterial(
+      String translationKey,
+      String textFormatting,
+      String oreDictionaryIdentifier,
+      Float meltingPoint,
+      Float vaporizingPoint,
+      Integer meltingTime,
+      Integer vaporizingTime,
+      Float heatCoefficient,
+      IDefaultCapabilitiesRetrievalCallback callback);
 
     @Nonnull
-    IAddonArmorMaterial createMedievalAddonArmorMaterial(String translationKey, String textFormatting, String oreDictionaryIdentifier, Float meltingPoint, Float vaporizingPoint, Integer meltingTime, Integer vaporizingTime, Float heatCoefficient, IAddonArmorMaterialDataCallback callback);
+    IAddonArmorMaterial createMedievalAddonArmorMaterial(
+      String translationKey,
+      String textFormatting,
+      String oreDictionaryIdentifier,
+      Float meltingPoint,
+      Float vaporizingPoint,
+      Integer meltingTime,
+      Integer vaporizingTime,
+      Float heatCoefficient,
+      IDefaultCapabilitiesRetrievalCallback callback);
 }

@@ -63,6 +63,11 @@ public class ItemHammer extends Item {
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
     {
+        if (tab != getCreativeTab())
+        {
+            return;
+        }
+
         ItemStack hammerStack = new ItemStack(this, 1, 150);
         subItems.add(hammerStack);
     }

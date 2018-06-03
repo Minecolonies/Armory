@@ -2,17 +2,13 @@ package com.smithsmodding.armory.common.armor.extension;
 
 import com.smithsmodding.armory.api.common.armor.*;
 import com.smithsmodding.armory.api.common.armor.callback.IDefaultCapabilitiesRetrievalCallback;
-import com.smithsmodding.armory.api.common.capability.armor.ArmorCapabilityManager;
-import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
 import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.util.client.ModelTransforms;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import java.util.HashMap;
 
 /**
  * Created by marcf on 1/22/2017.
@@ -123,16 +119,15 @@ public class MedievalMaterialDependantArmorExtension extends MedievalArmorExtens
         private final IMaterializableMultiComponentArmorExtension materialIndependentArmorExtension;
         private final IAddonArmorMaterial material;
 
-        public Builder(String translationKey, String textFormatting, IMultiComponentArmorExtensionPosition position, Integer additionalDurability, IMaterializableMultiComponentArmorExtension materialIndependentArmorExtension, IAddonArmorMaterial material, IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback) {
-            this(translationKey, textFormatting, position, additionalDurability, materialIndependentArmorExtension, material, capabilitiesRetrievalCallback.get());
-        }
-
-        public Builder(String translationKey, String textFormatting, IMultiComponentArmorExtensionPosition position, Integer additionalDurability, IMaterializableMultiComponentArmorExtension materialIndependentArmorExtension, IAddonArmorMaterial material, HashMap<Capability<? extends IArmorCapability>, Object> defaultCapabilities) {
-            this(translationKey, textFormatting, position, additionalDurability, materialIndependentArmorExtension, material, new ArmorCapabilityManager(defaultCapabilities));
-        }
-
-        public Builder(String translationKey, String textFormatting, IMultiComponentArmorExtensionPosition position, Integer additionalDurability, IMaterializableMultiComponentArmorExtension materialIndependentArmorExtension, IAddonArmorMaterial material, ArmorCapabilityManager capabilityManager) {
-            super(translationKey, textFormatting, position, additionalDurability, capabilityManager, materialIndependentArmorExtension.getRecipeCallback());
+        public Builder(
+          String translationKey,
+          String textFormatting,
+          IMultiComponentArmorExtensionPosition position,
+          IMaterializableMultiComponentArmorExtension materialIndependentArmorExtension,
+          IAddonArmorMaterial material,
+          IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback)
+        {
+            super(translationKey, textFormatting, position, capabilitiesRetrievalCallback, materialIndependentArmorExtension.getRecipeCallback());
 
             this.materialIndependentArmorExtension = materialIndependentArmorExtension;
             this.material = material;

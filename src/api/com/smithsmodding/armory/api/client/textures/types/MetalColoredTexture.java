@@ -78,7 +78,7 @@ public class MetalColoredTexture extends AbstractColoredTexture {
         b = blue(c);
         g = green(c);
 
-        // put it back together
+        // register it back together
         return compose(r, g, b, a);
     }
 }

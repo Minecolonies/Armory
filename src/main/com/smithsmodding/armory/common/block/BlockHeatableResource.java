@@ -16,7 +16,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -155,17 +154,11 @@ public class BlockHeatableResource extends BlockArmoryTileEntity implements ICus
         return generateItemStackFromWorldPos(world, pos, state);
     }
 
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     *
-     * @param tab
-     * @param list
-     */
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubBlocksWithItem(final Item item, final NonNullList<ItemStack> items)
     {
-        ItemHeatableResource.getSubItemsStatic(Item.getItemFromBlock(this), list);
+        ItemHeatableResource.getSubItemsStatic(Item.getItemFromBlock(this), items);
     }
 
     @Override

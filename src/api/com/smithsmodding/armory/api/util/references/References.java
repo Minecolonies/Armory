@@ -12,7 +12,6 @@ package com.smithsmodding.armory.api.util.references;
 */
 
 import com.smithsmodding.smithscore.util.client.color.MinecraftColor;
-import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
 public class References {
@@ -432,7 +431,7 @@ public class References {
 
             public static final MinecraftColor CLR_OBSIDIAN = new MinecraftColor(91,73,101);
 
-            public static final MinecraftColor CLR_STEEL = new MinecraftColor(182,188,189);
+            public static final MinecraftColor CLR_STEEL = new MinecraftColor(90, 90, 90);
 
             public static final MinecraftColor CLR_HARDENED_IRON = new MinecraftColor(47,118,148);
 

@@ -73,6 +73,10 @@ item.armory.items.components.metalplate.name=Plate
 item.armory.items.smithingsguide.name=Smithing's Guide
 item.armory.items.components.metalingot.name=Ingot
 #
+#Armor Specific
+item.armory.multiarmor.tooltip.durability=Durability:
+item.armory.multiarmor.tooltip.broken=Broken!
+#
 #HeatedIngot Specific
 armory.items.heatedobject.tooltip.temperature=Current Temperature
 #

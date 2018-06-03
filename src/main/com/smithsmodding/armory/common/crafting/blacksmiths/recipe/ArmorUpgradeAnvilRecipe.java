@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.common.crafting.blacksmiths.recipe;
 
+import com.google.common.collect.Lists;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionInformation;
 import com.smithsmodding.armory.api.common.capability.IArmorComponentStackCapability;
@@ -12,12 +13,12 @@ import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.armory.api.util.references.ModItems;
 import com.smithsmodding.armory.common.factories.ArmorFactory;
-import com.smithsmodding.armory.api.util.common.armor.ArmorNBTHelper;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Orion
@@ -120,7 +121,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
                 @Nullable
                 @Override
                 public ItemStack getComponentTargetStack() {
-                    return ArmorFactory.getInstance().buildNewMLAArmor(armor, new ArrayList<>(), coreArmorMaterial.getBaseDurabilityForArmor(armor), coreArmorMaterial);
+                    return ArmorFactory.getInstance().buildNewMLAArmor(armor, coreArmorMaterial, Lists.newArrayList());
                 }
 
                 @Override
@@ -179,10 +180,7 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
         if (!armorStack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
             throw new IllegalArgumentException("ArmorStack is not Armor");
 
-        IMultiComponentArmorCapability capability = armorStack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
-
-        ArrayList<IMultiComponentArmorExtensionInformation> extensionInformationData = ArmorNBTHelper.getAddonMap(armorStack);
-        ArrayList<IMultiComponentArmorExtensionInformation> newExtensionInformationData = new ArrayList<>();
+        List<IMultiComponentArmorExtensionInformation> newExtensionInformationData = new ArrayList<>();
 
         for (Integer index : upgradeComponents) {
             ItemStack upgradeStack = craftingSlotContents[index];
@@ -196,13 +194,6 @@ public class ArmorUpgradeAnvilRecipe extends AnvilRecipe {
                     .setCount(upgradeStack.getCount()));
         }
 
-        ArrayList<IMultiComponentArmorExtensionInformation> compressedInformation = ArmorFactory.getInstance().compressInformation(extensionInformationData, newExtensionInformationData);
-
-        Integer newMaxDurability = capability.getMaximalDurability();
-        for (IMultiComponentArmorExtensionInformation extensionInformation : compressedInformation) {
-            newMaxDurability += extensionInformation.getExtension().getAdditionalDurability();
-        }
-
-        return ArmorFactory.getInstance().buildMLAArmor(capability.getArmorType(), craftingSlotContents[12], newExtensionInformationData, newMaxDurability, capability.getMaterial(), "");
+        return ArmorFactory.getInstance().buildMLAArmor(armorStack, newExtensionInformationData);
     }
 }

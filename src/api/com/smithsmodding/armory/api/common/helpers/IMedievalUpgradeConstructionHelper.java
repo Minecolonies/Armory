@@ -21,7 +21,12 @@ public interface IMedievalUpgradeConstructionHelper {
      * @return A completely setup extension. However the caller will need to set the RegistryName and register it.
      */
     @Nonnull
-    IMultiComponentArmorExtension buildStandardExtension(String translationKey, String textFormatting, IMultiComponentArmorExtensionPosition position, Integer additionalDurability, IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback, IExtensionRecipeRetrievalCallback extensionRecipeRetrievalCallback);
+    IMultiComponentArmorExtension buildStandardExtension(
+      String translationKey,
+      String textFormatting,
+      IMultiComponentArmorExtensionPosition position,
+      IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback,
+      IExtensionRecipeRetrievalCallback extensionRecipeRetrievalCallback);
 
     /**
      * Method to build an armor extension that wraps an existing combination and a material.
@@ -30,5 +35,11 @@ public interface IMedievalUpgradeConstructionHelper {
      * @return A completely setup extension that wraps the existing extension and a material. However the caller will need to set the RegistryNam and register it.
      */
     @Nonnull
-    IMaterialDependantMultiComponentArmorExtension buildMaterialDependantExtension(String translationKey, String textFormatting, IMultiComponentArmorExtensionPosition position, Integer additionalDurability, IMaterializableMultiComponentArmorExtension materialIndependentArmorExtension, IAddonArmorMaterial material, IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback);
+    IMaterialDependantMultiComponentArmorExtension buildMaterialDependantExtension(
+      String translationKey,
+      String textFormatting,
+      IMultiComponentArmorExtensionPosition position,
+      IMaterializableMultiComponentArmorExtension materialIndependentArmorExtension,
+      IAddonArmorMaterial material,
+      IDefaultCapabilitiesRetrievalCallback capabilitiesRetrievalCallback);
 }

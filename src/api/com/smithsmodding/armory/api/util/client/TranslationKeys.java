@@ -46,10 +46,12 @@ public class TranslationKeys {
 
         public class MultiArmor {
             public class Armor {
-                public static final String TK_HELMET = "item.armory.multiarmor.armor.helmet";
+                public static final String TK_HELMET     = "item.armory.multiarmor.armor.helmet";
                 public static final String TK_CHESTPLATE = "item.armory.multiarmor.armor.chestplate";
-                public static final String TK_LEGGINGS = "item.armory.multiarmor.armor.leggings";
-                public static final String TK_SHOES = "item.armory.multiarmor.armor.shoes";
+                public static final String TK_LEGGINGS   = "item.armory.multiarmor.armor.leggings";
+                public static final String TK_SHOES      = "item.armory.multiarmor.armor.shoes";
+                public static final String TK_DURABILTIY = "item.armory.multiarmor.tooltip.durability";
+                public static final String TK_BROKEN     = "item.armory.multiarmor.tooltip.broken";
             }
 
             public class Upgrades {

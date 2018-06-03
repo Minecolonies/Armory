@@ -1,14 +1,14 @@
 package com.smithsmodding.armory.api.common.capability.armor;
 
 import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagFloat;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 
 /**
  * Created by marcf on 1/15/2017.
  */
-public interface IArmorDefenceCapability extends IValueContainingCapability<IArmorDefenceCapability, Float>
+public interface IArmorDefenceCapability extends IValueModifyingCapability<IArmorDefenceCapability, Float>
 {
 
     /**
@@ -17,9 +17,42 @@ public interface IArmorDefenceCapability extends IValueContainingCapability<IArm
      * @param value The value.
      * @return The instance.
      */
-    static IArmorDefenceCapability create(final float value)
+    static IArmorDefenceCapability add(final float value)
     {
-        return new Impl(value);
+        return create(value, ValueModificationType.ADD);
+    }
+
+    /**
+     * Creates a new {@link IArmorDefenceCapability} instance.
+     *
+     * @param value The value.
+     * @return The instance.
+     */
+    static IArmorDefenceCapability create(final float value, final ValueModificationType type)
+    {
+        return new Impl(value, type);
+    }
+
+    /**
+     * Creates a new {@link IArmorDefenceCapability} instance.
+     *
+     * @param value The value.
+     * @return The instance.
+     */
+    static IArmorDefenceCapability multiply(final float value)
+    {
+        return create(value, ValueModificationType.MULTIPLY);
+    }
+
+    /**
+     * Creates a new {@link IArmorDefenceCapability} instance.
+     *
+     * @param value The value.
+     * @return The instance.
+     */
+    static IArmorDefenceCapability set(final float value)
+    {
+        return create(value, ValueModificationType.SET);
     }
 
     class Storage implements Capability.IStorage<IArmorDefenceCapability>
@@ -45,7 +78,11 @@ public interface IArmorDefenceCapability extends IValueContainingCapability<IArm
          */
         @Override
         public NBTBase writeNBT(Capability<IArmorDefenceCapability> capability, IArmorDefenceCapability instance, EnumFacing side) {
-            return new NBTTagFloat(instance.getValue());
+            final NBTTagCompound compound = new NBTTagCompound();
+            compound.setFloat("value", instance.getValue());
+            compound.setInteger("type", instance.getType().ordinal());
+
+            return compound;
         }
 
         /**
@@ -69,19 +106,23 @@ public interface IArmorDefenceCapability extends IValueContainingCapability<IArm
          */
         @Override
         public void readNBT(Capability<IArmorDefenceCapability> capability, IArmorDefenceCapability instance, EnumFacing side, NBTBase nbt) {
-            instance.setValue(((NBTTagFloat) nbt).getFloat());
+            final NBTTagCompound compound = (NBTTagCompound) nbt;
+
+            instance.setValue(compound.getFloat("value"));
+            instance.setType(ValueModificationType.values()[compound.getInteger("type")]);
         }
     }
 
-    class Impl extends IValueContainingCapability.Impl<IArmorDefenceCapability, Float> implements IArmorDefenceCapability
+    class Impl extends IValueModifyingCapability.Impl<IArmorDefenceCapability, Float> implements IArmorDefenceCapability
     {
         public Impl()
         {
+            this(0f, ValueModificationType.ADD);
         }
 
-        public Impl(float value)
+        public Impl(final float value, final ValueModificationType type)
         {
-            setValue(value);
+            setValue(value).setType(type);
         }
     }
 }

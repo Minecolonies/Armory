@@ -161,7 +161,7 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
 
     private static void initializeMedievalArmorAnvilRecipes() {
         for (ICoreArmorMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry()) {
-            ItemStack chestPlateStack = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.CHESTPLATE, new ArrayList<>(), material.getBaseDurabilityForArmor(ModArmor.Medieval.CHESTPLATE), material);
+            ItemStack chestPlateStack = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.CHESTPLATE, material, new ArrayList<>());
             IAnvilRecipe chestPlateRecipe = new AnvilRecipe()
                     .setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.CHAIN, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.35F * 0.85F, material.getMeltingPoint() * 0.35F * 0.95F)))
                     .setCraftingSlotContent(4, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.CHAIN, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.35F * 0.85F, material.getMeltingPoint() * 0.35F * 0.95F)))
@@ -187,7 +187,7 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
                     .setProgress(20).setResult(chestPlateStack).setHammerUsage(38).setTongUsage(24).setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_CHESTPLATE.getResourcePath() + "-" + material.getRegistryName().getResourcePath()));
             IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(chestPlateRecipe);
 
-            ItemStack helmetStack = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.HELMET, new ArrayList<>(), material.getBaseDurabilityForArmor(ModArmor.Medieval.HELMET), material);
+            ItemStack helmetStack = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.HELMET, material, new ArrayList<>());
             IAnvilRecipe helmetRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.CHAIN, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.35F * 0.85F, material.getMeltingPoint() * 0.35F * 0.95F)))
                     .setCraftingSlotContent(1, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.CHAIN, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.35F * 0.85F, material.getMeltingPoint() * 0.35F * 0.95F)))
                     .setCraftingSlotContent(2, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.CHAIN, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.35F * 0.85F, material.getMeltingPoint() * 0.35F * 0.95F)))
@@ -204,7 +204,7 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
                     .setProgress(20).setResult(helmetStack).setHammerUsage(28).setTongUsage(16).setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_HELMET.getResourcePath() + "-" + material.getRegistryName().getResourcePath()));
             IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(helmetRecipe);
 
-            ItemStack leggingsStack = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.LEGGINGS, new ArrayList<>(), material.getBaseDurabilityForArmor(ModArmor.Medieval.LEGGINGS), material);
+            ItemStack leggingsStack = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.LEGGINGS, material, new ArrayList<>());
             IAnvilRecipe leggingsRecipe = new AnvilRecipe().setCraftingSlotContent(0, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.CHAIN, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.35F * 0.85F, material.getMeltingPoint() * 0.35F * 0.95F)))
                     .setCraftingSlotContent(1, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.CHAIN, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.35F * 0.85F, material.getMeltingPoint() * 0.35F * 0.95F)))
                     .setCraftingSlotContent(2, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.CHAIN, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.35F * 0.85F, material.getMeltingPoint() * 0.35F * 0.95F)))
@@ -234,7 +234,7 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
                     .setProgress(20).setResult(leggingsStack).setHammerUsage(28).setTongUsage(16).setRegistryName(new ResourceLocation(References.General.MOD_ID, RN_LEGGINGS.getResourcePath() + "-" + material.getRegistryName().getResourcePath()));
             IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().register(leggingsRecipe);
 
-            ItemStack shoeStack = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.SHOES, new ArrayList<>(), material.getBaseDurabilityForArmor(ModArmor.Medieval.SHOES), material);
+            ItemStack shoeStack = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.SHOES, material, new ArrayList<>());
             IAnvilRecipe shoeRecipe = new AnvilRecipe()
                     .setCraftingSlotContent(6, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.CHAIN, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.35F * 0.85F, material.getMeltingPoint() * 0.35F * 0.95F)))
                     .setCraftingSlotContent(8, (new HeatedAnvilRecipeComponent(ModHeatedObjectTypes.CHAIN, ModHeatableObjects.ITEMSTACK, material, material.getMeltingPoint() * 0.35F * 0.85F, material.getMeltingPoint() * 0.35F * 0.95F)))

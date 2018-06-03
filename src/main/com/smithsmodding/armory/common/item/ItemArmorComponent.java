@@ -73,6 +73,11 @@ public class ItemArmorComponent extends Item {
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
     {
+        if (tab != getCreativeTab())
+        {
+            return;
+        }
+
         for (IMultiComponentArmorExtension extension : IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry()) {
             if (!extension.hasItemStack())
                 continue;

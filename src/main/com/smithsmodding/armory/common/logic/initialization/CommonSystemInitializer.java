@@ -1,12 +1,10 @@
 package com.smithsmodding.armory.common.logic.initialization;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
-import com.smithsmodding.armory.api.common.fluid.FluidMoltenMetal;
 import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper;
 import com.smithsmodding.armory.api.util.common.CapabilityHelper;
 import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.common.config.ArmoryConfig;
@@ -24,15 +22,13 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
-import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -68,20 +64,6 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
     public void onPostInit(@Nonnull FMLPostInitializationEvent event) {
         removeRecipes();
         initializeOreDict();
-    }
-
-    private void registerFluids() {
-        HashMap<String, Fluid> oreDicNames = new HashMap<>();
-
-        for (RegistryMaterialWrapper materialWrapper : IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry()) {
-            if (!oreDicNames.containsKey(materialWrapper.getWrapped().getOreDictionaryIdentifier())) {
-                materialWrapper.getWrapped().setFluidForMaterial(new FluidMoltenMetal(materialWrapper.getWrapped()));
-                oreDicNames.put(materialWrapper.getWrapped().getOreDictionaryIdentifier(), materialWrapper.getWrapped().getFluidForMaterial());
-                FluidRegistry.registerFluid(materialWrapper.getWrapped().getFluidForMaterial());
-            } else {
-                materialWrapper.getWrapped().setFluidForMaterial(oreDicNames.get(materialWrapper.getWrapped().getOreDictionaryIdentifier()));
-            }
-        }
     }
 
     private static void tryRemoveRecipeFromGame(@Nonnull IRecipe recipe, @Nonnull Iterator iterator) {
@@ -141,46 +123,25 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
         }
     }
 
+    @Override
+    public void onPreInit(@Nonnull final FMLPreInitializationEvent preInitializationEvent)
+    {
+        registerCreativeTabs();
+    }
+
     private static void registerCreativeTabs()
     {
         ModCreativeTabs.GENERAL = new GeneralTabs();
         ModCreativeTabs.COMPONENTS = new ComponentsTab();
         ModCreativeTabs.HEATEDITEM = new HeatedItemTab();
         ModCreativeTabs.ARMOR = new ArmorTab();
-
-        ModItems.IT_CHAIN.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_GUIDE.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_HAMMER.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_INGOT.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_NUGGET.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_PLATE.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_RING.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModItems.IT_TONGS.setCreativeTab(ModCreativeTabs.GENERAL);
-
-        ModItems.IT_COMPONENT.setCreativeTab(ModCreativeTabs.COMPONENTS);
-
-        ModItems.IT_HEATEDITEM.setCreativeTab(ModCreativeTabs.HEATEDITEM);
-
-        ModItems.Armor.IT_CHESTPLATE.setCreativeTab(ModCreativeTabs.ARMOR);
-        ModItems.Armor.IT_HELMET.setCreativeTab(ModCreativeTabs.ARMOR);
-        ModItems.Armor.IT_LEGGINGS.setCreativeTab(ModCreativeTabs.ARMOR);
-        ModItems.Armor.IT_SHOES.setCreativeTab(ModCreativeTabs.ARMOR);
-
-        ModBlocks.BL_ANVIL.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModBlocks.BL_CONDUIT.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModBlocks.BL_FIREPLACE.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModBlocks.BL_FORGE.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModBlocks.BL_PUMP.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModBlocks.BL_TANK.setCreativeTab(ModCreativeTabs.GENERAL);
-        ModBlocks.BL_RESOURCE.setCreativeTab(ModCreativeTabs.GENERAL);
     }
 
     @Override
     public void onInit(@Nonnull final FMLInitializationEvent initializationEvent)
     {
-        registerFluids();
         registerTileEntities();
-        registerCreativeTabs();
+        setupCreativeTabs();
     }
 
     private void registerTileEntities()
@@ -237,5 +198,34 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
         OreDictionary.registerOre("blockIron", Blocks.IRON_BLOCK);
         OreDictionary.registerOre("blockGold", Blocks.GOLD_BLOCK);
         OreDictionary.registerOre("blockStone", Blocks.STONE);
+    }
+
+    private static void setupCreativeTabs()
+    {
+        ModItems.IT_CHAIN.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModItems.IT_GUIDE.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModItems.IT_HAMMER.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModItems.IT_INGOT.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModItems.IT_NUGGET.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModItems.IT_PLATE.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModItems.IT_RING.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModItems.IT_TONGS.setCreativeTab(ModCreativeTabs.GENERAL);
+
+        ModItems.IT_COMPONENT.setCreativeTab(ModCreativeTabs.COMPONENTS);
+
+        ModItems.IT_HEATEDITEM.setCreativeTab(ModCreativeTabs.HEATEDITEM);
+
+        ModItems.Armor.IT_CHESTPLATE.setCreativeTab(ModCreativeTabs.ARMOR);
+        ModItems.Armor.IT_HELMET.setCreativeTab(ModCreativeTabs.ARMOR);
+        ModItems.Armor.IT_LEGGINGS.setCreativeTab(ModCreativeTabs.ARMOR);
+        ModItems.Armor.IT_SHOES.setCreativeTab(ModCreativeTabs.ARMOR);
+
+        ModBlocks.BL_ANVIL.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModBlocks.BL_CONDUIT.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModBlocks.BL_FIREPLACE.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModBlocks.BL_FORGE.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModBlocks.BL_PUMP.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModBlocks.BL_TANK.setCreativeTab(ModCreativeTabs.GENERAL);
+        ModBlocks.BL_RESOURCE.setCreativeTab(ModCreativeTabs.GENERAL);
     }
 }

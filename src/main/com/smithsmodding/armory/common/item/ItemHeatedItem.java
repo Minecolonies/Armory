@@ -34,8 +34,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -87,8 +85,7 @@ public class ItemHeatedItem extends Item {
     @Override
     public void getSubItems(CreativeTabs tabs, NonNullList<ItemStack> list)
     {
-        list.clear();
-        if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION))
+        if (tabs != getCreativeTab())
             return;
 
         HashMap<String, ItemStack> heatedItems = new HashMap<>();
@@ -182,6 +179,22 @@ public class ItemHeatedItem extends Item {
 
             player.setFire(1);
         }
+    }
+
+    /**
+     * Determine if the player switching between these two item stacks
+     *
+     * @param oldStack    The old stack that was equipped
+     * @param newStack    The new stack
+     * @param slotChanged If the current equipped slot was changed,
+     *                    Vanilla does not play the animation if you switch between two
+     *                    slots that hold the exact same item.
+     * @return True to play the item change animation
+     */
+    @Override
+    public boolean shouldCauseReequipAnimation(final ItemStack oldStack, final ItemStack newStack, final boolean slotChanged)
+    {
+        return oldStack.getItem() != this || newStack.getItem() != this || slotChanged;
     }
 
     private class MaterialItemStackConstructionConsumer implements Consumer<IMaterial> {
