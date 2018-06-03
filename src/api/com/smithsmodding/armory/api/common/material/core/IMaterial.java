@@ -2,8 +2,9 @@ package com.smithsmodding.armory.api.common.material.core;
 
 import com.smithsmodding.armory.api.client.model.renderinfo.IRenderInfoProvider;
 import com.smithsmodding.armory.api.util.client.ITranslateable;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -11,7 +12,8 @@ import javax.annotation.Nullable;
 /**
  * Created by marcf on 1/9/2017.
  */
-public interface IMaterial<T> extends IForgeRegistryEntry<T>, IRenderInfoProvider<T>, ITranslateable {
+public interface IMaterial<T> extends IForgeRegistryEntry<T>, IRenderInfoProvider<T>, ITranslateable, ICapabilityProvider
+{
 
     /**
      * Method to get the Identifier inside the OreDictionary for a Material.

@@ -34,7 +34,6 @@ public class FluidMoltenMetal extends Fluid {
         return Math.round(material.getMeltingPoint());
     }
 
-
     @Nonnull
     @Override
     public String getLocalizedName(@Nullable FluidStack stack) {

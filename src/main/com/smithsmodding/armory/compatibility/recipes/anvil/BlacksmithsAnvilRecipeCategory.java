@@ -46,6 +46,12 @@ public class BlacksmithsAnvilRecipeCategory implements IRecipeCategory {
         return LOCALENAME;
     }
 
+    @Override
+    public String getModName()
+    {
+        return References.General.MOD_ID;
+    }
+
     @Nonnull
     @Override
     public IDrawable getBackground() {

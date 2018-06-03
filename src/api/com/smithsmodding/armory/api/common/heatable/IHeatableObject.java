@@ -3,7 +3,7 @@ package com.smithsmodding.armory.api.common.heatable;
 import com.smithsmodding.armory.api.common.capability.IHeatedObjectCapability;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 

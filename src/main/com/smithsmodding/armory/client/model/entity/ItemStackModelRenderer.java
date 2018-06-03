@@ -1,7 +1,6 @@
 package com.smithsmodding.armory.client.model.entity;
 
 import com.smithsmodding.armory.api.client.model.entity.IRenderCallback;
-import com.smithsmodding.armory.api.client.model.entity.IRotationAngleUpdateCallback;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -69,7 +68,7 @@ public class ItemStackModelRenderer extends ModelRenderer
     @Override
     public void render(final float scale)
     {
-        Minecraft.getMinecraft().world.theProfiler.startSection("Armory-3D-Model");
+        Minecraft.getMinecraft().world.profiler.startSection("Armory-3D-Model");
         if (!this.isHidden)
         {
             if (this.showModel)
@@ -119,7 +118,7 @@ public class ItemStackModelRenderer extends ModelRenderer
                 GlStateManager.translate(-this.offsetX, -this.offsetY, -this.offsetZ);
             }
         }
-        Minecraft.getMinecraft().world.theProfiler.endSection();
+        Minecraft.getMinecraft().world.profiler.endSection();
     }
 
     public void renderItemStack(float scale)
@@ -127,16 +126,16 @@ public class ItemStackModelRenderer extends ModelRenderer
         if (stack == null || model == null)
             return;
 
-        Minecraft.getMinecraft().world.theProfiler.startSection("Pre-Callback");
+        Minecraft.getMinecraft().world.profiler.startSection("Pre-Callback");
         preRenderCallback.apply(scale, this);
-        Minecraft.getMinecraft().world.theProfiler.endSection();
+        Minecraft.getMinecraft().world.profiler.endSection();
 
-        Minecraft.getMinecraft().world.theProfiler.startSection("Model-Render");
+        Minecraft.getMinecraft().world.profiler.startSection("Model-Render");
         Minecraft.getMinecraft().getRenderItem().renderItem(stack, model);
-        Minecraft.getMinecraft().world.theProfiler.endSection();
+        Minecraft.getMinecraft().world.profiler.endSection();
 
-        Minecraft.getMinecraft().world.theProfiler.startSection("Post-Callback");
+        Minecraft.getMinecraft().world.profiler.startSection("Post-Callback");
         postRenderCallback.apply(scale, this);
-        Minecraft.getMinecraft().world.theProfiler.endSection();
+        Minecraft.getMinecraft().world.profiler.endSection();
     }
 }

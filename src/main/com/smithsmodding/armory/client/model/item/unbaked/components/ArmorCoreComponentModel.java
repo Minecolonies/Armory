@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.client.model.item.unbaked.components;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -10,8 +9,6 @@ import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedCoreComponentModel;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
-import com.smithsmodding.armory.client.textures.creators.CoreTextureCreator;
-import com.smithsmodding.armory.common.api.ArmoryAPI;
 import com.smithsmodding.smithscore.client.model.unbaked.ItemLayerModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -25,6 +22,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 
 import javax.annotation.Nonnull;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Created by Marc on 06.12.2015.

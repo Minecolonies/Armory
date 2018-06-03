@@ -3,8 +3,8 @@ package com.smithsmodding.armory.api.common.events.common.material;
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.helpers.IMaterialConstructionHelper;
 import com.smithsmodding.smithscore.common.events.SmithsCoreEvent;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 /**
  * Created by marcf on 1/14/2017.

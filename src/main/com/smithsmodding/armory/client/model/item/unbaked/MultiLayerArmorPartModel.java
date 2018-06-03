@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.client.model.item.unbaked;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -25,8 +24,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import javax.vecmath.Vector3f;
 import java.util.HashMap;
+import java.util.function.Function;
 
 /**
  * A unbaked model for a part of the Armor.

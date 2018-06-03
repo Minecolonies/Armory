@@ -1,6 +1,6 @@
 package com.smithsmodding.armory.api.common.material.core;
 
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 

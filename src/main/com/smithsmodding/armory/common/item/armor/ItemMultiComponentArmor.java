@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.common.item.armor;
 
+import com.google.common.collect.Lists;
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.client.render.provider.model.IModelProvider;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
@@ -11,10 +12,13 @@ import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
+import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,6 +32,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
@@ -36,7 +41,10 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
+import java.util.List;
+
+import static com.smithsmodding.armory.api.util.client.TranslationKeys.Items.MultiArmor.Armor.TK_BROKEN;
+import static com.smithsmodding.armory.api.util.client.TranslationKeys.Items.MultiArmor.Armor.TK_DURABILTIY;
 
 /**
  * Class that represents MultiComponentArmor
@@ -70,7 +78,27 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
      */
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, @Nonnull ItemStack armor, DamageSource source, double damage, int slot) {
-        return new ArmorProperties(Integer.MAX_VALUE, 1, Integer.MAX_VALUE);
+        if (!armor.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
+        {
+            throw new IllegalArgumentException("Armor is not an instance of multicomponent armor.");
+        }
+
+        IMultiComponentArmorCapability componentArmorCapability = armor.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+
+        if (componentArmorCapability.isBroken())
+        {
+            return new ArmorProperties(0, 0, 0);
+        }
+
+        final float armorDefence = ArmorHelper.getModifyableCapabilityValue(armor, ModCapabilities.MOD_ARMOR_DEFENCE_CAPABILITY).floatValue();
+        final float armorThoughness = ArmorHelper.getModifyableCapabilityValue(armor, ModCapabilities.MOD_ARMOR_THOUGHNESS_CAPABILITY).floatValue();
+        final float armorRatio = ArmorHelper.getModifyableCapabilityValue(armor, ModCapabilities.MOD_ARMOR_ABSORPTION_RATIO_CAPABILITY).floatValue();
+
+        final ArmorProperties properties = new ArmorProperties(Integer.MAX_VALUE, armorRatio, componentArmorCapability.getCurrentDurability());
+        properties.Armor = armorDefence;
+        properties.Toughness = armorThoughness;
+
+        return properties;
     }
 
     /**
@@ -83,7 +111,19 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
      */
     @Override
     public int getArmorDisplay(EntityPlayer player, @Nonnull ItemStack armor, int slot) {
-        return 0;
+        if (!armor.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
+        {
+            throw new IllegalArgumentException("Armor is not an instance of multicomponent armor.");
+        }
+
+        IMultiComponentArmorCapability componentArmorCapability = armor.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+
+        if (componentArmorCapability.isBroken())
+        {
+            return 0;
+        }
+
+        return ArmorHelper.getModifyableCapabilityValue(armor, ModCapabilities.MOD_ARMOR_DEFENCE_CAPABILITY).intValue();
     }
 
     /**
@@ -100,7 +140,18 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
      */
     @Override
     public void damageArmor(EntityLivingBase entity, @Nonnull ItemStack stack, DamageSource source, int damage, int slot) {
+        if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
+        {
+            throw new IllegalArgumentException("Armor is not an instance of multicomponent armor.");
+        }
 
+        IMultiComponentArmorCapability componentArmorCapability = stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+        if (componentArmorCapability.isBroken())
+        {
+            return;
+        }
+
+        componentArmorCapability.decreaseCurrentDurability(damage);
     }
 
     @Override
@@ -122,20 +173,30 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
     }
 
     /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     *
-     * @param itemIn
-     * @param tab
-     * @param subItems
+     * allows items to add custom lines of information to the mouseover description
      */
-    @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-        IMultiComponentArmor armorType = ArmorHelper.getArmorForItem(itemIn);
-
-        for(ICoreArmorMaterial coreArmorMaterial : IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry()) {
-            subItems.add(IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getMLAFactory().buildNewMLAArmor(armorType, new ArrayList<>(), coreArmorMaterial.getBaseDurabilityForArmor(armorType), coreArmorMaterial));
+    public void addInformation(final ItemStack stack, @Nullable final World worldIn, final List<String> tooltip, final ITooltipFlag flagIn)
+    {
+        if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
+        {
+            throw new IllegalArgumentException("Armor is not an instance of multicomponent armor.");
         }
+
+        final IMultiComponentArmorCapability capability = stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+        if (capability.isBroken())
+        {
+            tooltip.add(TextFormatting.RED + I18n.translateToLocal(TK_BROKEN) + TextFormatting.RESET);
+            tooltip.add("");
+        }
+
+
+        tooltip.add(String.format(TextFormatting.AQUA + "%s %d/%d" + TextFormatting.RESET,
+          I18n.translateToLocal(TK_DURABILTIY),
+          capability.getCurrentDurability(),
+          ArmorHelper.getModifyableCapabilityValue(stack, ModCapabilities.MOD_ARMOR_DURABILITY_CAPABILITY).intValue()));
+
+        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
     @Override
@@ -220,4 +281,83 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
         return armor.getEquipmentSlot() == armorType;
     }
 
+    /**
+     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
+     */
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
+    {
+        if (tab != getCreativeTab())
+        {
+            return;
+        }
+
+        IMultiComponentArmor armorType = ArmorHelper.getArmorForItem(this);
+
+        for (ICoreArmorMaterial coreArmorMaterial : IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry())
+        {
+            subItems.add(IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getMLAFactory().buildNewMLAArmor(armorType, coreArmorMaterial, Lists.newArrayList()));
+        }
+    }
+
+    /**
+     * Returns the font renderer used to render tooltips and overlays for this item.
+     * Returning null will use the standard font renderer.
+     *
+     * @param stack The current item stack
+     * @return A instance of FontRenderer or null to use default
+     */
+    @Nullable
+    @Override
+    public FontRenderer getFontRenderer(final ItemStack stack)
+    {
+        return CoreClientProxy.getMultiColoredFontRenderer();
+    }
+
+    /**
+     * Determines if the durability bar should be rendered for this item.
+     * Defaults to vanilla stack.isDamaged behavior.
+     * But modders can use this for any data they wish.
+     *
+     * @param stack The current Item Stack
+     * @return True if it should render the 'durability' bar.
+     */
+    @Override
+    public boolean showDurabilityBar(final ItemStack stack)
+    {
+        if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
+        {
+            throw new IllegalArgumentException("Armor is not an instance of multicomponent armor.");
+        }
+
+        final IMultiComponentArmorCapability capability = stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+
+        final int maxDurability = ArmorHelper.getModifyableCapabilityValue(stack, ModCapabilities.MOD_ARMOR_DURABILITY_CAPABILITY).intValue();
+        final int currentDurability = capability.getCurrentDurability();
+
+        return maxDurability != currentDurability;
+    }
+
+    /**
+     * Queries the percentage of the 'Durability' bar that should be drawn.
+     *
+     * @param stack The current ItemStack
+     * @return 0.0 for 100% (no damage / full bar), 1.0 for 0% (fully damaged / empty bar)
+     */
+    @Override
+    public double getDurabilityForDisplay(final ItemStack stack)
+    {
+        if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
+        {
+            throw new IllegalArgumentException("Armor is not an instance of multicomponent armor.");
+        }
+
+        final IMultiComponentArmorCapability capability = stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+
+        final float maxDurability = ArmorHelper.getModifyableCapabilityValue(stack, ModCapabilities.MOD_ARMOR_DURABILITY_CAPABILITY).floatValue();
+        final int currentDurability = capability.getCurrentDurability();
+
+        return 1f - (currentDurability / maxDurability);
+    }
 }

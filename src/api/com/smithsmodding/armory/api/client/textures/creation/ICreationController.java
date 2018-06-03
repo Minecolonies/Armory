@@ -2,9 +2,8 @@ package com.smithsmodding.armory.api.client.textures.creation;
 
 import com.smithsmodding.smithscore.core.interfaces.ITextureMap;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 import java.util.Map;

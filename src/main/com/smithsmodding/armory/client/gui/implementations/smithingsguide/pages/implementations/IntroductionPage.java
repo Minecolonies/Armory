@@ -3,14 +3,10 @@ package com.smithsmodding.armory.client.gui.implementations.smithingsguide.pages
 import com.google.common.collect.Lists;
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionInformation;
-import com.smithsmodding.armory.api.util.client.Colors;
-import com.smithsmodding.armory.api.util.client.TranslationKeys;
 import com.smithsmodding.armory.api.util.references.*;
 import com.smithsmodding.armory.client.gui.implementations.smithingsguide.pages.core.AbstractPage;
 import com.smithsmodding.armory.common.factories.ArmorFactory;
 import com.smithsmodding.armory.common.factories.HeatedItemFactory;
-import com.smithsmodding.smithscore.client.font.MultiColoredFontRenderer;
-import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentBorder;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentContentArea;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentItemStackDisplay;
 import com.smithsmodding.smithscore.client.gui.components.implementations.ComponentLabel;
@@ -25,14 +21,11 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.smithsmodding.armory.api.util.client.TranslationKeys.Gui.Guide.Introduction.*;
-import static com.smithsmodding.armory.api.util.references.References.InternalNames.Upgrades.Helmet.UN_LEFT;
-import static com.smithsmodding.armory.api.util.references.References.InternalNames.Upgrades.Helmet.UN_RIGHT;
-import static com.smithsmodding.armory.api.util.references.References.InternalNames.Upgrades.Helmet.UN_TOP;
+import static com.smithsmodding.armory.api.util.references.References.InternalNames.Upgrades.Helmet.*;
 
 public class IntroductionPage extends AbstractPage
 {
@@ -49,7 +42,7 @@ public class IntroductionPage extends AbstractPage
         components.add(new IMultiComponentArmorExtensionInformation.Impl().setCount(1)
                          .setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID, UN_LEFT.getResourcePath() + "-" + ModMaterials.Armor.Addon.GOLD.getRegistryName().getResourcePath()))));
 
-        LEFT_HEADER_STACK = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.HELMET, components, ModMaterials.Armor.Core.IRON.getBaseDurabilityForArmor(ModArmor.Medieval.HELMET), ModMaterials.Armor.Core.IRON);
+        LEFT_HEADER_STACK = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.HELMET, ModMaterials.Armor.Core.IRON, components);
     }
 
     public IntroductionPage(

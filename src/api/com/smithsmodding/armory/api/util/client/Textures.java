@@ -6,8 +6,6 @@ import com.smithsmodding.smithscore.client.textures.TextureCreator;
 import com.smithsmodding.smithscore.util.client.CustomResource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -20,7 +18,7 @@ public class Textures {
 
     /**
      * Actual construction method is called from the ForgeEvent system. This method kicks the creation of the textures
-     * of and provided a map to put the textures in.
+     * of and provided a map to register the textures in.
      *
      * @param event The events fired before the TextureSheet is stitched. TextureStitchEvent.Pre instance.
      */
@@ -31,11 +29,6 @@ public class Textures {
         TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWHAMMER.getPrimaryLocation()));
         TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWTONGS.getPrimaryLocation()));
 
-        //Only run the creation once, after all mods have been loaded.
-        if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
-            return;
-        }
-
         Gui.Anvil.LOGO_BIG.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.Anvil.LOGO_BIG.getPrimaryLocation())));
         Gui.Anvil.LOGO_SMALL.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.Anvil.LOGO_SMALL.getPrimaryLocation())));
         Gui.FirePit.THERMOMETERICON.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.FirePit.THERMOMETERICON.getPrimaryLocation())));
@@ -44,12 +37,8 @@ public class Textures {
         Gui.Book.SLOT.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.Book.SLOT.getPrimaryLocation())));
     }
 
-    @SubscribeEvent(priority = EventPriority.LOW)
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void loadTexturesAfterCreation (TextureStitchEvent.Post event) {
-        if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
-            return;
-        }
-
         //Only run the creation once, after all mods have been loaded.
         Gui.Anvil.HOLOWPICKAXE.addIcon(TextureCreator.getBuildSprites().get(Gui.Anvil.HOLOWPICKAXE.getPrimaryLocation()).get(HolographicTexture.HolographicTextureController.IDENTIFIER));
         Gui.Anvil.HOLOWBOOK.addIcon(TextureCreator.getBuildSprites().get(Gui.Anvil.HOLOWBOOK.getPrimaryLocation()).get(HolographicTexture.HolographicTextureController.IDENTIFIER));

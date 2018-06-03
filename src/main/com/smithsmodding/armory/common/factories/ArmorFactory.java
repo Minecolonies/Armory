@@ -11,16 +11,18 @@ import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionIn
 import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapability;
 import com.smithsmodding.armory.api.common.factories.IMLAFactory;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.util.common.armor.ArmorHelper;
 import com.smithsmodding.armory.api.util.references.ModCapabilities;
-import com.smithsmodding.armory.api.util.common.armor.ArmorNBTHelper;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 public class ArmorFactory implements IMLAFactory {
     private static ArmorFactory iInstance;
@@ -35,30 +37,48 @@ public class ArmorFactory implements IMLAFactory {
      * The function will add the addons given in the ArrayList pAddons.
      * Using pData you can pass in extra data so that your factories can take different environmental values in effect.
      *
-     * @param armor              The base armor used to create the new armor.
      * @param baseStack          The already existing ItemStack on to which addons should be added
      * @param newAddons          The new addons stored in a HashMap, with as key the new addons and as Value the new installed amount.
-     * @param newTotalDurability
-     * @param coreMaterial
-     * @param data               Extra data for your factories
      * @return An Itemstack containing your now modified armor.
      */
     @Nonnull
     @Override
-    public ItemStack buildMLAArmor(IMultiComponentArmor armor, ItemStack baseStack, ArrayList<IMultiComponentArmorExtensionInformation> newAddons, Integer newTotalDurability, ICoreArmorMaterial coreMaterial, Object... data) {
+    public ItemStack buildMLAArmor(ItemStack baseStack, List<IMultiComponentArmorExtensionInformation> newAddons)
+    {
         if (!baseStack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
             throw new IllegalArgumentException("The given armor base stack is not a Armor!");
 
-        ArrayList<IMultiComponentArmorExtensionInformation> existingExtensions = ArmorNBTHelper.getAddonMap(baseStack);
+        final IMultiComponentArmorCapability capability = baseStack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+        final IMultiComponentArmor armor = capability.getArmorType();
+        final ICoreArmorMaterial coreMaterial = capability.getMaterial();
+        final List<IMultiComponentArmorExtensionInformation> existingExtensions = capability.getInstalledExtensions();
+        final int currentMaximalDurability =
+          ArmorHelper.getModifyableCapabilityValue(armor, coreMaterial, existingExtensions, ModCapabilities.MOD_ARMOR_DURABILITY_CAPABILITY).intValue();
+        final int currentUsedDurability = currentMaximalDurability - capability.getCurrentDurability();
+        final String currentCustomName = getArmorCustomName(baseStack);
 
         if (!validateOldAgainstNewAddons(existingExtensions, newAddons))
             throw new IllegalArgumentException("ADDONS not compatible");
 
-        IMultiComponentArmorCapability existingCapability = baseStack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
-        ItemStack combinedArmor = buildNewMLAArmor(armor, compressInformation(existingExtensions, newAddons), newTotalDurability, coreMaterial);
+        final List<IMultiComponentArmorExtensionInformation> combinedExtensions = compressInformation(existingExtensions, newAddons);
 
+        final int newMaximalDurability =
+          ArmorHelper.getModifyableCapabilityValue(armor, coreMaterial, combinedExtensions, ModCapabilities.MOD_ARMOR_DURABILITY_CAPABILITY).intValue();
+        if (newMaximalDurability <= 0)
+        {
+            throw new IllegalArgumentException(String.format("Combination of armor, material and extensions results in a <= 0 durability: %s,%s, %s",
+              armor,
+              coreMaterial,
+              combinedExtensions));
+        }
+
+        final int newCurrentDurability = newMaximalDurability - currentUsedDurability;
+
+        ItemStack combinedArmor = buildNewMLAArmor(armor, coreMaterial, combinedExtensions);
         IMultiComponentArmorCapability newCapability = combinedArmor.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
-        newCapability.setCurrentDurability(existingCapability.getCurrentDurability() + (newTotalDurability - existingCapability.getMaximalDurability()));
+
+        newCapability.setCurrentDurability(newCurrentDurability);
+        setArmorCustomName(baseStack, currentCustomName);
 
         return combinedArmor;
     }
@@ -66,24 +86,31 @@ public class ArmorFactory implements IMLAFactory {
     /**
      * Function used to create a new armor ItemStack
      *
-     * @param armor           The base armor used to create the new armor.
-     * @param addons          The new addons stored in a ArrayList
-     * @param totalDurability
-     * @param coreMaterial
-     * @param data            Extra data for your factories  @return A new ItemStack with full getDurability
+     * @param armor The base armor used to create the new armor.
+     * @param coreMaterial The core material of the armor.
+     * @param addons    The new addons stored in a ArrayList
+     * @return A new ItemStack with full durability.
+     * @throws IllegalArgumentException When the Addons are not compatible, or when the durability is smaller or equal to 0
      */
     @Nonnull
     @Override
-    public ItemStack buildNewMLAArmor(IMultiComponentArmor armor, ArrayList<IMultiComponentArmorExtensionInformation> addons, Integer totalDurability, ICoreArmorMaterial coreMaterial, Object... data) throws IllegalArgumentException {
+    public ItemStack buildNewMLAArmor(IMultiComponentArmor armor, ICoreArmorMaterial coreMaterial, List<IMultiComponentArmorExtensionInformation> addons)
+      throws IllegalArgumentException
+    {
         if (!validateNewAgainstNewAddons(addons))
             throw new IllegalArgumentException("ADDONS not compatible");
+
+        final int totalDurability = ArmorHelper.getModifyableCapabilityValue(armor, coreMaterial, addons, ModCapabilities.MOD_ARMOR_DURABILITY_CAPABILITY).intValue();
+        if (totalDurability <= 0)
+        {
+            throw new IllegalArgumentException(String.format("Combination of armor, material and extensions results in a <= 0 durability: %s,%s, %s", armor, coreMaterial, addons));
+        }
 
         ItemStack armorStack =  new ItemStack(armor.getItem(), 1);
         IMultiComponentArmorCapability capability = new IMultiComponentArmorCapability.Impl()
                 .setArmorType(armor)
                 .setMaterial(coreMaterial)
                 .setInstalledExtensions(addons)
-                .setMaximalDurability(totalDurability)
                 .setCurrentDurability(totalDurability);
 
         armorStack.getCapability(SmithsCoreCapabilityDispatcher.INSTANCE_CAPABILITY, null).getDispatcher().registerCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, capability);
@@ -91,13 +118,60 @@ public class ArmorFactory implements IMLAFactory {
         return armorStack;
     }
 
+    /**
+     * Gets the custom name of the Armor.
+     *
+     * @param stack The stack to get the custom name from.
+     * @return THe custom name or null if not set.
+     */
     @Nullable
     @Override
-    public String getArmorGivenName(ItemStack pStack) {
-        return null;
+    public String getArmorCustomName(@Nonnull final ItemStack stack)
+    {
+        if (!stack.hasTagCompound())
+        {
+            return null;
+        }
+
+        if (!stack.getTagCompound().hasKey("customname"))
+        {
+            return null;
+        }
+
+        return stack.getTagCompound().getString("customname");
     }
 
-    private boolean validateOldAgainstNewAddons(@Nonnull ArrayList<IMultiComponentArmorExtensionInformation> oldAddons, @Nonnull ArrayList<IMultiComponentArmorExtensionInformation> newAddons) {
+    /**
+     * Sets the custom name of the armor.
+     *
+     * @param stack      The stack to set the custom name on.
+     * @param customName The custom name, null to remove.
+     */
+    @Override
+    public void setArmorCustomName(@Nonnull final ItemStack stack, @Nullable final String customName)
+    {
+        if (customName == null)
+        {
+            if (stack.hasTagCompound())
+            {
+                stack.getTagCompound().removeTag("customname");
+            }
+        }
+        else
+        {
+            if (!stack.hasTagCompound())
+            {
+                stack.setTagCompound(new NBTTagCompound());
+            }
+
+            stack.getTagCompound().setString("customname", customName);
+        }
+    }
+
+    private boolean validateOldAgainstNewAddons(
+      @Nonnull List<IMultiComponentArmorExtensionInformation> oldAddons,
+      @Nonnull List<IMultiComponentArmorExtensionInformation> newAddons)
+    {
         boolean continueCrafting = true;
         Iterator<IMultiComponentArmorExtensionInformation> installedIterator = oldAddons.iterator();
 
@@ -123,24 +197,10 @@ public class ArmorFactory implements IMLAFactory {
         return continueCrafting;
     }
 
-    private boolean validateNewAgainstNewAddons(@Nonnull ArrayList<IMultiComponentArmorExtensionInformation> newAddons) {
-        boolean continueCrafting = true;
-        Iterator<IMultiComponentArmorExtensionInformation> externalIterator = newAddons.iterator();
-
-        while (continueCrafting && externalIterator.hasNext()) {
-            Iterator<IMultiComponentArmorExtensionInformation> internalIterator = newAddons.iterator();
-            IMultiComponentArmorExtension externalExtension = externalIterator.next().getExtension();
-
-            while (continueCrafting && internalIterator.hasNext()) {
-                IMultiComponentArmorExtension internalExtension = internalIterator.next().getExtension();
-                continueCrafting = externalExtension.validateCrafting(internalExtension, false);
-            }
-        }
-
-        return continueCrafting;
-    }
-
-    public ArrayList<IMultiComponentArmorExtensionInformation> compressInformation(ArrayList<IMultiComponentArmorExtensionInformation> oldExtensions, ArrayList<IMultiComponentArmorExtensionInformation> newExtensions) {
+    private List<IMultiComponentArmorExtensionInformation> compressInformation(
+      List<IMultiComponentArmorExtensionInformation> oldExtensions,
+      List<IMultiComponentArmorExtensionInformation> newExtensions)
+    {
         HashMap<IMultiComponentArmorExtension, Integer> countMap = new HashMap<>();
 
         oldExtensions.forEach((i)-> {
@@ -165,6 +225,26 @@ public class ArmorFactory implements IMLAFactory {
         });
 
         return compressedList;
+    }
+
+    private boolean validateNewAgainstNewAddons(@Nonnull List<IMultiComponentArmorExtensionInformation> newAddons)
+    {
+        boolean continueCrafting = true;
+        Iterator<IMultiComponentArmorExtensionInformation> externalIterator = newAddons.iterator();
+
+        while (continueCrafting && externalIterator.hasNext())
+        {
+            Iterator<IMultiComponentArmorExtensionInformation> internalIterator = newAddons.iterator();
+            IMultiComponentArmorExtension externalExtension = externalIterator.next().getExtension();
+
+            while (continueCrafting && internalIterator.hasNext())
+            {
+                IMultiComponentArmorExtension internalExtension = internalIterator.next().getExtension();
+                continueCrafting = externalExtension.validateCrafting(internalExtension, false);
+            }
+        }
+
+        return continueCrafting;
     }
 
 }

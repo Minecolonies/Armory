@@ -5,15 +5,12 @@ import com.smithsmodding.armory.api.client.model.deserializers.definition.Materi
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.unbaked.MaterializedItemModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
-import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
 
 import javax.annotation.Nonnull;
 
@@ -31,10 +28,6 @@ public class MaterializedItemModelLoader implements ICustomModelLoader {
 
     @Override
     public IModel loadModel(ResourceLocation modelLocation) throws Exception {
-        if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
-            return DummyModel.INSTANCE;
-        }
-
         modelLocation = ModelHelper.getModelLocation(modelLocation);
 
         try {

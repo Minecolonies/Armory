@@ -134,7 +134,14 @@ public class GuiForge extends GuiContainerSmithsCore {
             maxTemperatureLabel = I18n.format(TranslationKeys.Gui.Forge.TempMax) + ": 10000C";
             lastAddedLabel = I18n.format(TranslationKeys.Gui.Forge.LastAdded) + ": 10000C";
 
-            registerNewComponent(new ComponentLabel(getID() + ".CurrentTemperature", host, new CoreComponentState(), new Coordinate2D(10, 26), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, currentTemperatureLabel) {
+            registerNewComponent(new ComponentLabel(getID() + ".CurrentTemperature",
+              host,
+              new CoreComponentState(),
+              new Coordinate2D(10, 26),
+              new MinecraftColor(MinecraftColor.WHITE),
+              Minecraft.getMinecraft().fontRenderer,
+              currentTemperatureLabel)
+            {
                 /**
                  * Method gets called before the component gets rendered, allows for animations to calculate through.
                  *
@@ -148,7 +155,14 @@ public class GuiForge extends GuiContainerSmithsCore {
                 }
             });
 
-            registerNewComponent(new ComponentLabel(getID() + ".MaxTemperature", host, new CoreComponentState(), new Coordinate2D(10, 26 + Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT + 3), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, maxTemperatureLabel) {
+            registerNewComponent(new ComponentLabel(getID() + ".MaxTemperature",
+              host,
+              new CoreComponentState(),
+              new Coordinate2D(10, 26 + Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + 3),
+              new MinecraftColor(MinecraftColor.WHITE),
+              Minecraft.getMinecraft().fontRenderer,
+              maxTemperatureLabel)
+            {
                 /**
                  * Method gets called before the component gets rendered, allows for animations to calculate through.
                  *
@@ -162,7 +176,14 @@ public class GuiForge extends GuiContainerSmithsCore {
                 }
             });
 
-            registerNewComponent(new ComponentLabel(getID() + ".LastChange", host, new CoreComponentState(), new Coordinate2D(10, 26 + 2 * (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT + 3)), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, lastAddedLabel) {
+            registerNewComponent(new ComponentLabel(getID() + ".LastChange",
+              host,
+              new CoreComponentState(),
+              new Coordinate2D(10, 26 + 2 * (Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + 3)),
+              new MinecraftColor(MinecraftColor.WHITE),
+              Minecraft.getMinecraft().fontRenderer,
+              lastAddedLabel)
+            {
                 /**
                  * Method gets called before the component gets rendered, allows for animations to calculate through.
                  *

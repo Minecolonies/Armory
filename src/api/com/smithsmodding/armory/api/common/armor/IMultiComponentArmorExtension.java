@@ -1,19 +1,17 @@
 package com.smithsmodding.armory.api.common.armor;
 
 import com.smithsmodding.armory.api.client.armor.IInWorldRenderableArmorComponent;
+import com.smithsmodding.armory.api.common.armor.callback.ICapabilityMapBuilder;
 import com.smithsmodding.armory.api.common.armor.callback.IExtensionRecipeRetrievalCallback;
-import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
 import com.smithsmodding.armory.api.util.client.ITranslateable;
 import com.smithsmodding.armory.api.util.client.ModelTransforms;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
-import java.util.HashMap;
 
 /**
  * Created by marcf on 1/2/2017.
@@ -50,13 +48,6 @@ public interface IMultiComponentArmorExtension extends IForgeRegistryEntry<IMult
     Integer getMaximalInstallationCount();
 
     /**
-     * Method to get the additional durability this extension provides.
-     * @return The extra durability.
-     */
-    @Nonnull
-    Integer getAdditionalDurability();
-
-    /**
      * Method to check weither a other Extension can be installed together with this extension.
      * @param other The other extension.
      * @param alreadyInstalled True when this extension is already installed on the armor, false when not.
@@ -79,14 +70,6 @@ public interface IMultiComponentArmorExtension extends IForgeRegistryEntry<IMult
      */
     @Nonnull
     IMultiComponentArmorExtension setHasItemStack(@Nonnull Boolean hasItemStack);
-
-    /**
-     * Method to get all the default capabilities this Component provides.
-     * The Capabilities stored here override those stored in the Armor and in its CoreMaterial.
-     * @return All the default capabilities this Component provides.
-     */
-    @Nonnull
-    HashMap<Capability<? extends IArmorCapability>, Object> getDefaultComponentCapabilities();
 
     /**
      * Method to get the renderer that is used to render the Armor on the entity.
@@ -148,4 +131,11 @@ public interface IMultiComponentArmorExtension extends IForgeRegistryEntry<IMult
      */
     @Nonnull
     IExtensionRecipeRetrievalCallback getRecipeCallback();
+
+    /**
+     * Clones the current extensions capabilities into the given {@link ICapabilityMapBuilder}.
+     *
+     * @param builder THe {@link ICapabilityMapBuilder} to clone the capabilities into.
+     */
+    void cloneCapabilities(@Nonnull final ICapabilityMapBuilder builder);
 }

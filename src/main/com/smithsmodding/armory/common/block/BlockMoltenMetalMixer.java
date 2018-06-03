@@ -120,11 +120,6 @@ public class BlockMoltenMetalMixer extends BlockArmoryTileEntity {
     }
 
     @Override
-    public boolean isFullyOpaque(IBlockState state) {
-        return false;
-    }
-
-    @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (playerIn.isSneaking()) {
             return false;

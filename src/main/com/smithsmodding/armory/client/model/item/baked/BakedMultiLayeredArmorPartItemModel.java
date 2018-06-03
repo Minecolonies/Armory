@@ -101,15 +101,10 @@ public class BakedMultiLayeredArmorPartItemModel extends BakedWrappedModel.Persp
 
             ICoreArmorMaterial coreArmorMaterial = capability.getMaterial();
 
-            ArrayList<IMultiComponentArmorExtensionInformation> installedExtensions = capability.getInstalledExtensions();
+            List<IMultiComponentArmorExtensionInformation> installedExtensions = capability.getInstalledExtensions();
 
             //Sort the list based on priority.
-            Collections.sort(installedExtensions, new Comparator<IMultiComponentArmorExtensionInformation>() {
-                @Override
-                public int compare(@Nonnull IMultiComponentArmorExtensionInformation o1, @Nonnull IMultiComponentArmorExtensionInformation o2) {
-                    return Integer.compare(o1.getPosition().getArmorLayer(), o2.getPosition().getArmorLayer());
-                }
-            });
+            Collections.sort(installedExtensions, Comparator.comparingInt(o -> o.getPosition().getArmorLayer()));
 
             // get the texture for each part
             ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();

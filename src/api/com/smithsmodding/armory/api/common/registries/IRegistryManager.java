@@ -1,5 +1,6 @@
 package com.smithsmodding.armory.api.common.registries;
 
+import com.smithsmodding.armory.api.client.textures.creation.ICreationController;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionPosition;
@@ -7,15 +8,13 @@ import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRec
 import com.smithsmodding.armory.api.common.crafting.mixing.IMoltenMetalMixingRecipe;
 import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
 import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
-import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
-import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
+import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper;
-import com.smithsmodding.armory.api.client.textures.creation.ICreationController;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistry;
 
 import javax.annotation.Nonnull;
 
@@ -101,13 +100,6 @@ public interface IRegistryManager {
      */
     @Nonnull
     IForgeRegistry<IMoltenMetalMixingRecipe> getMoltenMetalMixingRecipeRegistry();
-
-    /**
-     * Getter for the @code{IInitializationComponent} Registry. Holds all registered @code{IInitializationComponent}. Managed by FML, as it is an instance of @code{IForgeRegistry}
-     * @return The @code{IInitializationComponent} Registry.
-     */
-    @Nonnull
-    IForgeRegistry<IInitializationComponent> getInitializationComponentRegistry();
 
     /**
      * Getter for the @code{ICreationController} Registry. Holds all registered @code{ICreationController}. Managed by FML, as it is an instance of @code{IForgeRegistry}

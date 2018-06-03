@@ -12,7 +12,8 @@ import net.minecraftforge.fluids.FluidStack;
 public class TileEntityRendererPump extends TileEntitySpecialRenderer<TileEntityPump> {
 
     @Override
-    public void renderTileEntityAt(TileEntityPump te, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(final TileEntityPump te, final double x, final double y, final double z, final float partialTicks, final int destroyStage, final float alpha)
+    {
         if (te == null)
             return;
 

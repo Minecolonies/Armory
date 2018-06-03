@@ -17,7 +17,6 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -85,12 +84,13 @@ public class BlockConduit extends BlockArmoryTileEntity implements ICustomDebugI
     }
 
     @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocksWithItem(final Item item, final NonNullList<ItemStack> items)
+    {
         for(EnumConduitType type : EnumConduitType.values()) {
             if (type == EnumConduitType.LIGHT)
                 continue;
 
-            list.add(new ItemStack(this, 1, type.getMetadata()));
+            items.add(new ItemStack(this, 1, type.getMetadata()));
         }
 
     }

@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.client.model.block.unbaked;
 
-import com.google.common.base.Function;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.client.model.block.baked.BlackSmithsAnvilBakedModel;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -15,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Created by Marc on 22.02.2016.

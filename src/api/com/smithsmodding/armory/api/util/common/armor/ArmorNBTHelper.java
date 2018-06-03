@@ -19,6 +19,7 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArmorNBTHelper {
 
@@ -39,7 +40,8 @@ public class ArmorNBTHelper {
     }
 
     @Nonnull
-    public static ArrayList<IMultiComponentArmorExtensionInformation> getAddonMap(@Nonnull ItemStack stack) {
+    public static List<IMultiComponentArmorExtensionInformation> getAddonMap(@Nonnull ItemStack stack)
+    {
         if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
             return new ArrayList<>();
 
@@ -47,7 +49,8 @@ public class ArmorNBTHelper {
     }
 
     @Nonnull
-    public static NBTTagList createExtensionListCompound(@Nonnull ArrayList<IMultiComponentArmorExtensionInformation> extensions) {
+    public static NBTTagList createExtensionListCompound(@Nonnull List<IMultiComponentArmorExtensionInformation> extensions)
+    {
         NBTTagList extensionList = new NBTTagList();
 
         for (IMultiComponentArmorExtensionInformation entry : extensions) {

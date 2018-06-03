@@ -36,7 +36,7 @@ public class MedievalPage extends AbstractPage
     private static ItemStack LOGO;
 
     static {
-        LOGO = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.HELMET, new ArrayList<>(), ModMaterials.Armor.Core.IRON.getBaseDurabilityForArmor(ModArmor.Medieval.HELMET), ModMaterials.Armor.Core.IRON);
+        LOGO = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.HELMET, ModMaterials.Armor.Core.IRON, new ArrayList<>());
     }
 
     public MedievalPage(

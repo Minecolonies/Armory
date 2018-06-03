@@ -1,13 +1,12 @@
 package com.smithsmodding.armory.client.model.loaders;
 
 import com.google.common.collect.ImmutableMap;
+import com.smithsmodding.armory.api.client.model.deserializers.definition.AnvilModelDefinition;
 import com.smithsmodding.armory.api.common.events.client.model.block.BlackSmithsAnvilModelTextureLoadEvent;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
-import com.smithsmodding.armory.api.client.model.deserializers.definition.AnvilModelDefinition;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.block.unbaked.BlackSmithsAnvilModel;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
-import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import com.smithsmodding.smithscore.client.model.unbaked.SmithsCoreOBJModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.resources.IResourceManager;
@@ -16,8 +15,6 @@ import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJModel;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
 import org.jetbrains.annotations.NotNull;
 
 import javax.vecmath.Vector4f;
@@ -37,10 +34,6 @@ public class AnvilModelLoader implements ICustomModelLoader {
 
     @Override
     public IModel loadModel(@NotNull ResourceLocation modelLocation) throws IOException {
-        if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
-            return DummyModel.INSTANCE;
-        }
-
         try {
             AnvilModelDefinition modelDefinition = AnvilModelDefinition.loadModel(modelLocation);
 

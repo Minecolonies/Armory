@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.client.model.item.unbaked.components;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedTemperatureBarModel;
@@ -18,6 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.function.Function;
 
 /**
  * Created by Marc on 08.12.2015.

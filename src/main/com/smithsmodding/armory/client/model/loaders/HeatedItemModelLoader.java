@@ -1,19 +1,15 @@
 package com.smithsmodding.armory.client.model.loaders;
 
-
 import com.google.common.collect.ImmutableList;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.client.model.item.unbaked.HeatedItemItemModel;
 import com.smithsmodding.armory.client.model.item.unbaked.components.TemperatureBarComponentModel;
-import com.smithsmodding.smithscore.client.model.unbaked.DummyModel;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderState;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
@@ -32,10 +28,6 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
 
     @Override
     public IModel loadModel(@Nonnull ResourceLocation modelLocation) throws IOException {
-        if (!Loader.instance().hasReachedState(LoaderState.POSTINITIALIZATION)) {
-            return DummyModel.INSTANCE;
-        }
-
         try {
             //Load the default definition of the model as defined by the registrar first.
             Map<String, String> textures = ModelHelper.loadTexturesFromJson(modelLocation);

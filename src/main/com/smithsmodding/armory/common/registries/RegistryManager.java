@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.common.registries;
 
-import com.google.common.collect.BiMap;
 import com.smithsmodding.armory.Armory;
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.client.textures.creation.ICreationController;
@@ -10,27 +9,29 @@ import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionPo
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
 import com.smithsmodding.armory.api.common.crafting.mixing.IMoltenMetalMixingRecipe;
 import com.smithsmodding.armory.api.common.events.common.material.RegisterMaterialEvent;
+import com.smithsmodding.armory.api.common.fluid.FluidMoltenMetal;
 import com.smithsmodding.armory.api.common.heatable.IHeatableObject;
 import com.smithsmodding.armory.api.common.heatable.IHeatedObjectType;
-import com.smithsmodding.armory.api.common.initialization.IInitializationComponent;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper;
 import com.smithsmodding.armory.api.common.registries.IRegistryManager;
+import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.smithscore.common.events.SmithsCoreRegistryEvent;
-import net.minecraft.util.ResourceLocation;
+import com.smithsmodding.smithscore.SmithsCore;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistry;
 
 import javax.annotation.Nonnull;
-import java.util.Map;
+import java.util.HashMap;
 
 /**
  * The central registry manager for Armory.
@@ -72,9 +73,6 @@ public final class RegistryManager implements IRegistryManager {
 
     @Nonnull
     IForgeRegistry<IMoltenMetalMixingRecipe> moltenMetalMixingRecipesRegistry = null;
-
-    @Nonnull
-    IForgeRegistry<IInitializationComponent> initializationComponentRegistry = null;
 
     @Nonnull
     IForgeRegistry<ICreationController> textureCreationControllerRegistry = null;
@@ -214,15 +212,6 @@ public final class RegistryManager implements IRegistryManager {
     }
 
     /**
-     * Getter for the {@link IInitializationComponent} Registry. Holds all registered {@link IInitializationComponent}. Managed by FML, as it is an instance of {@link IForgeRegistry}
-     * @return The {@link IInitializationComponent} Registry.
-     */
-    @Nonnull
-    public IForgeRegistry<IInitializationComponent> getInitializationComponentRegistry() {
-        return initializationComponentRegistry;
-    }
-
-    /**
      * Getter for the {@link ICreationController} Registry. Holds all registered {@link ICreationController}. Managed by FML, as it is an instance of {@link IForgeRegistry}
      *
      * @return The {@link ICreationController} Registry.
@@ -269,7 +258,7 @@ public final class RegistryManager implements IRegistryManager {
             new RegisterMaterialEvent<>(event.getRegistry()).PostCommon();
         }
 
-        @SubscribeEvent
+        @SubscribeEvent(priority = EventPriority.NORMAL)
         public static void handleCombined(RegistryEvent.Register<RegistryMaterialWrapper> event) {
             for (ICoreArmorMaterial material : IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry()) {
                 event.getRegistry().register(new RegistryMaterialWrapper(material));
@@ -283,60 +272,95 @@ public final class RegistryManager implements IRegistryManager {
                 event.getRegistry().register(new RegistryMaterialWrapper(material));
             }
         }
+
+        @SubscribeEvent(priority = EventPriority.LOWEST)
+        public static void handleCombinedToInitFluids(RegistryEvent.Register<RegistryMaterialWrapper> event)
+        {
+            HashMap<String, Fluid> oreDicNames = new HashMap<>();
+
+            for (RegistryMaterialWrapper materialWrapper : IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry())
+            {
+                if (!oreDicNames.containsKey(materialWrapper.getWrapped().getOreDictionaryIdentifier()))
+                {
+                    materialWrapper.getWrapped().setFluidForMaterial(new FluidMoltenMetal(materialWrapper.getWrapped()));
+
+                    oreDicNames.put(materialWrapper.getWrapped().getOreDictionaryIdentifier(), materialWrapper.getWrapped().getFluidForMaterial());
+
+                    if (SmithsCore.isInDevEnvironment())
+                    {
+                        ModLogger.getInstance().info("Registering fluid: " + materialWrapper.getWrapped().getFluidForMaterial().getName());
+                    }
+
+                    FluidRegistry.registerFluid(materialWrapper.getWrapped().getFluidForMaterial());
+                }
+                else
+                {
+                    materialWrapper.getWrapped().setFluidForMaterial(oreDicNames.get(materialWrapper.getWrapped().getOreDictionaryIdentifier()));
+                }
+            }
+        }
     }
 
-    /**
+    //TODO: Figure out if this is needed.
+/*    *
      * Class used to convert callback, coming from the individual Registries, into Events posted on the SC Common bus-
      * @param <V> The Registry Entry type.
-     */
+     *
     public static final class RegistryCallbackToEventConverter<V extends IForgeRegistryEntry<V>> implements
             IForgeRegistry.AddCallback<V>,
             IForgeRegistry.ClearCallback<V>,
-            IForgeRegistry.CreateCallback<V>,
-            IForgeRegistry.SubstitutionCallback<V> {
+            IForgeRegistry.CreateCallback<V> {
 
-        /**
+
+
+        *//**
          * AddCallback. Called when a Entry is added to the registry.
          * @param obj The object that was added.
          * @param id The id it received
          * @param slaveset The slaves the registry has.
-         */
+     *//*
         @Override
         public void onAdd(V obj, int id, Map<ResourceLocation, ?> slaveset) {
-            new SmithsCoreRegistryEvent.Add<V>(obj, id, slaveset).PostCommon();
         }
 
-        /**
+        *//**
          * ClearCallback. Called when the registry is cleared. For example on Client to server sync.
          * @param is The registry that is being cleared.
          * @param slaveset The slaves that the registry has.
-         */
+     *//*
         @Override
         public void onClear(IForgeRegistry<V> is, Map<ResourceLocation, ?> slaveset) {
             new SmithsCoreRegistryEvent.Clear<V>(slaveset, is).PostCommon();
         }
 
-        /**
+        *//**
          * CreateCallback. Called when the building process of a Registry has been completed.
          * @param slaveset The slaves that the registry has.
          * @param registries A list of all active registries.
-         */
+     *//*
         @Override
         public void onCreate(Map<ResourceLocation, ?> slaveset, BiMap<ResourceLocation, ? extends IForgeRegistry<?>> registries) {
             new SmithsCoreRegistryEvent.Create<V>(slaveset, registries).PostCommon();
         }
 
-        /**
-         * SubstitutionCallback. Called when a Substitution of an already registry object occurs.
-         * @param slaveset The slaves that the registry has.
-         * @param original The original that is being replaced.
-         * @param replacement The replacement-
-         * @param name The registryname that indicates them both.
-         */
         @Override
-        public void onSubstituteActivated(Map<ResourceLocation, ?> slaveset, V original, V replacement, ResourceLocation name) {
-            new SmithsCoreRegistryEvent.Substitute<V>(slaveset, original, replacement, name).PostCommon();
+        public void onAdd(
+          final IForgeRegistryInternal<V> owner, final net.minecraftforge.registries.RegistryManager stage, final int id, final V obj, @Nullable final V oldObj)
+        {
+            new SmithsCoreRegistryEvent.Add<V>(obj, id).PostCommon();
         }
-    }
+
+        @Override
+        public void onClear(final IForgeRegistryInternal<V> owner, final net.minecraftforge.registries.RegistryManager stage)
+        {
+            new SmithsCoreRegistryEvent<V>(st)
+        }
+
+        @Override
+        public void onCreate(final IForgeRegistryInternal<V> owner, final net.minecraftforge.registries.RegistryManager stage)
+        {
+
+        }
+    }*/
 
 }

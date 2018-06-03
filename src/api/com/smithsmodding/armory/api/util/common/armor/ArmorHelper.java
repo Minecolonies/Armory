@@ -1,12 +1,24 @@
 package com.smithsmodding.armory.api.util.common.armor;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
+import com.smithsmodding.armory.api.common.armor.IMaterialDependantMultiComponentArmorExtension;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
+import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
+import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtensionInformation;
+import com.smithsmodding.armory.api.common.capability.IMultiComponentArmorCapability;
+import com.smithsmodding.armory.api.common.capability.armor.IValueModifyingCapability;
+import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
+import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
+import java.util.function.Function;
 
 /**
  * Helper class used to handle the retrieving of Armor data from Items, Models, etc.
@@ -58,5 +70,65 @@ public class ArmorHelper {
         }
 
         return null;
+    }
+
+    @Nonnull
+    public static <V extends Number, C extends IValueModifyingCapability<C, V>> Number getModifyableCapabilityValue(
+      @Nonnull final ItemStack stack,
+      @Nonnull final Capability<C> capability)
+    {
+        if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
+        {
+            throw new IllegalArgumentException("Stack is not a armor");
+        }
+
+        final IMultiComponentArmorCapability stackCapability = stack.getCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null);
+
+        return getModifyableCapabilityValue(stackCapability.getArmorType(), stackCapability.getMaterial(), stackCapability.getInstalledExtensions(), capability);
+    }
+
+    @Nonnull
+    public static <V extends Number, C extends IValueModifyingCapability<C, V>> Number getModifyableCapabilityValue(
+      @Nonnull final IMultiComponentArmor armor,
+      @Nonnull final ICoreArmorMaterial material,
+      @Nonnull final List<IMultiComponentArmorExtensionInformation> extensionInformationList,
+      @Nonnull final Capability<C> capability)
+    {
+        Number value = 0d;
+
+        if (armor.hasCapability(capability, null))
+        {
+            value = armor.getCapability(capability, null).getValue();
+
+            if (material.hasCapability(capability, null))
+            {
+                value = material.getCapability(capability, null).apply(value);
+            }
+        }
+
+        for (IMultiComponentArmorExtensionInformation extensionInformation : extensionInformationList)
+        {
+            final IMultiComponentArmorExtension extension = extensionInformation.getExtension();
+
+            Function<Number, Number> extensionValueProcessor = Function.identity();
+            if (extension instanceof IMaterialDependantMultiComponentArmorExtension)
+            {
+                final IMaterialDependantMultiComponentArmorExtension iMaterialDependantMultiComponentArmorExtension = (IMaterialDependantMultiComponentArmorExtension) extension;
+                final IAddonArmorMaterial addonArmorMaterial = iMaterialDependantMultiComponentArmorExtension.getMaterial();
+
+                if (addonArmorMaterial.hasCapability(capability, null))
+                {
+                    extensionValueProcessor = addonArmorMaterial.getCapability(capability, null)::apply;
+                }
+            }
+
+            if (extension.hasCapability(capability, null))
+            {
+                final C extensionCapabilityInstance = extension.getCapability(capability, null);
+                value = extensionCapabilityInstance.getType().apply(value, extensionValueProcessor.apply(extensionCapabilityInstance.getValue()));
+            }
+        }
+
+        return value;
     }
 }

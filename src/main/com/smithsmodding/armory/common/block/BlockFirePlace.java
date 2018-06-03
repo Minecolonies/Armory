@@ -74,11 +74,6 @@ public class BlockFirePlace extends BlockArmoryTileEntity {
         return false;
     }
 
-    @Override
-    public boolean isFullyOpaque(IBlockState state) {
-        return false;
-    }
-
     /**
      * Called when the block is right clicked by a player.
      *

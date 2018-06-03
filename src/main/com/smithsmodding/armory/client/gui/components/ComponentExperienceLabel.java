@@ -17,7 +17,7 @@ import net.minecraft.client.renderer.GlStateManager;
 public class ComponentExperienceLabel extends CoreComponent {
 
     public ComponentExperienceLabel(String uniqueID, IGUIBasedComponentHost parent, IGUIComponentState state, Coordinate2D rootAnchorPixel) {
-        super(uniqueID, parent, state, rootAnchorPixel, 13 + Minecraft.getMinecraft().fontRendererObj.getStringWidth("100"), Textures.Gui.Anvil.EXPERIENCEORB.getHeight());
+        super(uniqueID, parent, state, rootAnchorPixel, 13 + Minecraft.getMinecraft().fontRenderer.getStringWidth("100"), Textures.Gui.Anvil.EXPERIENCEORB.getHeight());
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ComponentExperienceLabel extends CoreComponent {
             GlStateManager.popMatrix();
 
             StandardRenderManager.pushColorOnRenderStack(Colors.Experience.TEXT);
-            Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(String.valueOf(level), 13, 1, Colors.Experience.TEXT.getRGB());
+            Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(String.valueOf(level), 13, 1, Colors.Experience.TEXT.getRGB());
             StandardRenderManager.popColorFromRenderStack();
         }
     }

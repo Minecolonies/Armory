@@ -2,7 +2,7 @@ package com.smithsmodding.armory.api.common.events.common;
 
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.smithsmodding.smithscore.common.events.SmithsCoreEvent;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 /**
  * Created by marcf on 1/24/2017.

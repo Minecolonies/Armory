@@ -35,9 +35,14 @@ import java.util.HashMap;
 public abstract class ItemHeatableResource extends Item implements IHeatableObjectWrapper {
 
     @Override
-    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems)
+    public void getSubItems(final CreativeTabs tab, final NonNullList<ItemStack> items)
     {
-        ItemHeatableResource.getSubItemsStatic(itemIn, subItems);
+        if (tab != getCreativeTab())
+        {
+            return;
+        }
+
+        ItemHeatableResource.getSubItemsStatic(this, items);
     }
 
     @Override

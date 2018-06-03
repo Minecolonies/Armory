@@ -3,7 +3,7 @@ package com.smithsmodding.armory.api.common.crafting.blacksmiths.recipe;
 import com.smithsmodding.armory.api.common.crafting.blacksmiths.component.IAnvilRecipeComponent;
 import com.smithsmodding.smithscore.common.tileentity.IWatchableTileEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

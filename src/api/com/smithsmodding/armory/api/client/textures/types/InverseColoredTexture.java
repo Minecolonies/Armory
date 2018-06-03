@@ -39,7 +39,7 @@ public class InverseColoredTexture extends SimpleColoredTexture {
         g = ~mult(g, brightness) & 0xff;
         b = ~mult(b, brightness) & 0xff;
 
-        // put it back together
+        // register it back together
         return compose(r, g, b, a);
     }
 }

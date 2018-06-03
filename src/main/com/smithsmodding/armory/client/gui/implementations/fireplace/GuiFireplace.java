@@ -118,7 +118,14 @@ public class GuiFireplace extends GuiContainerSmithsCore {
             lastAddedLabel = I18n.format(TranslationKeys.Gui.Fireplace.LastAdded) + ": 10000C";
             cookingMultiplayerLabel = I18n.format(TranslationKeys.Gui.Fireplace.CookingMultiplier) + ": 10000C";
 
-            registerNewComponent(new ComponentLabel(getID() + ".CurrentTemperature", host, new CoreComponentState(), new Coordinate2D(10, 26), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, currentTemperatureLabel) {
+            registerNewComponent(new ComponentLabel(getID() + ".CurrentTemperature",
+              host,
+              new CoreComponentState(),
+              new Coordinate2D(10, 26),
+              new MinecraftColor(MinecraftColor.WHITE),
+              Minecraft.getMinecraft().fontRenderer,
+              currentTemperatureLabel)
+            {
                 /**
                  * Method gets called before the component gets rendered, allows for animations to calculate through.
                  *
@@ -132,7 +139,14 @@ public class GuiFireplace extends GuiContainerSmithsCore {
                 }
             });
 
-            registerNewComponent(new ComponentLabel(getID() + ".MaxTemperature", host, new CoreComponentState(), new Coordinate2D(10, 26 + Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT + 3), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, maxTemperatureLabel) {
+            registerNewComponent(new ComponentLabel(getID() + ".MaxTemperature",
+              host,
+              new CoreComponentState(),
+              new Coordinate2D(10, 26 + Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + 3),
+              new MinecraftColor(MinecraftColor.WHITE),
+              Minecraft.getMinecraft().fontRenderer,
+              maxTemperatureLabel)
+            {
                 /**
                  * Method gets called before the component gets rendered, allows for animations to calculate through.
                  *
@@ -146,7 +160,14 @@ public class GuiFireplace extends GuiContainerSmithsCore {
                 }
             });
 
-            registerNewComponent(new ComponentLabel(getID() + ".LastChange", host, new CoreComponentState(), new Coordinate2D(10, 26 + 2 * (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT + 3)), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, lastAddedLabel) {
+            registerNewComponent(new ComponentLabel(getID() + ".LastChange",
+              host,
+              new CoreComponentState(),
+              new Coordinate2D(10, 26 + 2 * (Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + 3)),
+              new MinecraftColor(MinecraftColor.WHITE),
+              Minecraft.getMinecraft().fontRenderer,
+              lastAddedLabel)
+            {
                 /**
                  * Method gets called before the component gets rendered, allows for animations to calculate through.
                  *
@@ -160,7 +181,14 @@ public class GuiFireplace extends GuiContainerSmithsCore {
                 }
             });
 
-            registerNewComponent(new ComponentLabel(getID() + ".CookingMultiplier", host, new CoreComponentState(), new Coordinate2D(10, 26 + 4 * (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT + 3)), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj, cookingMultiplayerLabel) {
+            registerNewComponent(new ComponentLabel(getID() + ".CookingMultiplier",
+              host,
+              new CoreComponentState(),
+              new Coordinate2D(10, 26 + 4 * (Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + 3)),
+              new MinecraftColor(MinecraftColor.WHITE),
+              Minecraft.getMinecraft().fontRenderer,
+              cookingMultiplayerLabel)
+            {
                 /**
                  * Method gets called before the component gets rendered, allows for animations to calculate through.
                  *

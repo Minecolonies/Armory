@@ -4,7 +4,7 @@ import com.smithsmodding.armory.api.common.crafting.blacksmiths.component.IAnvil
 import com.smithsmodding.armory.api.util.references.ModInventories;
 import com.smithsmodding.smithscore.common.tileentity.IWatchableTileEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

@@ -46,7 +46,7 @@ public class ArmorTab extends CreativeTabs {
             components.add(new IMultiComponentArmorExtensionInformation.Impl().setCount(1)
                     .setExtension(IArmoryAPI.Holder.getInstance().getRegistryManager().getMultiComponentArmorExtensionRegistry().getValue(new ResourceLocation(References.General.MOD_ID, UN_LEFT.getResourcePath() + "-" + ModMaterials.Armor.Addon.GOLD.getRegistryName().getResourcePath()))));
 
-            TABSTACK = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.HELMET, components, ModMaterials.Armor.Core.IRON.getBaseDurabilityForArmor(ModArmor.Medieval.HELMET), ModMaterials.Armor.Core.IRON);
+            TABSTACK = ArmorFactory.getInstance().buildNewMLAArmor(ModArmor.Medieval.HELMET, ModMaterials.Armor.Core.IRON, components);
         }
 
         return TABSTACK;

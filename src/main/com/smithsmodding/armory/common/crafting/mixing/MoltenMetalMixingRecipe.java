@@ -2,14 +2,14 @@ package com.smithsmodding.armory.common.crafting.mixing;
 
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.crafting.mixing.IMoltenMetalMixingRecipe;
+import com.smithsmodding.armory.api.common.fluid.FluidMoltenMetal;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.util.common.MaterialHelper;
 import com.smithsmodding.armory.api.util.references.References;
-import com.smithsmodding.armory.api.common.fluid.FluidMoltenMetal;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

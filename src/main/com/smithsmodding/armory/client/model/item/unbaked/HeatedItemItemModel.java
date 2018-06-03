@@ -1,7 +1,5 @@
 package com.smithsmodding.armory.client.model.item.unbaked;
 
-import com.google.common.base.Function;
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedTemperatureBarModel;
 import com.smithsmodding.armory.client.model.item.baked.heateditem.BakedHeatedItemModel;
@@ -17,6 +15,8 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import javax.annotation.Nonnull;
 import javax.vecmath.Matrix4f;
 import java.util.Collection;
+import java.util.Optional;
+import java.util.function.Function;
 
 /**
  * Created by Marc on 08.12.2015.
@@ -51,7 +51,8 @@ public class HeatedItemItemModel extends ItemLayerModel {
         IBakedModel base = super.bake(state, format, bakedTextureGetter);
 
         BakedTemperatureBarModel unrotatedModel = gaugeDisplay.generateBackedComponentModel(state, format, bakedTextureGetter);
-        BakedTemperatureBarModel rotatedModel = gaugeDisplay.generateBackedComponentModel(state.apply(Optional.absent()).get().compose(CONST_BLOCK_INVERSION_TRANSFORM), format, bakedTextureGetter);
+        BakedTemperatureBarModel rotatedModel =
+          gaugeDisplay.generateBackedComponentModel(state.apply(Optional.empty()).get().compose(CONST_BLOCK_INVERSION_TRANSFORM), format, bakedTextureGetter);
 
         //Bake the model.
         return new BakedHeatedItemModel(base, unrotatedModel, rotatedModel);

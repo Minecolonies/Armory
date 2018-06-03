@@ -2,7 +2,7 @@ package com.smithsmodding.armory.api.common.heatable;
 
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 

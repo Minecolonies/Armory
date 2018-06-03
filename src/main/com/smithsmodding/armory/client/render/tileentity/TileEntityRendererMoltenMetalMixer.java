@@ -14,7 +14,8 @@ import net.minecraftforge.fluids.IFluidTank;
 public class TileEntityRendererMoltenMetalMixer extends TileEntitySpecialRenderer<TileEntityMoltenMetalMixer> {
 
     @Override
-    public void renderTileEntityAt(TileEntityMoltenMetalMixer te, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(final TileEntityMoltenMetalMixer te, final double x, final double y, final double z, final float partialTicks, final int destroyStage, final float alpha)
+    {
         if (te == null)
             return;
 
@@ -40,7 +41,7 @@ public class TileEntityRendererMoltenMetalMixer extends TileEntitySpecialRendere
         Float progression = te.getState().getCurrentProgress() / (float) recipe.getProcessingTime();
 
         MoltenMetalMixerRenderComponents.getRenderer(BlockMoltenMetalMixer.getFacing(te.getWorld(), te.getPos()))
-                .renderCombined(recipe.getLeftInputStack(), recipe.getRightInputStack(), recipe.getExemplaryOutputStack(),
-                        progression, te.getPos(), x,y,z, 0);
+          .renderCombined(recipe.getLeftInputStack(), recipe.getRightInputStack(), recipe.getExemplaryOutputStack(),
+            progression, te.getPos(), x, y, z, 0);
     }
 }

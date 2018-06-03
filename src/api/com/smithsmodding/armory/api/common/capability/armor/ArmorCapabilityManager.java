@@ -1,5 +1,7 @@
 package com.smithsmodding.armory.api.common.capability.armor;
 
+import com.google.common.collect.Maps;
+import com.smithsmodding.armory.api.common.armor.callback.ICapabilityMapBuilder;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -7,7 +9,7 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashMap;
+import java.util.Map;
 import java.util.function.BiConsumer;
 
 /**
@@ -15,14 +17,15 @@ import java.util.function.BiConsumer;
  */
 public final class ArmorCapabilityManager implements ICapabilitySerializable<NBTTagCompound> {
 
-    private final HashMap<Capability<? extends IArmorCapability>, Object> capabilities;
+    private final Map<Capability<? extends IArmorCapability>, IArmorCapability> capabilities;
 
     public ArmorCapabilityManager() {
-        this(new HashMap<>());
+        this.capabilities = Maps.newHashMap();
     }
 
-    public ArmorCapabilityManager(HashMap<Capability<? extends IArmorCapability>, Object> capabilities) {
-        this.capabilities = capabilities;
+    public ArmorCapabilityManager(@Nonnull final ICapabilityMapBuilder capabilityMapBuilder)
+    {
+        this.capabilities = Maps.newHashMap(capabilityMapBuilder.getCapabilities());
     }
 
 
@@ -31,7 +34,8 @@ public final class ArmorCapabilityManager implements ICapabilitySerializable<NBT
      *
      * @param cap The capability to register it.
      */
-    public void registerNewInstance(@Nonnull Capability<? extends IArmorCapability> cap) {
+    public <C extends IArmorCapability> void registerNewInstance(@Nonnull Capability<C> cap)
+    {
         this.registerCapability(cap, cap.getDefaultInstance());
     }
 
@@ -41,7 +45,8 @@ public final class ArmorCapabilityManager implements ICapabilitySerializable<NBT
      * @param cap      The capability to register it.
      * @param instance The instance of the capability to register.
      */
-    public void registerCapability(Capability<? extends IArmorCapability> cap, Object instance) {
+    public <C extends IArmorCapability> void registerCapability(Capability<C> cap, C instance)
+    {
         this.capabilities.put(cap, instance);
     }
 
@@ -97,8 +102,23 @@ public final class ArmorCapabilityManager implements ICapabilitySerializable<NBT
      * Getter for the Capabilities stored in this manager.
      * @return The capabilities stored in this manager.
      */
-    public HashMap<Capability<? extends IArmorCapability>, Object> getCapabilities() {
+    public Map<Capability<? extends IArmorCapability>, IArmorCapability> getCapabilities()
+    {
         return capabilities;
+    }
+
+    public void cloneCapabilities(@Nonnull final ICapabilityMapBuilder builder)
+    {
+        for (Capability<? extends IArmorCapability> capability :
+          this.capabilities.keySet())
+        {
+            cloneCapability(builder, capability);
+        }
+    }
+
+    private <C extends IArmorCapability> void cloneCapability(@Nonnull final ICapabilityMapBuilder builder, @Nonnull Capability<C> capability)
+    {
+        builder.register(capability, (C) this.capabilities.get(capability));
     }
 
     @Override

@@ -15,7 +15,6 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -90,24 +89,20 @@ public class BlockMoltenMetalTank extends BlockArmoryTileEntity {
     }
 
     @Override
-    public boolean isFullyOpaque(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocksWithItem(final Item item, final NonNullList<ItemStack> items)
+    {
         ArrayList<String> materialOreDicNames = new ArrayList<>();
 
         for (RegistryMaterialWrapper wrapper : IArmoryAPI.Holder.getInstance().getRegistryManager().getCombinedMaterialRegistry()) {
             if (materialOreDicNames.contains(wrapper.getWrapped().getOreDictionaryIdentifier()))
                 continue;
 
-            list.add(generateItemStackForMaterial(wrapper.getWrapped(), EnumTankType.NORMAL));
+            items.add(generateItemStackForMaterial(wrapper.getWrapped(), EnumTankType.NORMAL));
 
             materialOreDicNames.add(wrapper.getWrapped().getOreDictionaryIdentifier());
         }
 
-        list.add(new ItemStack(this, 1, EnumTankType.NORMAL.getMetadata()));
+        items.add(new ItemStack(this, 1, EnumTankType.NORMAL.getMetadata()));
     }
 
     @Override

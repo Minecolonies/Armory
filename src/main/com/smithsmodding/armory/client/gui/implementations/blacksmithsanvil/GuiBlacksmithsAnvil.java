@@ -113,7 +113,12 @@ public class GuiBlacksmithsAnvil extends GuiContainerSmithsCore {
             maximalDurabilityLabel = I18n.format(TranslationKeys.Gui.Anvil.MaterialMax) + ": 0";
             materialLabel = I18n.format(TranslationKeys.Gui.Anvil.Material) + ": 0";
 
-            registerNewComponent(new ComponentLabel(getID() + ".material", host, new CoreComponentState(), new Coordinate2D(10, 26), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj,
+            registerNewComponent(new ComponentLabel(getID() + ".material",
+              host,
+              new CoreComponentState(),
+              new Coordinate2D(10, 26),
+              new MinecraftColor(MinecraftColor.WHITE),
+              Minecraft.getMinecraft().fontRenderer,
               materialLabel) {
                 /**
                  * Method gets called before the component gets rendered, allows for animations to calculate through.
@@ -128,7 +133,12 @@ public class GuiBlacksmithsAnvil extends GuiContainerSmithsCore {
                 }
             });
 
-            registerNewComponent(new ComponentLabel(getID() + ".maxDurability", host, new CoreComponentState(), new Coordinate2D(10, 26 + Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT + 3), new MinecraftColor(MinecraftColor.WHITE), Minecraft.getMinecraft().fontRendererObj,
+            registerNewComponent(new ComponentLabel(getID() + ".maxDurability",
+              host,
+              new CoreComponentState(),
+              new Coordinate2D(10, 26 + Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + 3),
+              new MinecraftColor(MinecraftColor.WHITE),
+              Minecraft.getMinecraft().fontRenderer,
               maximalDurabilityLabel) {
                 /**
                  * Method gets called before the component gets rendered, allows for animations to calculate through.
@@ -143,8 +153,13 @@ public class GuiBlacksmithsAnvil extends GuiContainerSmithsCore {
                 }
             });
 
-            registerNewComponent(new ComponentLabel(getID() + ".currentDurability", host, new CoreComponentState(), new Coordinate2D(10, 26 + 2 * (Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT + 3)), new MinecraftColor(MinecraftColor.WHITE), Minecraft
-                                                                                                                                                                                           .getMinecraft().fontRendererObj,
+            registerNewComponent(new ComponentLabel(getID() + ".currentDurability",
+              host,
+              new CoreComponentState(),
+              new Coordinate2D(10, 26 + 2 * (Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + 3)),
+              new MinecraftColor(MinecraftColor.WHITE),
+              Minecraft
+                .getMinecraft().fontRenderer,
               currentDurabilityLabel) {
                 /**
                  * Method gets called before the component gets rendered, allows for animations to calculate through.

@@ -32,7 +32,7 @@ public class EntityItemHeatable extends EntityItem {
         if (!ArmoryConfig.enableTemperatureDecay)
             return;
 
-        ItemStack containedStack = getEntityItem();
+        ItemStack containedStack = getItem();
 
         IHeatedObjectCapability capability = containedStack.getCapability(ModCapabilities.MOD_HEATEDOBJECT_CAPABILITY, null);
         IHeatableObject object = capability.getObject();

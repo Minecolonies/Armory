@@ -1,6 +1,5 @@
 package com.smithsmodding.armory.client.model.item.unbaked;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
@@ -22,6 +21,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 
 import javax.annotation.Nonnull;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Author Marc (Created on: 14.06.2016)
