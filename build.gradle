@@ -23,7 +23,7 @@ buildscript {
 }
 
 plugins {
-    id "com.matthewprenger.cursegradle" version "1.0.7"
+    id "com.matthewprenger.cursegradle" version "1.0.9"
 }
 
 repositories {
@@ -80,10 +80,16 @@ configurations {
 }
 
 //Initializing the mod environment
-version = config.minecraft_version + "-" + config.mod_version.toString() + "-" + System.getenv().TRAVIS_BUILD_NUMBER.toString()
-def apiversion = config.api_version.toString() + "-" + System.getenv().TRAVIS_BUILD_NUMBER.toString()
+version = config.minecraft_version.toString() + "-" + config.mod_version.toString() + "-" + System.getenv().BUILDID.toString()
+def apiversion = config.minecraft_version.toString() + "-" + config.api_version.toString() + "-" + System.getenv().BUILDID.toString()
 
-if(System.getenv().TRAVIS_BRANCH.toString().contains("Development"))
+def release = System.getenv().RELEASETYPE
+if (release != "release" && release != "alpha" && release != "beta")
+{
+    release = "alpha"
+}
+
+if(release != "release")
 {
     version = version + "-SNAPSHOT"
     apiversion = apiversion + "-SNAPSHOT"
@@ -195,41 +201,74 @@ task apiJar(type: Jar) {
     classifier = 'api'
 }
 
+task devJar(type: Jar) {
+    from sourceSets.main.output
+    appendix = 'deobf'
+}
+
 artifacts {
     archives javadocJar
     archives apiJar
+    archives devJar
 }
 
 curseforge {
-    if (System.getenv().CURSEAPIKEY != null) {
-        if (!build_mode.toString().trim().equals("SYNC")) {
-            if ((build_mode.toString().trim().equals("DEBUG") && System.getenv().TRAVIS_BRANCH.toString().contains("Development")) || ((build_mode.toString().trim().equals("RELEASE") && !System.getenv().TRAVIS_BRANCH.toString().contains("Development")))) {
-                apiKey = System.getenv().CURSEAPIKEY
+    if (System.getenv().CURSEAPIKEY != null && release != null)
+    {
+        apiKey = System.getenv().CURSEAPIKEY
 
-                project {
-                    id = '231229'
-                    changelog = file('changelog.html')
-                    changelogType = 'html'
+        project {
+            id = '246525'
 
-                    if (System.getenv().TRAVIS_BRANCH.toString().contains("Development")) {
-                        releaseType = "alpha"
-                    } else {
-                        releaseType = "beta"
-                    }
+            changelog = file("build/changelog.md")
+            changelogType = "markdown"
 
-                    relations {
-                        requiredLibrary 'smithscore' // SmithScore is required
-                    }
+            releaseType = release
 
-                    //TOTO: When API ready add here, as well as DevJar and JavaDocJar.
-                }
-            } else {
-                logger.lifecycle("Cannot run the CurseUpload sequence. Curse upload is only done on the Development-Branch when in Debug mode, or on any other branch in Release mode. Current Branch: " + System.getenv().TRAVIS_BRANCH.toString() + " - Current build mode: " + build_mode.toString())
+            addArtifact devJar
+            addArtifact javadocJar
+            addArtifact apiJar
+            
+            relations {
+                requiredLibrary 'smithscore' // SmithScore is required
+            }
+        }
+    }
+    else
+    {
+        logger.lifecycle("Cannot run the CurseUpload sequence. No API-Key or release type has been provided.")
+    }
+}
+
+task("createChangelog") {
+    group = 'upload'
+
+    doLast {
+        def teamCityURL = "https://teamcity.minecolonies.com/"
+        def file = new FileOutputStream("build/changelog.md")
+        def out = new BufferedOutputStream(file)
+
+        println("Retrieving changes from: " + teamCityURL + "guestAuth/app/rest/changes?locator=build:(id:" + teamcity["teamcity.build.id"] + ")")
+        def changesXML = new XmlSlurper().parse(teamCityURL + "guestAuth/app/rest/changes?locator=build:(id:" + teamcity["teamcity.build.id"] + ")")
+
+        def changes = changesXML.change
+        println("createChangelog: Identified " + changes.size() + " changes to be written into the changelog.")
+
+        out << "# SmithsCore Changelog \n"
+        out << "## Version: _" + version + "_ \n"
+
+        if (changes.size() > 0) {
+            for (int i = 0; i < changes.size(); i++) {
+                def changeDetailsURL = teamCityURL + "guestAuth/app/rest/changes/id:" + changes[i].@id.text()
+                def changeDetailsXml = new XmlSlurper().parse(changeDetailsURL)
+                def changeComment = changeDetailsXml.comment.text().trim().split("\n")[0]
+
+                out << "* " + changeComment + "\n"
             }
         } else {
-            logger.lifecycle("Cannot run CurseUpload sequence. We are currently synchronising to Computers.")
+            out << "No Changes detected!"
         }
-    } else {
-        logger.lifecycle("Cannot run the CurseUpload sequence. No API-Key was available.")
+
+        out.close()
     }
 }
