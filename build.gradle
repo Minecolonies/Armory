@@ -201,9 +201,15 @@ task apiJar(type: Jar) {
     classifier = 'api'
 }
 
+task devJar(type: Jar) {
+    from sourceSets.main.output
+    appendix = 'deobf'
+}
+
 artifacts {
     archives javadocJar
     archives apiJar
+    archives devJar
 }
 
 curseforge {
@@ -221,6 +227,11 @@ curseforge {
 
             addArtifact devJar
             addArtifact javadocJar
+            addArtifact apiJar
+            
+            relations {
+                requiredLibrary 'smithscore' // SmithScore is required
+            }
         }
     }
     else
