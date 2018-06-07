@@ -228,7 +228,7 @@ curseforge {
             addArtifact devJar
             addArtifact javadocJar
             addArtifact apiJar
-            
+
             relations {
                 requiredLibrary 'smithscore' // SmithScore is required
             }
