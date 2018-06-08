@@ -194,7 +194,7 @@ task apiJar(type: Jar) {
 
 task devJar(type: Jar) {
     from sourceSets.main.output
-    classier = 'deobf'
+    classifier = 'deobf'
 }
 
 artifacts {
