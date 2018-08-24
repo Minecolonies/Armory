@@ -178,15 +178,15 @@ curseforge {
 
             mainArtifact (jar) {
                 displayName = "Armory: " + version
+
+                relations {
+                    requiredLibrary 'smithscore' // SmithScore is required
+                }
             }
 
             addArtifact javadocJar
             addArtifact apiJar
             addArtifact sourceJar
-
-            relations {
-                requiredLibrary 'smithscore' // SmithScore is required
-            }
         }
     }
     else
