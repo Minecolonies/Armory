@@ -11920,3 +11920,6 @@ com.mojang.authlib.exceptions.AuthenticationException: The client has sent too m
 [17:04:24] [Server thread/INFO] [FML]: Holder lookups applied
 [17:04:24] [Server thread/INFO] [armory]: [Armory-Main]-Starting "Server Stopped"-Phase
 [17:04:24] [Server thread/INFO] [armory]: [Armory-Main]-Finished "Server Stopped"-Phase after: 1 ms!
+[17:10:50] [main/INFO] [net.minecraft.client.Minecraft]: Stopping!
+[17:10:50] [main/INFO] [net.minecraft.client.audio.SoundManager]: SoundSystem shutting down...
+[17:10:50] [main/WARN] [net.minecraft.client.audio.SoundManager]: Author: Paul Lamb, www.paulscode.com
