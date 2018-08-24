@@ -27,23 +27,9 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     maven {
-        name 'ForgeFS'
-        url 'http://files.minecraftforge.net/maven'
-    }
-    maven {
-        name 'DVS1 Maven FS'
-        url 'http://dvs1.progwml6.com/files/maven'
-    }
-    maven {
-        name = 'sponge'
-        url = 'https://repo.spongepowered.org/maven'
-    }
-    ivy {
-        name 'Minecolonies TeamCity Repo'
-        ivyPattern 'https://teamcity.minecolonies.com/guestAuth/repository/download/[module]/[revision]/teamcity-ivy.xml'
-        artifactPattern 'https://teamcity.minecolonies.com/guestAuth/repository/download/[module]/[revision]/[artifact](.[ext])'
+        name 'LDTTeam Artifactory'
+        url 'https://ldtteam.jfrog.io/ldtteam/modding'
     }
 }
 
@@ -71,21 +57,7 @@ configurations {
 }
 
 //Initializing the mod environment
-version = config.minecraft_version.toString() + "-" + config.mod_version.toString() + "-" + System.getenv().BUILDID.toString()
-def apiversion = config.minecraft_version.toString() + "-" + config.api_version.toString() + "-" + System.getenv().BUILDID.toString()
-
-def release = System.getenv().RELEASETYPE
-if (release != "release" && release != "alpha" && release != "beta")
-{
-    release = "alpha"
-}
-
-if(release != "release")
-{
-    version = version + "-SNAPSHOT"
-    apiversion = apiversion + "-SNAPSHOT"
-}
-
+version = config.minecraft_version.toString() + "-" + System.getenv()["Version"]
 group = "com.smithsmodding.armory"
 archivesBaseName = "armory"
 
@@ -100,28 +72,16 @@ minecraft {
     //Replacing stuff inside the code:
     replace "@VERSION@", project.version
     replace "@MCVERSION@", config.minecraft_version
-    replace "@APIVERSION@", apiversion
+    replace "@APIVERSION@", project.version
 }
 
 dependencies {
     //Mod dependencies
-    deobfCompile ( 'org:SmithsCore_' + config.sc_build_type + 'Builds:' + config.sc_build_number ){
-        artifact {
-            name = 'smithscore-' + config.minecraft_version +'-' + config.sc_artifact_version +'-' + config.sc_artifact_id +'-' + config.sc_artifact_type
-            type = 'jar'
-        }
-    }
+    deobfCompile('com.smithsmodding.smithscore:smithscore:1.12.2-0.1.+')
 
     //deobfCompile group: 'com.smithsmodding.smithscore', name: 'smithscore', version: config.minecraft_version + "-" + config.smithscore_version
     deobfCompile "mezz.jei:jei_" + config.minecraft_version + ":" + config.jei_version
 
-    //Mixins
-    runtime('org.spongepowered:mixin:0.7.5-SNAPSHOT') {
-        exclude module: 'launchwrapper'
-    }
-
-    //Maven uploader
-    deployerJars 'org.apache.maven.wagon:wagon-ftp:2.8'
     compile 'org.jetbrains:annotations:15.0'
 }
 
@@ -192,19 +152,19 @@ task apiJar(type: Jar) {
     classifier = 'api'
 }
 
-task devJar(type: Jar) {
-    from sourceSets.main.output
-    classier = 'deobf'
-}
 
 artifacts {
     archives javadocJar
     archives apiJar
-    archives devJar
+}
+
+reobf{
+    jar{}
+    apiJar{}
 }
 
 curseforge {
-    if (System.getenv().CURSEAPIKEY != null && release != null)
+    if (System.getenv().CURSEAPIKEY != null && System.getenv().CURSERELEASETYPE != null)
     {
         apiKey = System.getenv().CURSEAPIKEY
 
@@ -214,11 +174,15 @@ curseforge {
             changelog = file("build/changelog.md")
             changelogType = "markdown"
 
-            releaseType = release
+            releaseType = System.getenv().CURSERELEASETYPE
 
-            addArtifact devJar
+            mainArtifact (jar) {
+                displayName = "Armory: " + version
+            }
+
             addArtifact javadocJar
             addArtifact apiJar
+            addArtifact sourceJar
 
             relations {
                 requiredLibrary 'smithscore' // SmithScore is required

@@ -5,7 +5,6 @@ import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
 import com.smithsmodding.smithscore.core.interfaces.ITextureMap;
 import com.smithsmodding.smithscore.util.client.ResourceHelper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
@@ -34,7 +33,7 @@ public class TextureCreationHelper {
         TextureAtlasSprite sprite;
 
         if (ResourceHelper.exists(location)) {
-            sprite = map.registerSprite(new ResourceLocation(location));
+            sprite = map.addNewTextureFromResourceLocation(new ResourceLocation(location));
         } else {
             // material does not need a special generated texture
             if (renderInfoProvider.getRenderInfo() == null) {
@@ -46,7 +45,7 @@ public class TextureCreationHelper {
             // different base texture?
             if (renderInfoProvider.getRenderInfo().getTextureSuffix() != null) {
                 String loc2 = baseTexture.toString() + creationIdentifier + "_" + renderInfoProvider.getRenderInfo().getTextureSuffix();
-                TextureAtlasSprite base2 = map.getTextureExtry(loc2);
+                TextureAtlasSprite base2 = map.getTextureViaName(loc2);
                 // can we manually load it?
                 if (base2 == null && ResourceHelper.exists(loc2)) {
                     base2 = new AbstractColoredTexture(loc2, loc2) {
@@ -57,7 +56,7 @@ public class TextureCreationHelper {
                     };
 
                     // save in the map so it's getting reused by the others and is available
-                    map.setTextureEntry(base2);
+                    map.setEntry(base2);
                 }
                 if (base2 != null) {
                     matBase = base2;
@@ -69,7 +68,7 @@ public class TextureCreationHelper {
 
         // stitch new textures
         if (sprite != null && renderInfoProvider.getRenderInfo().isStitched()) {
-            map.setTextureEntry(sprite);
+            map.setEntry(sprite);
         }
 
         return sprite;

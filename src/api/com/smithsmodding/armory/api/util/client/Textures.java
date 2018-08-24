@@ -29,12 +29,12 @@ public class Textures {
         TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWHAMMER.getPrimaryLocation()));
         TextureCreator.registerBaseTexture(new ResourceLocation(Gui.Anvil.HOLOWTONGS.getPrimaryLocation()));
 
-        Gui.Anvil.LOGO_BIG.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.Anvil.LOGO_BIG.getPrimaryLocation())));
-        Gui.Anvil.LOGO_SMALL.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.Anvil.LOGO_SMALL.getPrimaryLocation())));
-        Gui.FirePit.THERMOMETERICON.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.FirePit.THERMOMETERICON.getPrimaryLocation())));
-        Blocks.LiquidMetalFlow.addIcon(event.getMap().registerSprite(new ResourceLocation(Blocks.LiquidMetalFlow.getPrimaryLocation())));
-        Blocks.LiquidMetalStill.addIcon(event.getMap().registerSprite(new ResourceLocation(Blocks.LiquidMetalStill.getPrimaryLocation())));
-        Gui.Book.SLOT.addIcon(event.getMap().registerSprite(new ResourceLocation(Gui.Book.SLOT.getPrimaryLocation())));
+        Gui.Anvil.LOGO_BIG.addIcon(event.getMap().addNewTextureFromResourceLocation(new ResourceLocation(Gui.Anvil.LOGO_BIG.getPrimaryLocation())));
+        Gui.Anvil.LOGO_SMALL.addIcon(event.getMap().addNewTextureFromResourceLocation(new ResourceLocation(Gui.Anvil.LOGO_SMALL.getPrimaryLocation())));
+        Gui.FirePit.THERMOMETERICON.addIcon(event.getMap().addNewTextureFromResourceLocation(new ResourceLocation(Gui.FirePit.THERMOMETERICON.getPrimaryLocation())));
+        Blocks.LiquidMetalFlow.addIcon(event.getMap().addNewTextureFromResourceLocation(new ResourceLocation(Blocks.LiquidMetalFlow.getPrimaryLocation())));
+        Blocks.LiquidMetalStill.addIcon(event.getMap().addNewTextureFromResourceLocation(new ResourceLocation(Blocks.LiquidMetalStill.getPrimaryLocation())));
+        Gui.Book.SLOT.addIcon(event.getMap().addNewTextureFromResourceLocation(new ResourceLocation(Gui.Book.SLOT.getPrimaryLocation())));
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

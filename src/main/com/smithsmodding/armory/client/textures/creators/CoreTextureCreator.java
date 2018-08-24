@@ -34,7 +34,7 @@ public class CoreTextureCreator extends IForgeRegistryEntry.Impl<ICreationContro
             buildSprites.put(baseTexture, new HashMap<>());
 
         //Grabbing the base texture so that we can color a copy.
-        TextureAtlasSprite base = map.getTextureExtry(baseTexture.toString());
+        TextureAtlasSprite base = map.getTextureViaName(baseTexture.toString());
         if (base == null) {
             //A missing texture does not need coloring. Skipping.
             ModLogger.getInstance().error("Missing base texture for Core coloring: " + baseTexture.toString());
