@@ -8,7 +8,8 @@ import javax.annotation.Nonnull;
  * Initialization component injected into Armories loading sequence.
  * All methods of this class are mapped from an FMLState that they represent.
  *
- * Created by marcf on 1/20/2017.
+ * As of now no external mods can inject into this mechanic, however future release might allow for injection
+ * depending on how MC 1.13+ ModLoader mechanics change.
  */
 public interface IInitializationComponent
 {

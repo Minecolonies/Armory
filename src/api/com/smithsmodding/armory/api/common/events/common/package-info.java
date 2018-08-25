@@ -5,7 +5,8 @@
  *
  * Copyrighted according to Project specific license
  */
-@API(owner = "armory", apiVersion = References.General.API_VERSION, provides = "armory-api|events|common") package com.smithsmodding.armory.api.common.events.common;
+@API(owner = References.General.MOD_ID, apiVersion = References.General.API_VERSION, provides = "armory-api|events|common")
+package com.smithsmodding.armory.api.common.events.common;
 
 import com.smithsmodding.armory.api.util.references.References;
 import net.minecraftforge.fml.common.API;

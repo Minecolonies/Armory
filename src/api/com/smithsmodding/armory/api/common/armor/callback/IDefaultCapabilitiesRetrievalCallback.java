@@ -1,7 +1,7 @@
 package com.smithsmodding.armory.api.common.armor.callback;
 
 /**
- * Created by marcf on 1/21/2017.
+ * Interface used to get the default capabilities via a callback during material construction.
  */
 @FunctionalInterface
 public interface IDefaultCapabilitiesRetrievalCallback {

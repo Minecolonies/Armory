@@ -4,7 +4,362 @@ Cannot run the CurseUpload sequence. No API-Key or release type has been provide
 
 Found AccessTransformer: jei_at.cfg_jei_1.12.2-4.9.2.196_at.cfg
 Found AccessTransformer: Armory_at.cfg
+:extractMcpMappings SKIPPED
+:deobfCompileDeobfDepTask0 SKIPPED
+:deobfCompileDeobfDepTask1 SKIPPED
+:deobfCompileRemapDepSourcesTask2 SKIPPED
+:deobfCompileRemapDepSourcesTask3 SKIPPED
+:deobfCompileDummyTask
+:deobfProvidedDummyTask
+:sourceApiJava
+:compileApiJavaNote: SpongePowered MIXIN Annotation Processor Version=0.7.5
+Note: ObfuscationServiceMCP supports type: "searge"
+Note: ObfuscationServiceMCP supports type: "notch"
+Note: E:\Development\Minecraft\1.11\Armory\build\sources\api\java\com\smithsmodding\armory\api\util\references\ModLogger.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+:processApiResources UP-TO-DATE
+:apiClasses
+:apiJar
+:sourceMainJava
+:compileJavaNote: SpongePowered MIXIN Annotation Processor Version=0.7.5
+Note: ObfuscationServiceMCP supports type: "searge"
+Note: ObfuscationServiceMCP supports type: "notch"
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+:processResources
+:classes
+:jar
+:javadocE:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\tileentity\TileEntityFireplace.java:104: warning: no description for @param
+     * @param index
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\tileentity\TileEntityFireplace.java:147: warning: no description for @param
+     * @param index
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\tileentity\TileEntityFireplace.java:148: warning: no description for @param
+     * @param stack
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\tileentity\TileEntityFireplace.java:204: warning: no description for @param
+     * @param index
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\tileentity\TileEntityFireplace.java:205: warning: no description for @param
+     * @param stack
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\tileentity\TileEntityMoltenMetalMixer.java:226: warning: no description for @param
+     * @param index
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\tileentity\TileEntityMoltenMetalMixer.java:237: warning: no description for @param
+     * @param index
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\tileentity\TileEntityMoltenMetalMixer.java:238: warning: no description for @param
+     * @param count
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\tileentity\TileEntityMoltenMetalMixer.java:257: warning: no description for @param
+     * @param index
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\tileentity\TileEntityMoltenMetalMixer.java:258: warning: no description for @param
+     * @param stack
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\tileentity\TileEntityMoltenMetalMixer.java:285: warning: no description for @param
+     * @param index
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\tileentity\TileEntityMoltenMetalMixer.java:286: warning: no description for @param
+     * @param stack
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\heateditem\BakedHeatedItemModel.java:50: warning: no @param for parent
+    public BakedHeatedItemModel(IBakedModel parent, BakedTemperatureBarModel gaugeDislay, BakedTemperatureBarModel gaugeDisplayTurned) {
+           ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\heateditem\BakedHeatedItemModel.java:50: warning: no @param for gaugeDislay
+    public BakedHeatedItemModel(IBakedModel parent, BakedTemperatureBarModel gaugeDislay, BakedTemperatureBarModel gaugeDisplayTurned) {
+           ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\heateditem\BakedHeatedItemModel.java:50: warning: no @param for gaugeDisplayTurned
+    public BakedHeatedItemModel(IBakedModel parent, BakedTemperatureBarModel gaugeDislay, BakedTemperatureBarModel gaugeDisplayTurned) {
+           ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\client\model\deserializers\definition\ArmorModelLayerPartDefinition.java:22: warning: no description for @param
+     * @param id
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\BakedMultiLayeredArmorItemModel.java:59: warning: no @param for parent
+    public BakedMultiLayeredArmorItemModel(
+           ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\BakedMultiLayeredArmorItemModel.java:59: warning: no @param for parts
+    public BakedMultiLayeredArmorItemModel(
+           ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\BakedMultiLayeredArmorItemModel.java:59: warning: no @param for transforms
+    public BakedMultiLayeredArmorItemModel(
+           ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\BakedMultiLayeredArmorItemModel.java:59: warning: no @param for untranslatedParts
+    public BakedMultiLayeredArmorItemModel(
+           ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\BakedMultiLayeredArmorPartItemModel.java:64: warning: no @param for parent
+    public BakedMultiLayeredArmorPartItemModel(IBakedModel parent, BakedSubComponentModel baseLayer, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> parts, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> brokenParts, ModelPart modelPart, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+           ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\BakedMultiLayeredArmorPartItemModel.java:64: warning: no @param for baseLayer
+    public BakedMultiLayeredArmorPartItemModel(IBakedModel parent, BakedSubComponentModel baseLayer, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> parts, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> brokenParts, ModelPart modelPart, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+           ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\BakedMultiLayeredArmorPartItemModel.java:64: warning: no @param for parts
+    public BakedMultiLayeredArmorPartItemModel(IBakedModel parent, BakedSubComponentModel baseLayer, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> parts, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> brokenParts, ModelPart modelPart, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+           ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\BakedMultiLayeredArmorPartItemModel.java:64: warning: no @param for brokenParts
+    public BakedMultiLayeredArmorPartItemModel(IBakedModel parent, BakedSubComponentModel baseLayer, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> parts, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> brokenParts, ModelPart modelPart, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+           ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\BakedMultiLayeredArmorPartItemModel.java:64: warning: no @param for modelPart
+    public BakedMultiLayeredArmorPartItemModel(IBakedModel parent, BakedSubComponentModel baseLayer, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> parts, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> brokenParts, ModelPart modelPart, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+           ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\client\model\item\baked\BakedMultiLayeredArmorPartItemModel.java:64: warning: no @param for transforms
+    public BakedMultiLayeredArmorPartItemModel(IBakedModel parent, BakedSubComponentModel baseLayer, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> parts, HashMap<IMultiComponentArmorExtension, BakedSubComponentModel> brokenParts, ModelPart modelPart, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+           ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\armor\IMultiComponentArmorExtension.java:133: warning: no @return
+    IExtensionRecipeRetrievalCallback getRecipeCallback();
+                                      ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\item\ItemHammer.java:82: warning: no description for @param
+     * @param hitX
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\item\ItemHammer.java:83: warning: no description for @param
+     * @param hitY
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\item\ItemHammer.java:84: warning: no description for @param
+     * @param hitZ
+       ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\armor\callback\IExtensionRecipeRetrievalCallback.java:30: warning: no description for @param
+     * @param extension
+       ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\armor\callback\IExtensionRecipeRetrievalCallback.java:31: warning: no description for @param
+     * @param armor
+       ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\armor\callback\IExtensionRecipeRetrievalCallback.java:32: warning: no description for @param
+     * @param coreMaterial
+       ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\armor\callback\IExtensionRecipeRetrievalCallback.java:33: warning: no description for @return
+     * @return
+       ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\client\model\renderinfo\IRenderInfoProvider.java:29: warning: no @return
+    T setRenderInfo(@Nonnull ITextureController renderInfo);
+      ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\helpers\IMedievalUpgradeConstructionHelper.java:24: warning: no @param for translationKey
+    IMultiComponentArmorExtension buildStandardExtension(
+                                  ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\helpers\IMedievalUpgradeConstructionHelper.java:24: warning: no @param for textFormatting
+    IMultiComponentArmorExtension buildStandardExtension(
+                                  ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\helpers\IMedievalUpgradeConstructionHelper.java:24: warning: no @param for position
+    IMultiComponentArmorExtension buildStandardExtension(
+                                  ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\helpers\IMedievalUpgradeConstructionHelper.java:24: warning: no @param for capabilitiesRetrievalCallback
+    IMultiComponentArmorExtension buildStandardExtension(
+                                  ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\helpers\IMedievalUpgradeConstructionHelper.java:24: warning: no @param for extensionRecipeRetrievalCallback
+    IMultiComponentArmorExtension buildStandardExtension(
+                                  ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\helpers\IMedievalUpgradeConstructionHelper.java:38: warning: no @param for translationKey
+    IMaterialDependantMultiComponentArmorExtension buildMaterialDependantExtension(
+                                                   ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\helpers\IMedievalUpgradeConstructionHelper.java:38: warning: no @param for textFormatting
+    IMaterialDependantMultiComponentArmorExtension buildMaterialDependantExtension(
+                                                   ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\helpers\IMedievalUpgradeConstructionHelper.java:38: warning: no @param for position
+    IMaterialDependantMultiComponentArmorExtension buildMaterialDependantExtension(
+                                                   ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\helpers\IMedievalUpgradeConstructionHelper.java:38: warning: no @param for materialIndependentArmorExtension
+    IMaterialDependantMultiComponentArmorExtension buildMaterialDependantExtension(
+                                                   ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\helpers\IMedievalUpgradeConstructionHelper.java:38: warning: no @param for material
+    IMaterialDependantMultiComponentArmorExtension buildMaterialDependantExtension(
+                                                   ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\helpers\IMedievalUpgradeConstructionHelper.java:38: warning: no @param for capabilitiesRetrievalCallback
+    IMaterialDependantMultiComponentArmorExtension buildMaterialDependantExtension(
+                                                   ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\client\model\deserializers\AnvilModelDeserializer.java:29: warning: no description for @param
+     * @param context
+       ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\client\model\deserializers\ArmorModelLayerDeserializer.java:54: warning: no @throws for java.util.concurrent.ExecutionException
+    public ArmorModelLayerDefinition deserialize(ResourceLocation modelLocation) throws IOException, ExecutionException
+                                     ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\capability\armor\ArmorCapabilityManager.java:37: warning: no @param for <C>
+    public <C extends IArmorCapability> void registerNewInstance(@Nonnull Capability<C> cap)
+                                             ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\capability\armor\ArmorCapabilityManager.java:48: warning: no @param for <C>
+    public <C extends IArmorCapability> void registerCapability(Capability<C> cap, C instance)
+                                             ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\capability\armor\IArmorAbsorptionRatioCapability.java:31: warning: no @param for type
+    static IArmorAbsorptionRatioCapability create(final float value, final ValueModificationType type)
+                                           ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\capability\armor\IArmorDefenceCapability.java:31: warning: no @param for type
+    static IArmorDefenceCapability create(final float value, final ValueModificationType type)
+                                   ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\capability\armor\IArmorDurabilityCapability.java:31: warning: no @param for type
+    static IArmorDurabilityCapability create(final float value, final ValueModificationType type)
+                                      ^
+E:\Development\Minecraft\1.11\Armory\src\api\com\smithsmodding\armory\api\common\capability\armor\IArmorToughnessCapability.java:31: warning: no @param for type
+    static IArmorToughnessCapability create(final float value, final ValueModificationType type)
+                                     ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:152: warning: no description for @param
+     * @param worldIn
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:153: warning: no description for @param
+     * @param pos
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:154: warning: no description for @param
+     * @param state
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:155: warning: no description for @param
+     * @param placer
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:156: warning: no description for @param
+     * @param stack
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:199: warning: no description for @param
+     * @param state
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:200: warning: no description for @param
+     * @param world
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:201: warning: no description for @param
+     * @param pos
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:225: warning: no description for @param
+     * @param worldIn
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:226: warning: no description for @param
+     * @param pos
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:227: warning: no description for @param
+     * @param state
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:228: warning: no description for @param
+     * @param playerIn
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:229: warning: no description for @param
+     * @param hand
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:230: warning: no description for @param
+     * @param facing
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:231: warning: no description for @param
+     * @param hitX
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:232: warning: no description for @param
+     * @param hitY
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockBlackSmithsAnvil.java:233: warning: no description for @param
+     * @param hitZ
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockConduit.java:372: warning: no description for @param
+     * @param state
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockConduit.java:374: warning: no description for @param
+     * @param world
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockConduit.java:375: warning: no description for @param
+     * @param pos
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockConduit.java:376: warning: no description for @param
+     * @param player @return A ItemStack to add to the player's inventory, empty itemstack if nothing should be added.
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockFirePlace.java:36: warning: no description for @param
+     * @param worldIn
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockFirePlace.java:37: warning: no description for @param
+     * @param meta
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockFirePlace.java:80: warning: no description for @param
+     * @param worldIn
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockFirePlace.java:81: warning: no description for @param
+     * @param pos
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockFirePlace.java:82: warning: no description for @param
+     * @param state
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockFirePlace.java:83: warning: no description for @param
+     * @param playerIn
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockFirePlace.java:84: warning: no description for @param
+     * @param hand
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockFirePlace.java:85: warning: no description for @param
+     * @param facing
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockFirePlace.java:86: warning: no description for @param
+     * @param hitX
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockFirePlace.java:87: warning: no description for @param
+     * @param hitY
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockFirePlace.java:88: warning: no description for @param
+     * @param hitZ
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:279: warning: no description for @param
+     * @param worldIn
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:280: warning: no description for @param
+     * @param pos
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:281: warning: no description for @param
+     * @param state
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:282: warning: no description for @param
+     * @param playerIn
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:283: warning: no description for @param
+     * @param hand
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:284: warning: no description for @param
+     * @param facing
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:285: warning: no description for @param
+     * @param hitX
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:286: warning: no description for @param
+     * @param hitY
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:287: warning: no description for @param
+     * @param hitZ
+       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:333: warning: no @param for worldIn
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+                       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:333: warning: no @param for pos
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+                       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:333: warning: no @param for facing
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+                       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:333: warning: no @param for hitX
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+                       ^
+E:\Development\Minecraft\1.11\Armory\src\main\com\smithsmodding\armory\common\block\BlockForge.java:333: warning: no @param for hitY
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+                       ^
+
+100 warnings
+:javadocJar
+:sourceTestJava
+:compileTestJava UP-TO-DATE
+:processTestResources UP-TO-DATE
+:testClasses UP-TO-DATE
+:test UP-TO-DATE
+:extractMcpData SKIPPED
+:getVersionJson
+:extractUserdev UP-TO-DATE
+:genSrgs SKIPPED
+:reobfApiJar
+:extractAnnotationsApiJar
+:reobfJar
+:extractAnnotationsJar
+:extractRangemapReplacedMain
+E:\Development\Minecraft\1.11\Armory\build\sources\main\java
+:retromapReplacedMain
+remapping source...
+:sourceJar
+:assemble
+:check UP-TO-DATE
+:build
 
 BUILD SUCCESSFUL
 
-Total time: 2.723 secs
+Total time: 1 mins 20.529 secs

@@ -1,4 +1,4 @@
-package com.smithsmodding.armory.api.common.material.client;
+package com.smithsmodding.armory.api.client.material;
 
 import com.smithsmodding.armory.api.client.textures.types.*;
 import com.smithsmodding.smithscore.client.textures.ITextureController;

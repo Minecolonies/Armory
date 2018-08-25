@@ -16,14 +16,19 @@ buildscript {
             name = "m2"
             url = "https://plugins.gradle.org/m2/"
         }
+        maven {
+            name = "jitpack"
+            url = "https://jitpack.io"
+        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'com.github.jriwanek:cursegradle:master-SNAPSHOT'
     }
 }
 
 plugins {
-    id "com.matthewprenger.cursegradle" version "1.0.9"
+    //id "com.matthewprenger.cursegradle" version "1.0.9"
 }
 
 repositories {
@@ -36,6 +41,7 @@ repositories {
 apply plugin: 'java'
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven'
+apply plugin: 'com.matthewprenger.cursegradle'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -180,7 +186,7 @@ curseforge {
                 displayName = "Armory: " + version
 
                 relations {
-                    requiredLibrary 'smithscore' // SmithScore is required
+                    requiredDependency 'smithscore' // SmithScore is required
                 }
             }
 

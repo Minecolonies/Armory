@@ -19,17 +19,6 @@ public interface IArmoryAPI
     @Nonnull
     IRegistryManager getRegistryManager();
 
-//
-//    IAnvilRecipeRegistry getAnvilRecipeRegistry();
-//
-//    IHeatableItemRegistry getHeatableItemRegistry();
-//
-//    IArmorPartRegistry getMedievalArmorPartRegistry();
-//
-//    IMaterialRegistry getArmorMaterialRegistry();
-//
-//    IArmorRegistry getArmorRegistry();
-//
     @Nonnull
     IArmoryHelpers getHelpers();
 

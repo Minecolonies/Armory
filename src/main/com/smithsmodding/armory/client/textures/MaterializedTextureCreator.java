@@ -1,11 +1,11 @@
 package com.smithsmodding.armory.client.textures;
 
 import com.google.common.collect.Maps;
+import com.smithsmodding.armory.api.client.material.MaterialRenderControllers;
 import com.smithsmodding.armory.api.client.textures.creation.ICreationController;
 import com.smithsmodding.armory.api.client.textures.types.GuiOutlineTexture;
 import com.smithsmodding.armory.api.common.capability.armor.ArmorCapabilityManager;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.api.common.material.client.MaterialRenderControllers;
 import com.smithsmodding.armory.api.util.references.ModLogger;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
 import com.smithsmodding.armory.common.material.MedievalCoreArmorMaterial;

@@ -1,10 +1,10 @@
 package com.smithsmodding.armory.client.logic.initialization;
 
+import com.smithsmodding.armory.api.client.material.MaterialRenderControllers;
 import com.smithsmodding.armory.api.common.armor.IMultiComponentArmor;
 import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
-import com.smithsmodding.armory.api.common.material.client.MaterialRenderControllers;
 import com.smithsmodding.armory.api.util.client.ModelTransforms;
 import com.smithsmodding.armory.api.util.references.ModArmor;
 import com.smithsmodding.armory.api.util.references.ModMaterials;

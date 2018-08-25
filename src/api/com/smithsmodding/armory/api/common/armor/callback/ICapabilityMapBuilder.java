@@ -4,6 +4,9 @@ import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.common.capability.armor.IArmorCapability;
 import net.minecraftforge.common.capabilities.Capability;
 
+/**
+ * Interface describing a capability map builder.
+ */
 public interface ICapabilityMapBuilder
 {
 

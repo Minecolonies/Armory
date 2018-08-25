@@ -5,7 +5,7 @@
  * <p>
  * Copyrighted according to Project specific license
  */
-@API(owner = "armory", apiVersion = References.General.API_VERSION, provides = "armory-api|fluid")
+@API(owner = References.General.MOD_ID, apiVersion = References.General.API_VERSION, provides = "armory-api|fluid")
 package com.smithsmodding.armory.api.common.fluid;
 
 import com.smithsmodding.armory.api.util.references.References;

@@ -8,7 +8,7 @@ import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import javax.annotation.Nullable;
 
 /**
- * Created by marcf on 1/25/2017.
+ * Interface used tro get the recipe if an extension via a callback.
  */
 public interface IExtensionRecipeRetrievalCallback {
 
