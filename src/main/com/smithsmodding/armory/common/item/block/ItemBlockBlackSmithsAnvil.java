@@ -5,9 +5,7 @@ import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
 import net.minecraft.block.Block;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -16,7 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by Marc on 23.02.2016.
@@ -28,10 +26,20 @@ public class ItemBlockBlackSmithsAnvil extends ItemBlock {
         this.setRegistryName(block.getRegistryName());
     }
 
+    /**
+     * Returns the font renderer used to render tooltips and overlays for this item.
+     * Returning null will use the standard font renderer.
+     *
+     * @param stack The current item stack
+     * @return A instance of FontRenderer or null to use default
+     */
+    @Nullable
     @Override
     @SideOnly(Side.CLIENT)
-    public FontRenderer getFontRenderer(ItemStack stack) {
-        return super.getFontRenderer(stack);
+    //Using full imports in this method to prevent ClassNotFound sidedness issues.
+    public net.minecraft.client.gui.FontRenderer getFontRenderer(final ItemStack stack)
+    {
+        return com.smithsmodding.smithscore.client.proxy.CoreClientProxy.getMultiColoredFontRenderer();
     }
 
     @Override

@@ -153,6 +153,7 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public IBakedModel getRenderingModel(
       final @NotNull EntityLivingBase entityLiving, final @NotNull ItemStack itemStack, final @NotNull EntityEquipmentSlot armorSlot)
     {
@@ -174,6 +175,7 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
      * allows items to add custom lines of information to the mouseover description
      */
     @Override
+    @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack stack, @Nullable final World worldIn, final List<String> tooltip, final ITooltipFlag flagIn)
     {
         if (!stack.hasCapability(ModCapabilities.MOD_MULTICOMPONENTARMOR_CAPABILITY, null))
@@ -282,7 +284,6 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
-    @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
     {
