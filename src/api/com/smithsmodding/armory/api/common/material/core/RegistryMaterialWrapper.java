@@ -1,5 +1,7 @@
 package com.smithsmodding.armory.api.common.material.core;
 
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
@@ -14,7 +16,17 @@ public final class RegistryMaterialWrapper extends IForgeRegistryEntry.Impl<Regi
 
     public RegistryMaterialWrapper(@Nonnull IMaterial wrapped) {
         this.wrapped = wrapped;
+        final ModContainer armoryContainer = Loader.instance().activeModContainer();
+        final ModContainer wrappedRegisteringContainer = Loader.instance()
+                                                           .getActiveModList()
+                                                           .stream()
+                                                           .filter(modContainer -> modContainer.getModId().equals(wrapped.getRegistryName().getResourceDomain()))
+                                                           .findFirst()
+                                                           .orElseThrow(() -> new IllegalArgumentException("Given material is not registered by a known Mod."));
+
+        Loader.instance().setActiveModContainer(wrappedRegisteringContainer);
         this.setRegistryName(wrapped.getRegistryName());
+        Loader.instance().setActiveModContainer(armoryContainer);
     }
 
     /**
