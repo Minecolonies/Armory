@@ -43,7 +43,8 @@ public class TextureCreationHelper {
             TextureAtlasSprite matBase = base;
 
             // different base texture?
-            if (renderInfoProvider.getRenderInfo().getTextureSuffix() != null) {
+            if (renderInfoProvider.getRenderInfo().getTextureSuffix() != null && !renderInfoProvider.getRenderInfo().getTextureSuffix().isEmpty())
+            {
                 String loc2 = baseTexture.toString() + creationIdentifier + "_" + renderInfoProvider.getRenderInfo().getTextureSuffix();
                 TextureAtlasSprite base2 = map.getTextureViaName(loc2);
                 // can we manually load it?

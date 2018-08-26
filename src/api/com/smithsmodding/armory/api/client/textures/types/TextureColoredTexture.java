@@ -65,11 +65,7 @@ public class TextureColoredTexture extends AbstractColoredTexture {
     }
 
     protected void loadData () {
-        if (addTexture != null && addTexture.getFrameCount() > 0) {
-            textureData = addTexture.getFrameTextureData(0);
-        } else {
-            textureData = backupLoadTexture(new ResourceLocation(addTextureLocation),
-                    Minecraft.getMinecraft().getResourceManager());
-        }
+        textureData = backupLoadTexture(new ResourceLocation(addTextureLocation),
+          Minecraft.getMinecraft().getResourceManager());
     }
 }
