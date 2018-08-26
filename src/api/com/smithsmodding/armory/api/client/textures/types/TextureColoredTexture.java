@@ -6,12 +6,17 @@ package com.smithsmodding.armory.api.client.textures.types;
   of Wrapper classes instead of direct access.
  */
 
+import com.google.common.collect.ImmutableList;
 import com.smithsmodding.smithscore.client.textures.AbstractColoredTexture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Objects;
 
 public class TextureColoredTexture extends AbstractColoredTexture {
 
@@ -35,6 +40,15 @@ public class TextureColoredTexture extends AbstractColoredTexture {
         this.addTexture = addTexture;
     }
 
+    /**
+     * @return all textures that should be loaded before this texture.
+     */
+    @Override
+    public Collection<ResourceLocation> getDependencies()
+    {
+        return ImmutableList.of(new ResourceLocation(addTextureLocation));
+    }
+
     @Override
     protected int colorPixel (int pixel, int mipmap, int pxCoord) {
         int a = alpha(pixel);
@@ -42,7 +56,8 @@ public class TextureColoredTexture extends AbstractColoredTexture {
             return pixel;
         }
 
-        if (textureData == null) {
+        if (textureData == null || textureData.length == 0 || Arrays.stream(textureData).allMatch(Objects::isNull))
+        {
             loadData();
         }
 
@@ -65,7 +80,14 @@ public class TextureColoredTexture extends AbstractColoredTexture {
     }
 
     protected void loadData () {
-        textureData = backupLoadTexture(new ResourceLocation(addTextureLocation),
-          Minecraft.getMinecraft().getResourceManager());
+        if (addTexture != null && addTexture.getFrameCount() > 0 && addTexture.getFrameTextureData(0).length > 0 && addTexture.getFrameTextureData(0)[0] != null)
+        {
+            textureData = addTexture.getFrameTextureData(0);
+        }
+        else
+        {
+            textureData = backupLoadTexture(new ResourceLocation(addTextureLocation),
+              Minecraft.getMinecraft().getResourceManager());
+        }
     }
 }
