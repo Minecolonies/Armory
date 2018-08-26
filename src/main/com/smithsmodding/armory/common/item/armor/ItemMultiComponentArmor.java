@@ -12,11 +12,9 @@ import com.smithsmodding.armory.api.util.references.ModCapabilities;
 import com.smithsmodding.armory.api.util.references.ModCreativeTabs;
 import com.smithsmodding.armory.api.util.references.References;
 import com.smithsmodding.armory.client.model.item.baked.BakedMultiLayeredArmorItemModel;
-import com.smithsmodding.smithscore.client.proxy.CoreClientProxy;
 import com.smithsmodding.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.smithsmodding.smithscore.util.CoreReferences;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -310,9 +308,11 @@ public class ItemMultiComponentArmor extends Item implements ISpecialArmor, IMod
      */
     @Nullable
     @Override
-    public FontRenderer getFontRenderer(final ItemStack stack)
+    @SideOnly(Side.CLIENT)
+    //Using full imports in this method to prevent ClassNotFound sidedness issues.
+    public net.minecraft.client.gui.FontRenderer getFontRenderer(final ItemStack stack)
     {
-        return CoreClientProxy.getMultiColoredFontRenderer();
+        return com.smithsmodding.smithscore.client.proxy.CoreClientProxy.getMultiColoredFontRenderer();
     }
 
     /**

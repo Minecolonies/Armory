@@ -215,7 +215,7 @@ task("createChangelog") {
         def changes = changesXML.change
         println("createChangelog: Identified " + changes.size() + " changes to be written into the changelog.")
 
-        out << "# SmithsCore Changelog \n"
+        out << "# Armory Changelog \n"
         out << "## Version: _" + version + "_ \n"
 
         if (changes.size() > 0) {
