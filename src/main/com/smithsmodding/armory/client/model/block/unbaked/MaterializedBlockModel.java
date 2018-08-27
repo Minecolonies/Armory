@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
 import com.smithsmodding.armory.api.common.material.core.RegistryMaterialWrapper;
+import com.smithsmodding.armory.api.util.client.ModelMaterialHelper;
 import com.smithsmodding.armory.client.model.block.baked.MaterializedBlockBakedModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.smithscore.util.client.ModelHelper;
@@ -20,6 +21,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Author Marc (Created on: 14.06.2016)
@@ -79,7 +81,15 @@ public class MaterializedBlockModel implements IModel {
             subModelBuilder.put(materialWrapper.getWrapped(), parent.retexture(getRetextureMap(retexturedSprite.getIconName())).bake(state, format, bakedTextureGetter));
         }
 
-        return new MaterializedBlockBakedModel(parent.retexture(getRetextureMap(bakedTextureGetter.apply(materializableTexture).getIconName())).bake(state, format, bakedTextureGetter), transformations, subModelBuilder.build());
+        final Map<IMaterial, IBakedModel> materialBakedModels = subModelBuilder.build();
+        final Map<IMaterial, IBakedModel> materialReprocessedModels = materialBakedModels.entrySet().stream().collect(Collectors.toMap(
+          Map.Entry::getKey,
+          entry -> ModelMaterialHelper.checkForMaterialOverride(state, materializableTexture, entry.getKey(), entry.getValue())
+        ));
+
+
+        return new MaterializedBlockBakedModel(parent.retexture(getRetextureMap(bakedTextureGetter.apply(materializableTexture).getIconName()))
+                                                 .bake(state, format, bakedTextureGetter), transformations, materialReprocessedModels);
     }
 
     private ImmutableMap<String, String> getRetextureMap(String newTexture) {

@@ -73,7 +73,8 @@ public class ClientMedievalInitializer
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void handleCoreMaterialRegistration(@Nonnull RegistryEvent.Register<ICoreArmorMaterial> coreArmorMaterialRegisterMaterialEvent)
     {
-        ModMaterials.Armor.Core.IRON.setRenderInfo(new MaterialRenderControllers.Metal(References.Colors.Materials.CLR_IRON.getRGB(), 0f, 0.3f, 0f) {
+        ModMaterials.Armor.Core.IRON.setRenderInfo(new MaterialRenderControllers.Default(References.Colors.Materials.CLR_IRON)
+        {
             @Nonnull
             @Override
             public MinecraftColor getLiquidColor() {
@@ -83,7 +84,8 @@ public class ClientMedievalInitializer
 
         ModMaterials.Armor.Core.OBSIDIAN.setRenderInfo(new MaterialRenderControllers.MultiColor(References.Colors.Materials.CLR_OBSIDIAN.getRGB(), 0x8f60d4, 0x8c53df));
 
-        ModMaterials.Armor.Core.GOLD.setRenderInfo(new MaterialRenderControllers.Metal(References.Colors.Materials.CLR_GOLD.getRGB(), 0f, 0.3f, 0f) {
+        ModMaterials.Armor.Core.GOLD.setRenderInfo(new MaterialRenderControllers.Default(References.Colors.Materials.CLR_GOLD)
+        {
             @Nonnull
             @Override
             public MinecraftColor getLiquidColor() {
@@ -91,7 +93,8 @@ public class ClientMedievalInitializer
             }
         });
 
-        ModMaterials.Armor.Core.STEEL.setRenderInfo(new MaterialRenderControllers.Metal(References.Colors.Materials.CLR_STEEL.getRGB(), 0f, 0.3f, 0f) {
+        ModMaterials.Armor.Core.STEEL.setRenderInfo(new MaterialRenderControllers.Default(References.Colors.Materials.CLR_STEEL)
+        {
             @Nonnull
             @Override
             public MinecraftColor getLiquidColor() {
@@ -99,7 +102,7 @@ public class ClientMedievalInitializer
             }
         });
 
-        ModMaterials.Armor.Core.HARDENED_IRON.setRenderInfo(new MaterialRenderControllers.Metal(References.Colors.Materials.CLR_HARDENED_IRON.getRGB(), 0f, 0.3f, 0f)
+        ModMaterials.Armor.Core.HARDENED_IRON.setRenderInfo(new MaterialRenderControllers.Default(References.Colors.Materials.CLR_HARDENED_IRON)
         {
             @Override
             public MinecraftColor getLiquidColor()

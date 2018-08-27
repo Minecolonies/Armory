@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableSet;
 import com.smithsmodding.armory.api.IArmoryAPI;
 import com.smithsmodding.armory.api.client.model.deserializers.definition.ArmorModelLayerDefinition;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
+import com.smithsmodding.armory.api.util.client.ModelMaterialHelper;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedCoreComponentModel;
 import com.smithsmodding.armory.client.model.item.baked.components.BakedSubComponentModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
@@ -113,7 +114,7 @@ public class ArmorCoreComponentModel extends ArmorSubComponentModel {
 
                 // We check if a special texture for that item exists in our textures collection.
                 // If not we check if the material needs coloring and color the vertexes individually.
-                bakedModel2 = checkForMaterialOverride(state, baseTexture, material, bakedModel2);
+                bakedModel2 = ModelMaterialHelper.checkForMaterialOverride(state, baseTexture, material, bakedModel2);
 
                 bakedMaterialModel.addMaterialModel(material, bakedModel2);
             }

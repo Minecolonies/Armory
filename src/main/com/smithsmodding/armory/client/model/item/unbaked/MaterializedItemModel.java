@@ -6,6 +6,7 @@ import com.smithsmodding.armory.api.common.material.anvil.IAnvilMaterial;
 import com.smithsmodding.armory.api.common.material.armor.IAddonArmorMaterial;
 import com.smithsmodding.armory.api.common.material.armor.ICoreArmorMaterial;
 import com.smithsmodding.armory.api.common.material.core.IMaterial;
+import com.smithsmodding.armory.api.util.client.ModelMaterialHelper;
 import com.smithsmodding.armory.client.model.item.baked.BakedMaterializedModel;
 import com.smithsmodding.armory.client.textures.MaterializedTextureCreator;
 import com.smithsmodding.armory.common.api.ArmoryAPI;
@@ -22,6 +23,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import javax.annotation.Nonnull;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Author Marc (Created on: 14.06.2016)
@@ -59,7 +61,13 @@ public class MaterializedItemModel extends ItemLayerModel {
             modelBuilder.put(material, this.retexture(ImmutableMap.of("layer0", materializedTextures.get(material.getOreDictionaryIdentifier()).getIconName())).bake(state, format, bakedTextureGetter));
         }
 
-        return new BakedMaterializedModel(parent, modelBuilder.build(), transforms);
+        final Map<IMaterial, IBakedModel> materialBakedModels = modelBuilder.build();
+        final Map<IMaterial, IBakedModel> materialReprocessedModels = materialBakedModels.entrySet().stream().collect(Collectors.toMap(
+          Map.Entry::getKey,
+          entry -> ModelMaterialHelper.checkForMaterialOverride(state, coreTexture, entry.getKey(), entry.getValue())
+        ));
+
+        return new BakedMaterializedModel(parent, ImmutableMap.copyOf(materialReprocessedModels), transforms);
     }
 
     @Override
