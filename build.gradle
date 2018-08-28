@@ -29,7 +29,7 @@ plugins {
 repositories {
     maven {
         name 'LDTTeam Artifactory'
-        url 'https://ldtteam.jfrog.io/ldtteam/modding'
+        url 'https://www.artifactory.orionminecraft.com/artifactory/LDTTeam-Modding'
     }
 }
 
