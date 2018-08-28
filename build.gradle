@@ -59,7 +59,7 @@ configurations {
 
 //Initializing the mod environment
 version = config.minecraft_version.toString() + "-" + System.getenv()["Version"]
-group = "com.smithsmodding.armory"
+group = "com.ldtteam"
 archivesBaseName = "armory"
 
 minecraft {
@@ -78,7 +78,7 @@ minecraft {
 
 dependencies {
     //Mod dependencies
-    deobfCompile('com.smithsmodding.smithscore:smithscore:1.12.2-0.1.+')
+    deobfCompile('com.ldtteam:smithscore:1.12.2-0.1.+')
 
     //deobfCompile group: 'com.smithsmodding.smithscore', name: 'smithscore', version: config.minecraft_version + "-" + config.smithscore_version
     deobfCompile "mezz.jei:jei_" + config.minecraft_version + ":" + config.jei_version
@@ -89,15 +89,15 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDir 'src/main'
+            srcDir 'src/main/java'
         }
         resources {
-            srcDir 'src/resources'
+            srcDir 'src/main/resources'
         }
     }
     api {
         java {
-            srcDir 'src/api'
+            srcDir 'src/api/java'
         }
     }
     test {
