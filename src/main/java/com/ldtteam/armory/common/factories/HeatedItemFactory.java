@@ -46,6 +46,9 @@ public class HeatedItemFactory implements IHeatedItemFactory {
         else
             originalStack = type.generateItemStackForMaterial(material);
 
+        if (originalStack.isEmpty())
+            return ItemStack.EMPTY;
+
         SmithsCoreCapabilityDispatcher originalCapDispatcher = originalStack.getCapability(SmithsCoreCapabilityDispatcher.INSTANCE_CAPABILITY, null).getDispatcher();
 
         IHeatableObjectCapability heatableObjectCapability = new IHeatableObjectCapability.Impl()

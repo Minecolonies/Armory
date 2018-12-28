@@ -45,7 +45,7 @@ public class HeatedObjectType extends IHeatedObjectType.Impl<IHeatedObjectType> 
         NonNullList<ItemStack> matches = OreDictionary.getOres(oreDicPrefix + material.getOreDictionaryIdentifier());
 
         if (matches.isEmpty())
-            throw new IllegalArgumentException("The given material has no Ore Dictionary entry for prefix: " + oreDicPrefix + " and Identifier: " + material.getOreDictionaryIdentifier());
+            return ItemStack.EMPTY;
 
         return matches.get(0).copy();
     }

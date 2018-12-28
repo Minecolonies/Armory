@@ -192,7 +192,8 @@ public class CommonMedievalRegistrationInitializer
         IMaterialConstructionHelper helper = IArmoryAPI.Holder.getInstance().getHelpers().getMaterialConstructionHelper();
 
         ModMaterials.Armor.Core.IRON = helper
-                                         .createMedievalCoreArmorMaterial(TK_ARMOR_IRON,
+                                         .createMedievalCoreArmorMaterial(
+                                           TK_ARMOR_IRON,
                                            References.Colors.Materials.CLR_IRON.encodeColor(),
                                            "Iron",
                                            IRON_MELTINGPOINT,

@@ -67,7 +67,7 @@ public class CommandGiveHeated extends CommandBase {
 
                 ItemStack stack = IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getHeatedItemFactory().generateHeatedItemFromMaterial(material, object, type, temperature);
 
-                if (stack == null) {
+                if (stack == null || stack.isEmpty()) {
                     throw new WrongUsageException(TranslationKeys.Messages.Commands.TK_GIVEHEATEDUSAGE);
                 }
 

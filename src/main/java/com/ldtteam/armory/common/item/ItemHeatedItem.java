@@ -41,7 +41,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class ItemHeatedItem extends Item {
 
@@ -95,6 +97,14 @@ public class ItemHeatedItem extends Item {
             IArmoryAPI.Holder.getInstance().getRegistryManager().getAddonArmorMaterialRegistry().forEach(new MaterialItemStackConstructionConsumer(type, heatedItems));
             IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry().forEach(new MaterialItemStackConstructionConsumer(type, heatedItems));
         }
+
+        Set<String> emptyIds = heatedItems.keySet()
+          .stream()
+          .filter(id -> heatedItems.get(id).isEmpty())
+          .collect(Collectors.toSet());
+
+        emptyIds
+          .forEach(heatedItems::remove);
 
         list.addAll(heatedItems.values());
     }

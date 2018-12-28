@@ -29,7 +29,7 @@ plugins {
 repositories {
     maven {
         name 'LDTTeam Artifactory'
-        url 'https://www.artifactory.orionminecraft.com/artifactory/LDTTeam-Modding'
+        url 'https://ldtteam.jfrog.io/ldtteam/modding'
     }
 }
 
@@ -78,7 +78,7 @@ minecraft {
 
 dependencies {
     //Mod dependencies
-    deobfCompile('com.ldtteam:smithscore:1.12.2-0.1.+')
+    deobfCompile('com.ldtteam:smithscore:1.12.2-0.20.+')
 
     //deobfCompile group: 'com.smithsmodding.smithscore', name: 'smithscore', version: config.minecraft_version + "-" + config.smithscore_version
     deobfCompile "mezz.jei:jei_" + config.minecraft_version + ":" + config.jei_version
