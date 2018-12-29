@@ -84,7 +84,7 @@ public class MaterializedBlockModel implements IModel {
         final Map<IMaterial, IBakedModel> materialBakedModels = subModelBuilder.build();
         final Map<IMaterial, IBakedModel> materialReprocessedModels = materialBakedModels.entrySet().stream().collect(Collectors.toMap(
           Map.Entry::getKey,
-          entry -> ModelMaterialHelper.checkForMaterialOverride(state, materializableTexture, entry.getKey(), entry.getValue())
+          entry -> ModelMaterialHelper.checkForMaterialOverride(state, materializableTexture, entry.getKey(), transformations, entry.getValue())
         ));
 
 

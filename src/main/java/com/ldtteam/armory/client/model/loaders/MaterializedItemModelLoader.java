@@ -13,6 +13,7 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 
 import javax.annotation.Nonnull;
+import java.io.File;
 
 /**
  * Author Marc (Created on: 14.06.2016)
@@ -28,6 +29,11 @@ public class MaterializedItemModelLoader implements ICustomModelLoader {
 
     @Override
     public IModel loadModel(ResourceLocation modelLocation) throws Exception {
+        if(!modelLocation.getResourcePath().startsWith("models" + File.separator + "item" + File.separator))
+        {
+            modelLocation = new ResourceLocation(modelLocation.getResourceDomain(), "models" + File.separator + "items" + File.separator + modelLocation.getResourcePath());
+        }
+
         modelLocation = ModelHelper.getModelLocation(modelLocation);
 
         try {

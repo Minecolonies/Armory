@@ -83,9 +83,10 @@ public abstract class TileEntityForgeBase<S extends TileEntityForgeBaseState, G 
 
                 //Check if the stack is a valid Fuel in the Furnace
                 if ((!fuelStack.isEmpty()) && (TileEntityFurnace.isItemFuel(fuelStack))) {
-                    fuelStack.shrink(1);
 
                     fuelData.changeTotalBurningTicksOnCurrentFuel(TileEntityFurnace.getItemBurnTime(fuelStack));
+
+                    fuelStack.shrink(1);
 
                     if (fuelStack.getCount() == 0 || fuelStack.isEmpty()) {
                         setFuelStack(fuelStackIndex, fuelStack.getItem().getContainerItem(fuelStack));

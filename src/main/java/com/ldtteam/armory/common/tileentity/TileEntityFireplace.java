@@ -208,7 +208,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
     public boolean isItemValidForSlot(int index, @Nonnull ItemStack stack) {
         if (index < INGOTSLOTCOUNT) {
             for (int i = 0; i < FOODCOOKINPUTCOUNT; i++) {
-                if (getStackInSlot(i + INGOTSLOTCOUNT) != null)
+                if (!getStackInSlot(i + INGOTSLOTCOUNT).isEmpty())
                     return false;
             }
 
@@ -414,7 +414,7 @@ public class TileEntityFireplace extends TileEntityForgeBase<TileEntityFireplace
             }
             int result = foodOutputStacks[0].getCount() + itemstack.getCount();
             if (!(result <= getInventoryStackLimit() && result <= this.foodOutputStacks[0].getMaxStackSize())) {
-                if (this.foodOutputStacks[1] == null) return 1;
+                if (this.foodOutputStacks[1].isEmpty()) return 1;
                 if (!this.foodOutputStacks[1].isItemEqual(itemstack)) return -1;
                 result = foodOutputStacks[1].getCount() + itemstack.getCount();
                 if (!(result <= getInventoryStackLimit() && result <= this.foodOutputStacks[0].getMaxStackSize())) {

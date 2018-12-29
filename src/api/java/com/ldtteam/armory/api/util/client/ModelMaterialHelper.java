@@ -1,15 +1,18 @@
 package com.ldtteam.armory.api.util.client;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.ldtteam.armory.api.common.material.core.IMaterial;
 import com.ldtteam.smithscore.client.model.unbaked.ItemLayerModel;
 import com.ldtteam.smithscore.util.client.ResourceHelper;
 import com.ldtteam.smithscore.util.client.color.MinecraftColor;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.PerspectiveMapWrapper;
 import net.minecraftforge.common.model.IModelState;
+import net.minecraftforge.common.model.TRSRTransformation;
 
 import javax.annotation.Nonnull;
 
@@ -34,6 +37,7 @@ public final class ModelMaterialHelper
       final @Nonnull IModelState state,
       final @Nonnull ResourceLocation baseTexture,
       final @Nonnull IMaterial material,
+      final @Nonnull ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms,
       final @Nonnull IBakedModel original)
     {
         if (material.getRenderInfo() == null)
@@ -55,7 +59,7 @@ public final class ModelMaterialHelper
                 quads.add(com.ldtteam.smithscore.util.client.ModelHelper.colorQuad(color, quad));
             }
 
-            return new ItemLayerModel.BakedItemModel(quads.build(), original.getParticleTexture(), PerspectiveMapWrapper.getTransforms(state), original.getOverrides(), null);
+            return new ItemLayerModel.BakedItemModel(quads.build(), original.getParticleTexture(), transforms, original.getOverrides(), null);
         }
         return original;
     }

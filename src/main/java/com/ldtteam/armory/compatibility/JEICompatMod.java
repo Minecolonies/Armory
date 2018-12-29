@@ -13,6 +13,7 @@ import com.ldtteam.armory.common.api.ArmoryAPI;
 import com.ldtteam.armory.compatibility.recipes.anvil.BlackSmithsAnvilRecipeWrapper;
 import com.ldtteam.armory.compatibility.recipes.anvil.BlacksmithsAnvilRecipeCategory;
 import mezz.jei.api.*;
+import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -27,7 +28,7 @@ import static com.ldtteam.armory.api.util.references.References.NBTTagCompoundDa
  * Author Orion (Created on: 21.06.2016)
  */
 @JEIPlugin
-public class JEICompatMod extends BlankModPlugin {
+public class JEICompatMod implements IModPlugin {
 
     private static IJeiHelpers HELPERS;
 
@@ -160,23 +161,29 @@ public class JEICompatMod extends BlankModPlugin {
         });
     }
 
+    /**
+     * Register the categories handled by this plugin.
+     * These are registered before recipes so they can be checked for validity.
+     *
+     * @since JEI 4.5.0
+     */
+    @Override
+    public void registerCategories(final IRecipeCategoryRegistration registry)
+    {
+        HELPERS = registry.getJeiHelpers();
+        registry.addRecipeCategories(new BlacksmithsAnvilRecipeCategory());
+    }
+
     @Override
     public void register(@Nonnull IModRegistry registry) {
-        HELPERS = registry.getJeiHelpers();
-
-        registry.addRecipeCategories(new BlacksmithsAnvilRecipeCategory());
         registry.handleRecipes(IAnvilRecipe.class, BlackSmithsAnvilRecipeWrapper::new, References.Compatibility.JEI.RecipeTypes.ANVIL);
         registry.addRecipes(Lists.newArrayList(IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry()), References.Compatibility.JEI.RecipeTypes.ANVIL);
         registry.addRecipeClickArea(GuiBlacksmithsAnvil.class, 17, 7, 30, 30, References.Compatibility.JEI.RecipeTypes.ANVIL);
 
         NonNullList<ItemStack> anvils = NonNullList.create();
-        ModBlocks.BL_ANVIL.getSubBlocks(null, anvils);
+        ModBlocks.BL_ANVIL.getSubBlocks(ModBlocks.BL_ANVIL.getCreativeTabToDisplayOn(), anvils);
 
         for (ItemStack stack : anvils)
-            registry.addRecipeCategoryCraftingItem(stack, References.Compatibility.JEI.RecipeTypes.ANVIL);
-
-/*        getJeiHelpers().getNbtIgnoreList().ignoreNbtTagNames(References.NBTTagCompoundData.HeatedObject.CURRENTTEMPERATURE);
-        getJeiHelpers().getNbtIgnoreList().ignoreNbtTagNames(References.NBTTagCompoundData.HeatedObject.ORIGINALITEM);
-        getJeiHelpers().getNbtIgnoreList().ignoreNbtTagNames(CoreReferences.NBT.IItemProperties.TARGET);*/
+            registry.addRecipeCatalyst(stack, References.Compatibility.JEI.RecipeTypes.ANVIL);
     }
 }

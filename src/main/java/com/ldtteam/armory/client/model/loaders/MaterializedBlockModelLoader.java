@@ -13,6 +13,7 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 
 import javax.annotation.Nonnull;
+import java.io.File;
 
 /**
  * Created by marcf on 1/31/2017.
@@ -29,6 +30,10 @@ public class MaterializedBlockModelLoader implements ICustomModelLoader {
     @Override
     public IModel loadModel(ResourceLocation modelLocation)
     {
+        if(!modelLocation.getResourcePath().startsWith("models" + File.separator + "block" + File.separator))
+        {
+            modelLocation = new ResourceLocation(modelLocation.getResourceDomain(), "models" + File.separator + "items + " + File.separator + modelLocation.getResourcePath());
+        }
         modelLocation = ModelHelper.getModelLocation(modelLocation);
 
         try {

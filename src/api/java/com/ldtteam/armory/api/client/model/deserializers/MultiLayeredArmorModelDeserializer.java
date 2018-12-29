@@ -12,6 +12,7 @@ import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -42,6 +43,11 @@ public class MultiLayeredArmorModelDeserializer implements JsonDeserializer<Mult
      * @throws IOException Thrown when the given ModelLocation points to nothing or not to a ModelFile.
      */
     public MultiLayeredArmorModelDefinition deserialize(@NotNull ResourceLocation modelLocation) throws IOException {
+        if(!modelLocation.getResourcePath().startsWith("models" + File.separator + "item" + File.separator))
+        {
+            modelLocation = new ResourceLocation(modelLocation.getResourceDomain(), "models" + File.separator + "item" + File.separator + modelLocation.getResourcePath());
+        }
+
         IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
         Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
 

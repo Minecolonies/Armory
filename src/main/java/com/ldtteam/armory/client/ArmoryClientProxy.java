@@ -26,6 +26,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 import javax.annotation.Nonnull;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -46,7 +47,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
             return null;
         }
 
-        String path = "materialized/" + itemLocation.getResourcePath() + MaterializedItemModelLoader.EXTENSION;
+        String path = "materialized" + File.separator + itemLocation.getResourcePath() + MaterializedItemModelLoader.EXTENSION;
 
         return registerMaterializedItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
     }
@@ -57,7 +58,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
             return null;
         }
 
-        String path = "component/" + itemLocation.getResourcePath() + ArmorComponentModelLoader.EXTENSION;
+        String path = "component" + File.separator + itemLocation.getResourcePath() + ArmorComponentModelLoader.EXTENSION;
 
         return registerComponentItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
     }
@@ -68,7 +69,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
             return null;
         }
 
-        String path = "armor/" + itemLocation.getResourcePath() + MultiLayeredArmorModelLoader.EXTENSION;
+        String path = "armor" + File.separator + itemLocation.getResourcePath() + MultiLayeredArmorModelLoader.EXTENSION;
 
         return registerArmorItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
     }
@@ -79,7 +80,7 @@ public class ArmoryClientProxy extends ArmoryCommonProxy {
             return null;
         }
 
-        String path = "heateditem/" + itemLocation.getResourcePath() + HeatedItemModelLoader.EXTENSION;
+        String path = "heateditem" + File.separator + itemLocation.getResourcePath() + HeatedItemModelLoader.EXTENSION;
 
         return registerHeatedItemItemModel(item, new ResourceLocation(itemLocation.getResourceDomain(), path));
     }

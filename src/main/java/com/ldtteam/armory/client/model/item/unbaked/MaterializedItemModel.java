@@ -64,7 +64,7 @@ public class MaterializedItemModel extends ItemLayerModel {
         final Map<IMaterial, IBakedModel> materialBakedModels = modelBuilder.build();
         final Map<IMaterial, IBakedModel> materialReprocessedModels = materialBakedModels.entrySet().stream().collect(Collectors.toMap(
           Map.Entry::getKey,
-          entry -> ModelMaterialHelper.checkForMaterialOverride(state, coreTexture, entry.getKey(), entry.getValue())
+          entry -> ModelMaterialHelper.checkForMaterialOverride(state, coreTexture, entry.getKey(), transforms, entry.getValue())
         ));
 
         return new BakedMaterializedModel(parent, ImmutableMap.copyOf(materialReprocessedModels), transforms);

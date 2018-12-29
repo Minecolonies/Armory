@@ -13,7 +13,8 @@ import javax.annotation.Nonnull;
 /**
  * Author Orion (Created on: 23.06.2016)
  */
-public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements ITileEntityState {
+public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements ITileEntityState, IForgeFuelDataContainer
+{
 
     float currentTemp = 20;
     float lastTemp = 20;
@@ -21,6 +22,9 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
     float maxTemp;
     float lastNegativeTerm;
     float lastPositiveTerm;
+    boolean isBurning;
+    int     totalBurningTicksOnCurrentFuel;
+    int     burningTicksLeftOnCurrentFuel;
     private I tileEntity;
 
     @Override
@@ -53,6 +57,10 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
             lastChange = compound.getFloat(References.NBTTagCompoundData.TE.ForgeBase.LASTADDEDHEAT);
             lastTemp = compound.getFloat(References.NBTTagCompoundData.TE.ForgeBase.LASTTEMPERATURE);
 
+            setBurning(compound.getBoolean(References.NBTTagCompoundData.TE.ForgeBase.CURRENTLYBURNING));
+            setTotalBurningTicksOnCurrentFuel(compound.getInteger(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKFUELAMOUNT));
+            setBurningTicksLeftOnCurrentFuel(compound.getInteger(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKBURNINGTIME));
+
             lastNegativeTerm = compound.getFloat(References.NBTTagCompoundData.TE.ForgeBase.LASTNEGATIVEINFLUENCE);
             lastPositiveTerm = compound.getFloat(References.NBTTagCompoundData.TE.ForgeBase.LASTPOSITIVEINFLUENCE);
         } catch (Exception ex) {
@@ -65,6 +73,9 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
 
             lastNegativeTerm = 0f;
             lastPositiveTerm = 0f;
+            setBurning(false);
+            setTotalBurningTicksOnCurrentFuel(0);
+            setBurningTicksLeftOnCurrentFuel(0);
         }
     }
 
@@ -80,6 +91,10 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
 
         compound.setFloat(References.NBTTagCompoundData.TE.ForgeBase.LASTNEGATIVEINFLUENCE, lastNegativeTerm);
         compound.setFloat(References.NBTTagCompoundData.TE.ForgeBase.LASTPOSITIVEINFLUENCE, lastPositiveTerm);
+
+        compound.setBoolean(References.NBTTagCompoundData.TE.ForgeBase.CURRENTLYBURNING, isBurning);
+        compound.setInteger(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKFUELAMOUNT, totalBurningTicksOnCurrentFuel);
+        compound.setInteger(References.NBTTagCompoundData.TE.ForgeBase.FUELSTACKBURNINGTIME, burningTicksLeftOnCurrentFuel);
 
         return compound;
     }
@@ -189,5 +204,50 @@ public class TileEntityForgeBaseState<I extends TileEntityForgeBase> implements 
 
     public void changeLastPositiveTerm(float change) {
         this.lastPositiveTerm += change;
+    }
+
+    @Override
+    public boolean isBurning() {
+        return isBurning;
+    }
+
+    @Override
+    public void setBurning(boolean burning) {
+        this.isBurning = burning;
+    }
+
+    @Override
+    public int getTotalBurningTicksOnCurrentFuel() {
+        return totalBurningTicksOnCurrentFuel;
+    }
+
+    @Override
+    public void setTotalBurningTicksOnCurrentFuel(int totalBurningTicksOnCurrentFuel) {
+        this.totalBurningTicksOnCurrentFuel = totalBurningTicksOnCurrentFuel;
+    }
+
+    @Override
+    public void changeTotalBurningTicksOnCurrentFuel(int change) {
+        totalBurningTicksOnCurrentFuel += change;
+    }
+
+    @Override
+    public int getBurningTicksLeftOnCurrentFuel() {
+        return burningTicksLeftOnCurrentFuel;
+    }
+
+    @Override
+    public void setBurningTicksLeftOnCurrentFuel(int burningTicksLeftOnCurrentFuel) {
+        this.burningTicksLeftOnCurrentFuel = burningTicksLeftOnCurrentFuel;
+    }
+
+    @Override
+    public void changeBurningTicksLeftOnCurrentFuel(int change) {
+        burningTicksLeftOnCurrentFuel += change;
+    }
+
+    @Override
+    public void resetBurningTicksLeftOnCurrentFuel() {
+        setBurningTicksLeftOnCurrentFuel(getTotalBurningTicksOnCurrentFuel());
     }
 }

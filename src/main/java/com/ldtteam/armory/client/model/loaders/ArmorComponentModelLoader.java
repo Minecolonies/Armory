@@ -14,6 +14,7 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.TRSRTransformation;
 
 import javax.annotation.Nonnull;
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
@@ -31,6 +32,11 @@ public class ArmorComponentModelLoader implements ICustomModelLoader {
     @Override
     public IModel loadModel(@Nonnull ResourceLocation modelLocation) throws IOException {
         try {
+            if(!modelLocation.getResourcePath().startsWith("models" + File.separator + "item" + File.separator))
+            {
+                modelLocation = new ResourceLocation(modelLocation.getResourceDomain(), "models" + File.separator + "item" + File.separator + modelLocation.getResourcePath());
+            }
+
             //Load the default definition of the model as defined by the registrar first.
             Map<String, String> textures = ModelHelper.loadTexturesFromJson(modelLocation);
             ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms = ModelHelper.loadTransformFromJson(modelLocation);

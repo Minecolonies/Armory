@@ -111,7 +111,7 @@ public class ArmorAddonComponentModel extends ArmorSubComponentModel {
 
                     // We check if a special texture for that item exists in our textures collection.
                     // If not we check if the material needs coloring and color the vertexes individually.
-                    bakedModel2 = ModelMaterialHelper.checkForMaterialOverride(state, baseTexture, material, bakedModel2);
+                    bakedModel2 = ModelMaterialHelper.checkForMaterialOverride(state, baseTexture, material, transforms, bakedModel2);
 
                     bakedMaterialModel.addMaterialModel(material, bakedModel2);
                 }
