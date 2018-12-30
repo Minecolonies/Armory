@@ -10,6 +10,7 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -92,8 +93,8 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
         @Nonnull
         private Float temperature = 20F;
 
-        @Nullable
-        private ItemStack stack;
+        @NotNull
+        private ItemStack stack = ItemStack.EMPTY;
 
         /**
          * Getter for the temperature stored in this capability.
@@ -143,7 +144,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
          *
          * @return The stack that turned into this HeatedObject. Or null if something else is Heated.
          */
-        @Nullable
+        @NotNull
         @Override
         public ItemStack getOriginalStack() {
             return stack;
@@ -156,7 +157,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
          * @return The instance you called this method on.
          */
         @Override
-        public IHeatedObjectCapability setOriginalStack(@Nullable ItemStack stack) {
+        public IHeatedObjectCapability setOriginalStack(@NotNull ItemStack stack) {
             this.stack = stack;
             return this;
         }
@@ -232,6 +233,9 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
 
             if (compound.hasKey(References.NBTTagCompoundData.HeatedObject.HEATEDSTACK))
                 instance.setOriginalStack(new ItemStack(compound.getCompoundTag(References.NBTTagCompoundData.HeatedObject.HEATEDSTACK)));
+            else
+                instance.setOriginalStack(ItemStack.EMPTY);
+
         }
     }
 }
