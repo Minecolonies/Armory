@@ -153,6 +153,7 @@ public class CommonSystemInitializer extends IInitializationComponent.Impl imple
         GameRegistry.registerTileEntity(TileEntityMoltenMetalTank.class, new ResourceLocation(References.General.MOD_ID, References.InternalNames.TileEntities.Tank));
         GameRegistry.registerTileEntity(TileEntityPump.class, new ResourceLocation(References.General.MOD_ID, References.InternalNames.TileEntities.Pump));
         GameRegistry.registerTileEntity(TileEntityMoltenMetalMixer.class, new ResourceLocation(References.General.MOD_ID, References.InternalNames.TileEntities.MoltenMetalMixer));
+        GameRegistry.registerTileEntity(TileEntityHeatableBlock.class, new ResourceLocation(References.General.MOD_ID, References.InternalNames.TileEntities.HeatableResource));
     }
 
     private static void initializeOreDict() {

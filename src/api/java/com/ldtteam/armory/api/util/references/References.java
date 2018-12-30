@@ -249,6 +249,7 @@ public class References {
             public static final String Tank = "container.armory.tank";
             public static final String Pump = "container.armory.pump";
             public static final String MoltenMetalMixer = "container.armory.moltenmetalmixer";
+            public static final String HeatableResource = "container.armory.resource.heatable";
 
             public static final class Structures {
                 public static final String Forge = "structures.armory.forge";
