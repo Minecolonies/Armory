@@ -35,6 +35,10 @@ public class AnvilModelLoader implements ICustomModelLoader {
     @Override
     public IModel loadModel(@NotNull ResourceLocation modelLocation) throws IOException {
         try {
+            modelLocation = ModelHelper.getModelLocation(modelLocation);
+            modelLocation = new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath().replace(".json", ""));
+
+
             AnvilModelDefinition modelDefinition = AnvilModelDefinition.loadModel(modelLocation);
 
             IModel objModel = ModelLoaderRegistry.getModel(new ResourceLocation(modelDefinition.getModelPath()));
@@ -78,7 +82,7 @@ public class AnvilModelLoader implements ICustomModelLoader {
 
             return model;
         } catch (Exception e) {
-            ModLogger.getInstance().error(String.format("Could not load Anvil-Model {}", modelLocation.toString()));
+            ModLogger.getInstance().error(String.format("Could not load Anvil-Model %s", modelLocation.toString()));
         }
 
         //If all fails return a Missing model.

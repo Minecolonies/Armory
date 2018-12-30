@@ -43,12 +43,7 @@ public class MultiLayeredArmorModelDeserializer implements JsonDeserializer<Mult
      * @throws IOException Thrown when the given ModelLocation points to nothing or not to a ModelFile.
      */
     public MultiLayeredArmorModelDefinition deserialize(@NotNull ResourceLocation modelLocation) throws IOException {
-        if(!modelLocation.getResourcePath().startsWith("models" + File.separator + "item" + File.separator))
-        {
-            modelLocation = new ResourceLocation(modelLocation.getResourceDomain(), "models" + File.separator + "item" + File.separator + modelLocation.getResourcePath());
-        }
-
-        IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath() + ".json"));
+        IResource iresource = Minecraft.getMinecraft().getResourceManager().getResource(ModelHelper.getModelLocation(modelLocation));
         Reader reader = new InputStreamReader(iresource.getInputStream(), Charsets.UTF_8);
 
         return gson.fromJson(reader, definitionType);

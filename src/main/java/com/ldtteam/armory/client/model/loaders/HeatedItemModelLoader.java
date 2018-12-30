@@ -30,10 +30,7 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
     @Override
     public IModel loadModel(@Nonnull ResourceLocation modelLocation) throws IOException {
         try {
-            if(!modelLocation.getResourcePath().startsWith("models" + File.separator + "item" + File.separator))
-            {
-                modelLocation = new ResourceLocation(modelLocation.getResourceDomain(), "models" + File.separator + "item" + File.separator + modelLocation.getResourcePath());
-            }
+            modelLocation = ModelHelper.getModelLocation(modelLocation);
 
             //Load the default definition of the model as defined by the registrar first.
             Map<String, String> textures = ModelHelper.loadTexturesFromJson(modelLocation);
@@ -57,7 +54,7 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
                         location = new ResourceLocation(entry.getValue());
                     } else {
                         //Unknown layer, warning and skipping.
-                        ModLogger.getInstance().warn(String.format("HeatedItemModel {} has invalid texture entry {}; Skipping layer.", modelLocation, name));
+                        ModLogger.getInstance().warn(String.format("HeatedItemModel %s has invalid texture entry %s; Skipping layer.", modelLocation, name));
                         continue;
                     }
                     //If the texture was added to any layer, add it to the list of used textures.
@@ -65,7 +62,7 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
                         builder.add(location);
                     }
                 } catch (NumberFormatException e) {
-                    ModLogger.getInstance().error(String.format("HeatedItemModel{} has invalid texture entry {}; Skipping layer.", modelLocation, name));
+                    ModLogger.getInstance().error(String.format("HeatedItemModel%s has invalid texture entry %s; Skipping layer.", modelLocation, name));
                 }
             }
 
@@ -79,7 +76,7 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
 
             return output;
         } catch (IOException e) {
-            ModLogger.getInstance().error(String.format("Could not load HeatedItemModel {}", modelLocation.toString()));
+            ModLogger.getInstance().error(String.format("Could not load HeatedItemModel %s", modelLocation.toString()));
         }
 
         //If all fails return a Missing model.

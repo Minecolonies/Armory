@@ -32,10 +32,7 @@ public class ArmorComponentModelLoader implements ICustomModelLoader {
     @Override
     public IModel loadModel(@Nonnull ResourceLocation modelLocation) throws IOException {
         try {
-            if(!modelLocation.getResourcePath().startsWith("models" + File.separator + "item" + File.separator))
-            {
-                modelLocation = new ResourceLocation(modelLocation.getResourceDomain(), "models" + File.separator + "item" + File.separator + modelLocation.getResourcePath());
-            }
+            modelLocation = ModelHelper.getModelLocation(modelLocation);
 
             //Load the default definition of the model as defined by the registrar first.
             Map<String, String> textures = ModelHelper.loadTexturesFromJson(modelLocation);
@@ -68,7 +65,7 @@ public class ArmorComponentModelLoader implements ICustomModelLoader {
 
             return output;
         } catch (IOException e) {
-            ModLogger.getInstance().error(String.format("Could not load ArmorItemComponentModel {}", modelLocation.toString()));
+            ModLogger.getInstance().error(String.format("Could not load ArmorItemComponentModel %s", modelLocation.toString()));
         }
 
         //If all fails return a Missing model.

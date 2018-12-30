@@ -29,11 +29,6 @@ public class MaterializedItemModelLoader implements ICustomModelLoader {
 
     @Override
     public IModel loadModel(ResourceLocation modelLocation) throws Exception {
-        if(!modelLocation.getResourcePath().startsWith("models" + File.separator + "item" + File.separator))
-        {
-            modelLocation = new ResourceLocation(modelLocation.getResourceDomain(), "models" + File.separator + "items" + File.separator + modelLocation.getResourcePath());
-        }
-
         modelLocation = ModelHelper.getModelLocation(modelLocation);
 
         try {
@@ -43,7 +38,7 @@ public class MaterializedItemModelLoader implements ICustomModelLoader {
 
             return new MaterializedItemModel(definition.getCoreTexture(), definition.getTransforms());
         } catch (Exception ex) {
-            ModLogger.getInstance().error(String.format("Could not load {} as MaterializedModel", modelLocation.toString()));
+            ModLogger.getInstance().error(String.format("Could not load %s as MaterializedModel", modelLocation.toString()));
         }
 
         return ModelLoaderRegistry.getMissingModel();

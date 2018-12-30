@@ -21,6 +21,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -57,7 +58,7 @@ public class MaterializedBlockModel implements IModel {
 
     @Override
     public IBakedModel bake(
-      final IModelState state, final VertexFormat format, final java.util.function.Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter)
+      final IModelState state, final VertexFormat format, final Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter)
     {
         ImmutableMap.Builder<IMaterial, IBakedModel> subModelBuilder = new ImmutableMap.Builder<>();
 

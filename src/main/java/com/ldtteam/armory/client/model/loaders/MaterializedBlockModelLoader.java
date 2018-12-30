@@ -30,10 +30,6 @@ public class MaterializedBlockModelLoader implements ICustomModelLoader {
     @Override
     public IModel loadModel(ResourceLocation modelLocation)
     {
-        if(!modelLocation.getResourcePath().startsWith("models" + File.separator + "block" + File.separator))
-        {
-            modelLocation = new ResourceLocation(modelLocation.getResourceDomain(), "models" + File.separator + "items + " + File.separator + modelLocation.getResourcePath());
-        }
         modelLocation = ModelHelper.getModelLocation(modelLocation);
 
         try {
@@ -44,7 +40,7 @@ public class MaterializedBlockModelLoader implements ICustomModelLoader {
 
             return new MaterializedBlockModel(parentModel, definition.getCoreTexture(), definition.getMaterialOverrides(), definition.getTransforms());
         } catch (Exception ex) {
-            ModLogger.getInstance().error(String.format("Could not load {} as MaterializedBlockModel", modelLocation.toString()));
+            ModLogger.getInstance().error(String.format("Could not load %s as MaterializedBlockModel", modelLocation.toString()));
         }
 
         return ModelLoaderRegistry.getMissingModel();

@@ -92,7 +92,7 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
 
             return output;
         } catch (IOException e) {
-            ModLogger.getInstance().error(String.format("Could not load multimodel {}", modelLocation.toString()));
+            ModLogger.getInstance().error(String.format("Could not load multimodel %s", modelLocation.toString()));
             ModLogger.getInstance().error(e);
         }
 
