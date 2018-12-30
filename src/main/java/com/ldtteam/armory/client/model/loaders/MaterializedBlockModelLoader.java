@@ -2,6 +2,7 @@ package com.ldtteam.armory.client.model.loaders;
 
 import com.ldtteam.armory.api.client.model.deserializers.MaterializedBlockModelDeserializer;
 import com.ldtteam.armory.api.client.model.deserializers.definition.MaterializedBlockModelDefinition;
+import com.ldtteam.armory.api.util.client.ModelLocationHelper;
 import com.ldtteam.armory.api.util.references.ModLogger;
 import com.ldtteam.armory.client.model.block.unbaked.MaterializedBlockModel;
 import com.ldtteam.armory.client.textures.MaterializedTextureCreator;
@@ -30,6 +31,7 @@ public class MaterializedBlockModelLoader implements ICustomModelLoader {
     @Override
     public IModel loadModel(ResourceLocation modelLocation)
     {
+        modelLocation = ModelLocationHelper.checkForBlockPrefix(modelLocation);
         modelLocation = ModelHelper.getModelLocation(modelLocation);
 
         try {

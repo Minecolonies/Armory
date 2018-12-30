@@ -1,56 +1,56 @@
-[20:07:59] [main/INFO] [GradleStart]: Extra: []
-[20:07:59] [main/INFO] [GradleStart]: Found and added coremod: com.ldtteam.smithscore.core.SmithsCoreFMLPlugin
-[20:07:59] [main/INFO] [GradleStart]: Running with arguments: [--userProperties, {}, --assetsDir, /home/marc/.gradle/caches/minecraft/assets, --assetIndex, 1.12, --accessToken{REDACTED}, --version, 1.12.2, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, net.minecraftforge.gradle.tweakers.CoremodTweaker]
-[20:07:59] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
-[20:07:59] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
-[20:07:59] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.gradle.tweakers.CoremodTweaker
-[20:07:59] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
-[20:07:59] [main/INFO] [FML]: Forge Mod Loader version 14.23.4.2705 for Minecraft 1.12.2 loading
-[20:07:59] [main/INFO] [FML]: Java is OpenJDK 64-Bit Server VM, version 1.8.0_191, running on Linux:amd64:4.15.0-43-generic, installed at /usr/lib/jvm/java-8-openjdk-amd64/jre
-[20:08:00] [main/ERROR] [FML]: Apache Maven library folder was not in the format expected. Using default libraries directory.
-[20:08:00] [main/ERROR] [FML]: Full: /home/marc/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/7dc72b6d6d8a6dced3d294ed54c2cc3515ade9f4/maven-artifact-3.5.3.jar
-[20:08:00] [main/ERROR] [FML]: Trimmed: /home/marc/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/
-[20:08:00] [main/INFO] [FML]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
-[20:08:00] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLCorePlugin (net.minecraftforge.fml.relauncher.FMLCorePlugin), we are in deobf and it's a forge core plugin
-[20:08:00] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLForgePlugin (net.minecraftforge.classloading.FMLForgePlugin), we are in deobf and it's a forge core plugin
-[20:08:00] [main/INFO] [FML]: Found a command line coremod : com.ldtteam.smithscore.core.SmithsCoreFMLPlugin
-[20:08:00] [main/INFO] [FML]: Ignoring missing certificate for coremod SmithsCoreFMLPlugin (com.ldtteam.smithscore.core.SmithsCoreFMLPlugin), as this is probably a dev workspace
-[20:08:00] [main/INFO] [mixin]: SpongePowered MIXIN Subsystem Version=0.7.10 Source=file:/home/marc/.gradle/caches/minecraft/deobfedDeps/deobf/com/ldtteam/smithscore/1.12.2-0.20.17-ALPHA/smithscore-1.12.2-0.20.17-ALPHA.jar Service=LaunchWrapper Env=CLIENT
-[20:08:00] [main/INFO] [mixin]: Compatibility level set to JAVA_8
-[20:08:00] [main/INFO] [mixin]: Adding new token provider com.ldtteam.smithscore.core.SmithsCoreFMLPlugin$TokenProvider to MixinEnvironment[DEFAULT]
-[20:08:00] [main/INFO] [FML]: Searching /home/marc/IdeaProjects/Armory/run/./mods for mods
-[20:08:00] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.gradle.tweakers.CoremodTweaker
-[20:08:00] [main/INFO] [GradleStart]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
-[20:08:00] [main/INFO] [GradleStart]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
-[20:08:00] [main/INFO] [GradleStart]: Injecting location in coremod com.ldtteam.smithscore.core.SmithsCoreFMLPlugin
-[20:08:00] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[20:08:00] [main/INFO] [LaunchWrapper]: Loading tweak class name org.spongepowered.asm.mixin.EnvironmentStateTweaker
-[20:08:00] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
-[20:08:00] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
-[20:08:00] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[20:08:00] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
-[20:08:00] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[20:08:01] [main/ERROR] [FML]: FML appears to be missing any signature data. This is not a good thing
-[20:08:01] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[20:08:01] [main/INFO] [LaunchWrapper]: Calling tweak class org.spongepowered.asm.mixin.EnvironmentStateTweaker
-[20:08:01] [main/INFO] [mixin]: Initialised Mixin FML Remapper Adapter with net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper@7cf78c85
-[20:08:01] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
-[20:08:01] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
-[20:08:01] [main/INFO] [GradleStart]: Remapping AccessTransformer rules...
-[20:08:01] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
-[20:08:01] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
-[20:08:01] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
-[20:08:01] [main/INFO] [mixin]: Remapping refMap mixin.refmap.json using /home/marc/.gradle/caches/minecraft/de/oceanlabs/mcp/mcp_snapshot/20180421/1.12.2/srgs/srg-mcp.srg
-[20:08:01] [main/INFO] [LaunchWrapper]: Launching wrapped minecraft {net.minecraft.client.main.Main}
-[20:08:02] [main/INFO] [net.minecraft.client.Minecraft]: Setting user: Player57
-[20:08:05] [main/INFO] [net.minecraft.client.Minecraft]: LWJGL Version: 2.9.4
-[20:08:05] [main/INFO] [FML]: -- System Details --
+[22:09:49] [main/INFO] [GradleStart]: Extra: []
+[22:09:49] [main/INFO] [GradleStart]: Found and added coremod: com.ldtteam.smithscore.core.SmithsCoreFMLPlugin
+[22:09:49] [main/INFO] [GradleStart]: Running with arguments: [--userProperties, {}, --assetsDir, /home/marc/.gradle/caches/minecraft/assets, --assetIndex, 1.12, --accessToken{REDACTED}, --version, 1.12.2, --tweakClass, net.minecraftforge.fml.common.launcher.FMLTweaker, --tweakClass, net.minecraftforge.gradle.tweakers.CoremodTweaker]
+[22:09:49] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[22:09:49] [main/INFO] [LaunchWrapper]: Using primary tweak class name net.minecraftforge.fml.common.launcher.FMLTweaker
+[22:09:49] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.gradle.tweakers.CoremodTweaker
+[22:09:49] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLTweaker
+[22:09:49] [main/INFO] [FML]: Forge Mod Loader version 14.23.4.2705 for Minecraft 1.12.2 loading
+[22:09:49] [main/INFO] [FML]: Java is OpenJDK 64-Bit Server VM, version 1.8.0_191, running on Linux:amd64:4.15.0-43-generic, installed at /usr/lib/jvm/java-8-openjdk-amd64/jre
+[22:09:49] [main/ERROR] [FML]: Apache Maven library folder was not in the format expected. Using default libraries directory.
+[22:09:49] [main/ERROR] [FML]: Full: /home/marc/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/7dc72b6d6d8a6dced3d294ed54c2cc3515ade9f4/maven-artifact-3.5.3.jar
+[22:09:49] [main/ERROR] [FML]: Trimmed: /home/marc/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.5.3/
+[22:09:49] [main/INFO] [FML]: Managed to load a deobfuscated Minecraft name- we are in a deobfuscated environment. Skipping runtime deobfuscation
+[22:09:49] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLCorePlugin (net.minecraftforge.fml.relauncher.FMLCorePlugin), we are in deobf and it's a forge core plugin
+[22:09:49] [main/INFO] [FML]: Ignoring missing certificate for coremod FMLForgePlugin (net.minecraftforge.classloading.FMLForgePlugin), we are in deobf and it's a forge core plugin
+[22:09:49] [main/INFO] [FML]: Found a command line coremod : com.ldtteam.smithscore.core.SmithsCoreFMLPlugin
+[22:09:49] [main/INFO] [FML]: Ignoring missing certificate for coremod SmithsCoreFMLPlugin (com.ldtteam.smithscore.core.SmithsCoreFMLPlugin), as this is probably a dev workspace
+[22:09:49] [main/INFO] [mixin]: SpongePowered MIXIN Subsystem Version=0.7.10 Source=file:/home/marc/.gradle/caches/minecraft/deobfedDeps/deobf/com/ldtteam/smithscore/1.12.2-0.20.17-ALPHA/smithscore-1.12.2-0.20.17-ALPHA.jar Service=LaunchWrapper Env=CLIENT
+[22:09:49] [main/INFO] [mixin]: Compatibility level set to JAVA_8
+[22:09:49] [main/INFO] [mixin]: Adding new token provider com.ldtteam.smithscore.core.SmithsCoreFMLPlugin$TokenProvider to MixinEnvironment[DEFAULT]
+[22:09:49] [main/INFO] [FML]: Searching /home/marc/IdeaProjects/Armory/run/./mods for mods
+[22:09:49] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.gradle.tweakers.CoremodTweaker
+[22:09:49] [main/INFO] [GradleStart]: Injecting location in coremod net.minecraftforge.fml.relauncher.FMLCorePlugin
+[22:09:49] [main/INFO] [GradleStart]: Injecting location in coremod net.minecraftforge.classloading.FMLForgePlugin
+[22:09:49] [main/INFO] [GradleStart]: Injecting location in coremod com.ldtteam.smithscore.core.SmithsCoreFMLPlugin
+[22:09:49] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[22:09:49] [main/INFO] [LaunchWrapper]: Loading tweak class name org.spongepowered.asm.mixin.EnvironmentStateTweaker
+[22:09:49] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[22:09:49] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[22:09:49] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[22:09:49] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLInjectionAndSortingTweaker
+[22:09:49] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[22:09:50] [main/ERROR] [FML]: FML appears to be missing any signature data. This is not a good thing
+[22:09:50] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[22:09:50] [main/INFO] [LaunchWrapper]: Calling tweak class org.spongepowered.asm.mixin.EnvironmentStateTweaker
+[22:09:50] [main/INFO] [mixin]: Initialised Mixin FML Remapper Adapter with net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper@7cf78c85
+[22:09:50] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.FMLDeobfTweaker
+[22:09:50] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.gradle.tweakers.AccessTransformerTweaker
+[22:09:50] [main/INFO] [GradleStart]: Remapping AccessTransformer rules...
+[22:09:50] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.relauncher.CoreModManager$FMLPluginWrapper
+[22:09:50] [main/INFO] [LaunchWrapper]: Loading tweak class name net.minecraftforge.fml.common.launcher.TerminalTweaker
+[22:09:50] [main/INFO] [LaunchWrapper]: Calling tweak class net.minecraftforge.fml.common.launcher.TerminalTweaker
+[22:09:50] [main/INFO] [mixin]: Remapping refMap mixin.refmap.json using /home/marc/.gradle/caches/minecraft/de/oceanlabs/mcp/mcp_snapshot/20180421/1.12.2/srgs/srg-mcp.srg
+[22:09:50] [main/INFO] [LaunchWrapper]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[22:09:51] [main/INFO] [net.minecraft.client.Minecraft]: Setting user: Player331
+[22:09:54] [main/INFO] [net.minecraft.client.Minecraft]: LWJGL Version: 2.9.4
+[22:09:54] [main/INFO] [FML]: -- System Details --
 Details:
 	Minecraft Version: 1.12.2
 	Operating System: Linux (amd64) version 4.15.0-43-generic
 	Java Version: 1.8.0_191, Oracle Corporation
 	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Oracle Corporation
-	Memory: 457830008 bytes (436 MB) / 1065877504 bytes (1016 MB) up to 7481065472 bytes (7134 MB)
+	Memory: 413321392 bytes (394 MB) / 1055916032 bytes (1007 MB) up to 7481065472 bytes (7134 MB)
 	JVM Flags: 0 total; 
 	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
 	FML: 
@@ -58,196 +58,127 @@ Details:
 SmithsCoreFMLPlugin (smithscore-1.12.2-0.20.17-ALPHA.jar)
   
 	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.6.0 NVIDIA 396.54' Renderer: 'GeForce GTX 770/PCIe/SSE2'
-[20:08:05] [main/INFO] [FML]: MinecraftForge v14.23.4.2705 Initialized
-[20:08:05] [main/INFO] [FML]: Starts to replace vanilla recipe ingredients with ore ingredients.
-[20:08:05] [main/INFO] [FML]: Replaced 1036 ore ingredients
-[20:08:06] [main/INFO] [FML]: Searching /home/marc/IdeaProjects/Armory/run/./mods for mods
-[20:08:07] [main/INFO] [FML]: Forge Mod Loader has identified 8 mods to load
-[20:08:07] [main/WARN] [FML]: ****************************************
-[20:08:07] [main/WARN] [FML]: * The API armory-api|client|render|model from source /home/marc/IdeaProjects/Armory/out/production/Armory_api is loaded from an incompatible classloader. THIS WILL NOT WORK!
-[20:08:07] [main/WARN] [FML]: *  at net.minecraftforge.fml.common.ModAPIManager$APIContainer.validate(ModAPIManager.java:114)
-[20:08:07] [main/WARN] [FML]: *  at net.minecraftforge.fml.common.ModAPIManager.registerDataTableAndParseAPI(ModAPIManager.java:174)
-[20:08:07] [main/WARN] [FML]: *  at net.minecraftforge.fml.common.ModAPIManager.manageAPI(ModAPIManager.java:232)
-[20:08:07] [main/WARN] [FML]: *  at net.minecraftforge.fml.common.Loader.loadMods(Loader.java:567)
-[20:08:07] [main/WARN] [FML]: *  at net.minecraftforge.fml.client.FMLClientHandler.beginMinecraftLoading(FMLClientHandler.java:225)
-[20:08:07] [main/WARN] [FML]: *  at net.minecraft.client.Minecraft.init(Minecraft.java:513)...
-[20:08:07] [main/WARN] [FML]: ****************************************
-[20:08:07] [main/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, smithscore-core, armory, smithscore, jei] at CLIENT
-[20:08:07] [main/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, smithscore-core, armory, smithscore, jei] at SERVER
-[20:08:08] [Thread-3/INFO] [FML]: Using sync timing. 200 frames of Display.update took 30532245 nanos
-[20:08:08] [main/INFO] [net.minecraft.client.resources.SimpleReloadableResourceManager]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
-[20:08:08] [main/INFO] [FML]: Processing ObjectHolder annotations
-[20:08:08] [main/INFO] [FML]: Found 1168 ObjectHolder annotations
-[20:08:08] [main/INFO] [FML]: Identifying ItemStackHolder annotations
-[20:08:08] [main/INFO] [FML]: Found 0 ItemStackHolder annotations
-[20:08:08] [main/INFO] [FML]: Configured a dormant chunk cache size of 0
-[20:08:08] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
-[20:08:08] [main/INFO] [smithscore]: SmithsCore starting in Normal mode.
-[20:08:08] [main/INFO] [smithscore]: Initializing event handlers.
-[20:08:08] [main/INFO] [smithscore]: Attempting to inject @AutomaticEventBusSubscriber classes into the eventbus for smithscore
-[20:08:08] [main/INFO] [smithscore]: Found @AutomaticEventBusSubscriber class com.ldtteam.smithscore.util.client.Textures ready for registration on the Client Event bus
-[20:08:08] [main/INFO] [smithscore]: Injected @AutomaticEventBusSubscriber class com.ldtteam.smithscore.util.client.Textures in the Client Event bus
-[20:08:08] [main/INFO] [smithscore]: Attempting to inject @AutomaticEventBusSubscriber classes into the eventbus for armory
-[20:08:08] [main/INFO] [smithscore]: Found @AutomaticEventBusSubscriber class com.ldtteam.armory.common.logic.initialization.CommonMedievalRegistrationInitializer ready for registration on the Common Event bus
-[20:08:08] [main/INFO] [smithscore]: Injected @AutomaticEventBusSubscriber class com.ldtteam.armory.common.logic.initialization.CommonMedievalRegistrationInitializer in the Common Event bus
-[20:08:08] [main/INFO] [smithscore]: Attempting to inject @AutomaticEventBusSubscriber classes into the eventbus for jei
-[20:08:08] [main/INFO] [smithscore]: SmithsCore Pre-Init completed after: 133 mS.
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Starting "PreInit"-Phase
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Finished "PreInit"-Phase after: 65 ms!
-[20:08:08] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Found status: OUTDATED Target: 14.23.5.2768
-[20:08:08] [main/INFO] [FML]: Applying holder lookups
-[20:08:08] [main/INFO] [FML]: Holder lookups applied
-[20:08:08] [main/INFO] [FML]: Applying holder lookups
-[20:08:08] [main/INFO] [FML]: Holder lookups applied
-[20:08:08] [main/INFO] [FML]: Applying holder lookups
-[20:08:08] [main/INFO] [FML]: Holder lookups applied
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.item.armory.multiarmor.armor.helmet add: armor/armory.items.armor.medieval.helmet.mla-armory in the Domain: armory
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.item.armory.multiarmor.armor.chestplate add: armor/armory.items.armor.medieval.chestplate.mla-armory in the Domain: armory
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.item.armory.multiarmor.armor.leggings add: armor/armory.items.armor.medieval.leggings.mla-armory in the Domain: armory
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.item.armory.multiarmor.armor.shoes add: armor/armory.items.armor.medieval.shoes.mla-armory in the Domain: armory
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.components.heatedingots add: heateditem/armory.items.components.heatedingots.hi-armory in the Domain: armory
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.armorcomponent add: component/armory.items.armorcomponent.ac-armory in the Domain: armory
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.components.metalchain add: materialized/armory.items.components.metalchain.mim-armory in the Domain: armory
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.components.metalplate add: materialized/armory.items.components.metalplate.mim-armory in the Domain: armory
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.components.metalring add: materialized/armory.items.components.metalring.mim-armory in the Domain: armory
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.components.metalnugget add: materialized/armory.items.components.metalnugget.mim-armory in the Domain: armory
-[20:08:08] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.components.metalingot add: materialized/armory.items.components.metalingot.mim-armory in the Domain: armory
-[20:08:08] [main/INFO] [smithscore]: Added: armory to the SmitshCore OBJ Loader.
-[20:08:08] [main/INFO] [smithscore]: Added model definition for: item.armory.items.tongs add: armory.resources.mcm-smithscore in the Domain: armory
-[20:08:08] [main/INFO] [smithscore]: Added model definition for: item.armory.items.itemhammer add: armory.resources.mcm-smithscore in the Domain: armory
-[20:08:09] [main/INFO] [FML]: Applying holder lookups
-[20:08:09] [main/INFO] [FML]: Holder lookups applied
-[20:08:09] [main/INFO] [FML]: Injecting itemstacks
-[20:08:09] [main/INFO] [FML]: Itemstack injection complete
-[20:08:09] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Starting up SoundSystem...
-[20:08:10] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: Initializing LWJGL OpenAL
-[20:08:10] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[20:08:10] [main/INFO] [FML]: OBJLoader.Parser: command 's' (model: 'armory:models/block/anvil/blockmodel.obj') is not currently supported, skipping. Line: 76 's off'
-[20:08:10] [main/INFO] [FML]: OBJLoader.Parser: command 'l' (model: 'armory:models/block/anvil/blockmodel.obj') is not currently supported, skipping. Line: 94 'l 29 30'
-[20:08:10] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: OpenAL initialized.
-[20:08:10] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[20:08:10] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[20:08:10] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[20:08:10] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[20:08:10] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[20:08:10] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[20:08:10] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[20:08:10] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[20:08:10] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[20:08:10] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[20:08:10] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[20:08:10] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[20:08:10] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[20:08:10] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[20:08:10] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[20:08:10] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[20:08:10] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
-[20:08:10] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[20:08:10] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
-[20:08:10] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Sound engine started
-[20:08:11] [main/INFO] [FML]: Max texture size: 16384
-[20:08:11] [main/WARN] [net.minecraft.client.renderer.texture.TextureMap]: Texture armory:textures/gui/components/slot_default.png with size 18x18 will have visual artifacts at mip level 4, it can only support level 1. Please report to the mod author that the texture should be some multiple of 16x16.
-[20:08:12] [main/INFO] [net.minecraft.client.renderer.texture.TextureMap]: Created: 1024x512 textures-atlas
-[20:08:13] [main/INFO] [FML]: Applying holder lookups
-[20:08:13] [main/INFO] [FML]: Holder lookups applied
-[20:08:13] [main/INFO] [smithscore]: SmithsCore Init completed after: 5 ms.
-[20:08:13] [main/INFO] [armory]: [Armory-Main]-Starting "Init"-Phase
-[20:08:13] [main/INFO] [armory]: [Armory-Main]-Finished "Init"-Phase after: 15 ms!
-[20:08:13] [main/INFO] [armory]: [Armory-Main]-Starting "IMCCallback"-Phase
-[20:08:13] [main/INFO] [armory]: [Armory-Main]-Finished "IMCCallback"-Phase after: 0 ms!
-[20:08:13] [main/INFO] [FML]: Injecting itemstacks
-[20:08:13] [main/INFO] [FML]: Itemstack injection complete
-[20:08:13] [main/INFO] [smithscore]: SmithsCore Post-Init completed after: 0 ms.
-[20:08:13] [main/INFO] [armory]: [Armory-Main]-Starting "PostInit"-Phase
-[20:08:13] [main/INFO] [armory]: [Armory-Main]-Could not remove recipe of: 9xitemStack[item.ironNugget@0][]
-[20:08:13] [main/INFO] [armory]: [Armory-Main]-Could not remove recipe of: 9xitemStack[item.goldNugget@0][]
-[20:08:14] [main/INFO] [armory]: [Armory-Main]-Finished "PostInit"-Phase after: 26 ms!
-[20:08:14] [main/INFO] [armory]: [Armory-Main]-Starting "Load Complete"-Phase
-[20:08:14] [main/INFO] [armory]: [Armory-Main]-Notifying requesters of API init completion.
-[20:08:14] [main/INFO] [armory]: [Armory-Main]-Finished "Load Complete"-Phase after: 64 ms!
-[20:08:14] [main/INFO] [jei]: Starting JEI...
-[20:08:14] [main/INFO] [jei]: Registering recipe categories...
-[20:08:14] [main/INFO] [jei]: Registering recipe categories took 27.61 ms
-[20:08:14] [main/INFO] [jei]: Registering mod plugins...
-[20:08:14] [main/INFO] [jei]: Registering mod plugins took 198.7 ms
-[20:08:14] [main/INFO] [jei]: Building recipe registry...
-[20:08:14] [main/INFO] [jei]: Building recipe registry took 121.0 ms
-[20:08:14] [main/INFO] [jei]: Building ingredient list...
-[20:08:14] [main/INFO] [jei]: Building ingredient list took 21.22 ms
-[20:08:14] [main/INFO] [jei]: Building ingredient filter...
-[20:08:14] [main/INFO] [jei]: Building ingredient filter took 128.8 ms
-[20:08:14] [main/INFO] [jei]: Building runtime...
-[20:08:14] [main/INFO] [jei]: Building runtime took 68.82 ms
-[20:08:14] [main/INFO] [jei]: Starting JEI took 732.5 ms
-[20:08:14] [main/INFO] [FML]: Forge Mod Loader has successfully loaded 8 mods
-[20:08:15] [main/INFO] [com.mojang.text2speech.NarratorLinux]: Narrator library successfully loaded
-[20:08:16] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient]: Could not authorize you against Realms server: Invalid session id
-[20:09:20] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Starting integrated minecraft server version 1.12.2
-[20:09:20] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Generating keypair
-[20:09:20] [Server thread/INFO] [FML]: Injecting existing registry data into this server instance
-[20:09:20] [Server thread/INFO] [FML]: Applying holder lookups
-[20:09:20] [Server thread/INFO] [FML]: Holder lookups applied
-[20:09:20] [Server thread/INFO] [FML]: Loading dimension 0 (New World) (net.minecraft.server.integrated.IntegratedServer@6475e33c)
-[20:09:20] [Server thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 488 advancements
-[20:09:20] [Server thread/INFO] [FML]: Loading dimension 1 (New World) (net.minecraft.server.integrated.IntegratedServer@6475e33c)
-[20:09:20] [Server thread/INFO] [FML]: Loading dimension -1 (New World) (net.minecraft.server.integrated.IntegratedServer@6475e33c)
-[20:09:20] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing start region for level 0
-[20:09:21] [Server thread/INFO] [armory]: [Armory-Main]-Starting "Starting Server"-Phase
-[20:09:21] [Server thread/INFO] [armory]: [Armory-Main]-Finished "Starting Server"-Phase after: 4 ms!
-[20:09:21] [Server thread/INFO] [armory]: [Armory-Main]-Starting "Server Started"-Phase
-[20:09:21] [Server thread/INFO] [armory]: [Armory-Main]-Finished "Server Started"-Phase after: 0 ms!
-[20:09:21] [Server thread/INFO] [FML]: Unloading dimension -1
-[20:09:21] [Server thread/INFO] [FML]: Unloading dimension 1
-[20:09:21] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Changing view distance to 12, from 10
-[20:09:21] [Netty Local Client IO #0/INFO] [FML]: Server protocol version 2
-[20:09:21] [Netty Server IO #1/INFO] [FML]: Client protocol version 2
-[20:09:21] [Netty Server IO #1/INFO] [FML]: Client attempting to join with 8 mods : minecraft@1.12.2,FML@8.0.99.99,smithscore@1.12.2-0.20.17-ALPHA,armory@@version@,forge@14.23.4.2705,smithscore-core@1.0,mcp@9.42,jei@4.9.2.196
-[20:09:21] [Netty Local Client IO #0/INFO] [FML]: [Netty Local Client IO #0] Client side modded connection established
-[20:09:22] [Server thread/INFO] [FML]: [Server thread] Server side modded connection established
-[20:09:22] [Server thread/INFO] [net.minecraft.server.management.PlayerList]: Player57[local:E:52d01722] logged in with entity id 118 at (874.2102753547204, 4.0, 1135.2670598462157)
-[20:09:22] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Player57 joined the game
-[20:09:22] [Server thread/INFO] [smithscore]: Updating player UUID list
-[20:09:23] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
-[20:09:23] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[20:09:23] [main/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 3 advancements
-[20:09:29] [pool-2-thread-1/WARN] [com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@5aa390ff[id=503b4b59-0d6c-31d1-9440-529de2c14614,name=Player57,properties={},legacy=false]
-com.mojang.authlib.exceptions.AuthenticationException: The client has sent too many requests within a certain amount of time
-	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:79) ~[YggdrasilAuthenticationService.class:?]
-	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) [YggdrasilMinecraftSessionService.class:?]
-	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:60) [YggdrasilMinecraftSessionService$1.class:?]
-	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:57) [YggdrasilMinecraftSessionService$1.class:?]
-	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3716) [guava-21.0.jar:?]
-	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2424) [guava-21.0.jar:?]
-	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2298) [guava-21.0.jar:?]
-	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2211) [guava-21.0.jar:?]
-	at com.google.common.cache.LocalCache.get(LocalCache.java:4154) [guava-21.0.jar:?]
-	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:4158) [guava-21.0.jar:?]
-	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:5147) [guava-21.0.jar:?]
-	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:5153) [guava-21.0.jar:?]
-	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:170) [YggdrasilMinecraftSessionService.class:?]
-	at net.minecraft.client.Minecraft.getProfileProperties(Minecraft.java:3178) [Minecraft.class:?]
-	at net.minecraft.client.resources.SkinManager$3.run(SkinManager.java:138) [SkinManager$3.class:?]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_191]
-	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266) [?:1.8.0_191]
-	at java.util.concurrent.FutureTask.run(FutureTask.java) [?:1.8.0_191]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_191]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_191]
-	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_191]
-[20:09:29] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Saving and pausing game...
-[20:09:29] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[20:09:29] [Server thread/WARN] [net.minecraft.server.MinecraftServer]: Can't keep up! Did the system time change, or is the server overloaded? Running 5287ms behind, skipping 105 tick(s)
-[20:09:50] [main/INFO] [net.minecraft.client.Minecraft]: Stopping!
-[20:09:50] [Server thread/INFO] [armory]: [Armory-Main]-Starting "Server Stopping"-Phase
-[20:09:50] [Server thread/INFO] [armory]: [Armory-Main]-Finished "Server Stopping"-Phase after: 0 ms!
-[20:09:50] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Stopping server
-[20:09:50] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving players
-[20:09:50] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving worlds
-[20:09:50] [Netty Local Client IO #0/INFO] [smithscore]: Disconnect: Clearing cached connected player list.
-[20:09:50] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
-[20:09:50] [Server thread/INFO] [FML]: Unloading dimension 0
-[20:09:50] [Server thread/INFO] [FML]: Applying holder lookups
-[20:09:50] [Server thread/INFO] [FML]: Holder lookups applied
-[20:09:50] [Server thread/INFO] [armory]: [Armory-Main]-Starting "Server Stopped"-Phase
-[20:09:50] [Server thread/INFO] [armory]: [Armory-Main]-Finished "Server Stopped"-Phase after: 0 ms!
-[20:09:51] [main/INFO] [net.minecraft.client.audio.SoundManager]: SoundSystem shutting down...
-[20:09:51] [main/WARN] [net.minecraft.client.audio.SoundManager]: Author: Paul Lamb, www.paulscode.com
+[22:09:54] [main/INFO] [FML]: MinecraftForge v14.23.4.2705 Initialized
+[22:09:54] [main/INFO] [FML]: Starts to replace vanilla recipe ingredients with ore ingredients.
+[22:09:54] [main/INFO] [FML]: Replaced 1036 ore ingredients
+[22:09:55] [main/INFO] [FML]: Searching /home/marc/IdeaProjects/Armory/run/./mods for mods
+[22:09:56] [main/INFO] [FML]: Forge Mod Loader has identified 8 mods to load
+[22:09:56] [main/WARN] [FML]: ****************************************
+[22:09:56] [main/WARN] [FML]: * The API armory-api|client|render|model from source /home/marc/IdeaProjects/Armory/out/production/Armory_api is loaded from an incompatible classloader. THIS WILL NOT WORK!
+[22:09:56] [main/WARN] [FML]: *  at net.minecraftforge.fml.common.ModAPIManager$APIContainer.validate(ModAPIManager.java:114)
+[22:09:56] [main/WARN] [FML]: *  at net.minecraftforge.fml.common.ModAPIManager.registerDataTableAndParseAPI(ModAPIManager.java:174)
+[22:09:56] [main/WARN] [FML]: *  at net.minecraftforge.fml.common.ModAPIManager.manageAPI(ModAPIManager.java:232)
+[22:09:56] [main/WARN] [FML]: *  at net.minecraftforge.fml.common.Loader.loadMods(Loader.java:567)
+[22:09:56] [main/WARN] [FML]: *  at net.minecraftforge.fml.client.FMLClientHandler.beginMinecraftLoading(FMLClientHandler.java:225)
+[22:09:56] [main/WARN] [FML]: *  at net.minecraft.client.Minecraft.init(Minecraft.java:513)...
+[22:09:56] [main/WARN] [FML]: ****************************************
+[22:09:56] [main/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, smithscore-core, armory, smithscore, jei] at CLIENT
+[22:09:56] [main/INFO] [FML]: Attempting connection with missing mods [minecraft, mcp, FML, forge, smithscore-core, armory, smithscore, jei] at SERVER
+[22:09:57] [main/INFO] [net.minecraft.client.resources.SimpleReloadableResourceManager]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Armory, FMLFileResourcePack:Smiths Core, FMLFileResourcePack:Just Enough Items
+[22:09:57] [main/INFO] [FML]: Processing ObjectHolder annotations
+[22:09:57] [main/INFO] [FML]: Found 1168 ObjectHolder annotations
+[22:09:57] [main/INFO] [FML]: Identifying ItemStackHolder annotations
+[22:09:57] [main/INFO] [FML]: Found 0 ItemStackHolder annotations
+[22:09:57] [Thread-3/INFO] [FML]: Using sync timing. 200 frames of Display.update took 32270534 nanos
+[22:09:57] [main/INFO] [FML]: Configured a dormant chunk cache size of 0
+[22:09:57] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Starting version check at http://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json
+[22:09:57] [main/INFO] [smithscore]: SmithsCore starting in Normal mode.
+[22:09:57] [main/INFO] [smithscore]: Initializing event handlers.
+[22:09:57] [main/INFO] [smithscore]: Attempting to inject @AutomaticEventBusSubscriber classes into the eventbus for smithscore
+[22:09:57] [main/INFO] [smithscore]: Found @AutomaticEventBusSubscriber class com.ldtteam.smithscore.util.client.Textures ready for registration on the Client Event bus
+[22:09:57] [main/INFO] [smithscore]: Injected @AutomaticEventBusSubscriber class com.ldtteam.smithscore.util.client.Textures in the Client Event bus
+[22:09:57] [main/INFO] [smithscore]: Attempting to inject @AutomaticEventBusSubscriber classes into the eventbus for armory
+[22:09:57] [main/INFO] [smithscore]: Found @AutomaticEventBusSubscriber class com.ldtteam.armory.common.logic.initialization.CommonMedievalRegistrationInitializer ready for registration on the Common Event bus
+[22:09:57] [main/INFO] [smithscore]: Injected @AutomaticEventBusSubscriber class com.ldtteam.armory.common.logic.initialization.CommonMedievalRegistrationInitializer in the Common Event bus
+[22:09:57] [main/INFO] [smithscore]: Attempting to inject @AutomaticEventBusSubscriber classes into the eventbus for jei
+[22:09:57] [main/INFO] [smithscore]: SmithsCore Pre-Init completed after: 116 mS.
+[22:09:57] [main/INFO] [armory]: [Armory-Main]-Starting "PreInit"-Phase
+[22:09:57] [main/INFO] [armory]: [Armory-Main]-Finished "PreInit"-Phase after: 66 ms!
+[22:09:57] [Forge Version Check/INFO] [forge.VersionCheck]: [forge] Found status: OUTDATED Target: 14.23.5.2768
+[22:09:57] [main/INFO] [FML]: Applying holder lookups
+[22:09:57] [main/INFO] [FML]: Holder lookups applied
+[22:09:57] [main/INFO] [FML]: Applying holder lookups
+[22:09:57] [main/INFO] [FML]: Holder lookups applied
+[22:09:57] [main/INFO] [FML]: Applying holder lookups
+[22:09:57] [main/INFO] [FML]: Holder lookups applied
+[22:09:58] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.item.armory.multiarmor.armor.helmet add: armor/armory.items.armor.medieval.helmet.mla-armory in the Domain: armory
+[22:09:58] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.item.armory.multiarmor.armor.chestplate add: armor/armory.items.armor.medieval.chestplate.mla-armory in the Domain: armory
+[22:09:58] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.item.armory.multiarmor.armor.leggings add: armor/armory.items.armor.medieval.leggings.mla-armory in the Domain: armory
+[22:09:58] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.item.armory.multiarmor.armor.shoes add: armor/armory.items.armor.medieval.shoes.mla-armory in the Domain: armory
+[22:09:58] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.components.heatedingots add: heateditem/armory.items.components.heatedingots.hi-armory in the Domain: armory
+[22:09:58] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.armorcomponent add: component/armory.items.armorcomponent.ac-armory in the Domain: armory
+[22:09:58] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.components.metalchain add: materialized/armory.items.components.metalchain.mim-armory in the Domain: armory
+[22:09:58] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.components.metalplate add: materialized/armory.items.components.metalplate.mim-armory in the Domain: armory
+[22:09:58] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.components.metalring add: materialized/armory.items.components.metalring.mim-armory in the Domain: armory
+[22:09:58] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.components.metalnugget add: materialized/armory.items.components.metalnugget.mim-armory in the Domain: armory
+[22:09:58] [main/INFO] [armory]: [Armory-Main]-Added model definition for: item.armory.items.components.metalingot add: materialized/armory.items.components.metalingot.mim-armory in the Domain: armory
+[22:09:58] [main/INFO] [smithscore]: Added: armory to the SmitshCore OBJ Loader.
+[22:09:58] [main/INFO] [smithscore]: Added model definition for: item.armory.items.tongs add: armory.resources.mcm-smithscore in the Domain: armory
+[22:09:58] [main/INFO] [smithscore]: Added model definition for: item.armory.items.itemhammer add: armory.resources.mcm-smithscore in the Domain: armory
+[22:09:58] [main/INFO] [FML]: Applying holder lookups
+[22:09:58] [main/INFO] [FML]: Holder lookups applied
+[22:09:58] [main/INFO] [FML]: Injecting itemstacks
+[22:09:58] [main/INFO] [FML]: Itemstack injection complete
+[22:09:58] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Starting up SoundSystem...
+[22:09:59] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: Initializing LWJGL OpenAL
+[22:09:59] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[22:09:59] [main/INFO] [FML]: OBJLoader.Parser: command 's' (model: 'armory:models/block/anvil/blockmodel.obj') is not currently supported, skipping. Line: 76 's off'
+[22:09:59] [main/INFO] [FML]: OBJLoader.Parser: command 'l' (model: 'armory:models/block/anvil/blockmodel.obj') is not currently supported, skipping. Line: 94 'l 29 30'
+[22:09:59] [Thread-4/INFO] [net.minecraft.client.audio.SoundManager]: OpenAL initialized.
+[22:09:59] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
+[22:09:59] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
+[22:09:59] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
+[22:09:59] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
+[22:09:59] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
+[22:09:59] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
+[22:09:59] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
+[22:09:59] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
+[22:09:59] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
+[22:09:59] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
+[22:09:59] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
+[22:09:59] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
+[22:09:59] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
+[22:09:59] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
+[22:09:59] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
+[22:09:59] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
+[22:09:59] [main/INFO] [smithscore]: OBJLoader.MaterialLibrary: key '%s' (model: '%s') is not currently supported, skipping
+[22:09:59] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
+[22:09:59] [main/INFO] [smithscore]: OBJModel: A color has already been defined for material '%s' in '%s'. The color defined by key '%s' will not be applied!
+[22:10:04] [Sound Library Loader/INFO] [net.minecraft.client.audio.SoundManager]: Sound engine started
+[22:10:11] [main/INFO] [FML]: Max texture size: 16384
+[22:10:11] [main/WARN] [net.minecraft.client.renderer.texture.TextureMap]: Texture armory:textures/gui/components/slot_default.png with size 18x18 will have visual artifacts at mip level 4, it can only support level 1. Please report to the mod author that the texture should be some multiple of 16x16.
+[22:10:11] [main/INFO] [net.minecraft.client.renderer.texture.TextureMap]: Created: 1024x512 textures-atlas
+[22:10:13] [main/INFO] [FML]: Applying holder lookups
+[22:10:13] [main/INFO] [FML]: Holder lookups applied
+[22:10:13] [main/INFO] [smithscore]: SmithsCore Init completed after: 4 ms.
+[22:10:13] [main/INFO] [armory]: [Armory-Main]-Starting "Init"-Phase
+[22:10:13] [main/INFO] [armory]: [Armory-Main]-Finished "Init"-Phase after: 15 ms!
+[22:10:13] [main/INFO] [armory]: [Armory-Main]-Starting "IMCCallback"-Phase
+[22:10:13] [main/INFO] [armory]: [Armory-Main]-Finished "IMCCallback"-Phase after: 0 ms!
+[22:10:13] [main/INFO] [FML]: Injecting itemstacks
+[22:10:13] [main/INFO] [FML]: Itemstack injection complete
+[22:10:13] [main/INFO] [smithscore]: SmithsCore Post-Init completed after: 0 ms.
+[22:10:13] [main/INFO] [armory]: [Armory-Main]-Starting "PostInit"-Phase
+[22:10:13] [main/INFO] [armory]: [Armory-Main]-Could not remove recipe of: 9xitemStack[item.ironNugget@0][]
+[22:10:13] [main/INFO] [armory]: [Armory-Main]-Could not remove recipe of: 9xitemStack[item.goldNugget@0][]
+[22:10:13] [main/INFO] [armory]: [Armory-Main]-Finished "PostInit"-Phase after: 24 ms!
+[22:10:13] [main/INFO] [armory]: [Armory-Main]-Starting "Load Complete"-Phase
+[22:10:13] [main/INFO] [armory]: [Armory-Main]-Notifying requesters of API init completion.
+[22:10:13] [main/INFO] [armory]: [Armory-Main]-Finished "Load Complete"-Phase after: 54 ms!
+[22:10:13] [main/INFO] [jei]: Starting JEI...
+[22:10:13] [main/INFO] [jei]: Registering recipe categories...
+[22:10:13] [main/INFO] [jei]: Registering recipe categories took 17.88 ms
+[22:10:13] [main/INFO] [jei]: Registering mod plugins...
+[22:10:13] [main/INFO] [jei]: Registering mod plugins took 249.5 ms
+[22:10:13] [main/INFO] [jei]: Building recipe registry...
+[22:10:13] [main/INFO] [jei]: Building recipe registry took 130.7 ms
+[22:10:13] [main/INFO] [jei]: Building ingredient list...
+[22:10:13] [main/INFO] [jei]: Building ingredient list took 22.92 ms
+[22:10:13] [main/INFO] [jei]: Building ingredient filter...
+[22:10:14] [main/INFO] [jei]: Building ingredient filter took 149.1 ms
+[22:10:14] [main/INFO] [jei]: Building runtime...
+[22:10:14] [main/INFO] [jei]: Building runtime took 72.20 ms
+[22:10:14] [main/INFO] [jei]: Starting JEI took 795.9 ms
+[22:10:14] [main/INFO] [FML]: Forge Mod Loader has successfully loaded 8 mods
+[22:10:14] [main/INFO] [com.mojang.text2speech.NarratorLinux]: Narrator library successfully loaded
+[22:10:15] [Realms Notification Availability checker #1/INFO] [com.mojang.realmsclient.client.RealmsClient]: Could not authorize you against Realms server: Invalid session id

@@ -1,6 +1,7 @@
 package com.ldtteam.armory.client.model.loaders;
 
 import com.google.common.collect.ImmutableList;
+import com.ldtteam.armory.api.util.client.ModelLocationHelper;
 import com.ldtteam.armory.api.util.references.ModLogger;
 import com.ldtteam.armory.client.model.item.unbaked.HeatedItemItemModel;
 import com.ldtteam.armory.client.model.item.unbaked.components.TemperatureBarComponentModel;
@@ -30,6 +31,7 @@ public class HeatedItemModelLoader implements ICustomModelLoader {
     @Override
     public IModel loadModel(@Nonnull ResourceLocation modelLocation) throws IOException {
         try {
+            modelLocation = ModelLocationHelper.checkForItemPrefix(modelLocation);
             modelLocation = ModelHelper.getModelLocation(modelLocation);
 
             //Load the default definition of the model as defined by the registrar first.

@@ -11,6 +11,7 @@ import com.ldtteam.armory.api.common.armor.IMaterializableMultiComponentArmorExt
 import com.ldtteam.armory.api.common.armor.IMultiComponentArmor;
 import com.ldtteam.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.ldtteam.armory.api.common.events.client.model.item.MultiLayeredArmorModelTextureLoadEvent;
+import com.ldtteam.armory.api.util.client.ModelLocationHelper;
 import com.ldtteam.armory.api.util.common.armor.ArmorHelper;
 import com.ldtteam.armory.api.util.references.ModLogger;
 import com.ldtteam.armory.client.model.item.unbaked.MultiLayerArmorModel;
@@ -45,18 +46,20 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
 
     @Override
     public IModel loadModel(@Nonnull ResourceLocation modelLocation) throws IOException {
+        final ResourceLocation workingModelLocation = ModelLocationHelper.checkForItemPrefix(modelLocation);
+
         try {
             //Retrieve the Name of the armor.
             //The file name without the extension has to be equal to the Name used in Armories registry.
-            IMultiComponentArmor armor = ArmorHelper.getArmorForModel(modelLocation);
+            IMultiComponentArmor armor = ArmorHelper.getArmorForModel(workingModelLocation);
 
             //If none is registered return missing model and print out an error.
             if (armor == null) {
-                ModLogger.getInstance().error("The given model: " + modelLocation.toString() + " Is not registered to any armor known to armory.");
+                ModLogger.getInstance().error("The given model: " + workingModelLocation.toString() + " Is not registered to any armor known to armory.");
                 return ModelLoaderRegistry.getMissingModel();
             }
 
-            MultiLayeredArmorModelDefinition definition = processDefinition(armor, modelLocation);
+            MultiLayeredArmorModelDefinition definition = processDefinition(armor, workingModelLocation);
 
             //Create the final texture list builder.
             ImmutableSet.Builder<ResourceLocation> textureBuilder = ImmutableSet.builder();
@@ -77,8 +80,8 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
                 ImmutableMap.Builder<IMultiComponentArmorExtension, ArmorSubComponentModel> layerModelBuilder = ImmutableMap.builder();
                 ImmutableMap.Builder<IMultiComponentArmorExtension, ArmorSubComponentModel> brokenModelBuilder = ImmutableMap.builder();
 
-                partDefinition.getLayers().forEach(new ModelMappingProcessingConsumer(modelLocation, layerModelBuilder, textureBuilder));
-                partDefinition.getBroken().forEach(new ModelMappingProcessingConsumer(modelLocation, brokenModelBuilder, textureBuilder));
+                partDefinition.getLayers().forEach(new ModelMappingProcessingConsumer(workingModelLocation, layerModelBuilder, textureBuilder));
+                partDefinition.getBroken().forEach(new ModelMappingProcessingConsumer(workingModelLocation, brokenModelBuilder, textureBuilder));
 
                 armorPartModelBuilder.put(key, new MultiLayerArmorPartModel(armor, partTextures.build(), partDefinition.getPart(), baseModel, layerModelBuilder.build(), brokenModelBuilder.build(), definition.getTransforms(),
                                                                              partDefinition.getInternalTranslation()));
@@ -92,7 +95,7 @@ public class MultiLayeredArmorModelLoader implements ICustomModelLoader {
 
             return output;
         } catch (IOException e) {
-            ModLogger.getInstance().error(String.format("Could not load multimodel %s", modelLocation.toString()));
+            ModLogger.getInstance().error(String.format("Could not load multimodel %s", workingModelLocation.toString()));
             ModLogger.getInstance().error(e);
         }
 

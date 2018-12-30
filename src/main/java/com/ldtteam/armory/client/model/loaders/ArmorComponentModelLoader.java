@@ -1,6 +1,7 @@
 package com.ldtteam.armory.client.model.loaders;
 
 import com.google.common.collect.ImmutableMap;
+import com.ldtteam.armory.api.util.client.ModelLocationHelper;
 import com.ldtteam.armory.api.util.references.ModLogger;
 import com.ldtteam.armory.client.model.item.unbaked.ArmorItemComponentModel;
 import com.ldtteam.armory.client.textures.MaterializedTextureCreator;
@@ -32,6 +33,7 @@ public class ArmorComponentModelLoader implements ICustomModelLoader {
     @Override
     public IModel loadModel(@Nonnull ResourceLocation modelLocation) throws IOException {
         try {
+            modelLocation = ModelLocationHelper.checkForItemPrefix(modelLocation);
             modelLocation = ModelHelper.getModelLocation(modelLocation);
 
             //Load the default definition of the model as defined by the registrar first.

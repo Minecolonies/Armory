@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.ldtteam.armory.api.client.model.deserializers.definition.AnvilModelDefinition;
 import com.ldtteam.armory.api.common.events.client.model.block.BlackSmithsAnvilModelTextureLoadEvent;
 import com.ldtteam.armory.api.common.material.anvil.IAnvilMaterial;
+import com.ldtteam.armory.api.util.client.ModelLocationHelper;
 import com.ldtteam.armory.api.util.references.ModLogger;
 import com.ldtteam.armory.client.model.block.unbaked.BlackSmithsAnvilModel;
 import com.ldtteam.armory.common.api.ArmoryAPI;
@@ -35,6 +36,7 @@ public class AnvilModelLoader implements ICustomModelLoader {
     @Override
     public IModel loadModel(@NotNull ResourceLocation modelLocation) throws IOException {
         try {
+            modelLocation = ModelLocationHelper.checkForBlockPrefix(modelLocation);
             modelLocation = ModelHelper.getModelLocation(modelLocation);
             modelLocation = new ResourceLocation(modelLocation.getResourceDomain(), modelLocation.getResourcePath().replace(".json", ""));
 
