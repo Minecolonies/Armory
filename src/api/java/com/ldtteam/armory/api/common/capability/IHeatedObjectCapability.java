@@ -104,7 +104,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
         @Nonnull
         @Override
         public Float getTemperature() {
-            return temperature;
+            return (float) Math.floor(temperature);
         }
 
         /**
@@ -115,7 +115,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
          */
         @Override
         public IHeatedObjectCapability setTemperature(@Nonnull Float temperature) {
-            this.temperature = temperature;
+            this.temperature = (float) Math.floor(temperature);
             return this;
         }
 
@@ -201,7 +201,7 @@ public interface IHeatedObjectCapability extends IHeatableObjectCapability {
         public String toString()
         {
             return "Heated{" +
-                     "temperature=" + temperature +
+                     "temperature=" + Math.floor(temperature) +
                      ", stack=" + (stack == null ? "null" : ItemStackHelper.toString(stack)) +
                      '}';
         }
