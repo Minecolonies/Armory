@@ -156,7 +156,8 @@ public class TranslationKeys {
         }
 
         public class JEI {
-            public static final String AnvilRecipeName = "armory.nei.compatibility.armorsanvilrecipe";
+            public static final String AnvilRecipeName = "armory.jei.compatibility.armorsanvilrecipe";
+            public static final String HeatedItemName = "armory.jei.compatibility.heateditemrecipe";
         }
 
         public class Components {

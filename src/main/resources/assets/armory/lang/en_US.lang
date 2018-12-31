@@ -48,8 +48,9 @@ armory.gui.guide.pages.medieval.section.one.content=When you first entered this 
 armory.gui.guide.pages.medieval.section.two.title=Creation:
 armory.gui.guide.pages.medieval.section.two.content.part.one=Medieval armor is made using hot rings and chains in the Blacksmiths Anvil. By combining them in the right way you can create pieces of armor that fit your body:
 #
-#NEI Compat
-armory.nei.compatibility.armorsanvilrecipe=Blacksmiths Anvil
+#JEI Compat
+armory.jei.compatibility.armorsanvilrecipe=Blacksmiths Anvil
+armory.jei.compatibility.heateditemrecipe=Heated Item
 #
 #Blocks
 tile.armory.blocks.forge.name=Forge

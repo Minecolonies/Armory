@@ -9,9 +9,15 @@ import com.ldtteam.armory.api.util.references.ModCapabilities;
 import com.ldtteam.armory.api.util.references.ModItems;
 import com.ldtteam.armory.api.util.references.References;
 import com.ldtteam.armory.client.gui.implementations.blacksmithsanvil.GuiBlacksmithsAnvil;
+import com.ldtteam.armory.client.gui.implementations.fireplace.GuiFireplace;
+import com.ldtteam.armory.client.gui.implementations.forge.GuiForge;
 import com.ldtteam.armory.common.api.ArmoryAPI;
 import com.ldtteam.armory.compatibility.recipes.anvil.BlackSmithsAnvilRecipeWrapper;
 import com.ldtteam.armory.compatibility.recipes.anvil.BlacksmithsAnvilRecipeCategory;
+import com.ldtteam.armory.compatibility.recipes.heated.HeatedItemRecipe;
+import com.ldtteam.armory.compatibility.recipes.heated.HeatedItemRecipeCategory;
+import com.ldtteam.armory.compatibility.recipes.heated.HeatedItemRecipeMaker;
+import com.ldtteam.armory.compatibility.recipes.heated.HeatedItemRecipeWrapper;
 import mezz.jei.api.*;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.Item;
@@ -172,6 +178,7 @@ public class JEICompatMod implements IModPlugin {
     {
         HELPERS = registry.getJeiHelpers();
         registry.addRecipeCategories(new BlacksmithsAnvilRecipeCategory());
+        registry.addRecipeCategories(new HeatedItemRecipeCategory());
     }
 
     @Override
@@ -180,10 +187,18 @@ public class JEICompatMod implements IModPlugin {
         registry.addRecipes(Lists.newArrayList(IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry()), References.Compatibility.JEI.RecipeTypes.ANVIL);
         registry.addRecipeClickArea(GuiBlacksmithsAnvil.class, 17, 7, 30, 30, References.Compatibility.JEI.RecipeTypes.ANVIL);
 
+        registry.handleRecipes(HeatedItemRecipe.class, HeatedItemRecipeWrapper::new, References.Compatibility.JEI.RecipeTypes.HEATEDITEM);
+        registry.addRecipes(HeatedItemRecipeMaker.generateRecipes(), References.Compatibility.JEI.RecipeTypes.HEATEDITEM);
+        registry.addRecipeClickArea(GuiForge.class, 80,44, 22,16, References.Compatibility.JEI.RecipeTypes.HEATEDITEM);
+
         NonNullList<ItemStack> anvils = NonNullList.create();
         ModBlocks.BL_ANVIL.getSubBlocks(ModBlocks.BL_ANVIL.getCreativeTabToDisplayOn(), anvils);
-
         for (ItemStack stack : anvils)
+        {
             registry.addRecipeCatalyst(stack, References.Compatibility.JEI.RecipeTypes.ANVIL);
+        }
+
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.BL_FORGE), References.Compatibility.JEI.RecipeTypes.HEATEDITEM);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.BL_FIREPLACE), References.Compatibility.JEI.RecipeTypes.HEATEDITEM);
     }
 }

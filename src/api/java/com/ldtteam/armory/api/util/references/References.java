@@ -592,6 +592,7 @@ public class References {
         public class JEI {
             public class RecipeTypes {
                 public static final String ANVIL = "armory.compat.jei.recipestypes.anvil";
+                public static final String HEATEDITEM = "armory.compat.jei.recipestypes.heateditem";
             }
         }
 

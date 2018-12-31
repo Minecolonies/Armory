@@ -8,6 +8,7 @@ import com.ldtteam.armory.api.util.references.ModInventories;
 import com.ldtteam.armory.common.factories.HeatedItemFactory;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
+import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -18,7 +19,8 @@ import java.util.List;
 /**
  * Author Orion (Created on: 21.06.2016)
  */
-public class BlackSmithsAnvilRecipeWrapper extends BlankRecipeWrapper {
+public class BlackSmithsAnvilRecipeWrapper implements IRecipeWrapper
+{
 
     int hammerUsage = -1;
     int tongUsage = -1;

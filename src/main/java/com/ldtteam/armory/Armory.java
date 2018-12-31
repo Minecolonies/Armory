@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 @Mod(modid = References.General.MOD_ID, name = "Armory", version = References.General.VERSION,
-        dependencies = "required-after:forge@[13.19,);required-after:smithscore;")
+        dependencies = "required-after:forge@[13.19,);required-after:smithscore;before:jei;")
 public class Armory {
     // Instance of this mod use for internal and Forge references
     @Mod.Instance(References.General.MOD_ID)

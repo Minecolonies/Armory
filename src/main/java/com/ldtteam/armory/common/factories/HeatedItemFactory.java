@@ -15,6 +15,7 @@ import com.ldtteam.armory.api.common.material.core.IMaterial;
 import com.ldtteam.armory.api.util.common.Triple;
 import com.ldtteam.armory.api.util.references.ModCapabilities;
 import com.ldtteam.armory.api.util.references.ModItems;
+import com.ldtteam.armory.api.util.references.ModLogger;
 import com.ldtteam.armory.api.util.references.References;
 import com.ldtteam.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import net.minecraft.item.ItemStack;
@@ -48,6 +49,11 @@ public class HeatedItemFactory implements IHeatedItemFactory {
 
         if (originalStack.isEmpty())
             return ItemStack.EMPTY;
+
+        if (!originalStack.hasCapability(SmithsCoreCapabilityDispatcher.INSTANCE_CAPABILITY, null))
+        {
+            originalStack = originalStack.copy();
+        }
 
         SmithsCoreCapabilityDispatcher originalCapDispatcher = originalStack.getCapability(SmithsCoreCapabilityDispatcher.INSTANCE_CAPABILITY, null).getDispatcher();
 

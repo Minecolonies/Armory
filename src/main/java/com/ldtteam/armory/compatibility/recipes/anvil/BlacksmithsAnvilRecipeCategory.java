@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Author Orion (Created on: 21.06.2016)
  */
-public class BlacksmithsAnvilRecipeCategory implements IRecipeCategory {
+public class BlacksmithsAnvilRecipeCategory implements IRecipeCategory<BlackSmithsAnvilRecipeWrapper> {
 
     private static final CustomResource RESOURCE = Textures.Gui.Compatibility.JEI.ArmorsAnvil.GUI;
 
@@ -85,7 +85,8 @@ public class BlacksmithsAnvilRecipeCategory implements IRecipeCategory {
      * @since JEI 3.11.0
      */
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
+    public void setRecipe(final IRecipeLayout recipeLayout, final BlackSmithsAnvilRecipeWrapper recipeWrapper, final IIngredients ingredients)
+    {
         for (int i = 0; i < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS; i++) {
             int row = i / 5;
             int column = i % 5;
@@ -102,23 +103,20 @@ public class BlacksmithsAnvilRecipeCategory implements IRecipeCategory {
             recipeLayout.getItemStacks().init(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_TONGSLOTS + i, true, 51 + i * 22, 108);
         }
 
-        if (recipeWrapper instanceof BlackSmithsAnvilRecipeWrapper) {
-            BlackSmithsAnvilRecipeWrapper wrapper = (BlackSmithsAnvilRecipeWrapper) recipeWrapper;
-            for (int i = 0; i < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS; i++) {
-                recipeLayout.getItemStacks().set(i, wrapper.getInputs().get(i));
-            }
+        for (int i = 0; i < ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS; i++) {
+            recipeLayout.getItemStacks().set(i, recipeWrapper.getInputs().get(i));
+        }
 
-            recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS, wrapper.getOutputs().get(0));
+        recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS, recipeWrapper.getOutputs().get(0));
 
-            if (wrapper.hammerUsage > 0)
-                recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS, new ItemStack(ModItems.IT_HAMMER, wrapper.getHammerUsage()));
+        if (recipeWrapper.getHammerUsage() > 0)
+            recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS, new ItemStack(ModItems.IT_HAMMER, recipeWrapper.getHammerUsage()));
 
-            if (wrapper.tongUsage > 0)
-                recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS, new ItemStack(ModItems.IT_TONGS, wrapper.getTongUsage()));
+        if (recipeWrapper.getTongUsage() > 0)
+            recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS, new ItemStack(ModItems.IT_TONGS, recipeWrapper.getTongUsage()));
 
-            for (int i = 0; i < ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS; i++) {
-                recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_TONGSLOTS + i, wrapper.getAdditionalStacks().get(i));
-            }
+        for (int i = 0; i < ModInventories.TileEntityBlackSmithsAnvil.MAX_ADDITIONALSLOTS; i++) {
+            recipeLayout.getItemStacks().set(ModInventories.TileEntityBlackSmithsAnvil.MAX_CRAFTINGSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_OUTPUTSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_HAMMERSLOTS + ModInventories.TileEntityBlackSmithsAnvil.MAX_TONGSLOTS + i, recipeWrapper.getAdditionalStacks().get(i));
         }
     }
 

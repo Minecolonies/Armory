@@ -28,6 +28,9 @@ public class BakedTemperatureBarModel extends BakedWrappedModel {
     }
 
     public IBakedModel getModel(int index) {
+        if (index < 0 || index >= textures.size())
+            return textures.get(0);
+
         return textures.get(index);
     }
 

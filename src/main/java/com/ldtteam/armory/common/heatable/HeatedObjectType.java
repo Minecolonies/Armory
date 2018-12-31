@@ -49,4 +49,16 @@ public class HeatedObjectType extends IHeatedObjectType.Impl<IHeatedObjectType> 
 
         return matches.get(0).copy();
     }
+
+    /**
+     * Returns the oredictionary prefix of this type.
+     *
+     * @return The oredictionary prefix.
+     */
+    @Nonnull
+    @Override
+    public String getOreDictionaryPrefix()
+    {
+        return this.oreDicPrefix;
+    }
 }

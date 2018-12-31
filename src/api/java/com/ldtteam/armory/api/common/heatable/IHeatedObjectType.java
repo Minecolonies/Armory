@@ -26,4 +26,11 @@ public interface IHeatedObjectType extends IForgeRegistryEntry<IHeatedObjectType
      */
     @Nonnull
     ItemStack generateItemStackForMaterial(IMaterial material) throws IllegalArgumentException;
+
+    /**
+     * Returns the oredictionary prefix of this type.
+     * @return The oredictionary prefix.
+     */
+    @Nonnull
+    String getOreDictionaryPrefix();
 }

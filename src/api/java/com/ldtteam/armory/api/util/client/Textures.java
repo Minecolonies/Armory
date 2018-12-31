@@ -143,7 +143,11 @@ public class Textures {
             public static class JEI {
                 public static class ArmorsAnvil {
                     @Nonnull
-                    public static CustomResource GUI = new CustomResource("Gui.Compatibility.NEI.Anvil.gui", GUITEXTUREPATH + "jei/anvil.png", 0, 0, 162, 133);
+                    public static CustomResource GUI = new CustomResource("Gui.Compatibility.JEI.Anvil.gui", GUITEXTUREPATH + "jei/anvil.png", 0, 0, 162, 133);
+                }
+                public static class HeatedItem {
+                    @Nonnull
+                    public static CustomResource GUI = new CustomResource("Gui.Compatibility.JEI.Anvil.gui", GUITEXTUREPATH + "jei/heated_item.png", 0, 0, 101, 32);
                 }
             }
         }

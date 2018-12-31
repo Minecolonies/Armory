@@ -251,14 +251,6 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
                 .setProgress(25).setResult(stack).setHammerUsage(30);
     }
 
-    @Override
-    public String toString()
-    {
-        return "MedievalAnvilMaterial{" +
-                 "registryname='" + getRegistryName().toString() + "\'" +
-                 '}';
-    }
-
     /**
      * Determines if this object has support for the capability in question on the specific side.
      * The return value of this MIGHT change during runtime if this object gains or looses support
@@ -295,5 +287,24 @@ public class MedievalAnvilMaterial extends IForgeRegistryEntry.Impl<IAnvilMateri
     public <T> T getCapability(@Nonnull final Capability<T> capability, @Nullable final EnumFacing facing)
     {
         return null;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "MedievalAnvilMaterial{" +
+                 "translationKey='" + translationKey + '\'' +
+                 ", textFormatting='" + textFormatting + '\'' +
+                 ", oreDictionaryIdentifier='" + oreDictionaryIdentifier + '\'' +
+                 ", meltingPoint=" + meltingPoint +
+                 ", vaporizingPoint=" + vaporizingPoint +
+                 ", meltingTime=" + meltingTime +
+                 ", vaporizingTime=" + vaporizingTime +
+                 ", heatCoefficient=" + heatCoefficient +
+                 ", durability=" + durability +
+                 ", textureOverrideIdentifier='" + textureOverrideIdentifier + '\'' +
+                 ", renderInfo=" + renderInfo +
+                 ", fluid=" + fluid +
+                 '}';
     }
 }

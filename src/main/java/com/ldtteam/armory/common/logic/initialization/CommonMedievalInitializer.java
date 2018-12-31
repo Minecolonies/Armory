@@ -1,11 +1,13 @@
 package com.ldtteam.armory.common.logic.initialization;
 
+import com.google.common.collect.Sets;
 import com.ldtteam.armory.api.IArmoryAPI;
 import com.ldtteam.armory.api.common.armor.IMultiComponentArmorExtension;
 import com.ldtteam.armory.api.common.crafting.blacksmiths.component.HeatedAnvilRecipeComponent;
 import com.ldtteam.armory.api.common.crafting.blacksmiths.component.OreDicAnvilRecipeComponent;
 import com.ldtteam.armory.api.common.crafting.blacksmiths.recipe.AnvilRecipe;
 import com.ldtteam.armory.api.common.crafting.blacksmiths.recipe.IAnvilRecipe;
+import com.ldtteam.armory.api.common.heatable.IHeatedObjectType;
 import com.ldtteam.armory.api.common.initialization.IInitializationComponent;
 import com.ldtteam.armory.api.common.material.anvil.IAnvilMaterial;
 import com.ldtteam.armory.api.common.material.armor.ICoreArmorMaterial;
@@ -16,14 +18,17 @@ import com.ldtteam.armory.common.factories.ArmorFactory;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.ForgeRegistry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.function.Consumer;
 
 import static com.ldtteam.armory.api.util.references.References.InternalNames.Recipes.Anvil.*;
@@ -140,6 +145,9 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
         initializeMedievalArmorAnvilRecipes();
         initializeMedievalUpgradeAnvilRecipes();
         initializeUpgradeRecipeSystem();
+
+        ModLogger.getInstance().warn(String.format("Registered: %d anvil recipes.",
+          IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilRecipeRegistry().getValuesCollection().size()));
     }
 
     private static void initializeAnvilCreationAnvilRecipes() {
@@ -291,63 +299,95 @@ public final class CommonMedievalInitializer extends IInitializationComponent.Im
     }
 
     private static void registerHeatableOverrides() {
-        registerHeatableOverrideForItems(ModMaterials.Armor.Core.IRON, new ItemStack(Items.IRON_INGOT), null, new ItemStack(Blocks.IRON_BLOCK), null, null, null);
-        registerHeatableOverrideForItems(ModMaterials.Armor.Addon.IRON, new ItemStack(Items.IRON_INGOT), null, new ItemStack(Blocks.IRON_BLOCK), null, null, null);
-        registerHeatableOverrideForItems(ModMaterials.Anvil.IRON, new ItemStack(Items.IRON_INGOT), null, new ItemStack(Blocks.IRON_BLOCK), null, null, null);
+        final Set<String> oreDictionaryProcessed = Sets.newHashSet();
 
-        registerHeatableOverrideForItems(ModMaterials.Armor.Core.OBSIDIAN, null, null, new ItemStack(Blocks.OBSIDIAN), null, null, null);
-        registerHeatableOverrideForItems(ModMaterials.Armor.Addon.OBSIDIAN, null, null, new ItemStack(Blocks.OBSIDIAN), null, null, null);
-        registerHeatableOverrideForItems(ModMaterials.Anvil.OBSIDIAN, null, null, new ItemStack(Blocks.OBSIDIAN), null, null, null);
+        IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry().getValuesCollection()
+          .stream()
+          .filter(iCoreArmorMaterial -> iCoreArmorMaterial.getRegistryName().getResourceDomain().equals(References.General.MOD_ID))
+          .filter(iCoreArmorMaterial -> !oreDictionaryProcessed.contains(iCoreArmorMaterial.getOreDictionaryIdentifier()))
+          .forEach(iCoreArmorMaterial -> {
+              oreDictionaryProcessed.add(iCoreArmorMaterial.getOreDictionaryIdentifier());
 
-        registerHeatableOverrideForItems(ModMaterials.Armor.Core.GOLD, new ItemStack(Items.GOLD_INGOT), new ItemStack(Items.GOLD_NUGGET), new ItemStack(Blocks.GOLD_BLOCK), null, null, null);
-        registerHeatableOverrideForItems(ModMaterials.Armor.Addon.GOLD, new ItemStack(Items.GOLD_INGOT), new ItemStack(Items.GOLD_NUGGET), new ItemStack(Blocks.GOLD_BLOCK), null, null, null);
+              registerHeatableOverrideForItems(
+                iCoreArmorMaterial,
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_INGOT, iCoreArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_NUGGET, iCoreArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_BLOCK, iCoreArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_CHAIN, iCoreArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_RING, iCoreArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_PLATE, iCoreArmorMaterial.getOreDictionaryIdentifier())
+              );
+          });
 
-        registerHeatableOverrideForItems(ModMaterials.Anvil.STONE, null, null, new ItemStack(Blocks.STONE), null, null, null);
+        IArmoryAPI.Holder.getInstance().getRegistryManager().getAddonArmorMaterialRegistry().getValuesCollection()
+          .stream()
+          .filter(iAddonArmorMaterial -> iAddonArmorMaterial.getRegistryName().getResourceDomain().equals(References.General.MOD_ID))
+          .filter(iAddonArmorMaterial -> !oreDictionaryProcessed.contains(iAddonArmorMaterial.getOreDictionaryIdentifier()))
+          .forEach(iAddonArmorMaterial -> {
+              oreDictionaryProcessed.add(iAddonArmorMaterial.getOreDictionaryIdentifier());
+
+              registerHeatableOverrideForItems(
+                iAddonArmorMaterial,
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_INGOT, iAddonArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_NUGGET, iAddonArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_BLOCK, iAddonArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_CHAIN, iAddonArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_RING, iAddonArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_PLATE, iAddonArmorMaterial.getOreDictionaryIdentifier())
+              );
+          });
+
+        IArmoryAPI.Holder.getInstance().getRegistryManager().getAnvilMaterialRegistry().getValuesCollection()
+          .stream()
+          .filter(iAnvilArmorMaterial -> iAnvilArmorMaterial.getRegistryName().getResourceDomain().equals(References.General.MOD_ID))
+          .filter(iAnvilArmorMaterial -> !oreDictionaryProcessed.contains(iAnvilArmorMaterial.getOreDictionaryIdentifier()))
+          .forEach(iAnvilArmorMaterial -> {
+              oreDictionaryProcessed.add(iAnvilArmorMaterial.getOreDictionaryIdentifier());
+
+              registerHeatableOverrideForItems(
+                iAnvilArmorMaterial,
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_INGOT, iAnvilArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_NUGGET, iAnvilArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_BLOCK, iAnvilArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_CHAIN, iAnvilArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_RING, iAnvilArmorMaterial.getOreDictionaryIdentifier()),
+                findItemStacksFromOreDictionary(References.OreDictionaryIdentifiers.ODI_PLATE, iAnvilArmorMaterial.getOreDictionaryIdentifier())
+              );
+          });
+    }
+
+    private static NonNullList<ItemStack> findItemStacksFromOreDictionary(@Nonnull String oreType, @Nonnull String materialOreDictionaryName)
+    {
+        return OreDictionary.getOres(oreType + materialOreDictionaryName);
     }
 
     private static void registerHeatableOverrideForItems(@Nonnull IMaterial material
-            , @Nullable ItemStack ingotItem
-            , @Nullable ItemStack nuggetItem
-            , @Nullable ItemStack blockItem
-            , @Nullable ItemStack chainItem
-            , @Nullable ItemStack ringItem
-            , @Nullable ItemStack plateItem) {
+      , @Nonnull NonNullList<ItemStack> ingotItems
+      , @Nonnull NonNullList<ItemStack> nuggetItems
+      , @Nonnull NonNullList<ItemStack> blockItems
+      , @Nonnull NonNullList<ItemStack> chainItems
+      , @Nonnull NonNullList<ItemStack> ringItems
+      , @Nonnull NonNullList<ItemStack> plateItems) {
 
-        if (ingotItem != null)
-            IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(ModHeatableObjects.ITEMSTACK
-                , ModHeatedObjectTypes.INGOT
-                , material
-                , ingotItem);
+        registerHeatableOverrideForItemsAndType(material, ingotItems, ModHeatedObjectTypes.INGOT);
+        registerHeatableOverrideForItemsAndType(material, nuggetItems, ModHeatedObjectTypes.NUGGET);
+        registerHeatableOverrideForItemsAndType(material, plateItems, ModHeatedObjectTypes.PLATE);
+        registerHeatableOverrideForItemsAndType(material, ringItems, ModHeatedObjectTypes.RING);
+        registerHeatableOverrideForItemsAndType(material, chainItems, ModHeatedObjectTypes.CHAIN);
+        registerHeatableOverrideForItemsAndType(material, blockItems, ModHeatedObjectTypes.BLOCK);
+    }
 
-        if (nuggetItem != null)
-            IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(ModHeatableObjects.ITEMSTACK
-                , ModHeatedObjectTypes.NUGGET
-                , material
-                , nuggetItem);
-
-        if (blockItem != null)
-            IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(ModHeatableObjects.ITEMSTACK
-                , ModHeatedObjectTypes.BLOCK
-                , material
-                , blockItem);
-
-        if (chainItem != null)
-            IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(ModHeatableObjects.ITEMSTACK
-                    , ModHeatedObjectTypes.CHAIN
-                    , material
-                    , chainItem);
-
-        if (ringItem != null)
-            IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(ModHeatableObjects.ITEMSTACK
-                    , ModHeatedObjectTypes.RING
-                    , material
-                    , ringItem);
-
-        if (plateItem != null)
-            IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(ModHeatableObjects.ITEMSTACK
-                    , ModHeatedObjectTypes.PLATE
-                    , material
-                    , plateItem);
+    private static void registerHeatableOverrideForItemsAndType(@Nonnull IMaterial material
+      , @Nonnull NonNullList<ItemStack> items
+      , @Nonnull IHeatedObjectType type) {
+        if (!items.isEmpty())
+            items.forEach(item -> {
+                IArmoryAPI.Holder.getInstance().getHelpers().getHeatableOverrideManager().registerHeatedOverride(
+                  ModHeatableObjects.ITEMSTACK
+                  , type
+                  , material
+                  , item);
+            });
     }
 
     private static class MaterializedResourceRecipeCreationHandler implements Consumer<IMaterial> {

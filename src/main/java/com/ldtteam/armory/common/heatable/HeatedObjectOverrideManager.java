@@ -12,6 +12,8 @@ import com.ldtteam.smithscore.util.common.helper.ItemStackHelper;
 import gnu.trove.map.hash.TCustomHashMap;
 import gnu.trove.strategy.HashingStrategy;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import java.util.HashMap;
@@ -81,7 +83,17 @@ public class HeatedObjectOverrideManager implements IHeatedObjectOverrideManager
 
         public int computeHashCode (Object object) {
             if (object instanceof ItemStack)
-                return HeatableItemStackHashingStrategy.INSTANCE.computeHashCode((ItemStack) object);
+            {
+                final ItemStack stack = (ItemStack) object;
+                final ItemStack workingStack = stack.copy();
+                workingStack.setCount(1);
+                if (workingStack.getItemDamage() == OreDictionary.WILDCARD_VALUE)
+                {
+                    workingStack.setItemDamage(0);
+                }
+
+                return workingStack.writeToNBT(new NBTTagCompound()).toString().hashCode();
+            }
 
             return object.hashCode();
         }
@@ -89,7 +101,28 @@ public class HeatedObjectOverrideManager implements IHeatedObjectOverrideManager
 
         public boolean equals (Object o1, Object o2) {
             if (o1 instanceof ItemStack && o2 instanceof ItemStack)
-                return ItemStackHelper.equalsIgnoreStackSize((ItemStack) o1, (ItemStack) o2);
+            {
+                final ItemStack s1 = (ItemStack) o1;
+                final ItemStack s2 = (ItemStack) o2;
+
+                final ItemStack c1 = s1.copy();
+                final ItemStack c2 = s2.copy();
+
+                c1.setCount(1);
+                c2.setCount(1);
+
+                if(c1.getItemDamage() == OreDictionary.WILDCARD_VALUE)
+                {
+                    c1.setItemDamage(0);
+                }
+                if(c2.getItemDamage() == OreDictionary.WILDCARD_VALUE)
+                {
+                    c2.setItemDamage(0);
+                }
+
+                return c1.writeToNBT(new NBTTagCompound()).toString().equals(c2.writeToNBT(new NBTTagCompound()).toString());
+            }
+
 
             return o1.equals(o2);
         }

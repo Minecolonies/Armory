@@ -245,4 +245,23 @@ public class MedievalAddonArmorMaterial extends IAddonArmorMaterial.Impl<IAddonA
     {
         return capabilityManager.getCapability(capability, facing);
     }
+
+    @Override
+    public String toString()
+    {
+        return "MedievalAddonArmorMaterial{" +
+                 "translationKey='" + translationKey + '\'' +
+                 ", textFormatting='" + textFormatting + '\'' +
+                 ", oreDictionaryIdentifier='" + oreDictionaryIdentifier + '\'' +
+                 ", meltingPoint=" + meltingPoint +
+                 ", vaporizingPoint=" + vaporizingPoint +
+                 ", meltingTime=" + meltingTime +
+                 ", vaporizingTime=" + vaporizingTime +
+                 ", heatCoefficient=" + heatCoefficient +
+                 ", textureOverrideIdentifier='" + textureOverrideIdentifier + '\'' +
+                 ", renderInfo=" + renderInfo +
+                 ", fluid=" + fluid +
+                 ", capabilityManager=" + capabilityManager +
+                 '}';
+    }
 }

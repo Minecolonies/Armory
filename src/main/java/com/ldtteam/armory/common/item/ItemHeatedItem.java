@@ -5,6 +5,7 @@ package com.ldtteam.armory.common.item;
 /  Created on : 03/10/2014
 */
 
+import com.google.common.collect.Lists;
 import com.ldtteam.armory.api.IArmoryAPI;
 import com.ldtteam.armory.api.common.capability.IHeatedObjectCapability;
 import com.ldtteam.armory.api.common.heatable.IHeatableObject;
@@ -18,6 +19,7 @@ import com.ldtteam.armory.api.util.references.References;
 import com.ldtteam.armory.common.config.ArmoryConfig;
 import com.ldtteam.armory.common.entity.EntityItemHeatable;
 import com.ldtteam.armory.common.factories.HeatedItemFactory;
+import com.ldtteam.armory.common.heatable.HeatedObjectOverrideManager;
 import com.ldtteam.smithscore.common.capability.SmithsCoreCapabilityDispatcher;
 import com.ldtteam.smithscore.util.CoreReferences;
 import net.minecraft.client.Minecraft;
@@ -36,6 +38,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -90,7 +93,7 @@ public class ItemHeatedItem extends Item {
         if (tabs != getCreativeTab())
             return;
 
-        HashMap<String, ItemStack> heatedItems = new HashMap<>();
+        HashMap<String, List<ItemStack>> heatedItems = new HashMap<>();
 
         for (IHeatedObjectType type : IArmoryAPI.Holder.getInstance().getRegistryManager().getHeatableObjectTypeRegistry()) {
             IArmoryAPI.Holder.getInstance().getRegistryManager().getCoreMaterialRegistry().forEach(new MaterialItemStackConstructionConsumer(type, heatedItems));
@@ -106,7 +109,7 @@ public class ItemHeatedItem extends Item {
         emptyIds
           .forEach(heatedItems::remove);
 
-        list.addAll(heatedItems.values());
+        list.addAll(heatedItems.values().stream().flatMap(List::stream).filter(itemStack -> !itemStack.isEmpty()).collect(Collectors.toSet()));
     }
 
     @Override
@@ -210,9 +213,9 @@ public class ItemHeatedItem extends Item {
     private class MaterialItemStackConstructionConsumer implements Consumer<IMaterial> {
 
         private final IHeatedObjectType type;
-        private final HashMap<String, ItemStack> heatedStacks;
+        private final HashMap<String, List<ItemStack>> heatedStacks;
 
-        private MaterialItemStackConstructionConsumer(IHeatedObjectType type, HashMap<String, ItemStack> heatedStacks) {
+        private MaterialItemStackConstructionConsumer(IHeatedObjectType type, HashMap<String, List<ItemStack>> heatedStacks) {
             this.type = type;
             this.heatedStacks = heatedStacks;
         }
@@ -225,8 +228,23 @@ public class ItemHeatedItem extends Item {
         @Override
         public void accept(IMaterial material) {
             if (!heatedStacks.containsKey(material.getOreDictionaryIdentifier() + "-" + type.getRegistryName().toString() + "-Low")) {
-                heatedStacks.put(material.getOreDictionaryIdentifier() + "-" + type.getRegistryName().toString() + "-Low", IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getHeatedItemFactory().generateHeatedItemFromMaterial(material, ModHeatableObjects.ITEMSTACK, type, material.getMeltingPoint() / 3));
-                heatedStacks.put(material.getOreDictionaryIdentifier() + "-" + type.getRegistryName().toString() + "-High", IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getHeatedItemFactory().generateHeatedItemFromMaterial(material, ModHeatableObjects.ITEMSTACK, type, material.getMeltingPoint() - 1));
+                final NonNullList<ItemStack> oreDictionaryTargets = OreDictionary.getOres(type.getOreDictionaryPrefix() + material.getOreDictionaryIdentifier());
+
+                heatedStacks.put(material.getOreDictionaryIdentifier() + "-" + type.getRegistryName().toString() + "-Low", Lists.newArrayList());
+                heatedStacks.put(material.getOreDictionaryIdentifier() + "-" + type.getRegistryName().toString() + "-High", Lists.newArrayList());
+
+                oreDictionaryTargets.forEach(cooledStack -> {
+                    if(HeatedObjectOverrideManager.getInstance().isHeatable(cooledStack))
+                    {
+                        heatedStacks
+                          .get(material.getOreDictionaryIdentifier() + "-" + type.getRegistryName().toString() + "-Low")
+                          .add(IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getHeatedItemFactory().convertToHeatedIngot(cooledStack, material.getMeltingPoint() / 3));
+
+                        heatedStacks
+                          .get(material.getOreDictionaryIdentifier() + "-" + type.getRegistryName().toString() + "-High")
+                          .add(IArmoryAPI.Holder.getInstance().getHelpers().getFactories().getHeatedItemFactory().convertToHeatedIngot(cooledStack, material.getMeltingPoint()-1));
+                    }
+                });
             }
         }
     }
